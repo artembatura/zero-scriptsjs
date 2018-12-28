@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/config.webpack",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Webpack configuration",
   "author": {
     "name": "Artem Batura",
@@ -22,7 +22,7 @@
     "watch": "tsc -b . --watch"
   },
   "dependencies": {
-    "@zero-scripts/core": "^0.1.0-alpha.0",
+    "@zero-scripts/core": "^0.1.0-alpha.1",
     "file-loader": "^3.0.1",
     "terser-webpack-plugin": "^1.2.1",
     "webpack-assets-manifest": "^3.1.1"
@@ -31,7 +31,7 @@
     "@types/node": "^10.12.18",
     "@types/webpack": "^4.4.22",
     "@types/webpack-assets-manifest": "^3.0.0",
-    "@zero-scripts/ts-config": "^0.1.0-alpha.0",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.1",
     "typescript": "^3.2.2"
   },
   "peerDependencies": {

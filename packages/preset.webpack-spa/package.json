@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/preset.webpack-spa",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Webpack Preset with scripts and configuration for web",
   "author": {
     "name": "Artem Batura",
@@ -26,8 +26,8 @@
     "watch": "tsc -b . --watch"
   },
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.1.0-alpha.0",
-    "@zero-scripts/core": "^0.1.0-alpha.0",
+    "@zero-scripts/config.webpack": "^0.1.0-alpha.1",
+    "@zero-scripts/core": "^0.1.0-alpha.1",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "fastify": "^2.0.0-rc.3",
@@ -44,7 +44,7 @@
     "@types/webpack": "^4.4.22",
     "@types/webpack-dev-middleware": "^2.0.2",
     "@types/webpack-hot-middleware": "^2.16.4",
-    "@zero-scripts/ts-config": "^0.1.0-alpha.0",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.1",
     "typescript": "^3.2.2"
   }
 }
