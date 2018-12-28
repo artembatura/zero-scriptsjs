@@ -1,0 +1,34 @@
+{
+  "name": "@zero-scripts/extension.webpack-eslint",
+  "version": "0.1.0-alpha.0",
+  "description": "Adds ESLint to Webpack Config",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc -b .",
+    "prebuild": "rimraf build",
+    "watch": "tsc -b . --watch"
+  },
+  "dependencies": {
+    "@zero-scripts/config.webpack": "^0.1.0-alpha.0",
+    "@zero-scripts/core": "^0.1.0-alpha.0",
+    "eslint": "^5.11.1",
+    "eslint-formatter-pretty": "^2.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-loader": "^2.1.1",
+    "babel-eslint": "^10.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.0",
+    "typescript": "^3.2.2"
+  }
+}

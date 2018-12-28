@@ -1,0 +1,33 @@
+{
+  "name": "@zero-scripts/extension.webpack-babel",
+  "version": "0.1.0-alpha.0",
+  "description": "Adds Babel to Webpack Config",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc -b .",
+    "prebuild": "rimraf build",
+    "watch": "tsc -b . --watch"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@zero-scripts/config.webpack": "^0.1.0-alpha.0",
+    "@zero-scripts/core": "^0.1.0-alpha.0",
+    "babel-loader": "^8.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.0",
+    "typescript": "^3.2.2"
+  }
+}

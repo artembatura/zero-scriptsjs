@@ -1,0 +1,29 @@
+{
+  "name": "@zero-scripts/core",
+  "version": "0.1.0-alpha.0",
+  "description": "Framework for building extensible scripts and configurations",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "tsc -b .",
+    "prebuild": "rimraf build",
+    "watch": "tsc -b . --watch"
+  },
+  "dependencies": {
+    "read-pkg": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@types/read-pkg": "^3.0.0",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.0",
+    "typescript": "^3.2.2"
+  }
+}
