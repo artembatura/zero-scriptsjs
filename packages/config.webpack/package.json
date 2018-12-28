@@ -36,5 +36,9 @@
   },
   "peerDependencies": {
     "webpack": ">=4.20.0"
+  },
+  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
+  "publishConfig": {
+    "access": "public"
   }
 }
