@@ -7,6 +7,10 @@
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
   },
+  "repository": "artemirq/zero-scripts",
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
   "main": "tsconfig.json",
   "license": "MIT"
 }
