@@ -1,12 +1,10 @@
 {
   "version": "0.1.0-alpha.1",
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "npmClient": "yarn",
   "useWorkspaces": true,
   "changelog": {
-    "repo": "artemirq/zero-scripts",
+    "repo": "https://github.com/artemirq/zero-scripts",
     "cacheDir": ".changelog",
     "labels": {
       "PR: Breaking Change :boom:": ":boom: Breaking Change",
