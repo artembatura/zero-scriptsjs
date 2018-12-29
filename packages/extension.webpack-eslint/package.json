@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Adds ESLint to @zero-scripts/config.webpack",
   "author": {
     "name": "Artem Batura",
@@ -25,8 +25,8 @@
     "watch": "tsc -b . --watch"
   },
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.1.0-alpha.1",
-    "@zero-scripts/core": "^0.1.0-alpha.1",
+    "@zero-scripts/config.webpack": "^0.1.0-alpha.2",
+    "@zero-scripts/core": "^0.1.0-alpha.2",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.11.1",
     "eslint-formatter-pretty": "^2.0.0",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@types/node": "^10.12.18",
-    "@zero-scripts/ts-config": "^0.1.0-alpha.1",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.2",
     "typescript": "^3.2.2"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",

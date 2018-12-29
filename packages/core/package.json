@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/core",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "Framework for creating ready-to-use easy-extensible scripts and configurations",
   "author": {
     "name": "Artem Batura",
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/node": "^10.12.18",
     "@types/read-pkg": "^3.0.0",
-    "@zero-scripts/ts-config": "^0.1.0-alpha.1",
+    "@zero-scripts/ts-config": "^0.1.0-alpha.2",
     "typescript": "^3.2.2"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
