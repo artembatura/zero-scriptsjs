@@ -1,12 +1,15 @@
 {
   "name": "@zero-scripts/preset.webpack-spa",
   "version": "0.1.0-alpha.1",
-  "description": "Webpack Preset with scripts and configuration for web",
+  "description": "Webpack preset with scripts for SPA. Using @zero-scripts/config.webpack",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
   },
-  "repository": "artemirq/zero-scripts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
   "bugs": {
     "url": "https://github.com/artemirq/zero-scripts/issues"
   },
@@ -50,5 +53,13 @@
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "preset",
+    "spa",
+    "@zero-scripts/config.webpack"
+  ]
 }

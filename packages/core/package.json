@@ -1,12 +1,15 @@
 {
   "name": "@zero-scripts/core",
   "version": "0.1.0-alpha.1",
-  "description": "Framework for building extensible scripts and configurations",
+  "description": "Framework for creating ready-to-use easy-extensible scripts and configurations",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
   },
-  "repository": "artemirq/zero-scripts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
   "bugs": {
     "url": "https://github.com/artemirq/zero-scripts/issues"
   },
@@ -33,5 +36,15 @@
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "keywords": [
+    "zero-scripts",
+    "framework",
+    "0cjs",
+    "zero-config",
+    "preset",
+    "extension",
+    "configuration",
+    "extensible"
+  ]
 }
