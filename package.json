@@ -13,7 +13,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/jest": "23.3.10",
+    "@types/jest": "23.3.11",
     "babel-eslint": "10.0.1",
     "eslint": "5.11.1",
     "eslint-config-prettier": "3.3.0",
