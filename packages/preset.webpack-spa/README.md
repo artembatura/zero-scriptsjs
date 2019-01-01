@@ -2,11 +2,10 @@
 
 ## Scripts
 
-- #### `start`
-
+- ### `start`
   Runs the app in development mode
 
-- #### `build`
+- ### `build`
   Builds the app for production to the `build` folder
 
 ## Extensions
@@ -18,20 +17,3 @@
 ## Examples
 
 - #### [React](../../examples/react)
-
-package.json:
-
-```json
-{
-  "scripts": {
-    "development": "webpack-spa start",
-    "production": "webpack-spa build"
-    /* scripts, which added by extensions */
-  },
-  "devDependencies": {
-    "@zero-scripts/preset.webpack-spa": "latest"
-    /* extensions (optionally) */
-  }
-  /* options for extensions or config */
-}
-```
