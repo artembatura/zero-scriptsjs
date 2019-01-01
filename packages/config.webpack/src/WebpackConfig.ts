@@ -9,14 +9,6 @@ export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
 > {
-  // Currently we can override default options by package.json
-  //
-  // Example
-  // {
-  //   ...
-  //   "@zero-scripts/config.webpack": { "sourceMap": false }
-  //   ...
-  // }
   constructor({ sourceMap = true }: Partial<WebpackConfigOptions>) {
     super({
       isDev: false,
