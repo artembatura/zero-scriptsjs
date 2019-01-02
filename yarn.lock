@@ -3692,10 +3692,10 @@ eslint-plugin-prettier@3.0.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-typescript@1.0.0-rc.0:
-  version "1.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-1.0.0-rc.0.tgz#4ac69de1268be7b4f676eb75840bc9f6c96af9e5"
-  integrity sha512-ge+A+Kt1EMI90zzH2Cx7QuPvjxnpBUIBzaEsGkleUB5VFNo4cM6xNEKRGaQBtfyr3dONYPYmNEkWBwxYBKZSoQ==
+eslint-plugin-typescript@1.0.0-rc.1:
+  version "1.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-1.0.0-rc.1.tgz#9b4681d75b1952ef41d9cfd7c506ac386a768878"
+  integrity sha512-K45mNfd6Ru3ItHyLpwkQgjCgTMLcLvmsJmH+81yKxqFZRn0BQ6doM9TAovNXvMn2ZryXmBbXWeGhYftU2exh8w==
   dependencies:
     requireindex "^1.2.0"
     typescript-eslint-parser "21.0.2"
