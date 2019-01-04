@@ -18,8 +18,10 @@ Adds Babel to `@zero-scripts/config.webpack`
     "@zero-scripts/preset.webpack-spa": "latest",
     "@zero-scripts/extension.webpack-babel": "latest"
   },
-  "@zero-scripts/extension.webpack-babel": {
-    "react": true
+  "zero-scripts": {
+    "@zero-scripts/extension.webpack-babel": {
+      "react": true
+    }
   }
 }
 ```
