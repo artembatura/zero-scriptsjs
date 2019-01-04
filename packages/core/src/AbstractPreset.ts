@@ -5,6 +5,8 @@ import { packageIsExtension } from './packageIsExtension';
 import { splitByUpperCase } from './utils/splitByUpperCase';
 import { ScriptsMap } from './ScriptsMap';
 
+export const packageJsonOptionsKey = 'zero-scripts';
+
 export abstract class AbstractPreset {
   public readonly scripts: ScriptsMap = new ScriptsMap();
   private readonly instances: Map<string, any> = new Map();
@@ -18,8 +20,14 @@ export abstract class AbstractPreset {
         const ExtensionClass = (require(packageName) as {
           default: ExtensionConstructor;
         }).default;
-        const extensionOptions = readPackageJson(data => data[packageName]);
-        console.log(`${packageName} options: ${extensionOptions}`);
+        const tempOptions: object = readPackageJson(
+          data =>
+            data[packageJsonOptionsKey] &&
+            data[packageJsonOptionsKey][packageName]
+        );
+        const extensionOptions =
+          typeof tempOptions === 'object' ? tempOptions : {};
+        console.log(`${packageName}: ${JSON.stringify(extensionOptions)}`);
         return new ExtensionClass(this, extensionOptions);
       })
       .forEach(extension => {
@@ -43,26 +51,27 @@ export abstract class AbstractPreset {
     const className: string = Class.name;
 
     if (!this.instances.get(className)) {
-      const packageJson = readPackageJson();
-      const classNameWords = splitByUpperCase(className);
-      const optionsKey = Object.keys(packageJson).find(packageName => {
-        let isSuitable = false;
-        // uncomment for strongly check order
-        /* let latestIndexOf = -1; */
-        classNameWords.forEach(word => {
-          const currentIndexOf = packageName.indexOf(word);
-          isSuitable = currentIndexOf !== -1;
-        });
-        return isSuitable;
-      });
-      const options =
-        optionsKey && typeof packageJson[optionsKey] === 'object'
-          ? packageJson[optionsKey]
-          : {};
-      console.log(
-        Object.keys(options).length > 0 &&
-          `${className} options: ${JSON.stringify(options)}`
+      const packageJsonZeroScripts = readPackageJson(
+        data => data[packageJsonOptionsKey]
       );
+      const classNameWords = splitByUpperCase(className);
+      const optionsKey =
+        packageJsonZeroScripts &&
+        Object.keys(packageJsonZeroScripts).find(packageName => {
+          let isSuitable = false;
+          // strongly check order
+          /* let latestIndexOf = -1; */
+          classNameWords.forEach(word => {
+            const currentIndexOf = packageName.indexOf(word);
+            isSuitable = currentIndexOf !== -1;
+          });
+          return isSuitable;
+        });
+      const options =
+        optionsKey && typeof packageJsonZeroScripts[optionsKey] === 'object'
+          ? packageJsonZeroScripts[optionsKey]
+          : {};
+      console.log(`${optionsKey}: ${JSON.stringify(options)}`);
       this.instances.set(className, new Class(options));
     }
 

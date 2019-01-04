@@ -21,7 +21,7 @@ export class WebpackBabelExtension extends AbstractExtension<{
                   babelrc: false,
                   configFile: false,
                   presets: [require.resolve('@babel/preset-env')].concat(
-                    this.options && this.options.react
+                    this.options.react
                       ? require.resolve('@babel/preset-react')
                       : []
                   )
