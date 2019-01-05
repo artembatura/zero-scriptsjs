@@ -4,6 +4,7 @@ import { ExtensionConstructor } from './ExtensionConstructor';
 import { packageIsExtension } from './packageIsExtension';
 import { splitByUpperCase } from './utils/splitByUpperCase';
 import { ScriptsMap } from './ScriptsMap';
+import { getBaseClass } from './utils/getBaseClass';
 
 export const packageJsonOptionsKey = 'zero-scripts';
 
@@ -31,16 +32,24 @@ export abstract class AbstractPreset {
         return new ExtensionClass(this, extensionOptions);
       })
       .forEach(extension => {
-        if (
-          this.extensions.find(
-            ext => ext.constructor.name === extension.constructor.name
-          )
-        ) {
-          throw new Error(
-            `Cannot activate extension ${
-              extension.constructor.name
-            } more than one`
-          );
+        const newBaseClass = getBaseClass(extension.constructor, 1);
+
+        if (newBaseClass) {
+          const conflictExtension = this.extensions.find(ext => {
+            const iterableBaseClass = getBaseClass(ext.constructor, 1);
+            return (
+              ext.constructor.name === extension.constructor.name ||
+              (iterableBaseClass !== undefined &&
+                newBaseClass.name === iterableBaseClass.name)
+            );
+          });
+          if (conflictExtension) {
+            throw new Error(
+              `Extensions conflict. Check devDependencies and choose one: ${
+                extension.constructor.name
+              } or ${conflictExtension.constructor.name}`
+            );
+          }
         }
         extension.activate();
         this.extensions.push(extension);
@@ -71,7 +80,7 @@ export abstract class AbstractPreset {
         optionsKey && typeof packageJsonZeroScripts[optionsKey] === 'object'
           ? packageJsonZeroScripts[optionsKey]
           : {};
-      console.log(`${optionsKey}: ${JSON.stringify(options)}`);
+      console.log(`${className || optionsKey}: ${JSON.stringify(options)}`);
       this.instances.set(className, new Class(options));
     }
 
