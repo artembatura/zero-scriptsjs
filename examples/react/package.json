@@ -14,11 +14,14 @@
     "@zero-scripts/extension.webpack-babel": "^0.1.0-alpha.2",
     "@zero-scripts/extension.webpack-css": "^0.1.0-alpha.2",
     "@zero-scripts/extension.webpack-eslint": "^0.1.0-alpha.2",
-    "@zero-scripts/preset.webpack-spa": "^0.1.0-alpha.2"
+    "@zero-scripts/preset.webpack-spa": "^0.1.0-alpha.2",
+    "@babel/preset-react": "^7.0.0"
   },
   "zero-scripts": {
     "@zero-scripts/extension.webpack-babel": {
-      "react": true
+      "presets": [
+        "@babel/preset-react"
+      ]
     }
   }
 }

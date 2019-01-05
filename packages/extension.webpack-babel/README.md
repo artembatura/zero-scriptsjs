@@ -4,9 +4,9 @@ Adds Babel to `@zero-scripts/config.webpack`
 
 ## Options
 
-| Option | Type      | Default |
-| ------ | --------- | ------- |
-| react  | _Boolean_ | `false` |
+| Option  | Type       | Default |
+| ------- | ---------- | ------- |
+| presets | _string[]_ | `[]`    |
 
 ## Example
 
@@ -20,7 +20,7 @@ Adds Babel to `@zero-scripts/config.webpack`
   },
   "zero-scripts": {
     "@zero-scripts/extension.webpack-babel": {
-      "react": true
+      "presets": ["@babel/preset-react"]
     }
   }
 }

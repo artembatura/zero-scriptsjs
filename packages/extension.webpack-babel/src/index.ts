@@ -1,9 +1,13 @@
 import { AbstractExtension } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 
-export class WebpackBabelExtension extends AbstractExtension<{
-  react: boolean;
-}> {
+export type WebpackBabelExtensionOptions = {
+  presets: string[];
+};
+
+export class WebpackBabelExtension extends AbstractExtension<
+  WebpackBabelExtensionOptions
+> {
   public activate(): void {
     this.preset
       .getInstance(WebpackConfig)
@@ -20,11 +24,10 @@ export class WebpackBabelExtension extends AbstractExtension<{
                 options: {
                   babelrc: false,
                   configFile: false,
-                  presets: [require.resolve('@babel/preset-env')].concat(
-                    this.options.react
-                      ? require.resolve('@babel/preset-react')
-                      : []
-                  )
+                  presets: [
+                    require.resolve('@babel/preset-env'),
+                    ...(this.options.presets ? this.options.presets : [])
+                  ]
                 }
               }
             },

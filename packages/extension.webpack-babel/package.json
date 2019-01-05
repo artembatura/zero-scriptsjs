@@ -27,7 +27,6 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "@babel/preset-react": "^7.0.0",
     "@zero-scripts/config.webpack": "^0.1.0-alpha.2",
     "@zero-scripts/core": "^0.1.0-alpha.2",
     "babel-loader": "^8.0.4"
