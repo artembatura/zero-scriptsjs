@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "core" },
+    { "path": "config.webpack" },
+    { "path": "preset.webpack-spa" },
+    { "path": "extension.webpack-babel" },
+    { "path": "extension.webpack-babel.react" },
+    { "path": "extension.webpack-css" },
+    { "path": "extension.webpack-eslint" }
+  ]
+}
