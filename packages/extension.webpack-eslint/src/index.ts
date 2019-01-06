@@ -1,7 +1,7 @@
 import { AbstractExtension, InsertPos } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 
-export class WebpackEslintExtension extends AbstractExtension<{}> {
+export class WebpackEslintExtension extends AbstractExtension {
   public activate(): void {
     this.preset.getInstance(WebpackConfig).insertModuleRule(
       ({ jsFileExtensions, paths }) => ({
@@ -19,7 +19,12 @@ export class WebpackEslintExtension extends AbstractExtension<{}> {
                 extends: ['eslint:recommended'],
                 plugins: ['import'],
                 env: {
-                  browser: true
+                  browser: true,
+                  node: true
+                },
+                rules: {
+                  'no-unused-vars': 'warn',
+                  'no-console': 'warn'
                 }
               },
               ignore: false,
