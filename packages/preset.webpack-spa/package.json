@@ -24,9 +24,9 @@
     "webpack-spa": "./bin/cli.js"
   },
   "scripts": {
-    "build": "tsc -b .",
-    "prebuild": "rimraf build",
-    "watch": "tsc -b . --watch"
+    "compile": "tsc -b .",
+    "clean": "tsc -b . --clean",
+    "prepublishOnly": "run -s clean compile"
   },
   "dependencies": {
     "@zero-scripts/config.webpack": "^0.1.0-alpha.2",

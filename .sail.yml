@@ -16,4 +16,4 @@ tasks:
     command:
       - yarn
     args:
-      - build
+      - compile

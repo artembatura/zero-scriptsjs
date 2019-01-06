@@ -20,9 +20,9 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc -b .",
-    "prebuild": "rimraf build",
-    "watch": "tsc -b . --watch"
+    "compile": "tsc -b .",
+    "clean": "tsc -b . --clean",
+    "prepublishOnly": "run -s clean compile"
   },
   "dependencies": {
     "@babel/core": "^7.2.2",
