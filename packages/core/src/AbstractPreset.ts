@@ -2,11 +2,9 @@ import { AbstractExtension } from './AbstractExtension';
 import { readPackageJson } from './utils/readPackageJson';
 import { ExtensionConstructor } from './ExtensionConstructor';
 import { packageIsExtension } from './packageIsExtension';
-import { splitByUpperCase } from './utils/splitByUpperCase';
 import { ScriptsMap } from './ScriptsMap';
 import { getBaseClass } from './utils/getBaseClass';
-
-export const packageJsonOptionsKey = 'zero-scripts';
+import { readZeroScriptsOptions } from './utils/readZeroScriptsOptions';
 
 export abstract class AbstractPreset {
   public readonly scripts: ScriptsMap = new ScriptsMap();
@@ -21,11 +19,7 @@ export abstract class AbstractPreset {
         const ExtensionClass = (require(packageName) as {
           default: ExtensionConstructor;
         }).default;
-        const tempOptions: object = readPackageJson(
-          data =>
-            data[packageJsonOptionsKey] &&
-            data[packageJsonOptionsKey][packageName]
-        );
+        const tempOptions: object = readZeroScriptsOptions(packageName);
         const extensionOptions =
           typeof tempOptions === 'object' ? tempOptions : {};
         console.log(`${packageName}: ${JSON.stringify(extensionOptions)}`);
@@ -43,6 +37,7 @@ export abstract class AbstractPreset {
                 newBaseClass.name === iterableBaseClass.name)
             );
           });
+
           if (conflictExtension) {
             throw new Error(
               `Extensions conflict. Check devDependencies and choose one: ${
@@ -51,37 +46,17 @@ export abstract class AbstractPreset {
             );
           }
         }
+
         extension.activate();
         this.extensions.push(extension);
       });
   }
 
-  public getInstance<T>(Class: { new (options?: any): T }): T {
+  public getInstance<T>(Class: { new (...args: any[]): T }): T {
     const className: string = Class.name;
 
     if (!this.instances.get(className)) {
-      const packageJsonZeroScripts = readPackageJson(
-        data => data[packageJsonOptionsKey]
-      );
-      const classNameWords = splitByUpperCase(className);
-      const optionsKey =
-        packageJsonZeroScripts &&
-        Object.keys(packageJsonZeroScripts).find(packageName => {
-          let isSuitable = false;
-          // strongly check order
-          /* let latestIndexOf = -1; */
-          classNameWords.forEach(word => {
-            const currentIndexOf = packageName.indexOf(word);
-            isSuitable = currentIndexOf !== -1;
-          });
-          return isSuitable;
-        });
-      const options =
-        optionsKey && typeof packageJsonZeroScripts[optionsKey] === 'object'
-          ? packageJsonZeroScripts[optionsKey]
-          : {};
-      console.log(`${className || optionsKey}: ${JSON.stringify(options)}`);
-      this.instances.set(className, new Class(options));
+      this.instances.set(className, new Class());
     }
 
     return this.instances.get(className);
