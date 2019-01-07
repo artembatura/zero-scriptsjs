@@ -4,7 +4,9 @@ import { validateWebpackConfig } from './validateWebpackConfig';
 import { createWebpackConfig } from './createWebpackConfig';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 import { resolvePath } from './utils/resolvePath';
+import { ReadOptions } from '@zero-scripts/core';
 
+@ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
