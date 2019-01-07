@@ -9,7 +9,7 @@
   "scripts": {
     "watch": "tsc -b packages --watch",
     "compile": "tsc -b packages",
-    "clean": "tsc -b . --clean",
+    "clean": "tsc -b packages --clean",
     "prepublishOnly": "run -s clean compile",
     "lint-staged": "lint-staged",
     "test": "jest"
