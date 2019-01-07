@@ -19,11 +19,6 @@
   "files": [
     "build"
   ],
-  "scripts": {
-    "compile": "tsc -b .",
-    "clean": "tsc -b . --clean",
-    "prepublishOnly": "run -s clean compile"
-  },
   "dependencies": {
     "@zero-scripts/core": "^0.1.0-alpha.2",
     "file-loader": "^3.0.1",

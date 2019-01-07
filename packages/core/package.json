@@ -19,11 +19,6 @@
   "files": [
     "build"
   ],
-  "scripts": {
-    "compile": "tsc -b .",
-    "clean": "tsc -b . --clean",
-    "prepublishOnly": "run -s clean compile"
-  },
   "dependencies": {
     "read-pkg": "^4.0.1"
   },
