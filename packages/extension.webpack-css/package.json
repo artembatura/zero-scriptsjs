@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-css",
   "version": "0.1.0-alpha.2",
-  "description": "Adds CSS to @zero-scripts/config.webpack",
+  "description": "Add processing CSS files: extracting, minify and add vendor prefixes",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

@@ -1,5 +1,7 @@
 # @zero-scripts/preset.webpack-spa
 
+Preset, which aimed for development Single Page Applications
+
 ## Scripts
 
 - ### `start`
@@ -8,11 +10,23 @@
 - ### `build`
   Builds the app for production to the `build` folder
 
-## Extensions
+## Usage
 
-- #### [webpack-babel](../extension.webpack-babel)
-- #### [webpack-css](../extension.webpack-css)
-- #### [webpack-eslint](../extension.webpack-eslint)
+```
+{
+  "scripts": {
+    "development": "webpack-spa start",
+    "production": "webpack-spa build"
+  },
+  "devDependencies": {
+    "@zero-scripts/preset.webpack-spa": "latest"
+    // your extensions (optional)
+  },
+  "zero-scripts": {
+    // your options to extensions and configs (optional)
+  }
+}
+```
 
 ## Examples
 
