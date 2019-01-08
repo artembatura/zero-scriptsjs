@@ -47,10 +47,13 @@ Modular Extensions System allow using extensions as Plug-and-Play (it's not abou
 ### Extensions
 
 * #### [webpack-babel](packages/extension.webpack-babel)
-
 * #### [webpack-babel.react](packages/extension.webpack-babel.react)
 * #### [webpack-css](packages/extension.webpack-css)
 * #### [webpack-eslint](packages/extension.webpack-eslint)
+
+### Configs
+
+* #### [config.webpack](packages/config.webpack)
 
 ## Future
 
