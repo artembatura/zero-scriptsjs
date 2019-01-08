@@ -4,7 +4,7 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "changelog": {
-    "repo": "https://github.com/artemirq/zero-scripts",
+    "repo": "artemirq/zero-scripts",
     "cacheDir": ".changelog",
     "labels": {
       "tag: breaking change": ":boom: Breaking Change",
