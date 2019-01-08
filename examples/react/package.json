@@ -1,6 +1,6 @@
 {
   "name": "example.react",
-  "version": "0.1.0-alpha.2",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "start": "webpack-spa start",
@@ -11,10 +11,10 @@
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
-    "@zero-scripts/extension.webpack-babel.react": "^0.1.0-alpha.2",
-    "@zero-scripts/extension.webpack-css": "^0.1.0-alpha.2",
-    "@zero-scripts/extension.webpack-eslint": "^0.1.0-alpha.2",
-    "@zero-scripts/preset.webpack-spa": "^0.1.0-alpha.2",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "@zero-scripts/extension.webpack-babel.react": "^0.2.0",
+    "@zero-scripts/extension.webpack-css": "^0.2.0",
+    "@zero-scripts/extension.webpack-eslint": "^0.2.0",
+    "@zero-scripts/preset.webpack-spa": "^0.2.0"
   }
 }
