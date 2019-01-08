@@ -1,13 +1,20 @@
+<br><br>
+
 <p align="center">
   <a href="https://github.com/artemirq/zero-scripts" target="blank">
-    <img src="https://svgshare.com/i/APg.svg" width="320" alt="Zero Scripts Logo" />
+    <img src="https://svgshare.com/i/ANb.svg" width="350" alt="Zero Scripts Logo" />
   </a>
 </p>
 
+<br>
+
 <p align="center">Development modern JavaScript projects without configuration</p>
+
+<br>
 
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/v/@zero-scripts/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/dm/@zero-scripts/core.svg" alt="NPM Downloads" /></a>
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/l/@zero-scripts/core.svg" alt="Package License" /></a>
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/artemirq/zero-scripts/pulls)
 
@@ -37,23 +44,21 @@ Modular Extensions System allow using extensions as Plug-and-Play (it's not abou
 
 - **Config**. Convenient API for extend configuration
 
-## Packages
+## Presets
 
-### Presets
-
-> #### [webpack-spa](packages/preset.webpack-spa)
+> ### [webpack-spa](packages/preset.webpack-spa)
 > **Build and develop Single Page Applications**
 
-### Extensions
+## Extensions
 
-* #### [webpack-babel](packages/extension.webpack-babel)
-* #### [webpack-babel.react](packages/extension.webpack-babel.react)
-* #### [webpack-css](packages/extension.webpack-css)
-* #### [webpack-eslint](packages/extension.webpack-eslint)
+* ### [webpack-babel](packages/extension.webpack-babel)
+* ### [webpack-babel.react](packages/extension.webpack-babel.react)
+* ### [webpack-css](packages/extension.webpack-css)
+* ### [webpack-eslint](packages/extension.webpack-eslint)
 
-### Configs
+## Configs
 
-* #### [config.webpack](packages/config.webpack)
+* ### [config.webpack](packages/config.webpack)
 
 ## Future
 

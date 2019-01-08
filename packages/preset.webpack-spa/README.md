@@ -2,6 +2,8 @@
 
 Preset, which aimed for development Single Page Applications
 
+Uses [@zero-scripts/config.webpack](../config.webpack)
+
 ## Scripts
 
 - ### `start`
@@ -20,10 +22,6 @@ Preset, which aimed for development Single Page Applications
   },
   "devDependencies": {
     "@zero-scripts/preset.webpack-spa": "latest"
-    // your extensions (optional)
-  },
-  "zero-scripts": {
-    // your options to extensions and configs (optional)
   }
 }
 ```

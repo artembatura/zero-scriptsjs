@@ -2,21 +2,19 @@
 
 Base configuration for Webpack
 
+WARNING: This package can't need to install manually. It's used by presets and extensions
+
 ## Options
 
 | Option    | Type      | Default |
 | --------- | --------- | ------- |
 | sourceMap | _Boolean_ | `true`  |
 
-## Usage
+## Passing options
 
 ```
 {
-  "devDependencies": {
-     // here a preset, which uses @zero-scripts/config.webpack
-  },
   "zero-scripts": {
-    // passing options
     "@zero-scripts/config.webpack": {
       "sourceMap": false
     }

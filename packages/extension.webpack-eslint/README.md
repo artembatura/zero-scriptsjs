@@ -13,6 +13,7 @@
 {
   "devDependencies": {
     // here a preset, which uses @zero-scripts/config.webpack
+
     "@zero-scripts/extension.webpack-eslint": "latest"
   }
 }

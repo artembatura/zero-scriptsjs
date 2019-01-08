@@ -14,6 +14,7 @@ Inherited from [@zero-scripts/extension.webpack-babel](../extension.webpack-babe
 {
   "devDependencies": {
     // here a preset, which uses @zero-scripts/config.webpack
+
     "@zero-scripts/extension.webpack-babel.react": "latest"
   }
 }

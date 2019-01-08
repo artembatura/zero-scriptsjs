@@ -14,6 +14,7 @@
 {
   "devDependencies": {
     // here a preset, which uses @zero-scripts/config.webpack
+
     "@zero-scripts/extension.webpack-css": "latest"
   }
 }
