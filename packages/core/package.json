@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/core",
   "version": "0.1.0-alpha.2",
-  "description": "A Node.js framework for creating ready-to-use easy extensible scripts and configurations",
+  "description": "Framework for creating presets, configurations and extensions",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

@@ -1,24 +1,27 @@
 # @zero-scripts/extension.webpack-babel
 
-Adds Babel to `@zero-scripts/config.webpack`
+## Features
+
+- [@babel/core](https://babeljs.io/docs/en/next/babel-core.html)
+- [@babel/preset-env](https://babeljs.io/docs/en/next/babel-preset-env.html)
+- [babel-loader](https://github.com/babel/babel-loader)
 
 ## Options
 
-| Option  | Type       | Default |
-| ------- | ---------- | ------- |
-| presets | _string[]_ | `[]`    |
+| Option  | Type       | Default | Description |
+| ------- | ---------- | ------- | ----------- |
+| presets | _string[]_ | `[]` | additional babel presets |
 
-## Example
+## Usage
 
-`package.json`
-
-```json
+```
 {
   "devDependencies": {
-    "@zero-scripts/preset.webpack-spa": "latest",
+    // here a preset, which uses @zero-scripts/config.webpack
     "@zero-scripts/extension.webpack-babel": "latest"
   },
   "zero-scripts": {
+    // passing options
     "@zero-scripts/extension.webpack-babel": {
       "presets": ["@babel/preset-react"]
     }

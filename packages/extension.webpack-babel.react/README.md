@@ -2,24 +2,18 @@
 
 Inherited from [@zero-scripts/extension.webpack-babel](../extension.webpack-babel)
 
-## Features
+## Additional Features
 
-- @babel/preset-react
+- [@babel/preset-react](https://babeljs.io/docs/en/next/babel-preset-react.html)
 
-## Options
+## [Options](../extension.webpack-babel#options)
 
-| Option  | Type       | Default |
-| ------- | ---------- | ------- |
-| presets | _string[]_ | `[]`    |
+## Usage
 
-## Example
-
-`package.json`
-
-```json
+```
 {
   "devDependencies": {
-    "@zero-scripts/preset.webpack-spa": "latest",
+    // here a preset, which uses @zero-scripts/config.webpack
     "@zero-scripts/extension.webpack-babel.react": "latest"
   }
 }

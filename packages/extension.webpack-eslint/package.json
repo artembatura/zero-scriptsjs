@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint",
   "version": "0.1.0-alpha.2",
-  "description": "Adds ESLint to @zero-scripts/config.webpack",
+  "description": "Add processing JavaScript code with ESLint to @zero-scripts/config.webpack",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
