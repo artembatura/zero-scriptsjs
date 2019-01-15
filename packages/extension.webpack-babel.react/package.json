@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-babel.react",
   "version": "0.2.0",
-  "description": "Add processing JavaScript code with Babel to @zero-scripts/config.webpack. For React applications",
+  "description": "Add processing JavaScript code with Babel. With support for React/JSX",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

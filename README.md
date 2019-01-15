@@ -1,16 +1,10 @@
-<br><br>
-
 <p align="center">
   <a href="https://github.com/artemirq/zero-scripts" target="blank">
-    <img src="https://svgshare.com/i/ANb.svg" width="350" alt="Zero Scripts Logo" />
+    <img src="https://svgshare.com/i/ANb.svg" width="320" alt="Zero Scripts Logo" />
   </a>
 </p>
 
-<br>
-
-<p align="center">Development modern JavaScript projects without configuration</p>
-
-<br>
+<p align="center">A new approach to modular development modern JavaScript projects without configuration</p>
 
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/v/@zero-scripts/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/dm/@zero-scripts/core.svg" alt="NPM Downloads" /></a>
@@ -20,53 +14,45 @@
 
 ## Description
 
-The main idea of the project — resolve the inconvenience on using popular tools, on use which creates large and complex configurations. To support and expand such configuration it is a chore work
+The main idea of the project is resolve the inconvenience on using popular tools, on use which creates large and complex configurations. To support and expand such configuration it is a chore work
 
-Exists many projects, which tries to resolve this problem. Mainly these projects aimed for concrete building tool (Neutrino - Webpack) or what worse, to use with concrete JS framework (react-scripts - React). The main drawback in most projects, what you cannot extend configurations with these tools and you cannot control, which features shipped with tool
+## Features
 
-Zero Scripts can't aimed to concrete tool, framework or something else. You can use Zero Scripts to build libraries, or at all use for your peculiar target. You can use Zero Scripts in your monorepo to build own presets, extensions and configurations
+- ⏱ **Zero Configuration:** Begin make things faster without worrying about configuration
 
-Modular Extensions System allow using extensions as Plug-and-Play (it's not about Yarn) packages. To activate extension you need only add it's to your `devDependencies` 🔥
+- 🔥 **Modular:** Additional feature should be provided as separated extension package. You can always be sure that no unused packages will be can't installed
 
-## Philosophy
+- ⚡ **Extensible:** Extensions is a pluggable packages. To add a need feature you need only install extension to `devDependencies`
 
-- **Modular Extensions System:** Additional feature should be provided as separated extension package. You can always be sure that no unused packages will be can't installed
+- 🛠 **Universal:** Zero Scripts can't aimed only to concrete tool, framework or something else
 
-- **Zero-Configuration:** Development applications without configuration. Just choose a preset, need extensions and start developing!
+- ⚙ **Customizable:** Use the opportunity of providing options to configurations and extensions by `package.json`
 
-- **Power of customizing:** Use the opportunity of providing options to configurations and extensions by `package.json`
+## 🏆 [Comparison](COMPARISON.md)
 
-## Package Types
+## Preset
 
-- **Preset**. It's a set of scripts and CLI to launch their
+**A set of scripts and CLI to launch their**
 
-- **Extension**. Adds scripts to preset and extends configuration
+- ### [webpack-spa](packages/preset.webpack-spa)
+   **Build and develop Single Page Applications**
 
-- **Config**. Convenient API for extend configuration
+## Extension
 
-## Presets
-
-> ### [webpack-spa](packages/preset.webpack-spa)
-> **Build and develop Single Page Applications**
-
-## Extensions
+**Adds scripts to preset and can extends configuration**
 
 * ### [webpack-babel](packages/extension.webpack-babel)
 * ### [webpack-babel.react](packages/extension.webpack-babel.react)
 * ### [webpack-css](packages/extension.webpack-css)
 * ### [webpack-eslint](packages/extension.webpack-eslint)
 
-## Configs
+## Config
+
+**Initialize base configuration and contains API methods to extends their**
 
 * ### [config.webpack](packages/config.webpack)
 
-## Future
-
-At this moment status of this project is — working conception
-
-Near future: finalize Core API and create more extensions for `webpack-spa`
-
-Distant future: create presets for building other types of applications or libraries (maybe `preset.rollup.lib`?)
+Note: This packages cannot need to install manually. It's used by presets and extensions
 
 ## License
 

@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/preset.webpack-spa",
   "version": "0.2.0",
-  "description": "Webpack preset with scripts for SPA. Using @zero-scripts/config.webpack",
+  "description": "Preset, which aimed for development Single Page Applications",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

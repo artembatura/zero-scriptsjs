@@ -1,5 +1,25 @@
 # @zero-scripts/extension.webpack-eslint
 
+## Description
+
+Add processing JavaScript code with ESLint
+
+Uses [@zero-scripts/config.webpack](../config.webpack)
+
+## Installation
+
+##### yarn
+
+```
+yarn add -D @zero-scripts/extension.webpack-css
+```
+
+##### npm
+
+```
+npm i -D @zero-scripts/extension.webpack-css
+```
+
 ## Features
 
 - [eslint](https://github.com/eslint/eslint)
@@ -12,7 +32,7 @@
 ```
 {
   "devDependencies": {
-    // here a preset, which uses @zero-scripts/config.webpack
+    // <- preset, which uses @zero-scripts/config.webpack
 
     "@zero-scripts/extension.webpack-eslint": "latest"
   }
