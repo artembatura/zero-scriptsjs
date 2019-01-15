@@ -1,8 +1,8 @@
 # @zero-scripts/config.webpack
 
-Base configuration for Webpack
+## Description
 
-WARNING: This package can't need to install manually. It's used by presets and extensions
+Base configuration for Webpack
 
 ## Options
 

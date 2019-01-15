@@ -1,10 +1,30 @@
 # @zero-scripts/extension.webpack-babel
 
+## Description
+
+Add processing JavaScript code with Babel
+
+Uses [@zero-scripts/config.webpack](../config.webpack)
+
 ## Features
 
 - [@babel/core](https://babeljs.io/docs/en/next/babel-core.html)
 - [@babel/preset-env](https://babeljs.io/docs/en/next/babel-preset-env.html)
 - [babel-loader](https://github.com/babel/babel-loader)
+
+## Installation
+
+##### yarn
+
+```
+yarn add -D @zero-scripts/extension.webpack-babel
+```
+
+##### npm
+
+```
+npm i -D @zero-scripts/extension.webpack-babel
+```
 
 ## Options
 
@@ -17,14 +37,13 @@
 ```
 {
   "devDependencies": {
-    // here a preset, which uses @zero-scripts/config.webpack
+    // <- preset, which uses @zero-scripts/config.webpack
 
     "@zero-scripts/extension.webpack-babel": "latest"
   },
   "zero-scripts": {
-    // passing options
     "@zero-scripts/extension.webpack-babel": {
-      "presets": ["@babel/preset-react"]
+      "presets": ["@babel/preset-*"]
     }
   }
 }

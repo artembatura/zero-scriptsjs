@@ -1,5 +1,11 @@
 # @zero-scripts/extension.webpack-css
 
+## Description
+
+Add processing CSS files: extracting, minify and add vendor prefixes
+
+Uses [@zero-scripts/config.webpack](../config.webpack)
+
 ## Features
 
 - [style-loader](https://github.com/webpack-contrib/style-loader) on `development`
@@ -8,12 +14,26 @@
 - [css-loader](https://github.com/webpack-contrib/css-loader)
    - [css-modules](https://github.com/css-modules/css-modules) for `*.module.css`
 
+## Installation
+
+##### yarn
+
+```
+yarn add -D @zero-scripts/extension.webpack-css
+```
+
+##### npm
+
+```
+npm i -D @zero-scripts/extension.webpack-css
+```
+
 ## Usage
 
 ```
 {
   "devDependencies": {
-    // here a preset, which uses @zero-scripts/config.webpack
+    // <- preset, which uses @zero-scripts/config.webpack
 
     "@zero-scripts/extension.webpack-css": "latest"
   }

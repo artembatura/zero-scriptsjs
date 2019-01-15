@@ -1,5 +1,7 @@
 # @zero-scripts/preset.webpack-spa
 
+## Description
+
 Preset, which aimed for development Single Page Applications
 
 Uses [@zero-scripts/config.webpack](../config.webpack)
@@ -11,6 +13,20 @@ Uses [@zero-scripts/config.webpack](../config.webpack)
 
 - ### `build`
   Builds the app for production to the `build` folder
+
+## Installation
+
+##### yarn
+
+```
+yarn add -D @zero-scripts/preset.webpack-spa
+```
+
+##### npm
+
+```
+npm i -D @zero-scripts/preset.webpack-spa
+```
 
 ## Usage
 
