@@ -4,7 +4,7 @@
 
 Main API, on which all ecosystem built
 
-## [General Documentation](https://github.com/zero-scripts/zero-scripts/tree/docs/update-readme#description)
+## [General Documentation](https://github.com/zero-scripts/zero-scripts#description)
 
 ## Process of loading extensions
 
