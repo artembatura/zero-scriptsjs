@@ -28,7 +28,7 @@ The main idea of project is resolve the inconvenience on using popular tools, on
 
 - ⚙ **Customizable:** Use the [opportunity](packages/core#passing-options) of providing options to configurations and extensions by `package.json`
 
-## [Comparison](COMPARISON.md) 🏆
+## [Comparison 🏆](COMPARISON.md)
 
 ## Getting started
 
@@ -59,6 +59,8 @@ The main idea of project is resolve the inconvenience on using popular tools, on
 * ### [config.webpack](packages/config.webpack)
 
 Note: This packages cannot need to install manually. It's used by presets and extensions
+
+## [Contributing](CONTRIBUTING.md)
 
 ## License
 
