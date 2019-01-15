@@ -6,6 +6,12 @@ Add processing JavaScript code with Babel
 
 Uses [@zero-scripts/config.webpack](../config.webpack)
 
+## Features
+
+- [@babel/core](https://babeljs.io/docs/en/next/babel-core.html)
+- [@babel/preset-env](https://babeljs.io/docs/en/next/babel-preset-env.html)
+- [babel-loader](https://github.com/babel/babel-loader)
+
 ## Installation
 
 ##### yarn
@@ -19,12 +25,6 @@ yarn add -D @zero-scripts/extension.webpack-babel
 ```
 npm i -D @zero-scripts/extension.webpack-babel
 ```
-
-## Features
-
-- [@babel/core](https://babeljs.io/docs/en/next/babel-core.html)
-- [@babel/preset-env](https://babeljs.io/docs/en/next/babel-preset-env.html)
-- [babel-loader](https://github.com/babel/babel-loader)
 
 ## Options
 

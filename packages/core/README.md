@@ -4,7 +4,9 @@
 
 Main API, on which all ecosystem built
 
-## Loading an extensions
+## General [Documentation](https://github.com/zero-scripts/zero-scripts/tree/docs/update-readme#description)
+
+## Process of loading extensions
 
 Extensions will be all packages, which are in `devDependencies` and match pattern `extension\\.[a-z]*`
 

@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/artemirq/zero-scripts" target="blank">
-    <img src="https://svgshare.com/i/ANb.svg" width="320" alt="Zero Scripts Logo" />
+    <img src="https://svgshare.com/i/AZ3.svg" width="320" alt="Zero Scripts Logo" />
   </a>
 </p>
 
@@ -14,7 +14,7 @@
 
 ## Description
 
-The main idea of the project is resolve the inconvenience on using popular tools, on use which creates large and complex configurations. To support and expand such configuration it is a chore work
+The main idea of project is resolve the inconvenience on using popular tools, on use which creates large and complex configurations. Supporting and extending such configuration it is a chore work
 
 ## Features
 
@@ -22,13 +22,19 @@ The main idea of the project is resolve the inconvenience on using popular tools
 
 - 🔥 **Modular:** Additional feature should be provided as separated extension package. You can always be sure that no unused packages will be can't installed
 
-- ⚡ **Extensible:** Extensions is a pluggable packages. To add a need feature you need only install extension to `devDependencies`
+- ⚡ **Extensible:** Extensions is a [pluggable](packages/core#process-of-loading-extensions) packages. To add a feature you need only install extension to `devDependencies`
 
-- 🛠 **Universal:** Zero Scripts can't aimed only to concrete tool, framework or something else
+- 🛠 **Universal:** Project can't aimed only to concrete tool, framework or something else
 
-- ⚙ **Customizable:** Use the opportunity of providing options to configurations and extensions by `package.json`
+- ⚙ **Customizable:** Use the [opportunity](packages/core#passing-options) of providing options to configurations and extensions by `package.json`
 
-## 🏆 [Comparison](COMPARISON.md)
+## [Comparison](COMPARISON.md) 🏆
+
+## Getting started
+
+1. Choose a [Preset](#preset) for your application type
+2. Choose a need [extensions](#extension), if need features in Preset are missing
+3. Start developing! =)
 
 ## Preset
 
