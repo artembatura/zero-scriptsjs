@@ -6,13 +6,13 @@ Add processing JavaScript code with Babel
 
 Inherited from [@zero-scripts/extension.webpack-babel](../extension.webpack-babel)
 
-## Installation
-
 ## Features
 
 Same as in `extension.webpack-babel` and:
 
 - [@babel/preset-react](https://babeljs.io/docs/en/next/babel-preset-react.html)
+
+## Installation
 
 ##### yarn
 
