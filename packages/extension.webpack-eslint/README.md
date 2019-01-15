@@ -18,13 +18,13 @@ Uses [@zero-scripts/config.webpack](../config.webpack)
 ##### yarn
 
 ```
-yarn add -D @zero-scripts/extension.webpack-css
+yarn add -D @zero-scripts/extension.webpack-eslint
 ```
 
 ##### npm
 
 ```
-npm i -D @zero-scripts/extension.webpack-css
+npm i -D @zero-scripts/extension.webpack-eslint
 ```
 
 ## Usage
