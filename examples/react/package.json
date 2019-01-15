@@ -11,7 +11,6 @@
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.0.0",
     "@zero-scripts/extension.webpack-babel.react": "^0.2.0",
     "@zero-scripts/extension.webpack-css": "^0.2.0",
     "@zero-scripts/extension.webpack-eslint": "^0.2.0",
