@@ -1,8 +1,10 @@
 import { AbstractExtension } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
-import { getStyleLoaders } from './getStyleLoaders';
+import {
+  getStyleLoaders,
+  getLocalIdent
+} from '@zero-scripts/utils.webpack-styles';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getLocalIdent } from './getLocalIdent';
 
 const cssModuleRegex = /\.module\.css$/;
 

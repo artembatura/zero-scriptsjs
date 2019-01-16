@@ -4,5 +4,9 @@
     "rootDir": "src",
     "outDir": "build"
   },
-  "references": [{ "path": "../core" }, { "path": "../config.webpack" }]
+  "references": [
+    { "path": "../core" },
+    { "path": "../config.webpack" },
+    { "path": "../utils.webpack-styles" }
+  ]
 }
