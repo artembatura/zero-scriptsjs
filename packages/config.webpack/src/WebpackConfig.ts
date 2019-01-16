@@ -3,34 +3,58 @@ import { AbstractConfigBuilder, InsertPos } from '@zero-scripts/core';
 import { validateWebpackConfig } from './validateWebpackConfig';
 import { createWebpackConfig } from './createWebpackConfig';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
-import { resolvePath } from './utils/resolvePath';
+import { resolvePath } from './utils';
 import { ReadOptions } from '@zero-scripts/core';
+import { resolveModule } from './utils';
 
 @ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
 > {
-  constructor({ sourceMap = true }: Partial<WebpackConfigOptions>) {
+  constructor({
+    sourceMap = true,
+    paths,
+    additionalEntry = [],
+    moduleFileExtensions = [],
+    jsFileExtensions = []
+  }: Partial<WebpackConfigOptions>) {
     super({
       isDev: false,
-      entry: [],
+      additionalEntry,
       sourceMap,
-      moduleFileExtensions: ['.js', '.mjs', '.json'],
-      jsFileExtensions: ['js', 'mjs'],
+      moduleFileExtensions: ['.js', '.mjs', '.json', ...moduleFileExtensions],
+      jsFileExtensions: ['js', 'mjs', ...jsFileExtensions],
       paths: {
-        root: resolvePath(''),
-        src: resolvePath('src'),
-        build: resolvePath('build'),
-        indexJs: resolvePath('src/index.js'),
-        indexHtml: resolvePath('public/index.html'),
-        public: resolvePath('public')
+        root: '',
+        src: 'src',
+        build: 'build',
+        indexJs: 'src/index',
+        indexHtml: 'public/index.html',
+        public: 'public',
+        ...(paths ? paths : {})
       }
     });
   }
 
-  public addEntry(entry: string) {
-    this.options.entry.push(entry);
+  public addJsFileExtension(extension: string): this {
+    this.options.jsFileExtensions.push(extension);
+    const extensionWithDot = '.' + extension;
+    if (!this.options.moduleFileExtensions.includes(extensionWithDot)) {
+      this.options.moduleFileExtensions.push(extensionWithDot);
+    }
+    return this;
+  }
+
+  public addJsFileExtensions(extensions: string[]): this {
+    extensions.forEach(extension => {
+      this.addJsFileExtension(extension);
+    });
+    return this;
+  }
+
+  public addEntry(entry: string): this {
+    this.options.additionalEntry.push(entry);
     return this;
   }
 
@@ -41,12 +65,22 @@ export class WebpackConfig extends AbstractConfigBuilder<
 
   public build(): Configuration {
     const config = super.build(
-      ({ paths, moduleFileExtensions, isDev, entry, sourceMap }) =>
+      ({
+        paths,
+        moduleFileExtensions,
+        isDev,
+        additionalEntry,
+        sourceMap,
+        jsFileExtensions
+      }) =>
         createWebpackConfig({
           isDev,
           sourceMap,
-          entry: [paths.indexJs, ...entry],
-          outputPath: paths.build,
+          entry: [
+            resolveModule(jsFileExtensions, paths.indexJs),
+            ...additionalEntry
+          ],
+          outputPath: resolvePath(paths.build),
           resolveExtensions: moduleFileExtensions
         })
     );

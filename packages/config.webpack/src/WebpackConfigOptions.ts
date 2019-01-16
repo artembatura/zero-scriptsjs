@@ -1,6 +1,6 @@
 export type WebpackConfigOptions = {
   isDev: boolean;
-  entry: string[];
+  additionalEntry: string[];
   moduleFileExtensions: string[];
   jsFileExtensions: string[];
   sourceMap: boolean;
