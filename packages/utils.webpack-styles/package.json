@@ -37,11 +37,8 @@
     "access": "public"
   },
   "keywords": [
-    "webpack",
-    "config",
     "zero-scripts",
-    "extension",
-    "css",
-    "@zero-scripts/config.webpack"
+    "utilities",
+    "css"
   ]
 }

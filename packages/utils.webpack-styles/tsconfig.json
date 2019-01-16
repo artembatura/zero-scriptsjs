@@ -3,6 +3,5 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "build"
-  },
-  "references": [{ "path": "../core" }, { "path": "../config.webpack" }]
+  }
 }
