@@ -28,9 +28,13 @@ npm i -D @zero-scripts/extension.webpack-babel
 
 ## Options
 
-| Option  | Type       | Default | Description |
-| ------- | ---------- | ------- | ----------- |
-| presets | _string[]_ | `[]` | additional babel presets |
+| Option     | Type       | Default | Description               |
+| ---------- | ---------- | ------- | ------------------------- |
+| presets    | _string[]_ | `[]`    | Additional babel presets  |
+| typescript | _boolean_  | `false` | Enable Typescript support |
+
+Warning: If you want to checking types on your Typescript files,
+you need to manually install `fork-ts-checker-webpack-plugin`
 
 ## Usage
 

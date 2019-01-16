@@ -1,0 +1,28 @@
+{
+  "name": "example.react-typescript",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack-spa start",
+    "prod": "webpack-spa build"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "@zero-scripts/extension.webpack-babel.react": "^0.2.0",
+    "@zero-scripts/extension.webpack-css": "^0.2.0",
+    "@zero-scripts/preset.webpack-spa": "^0.2.0",
+    "@types/node": "10.12.18",
+    "@types/react": "16.7.20",
+    "@types/react-dom": "16.0.11",
+    "typescript": "3.2.2",
+    "fork-ts-checker-webpack-plugin": "^1.0.0-alpha.3"
+  },
+  "zero-scripts": {
+    "@zero-scripts/extension.webpack-babel.react": {
+      "typescript": true
+    }
+  }
+}
