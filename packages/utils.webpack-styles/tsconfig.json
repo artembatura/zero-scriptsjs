@@ -1,0 +1,8 @@
+{
+  "extends": "@zero-scripts/ts-config",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "build"
+  },
+  "references": [{ "path": "../config.webpack" }]
+}
