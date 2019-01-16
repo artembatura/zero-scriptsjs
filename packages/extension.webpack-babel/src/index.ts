@@ -1,5 +1,6 @@
 import { AbstractExtension } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
+import { resolvePath } from '@zero-scripts/config.webpack';
 
 export type WebpackBabelExtensionOptions = {
   presets: string[];
@@ -18,7 +19,7 @@ export class WebpackBabelExtension extends AbstractExtension<
           oneOf: [
             {
               test,
-              include: paths.src,
+              include: resolvePath(paths.src),
               use: {
                 loader: require.resolve('babel-loader'),
                 options: {
