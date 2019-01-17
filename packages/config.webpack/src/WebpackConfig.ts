@@ -91,15 +91,17 @@ export class WebpackConfig extends AbstractConfigBuilder<
 
   public insertPlugin(
     getPlugin: (options: WebpackConfigOptions) => Plugin | undefined,
-    position: InsertPos = InsertPos.End
+    position: InsertPos = InsertPos.End,
+    modificationId?: string
   ) {
-    return this.insert(c => c.plugins, getPlugin, position);
+    return this.insert(c => c.plugins, getPlugin, position, modificationId);
   }
 
   public insertModuleRule(
     getRule: (options: WebpackConfigOptions) => RuleSetRule,
-    position: InsertPos = InsertPos.Middle
+    position: InsertPos = InsertPos.Middle,
+    modificationId?: string
   ): this {
-    return this.insert(c => c.module.rules, getRule, position);
+    return this.insert(c => c.module.rules, getRule, position, modificationId);
   }
 }

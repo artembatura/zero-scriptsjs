@@ -3,14 +3,13 @@ import { unflatten } from './utils/unflatten';
 import { Selector } from './Selector';
 import { extractFirstPropChain } from './utils/extractFirstPropChain';
 import { InsertPos } from './InsertPos';
+import { ConfigModification } from './ConfigModification';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
   TOptions
 > {
-  private readonly modifications: Array<
-    (val: Map<string, any>) => Map<string, any>
-  > = [];
+  private readonly modifications: ConfigModification[] = [];
 
   protected constructor(protected readonly options: TOptions) {}
 
@@ -18,22 +17,26 @@ export abstract class AbstractConfigBuilder<
     const flattenConfig = createBaseConfig
       ? flatten(createBaseConfig(this.options))
       : new Map();
-    this.modifications.forEach(modifier => modifier(flattenConfig));
-    // log config
-    // fs.writeFileSync(
-    //   'webpack-config-generated.json',
-    //   JSON.stringify(unflatten<TConfig>(flattenConfig))
-    // );
+    const appliedModifications: ConfigModification[] = [];
+    this.modifications.forEach(modifier => {
+      if (
+        !modifier.id ||
+        !appliedModifications.some(
+          appliedModifier =>
+            Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
+        )
+      ) {
+        appliedModifications.push(modifier.apply(flattenConfig));
+      }
+    });
     return unflatten<TConfig>(flattenConfig);
   }
 
   protected set<TSelectedValue>(
     selector: Selector<Required<TConfig>, TSelectedValue>,
-    handler: (selectedValue: TSelectedValue) => TSelectedValue
+    handler: (selectedValue: TSelectedValue) => TSelectedValue,
+    modificationId: string | undefined
   ): this {
-    // handy hack for set value by selector
-    // we convert function to string and parse
-    // chain, which used as path in flat object
     const path = extractFirstPropChain(String(selector));
 
     if (!path) {
@@ -42,10 +45,13 @@ export abstract class AbstractConfigBuilder<
       );
     }
 
-    this.modifications.push(config => {
-      const newValue = handler(config.get(path));
-      return config.set(path, newValue);
-    });
+    this.modifications.push(
+      new ConfigModification(
+        path,
+        config => handler(config.get(path)),
+        modificationId
+      )
+    );
 
     return this;
   }
@@ -53,38 +59,43 @@ export abstract class AbstractConfigBuilder<
   protected insert<TSelectedValue extends any[]>(
     selector: Selector<Required<TConfig>, TSelectedValue>,
     creator: (options: TOptions) => TSelectedValue[0] | undefined,
-    position: InsertPos
+    position: InsertPos,
+    modificationId: string | undefined
   ): this {
-    return this.set(selector, (array: any[]) => {
-      const element = creator(this.options);
+    return this.set(
+      selector,
+      (array: any[]) => {
+        const element = creator(this.options);
 
-      if (!element) {
-        return array;
-      }
+        if (!element) {
+          return array;
+        }
 
-      if (!array) {
-        return [element];
-      }
+        if (!array) {
+          return [element];
+        }
 
-      switch (position) {
-        case InsertPos.Start:
-          return [element, ...array];
+        switch (position) {
+          case InsertPos.Start:
+            return [element, ...array];
 
-        case InsertPos.Middle:
-          array.splice(array.length / 2, 0, element);
-          return array.slice(0);
+          case InsertPos.Middle:
+            array.splice(array.length / 2, 0, element);
+            return array.slice(0);
 
-        case InsertPos.End:
-          return [...array, element];
+          case InsertPos.End:
+            return [...array, element];
 
-        default:
-          throw new Error(
-            `[${
-              this.constructor.name
-            }]: Insert position '${position}' doesn't exists`
-          );
-      }
-    });
+          default:
+            throw new Error(
+              `[${
+                this.constructor.name
+              }]: Insert position '${position}' doesn't exists`
+            );
+        }
+      },
+      modificationId
+    );
   }
 
   public pipe<T extends (o: this) => this>(func: T | T[]): this {
