@@ -40,15 +40,16 @@ export class WebpackSassExtension extends AbstractExtension {
           }
         ]
       }))
-      // todo availability to check if this plugin already added
-      // possible conflict with extension.webpack-css
-      .insertPlugin(options =>
-        !options.isDev
-          ? new MiniCssExtractPlugin({
-              filename: 'css/[name].[contenthash:8].css',
-              chunkFilename: 'css/[name].[contenthash:8].chunk.css'
-            })
-          : undefined
+      .insertPlugin(
+        options =>
+          !options.isDev
+            ? new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].chunk.css'
+              })
+            : undefined,
+        undefined,
+        'mini-css-extract-plugin'
       );
   }
 }
