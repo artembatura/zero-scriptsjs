@@ -32,6 +32,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
         indexJs: 'src/index',
         indexHtml: 'public/index.html',
         public: 'public',
+        tsConfig: 'tsconfig.json',
         ...(paths ? paths : {})
       }
     });

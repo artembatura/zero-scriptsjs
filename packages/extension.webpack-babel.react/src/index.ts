@@ -7,9 +7,10 @@ import { AbstractPreset } from '@zero-scripts/core';
 export class WebpackBabelReactExtension extends WebpackBabelExtension {
   constructor(
     preset: AbstractPreset,
-    { presets }: WebpackBabelExtensionOptions
+    { presets, ...rest }: WebpackBabelExtensionOptions
   ) {
     super(preset, {
+      ...rest,
       presets: [
         require.resolve('@babel/preset-react'),
         ...(presets ? presets : [])

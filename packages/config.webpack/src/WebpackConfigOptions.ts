@@ -11,5 +11,6 @@ export type WebpackConfigOptions = {
     indexJs: string;
     indexHtml: string;
     public: string;
+    tsConfig: string;
   };
 };
