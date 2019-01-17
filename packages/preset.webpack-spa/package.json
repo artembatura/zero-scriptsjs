@@ -43,7 +43,7 @@
     "@types/webpack-dev-middleware": "2.0.2",
     "@types/webpack-hot-middleware": "2.16.4",
     "@zero-scripts/ts-config": "^0.2.0",
-    "typescript": "3.2.2"
+    "typescript": "3.2.4"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
