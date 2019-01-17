@@ -34,13 +34,16 @@ export class WebpackCssExtension extends AbstractExtension {
           }
         ]
       }))
-      .insertPlugin(options =>
-        !options.isDev
-          ? new MiniCssExtractPlugin({
-              filename: 'css/[name].[contenthash:8].css',
-              chunkFilename: 'css/[name].[contenthash:8].chunk.css'
-            })
-          : undefined
+      .insertPlugin(
+        options =>
+          !options.isDev
+            ? new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].chunk.css'
+              })
+            : undefined,
+        undefined,
+        'mini-css-extract-plugin'
       );
   }
 }
