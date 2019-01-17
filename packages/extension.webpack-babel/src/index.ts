@@ -3,6 +3,7 @@ import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
 
 export type WebpackBabelExtensionOptions = {
   presets: string[];
+  plugins: string[];
   typescript: boolean;
 };
 
@@ -35,7 +36,8 @@ export class WebpackBabelExtension extends AbstractExtension<
                     ? [require.resolve('@babel/preset-typescript')]
                     : []),
                   ...(this.options.presets ? this.options.presets : [])
-                ]
+                ],
+                plugins: [...(this.options.plugins ? this.options.plugins : [])]
               }
             }
           },
