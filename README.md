@@ -50,6 +50,7 @@ The main idea of project is resolve the inconvenience on using popular tools, on
 * ### [webpack-babel](packages/extension.webpack-babel)
 * ### [webpack-babel.react](packages/extension.webpack-babel.react)
 * ### [webpack-css](packages/extension.webpack-css)
+* ### [webpack-sass](packages/extension.webpack-sass)
 * ### [webpack-eslint](packages/extension.webpack-eslint)
 
 ## Config
