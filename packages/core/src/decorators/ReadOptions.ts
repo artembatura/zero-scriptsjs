@@ -35,9 +35,9 @@ export const ReadOptions = (optionsKey?: string) => <
             ? zeroScriptsOptions[key]
             : {};
 
-        console.log(
-          `${key || DecoratedClass.name}: ${JSON.stringify(needOptions)}`
-        );
+        // console.log(
+        //   `${key || DecoratedClass.name}: ${JSON.stringify(needOptions)}`
+        // );
 
         super(needOptions);
       }

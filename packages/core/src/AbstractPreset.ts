@@ -22,7 +22,7 @@ export abstract class AbstractPreset {
         const tempOptions: object = readZeroScriptsOptions(packageName);
         const extensionOptions =
           typeof tempOptions === 'object' ? tempOptions : {};
-        console.log(`${packageName}: ${JSON.stringify(extensionOptions)}`);
+        // console.log(`${packageName}: ${JSON.stringify(extensionOptions)}`);
         return new ExtensionClass(this, extensionOptions);
       })
       .forEach(extension => {
