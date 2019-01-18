@@ -29,6 +29,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "fastify": "^2.0.0-rc.3",
+    "@artemir/friendly-errors-webpack-plugin": "^1.8.0",
     "html-webpack-plugin": "^4.0.0-beta.5",
     "webpack": "^4.28.2",
     "webpack-dev-middleware": "^3.4.0",

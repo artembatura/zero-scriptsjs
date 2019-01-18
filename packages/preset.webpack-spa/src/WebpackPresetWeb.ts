@@ -5,7 +5,7 @@ import { IncomingMessage, Server, ServerResponse } from 'http';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
-import { index } from './extensions';
+import { extensions as localExtensions } from './extensions';
 
 export class WebpackPresetWeb extends AbstractPreset {
   constructor() {
@@ -19,7 +19,7 @@ export class WebpackPresetWeb extends AbstractPreset {
       const config = builder
         .isDev(true)
         .addEntry(require.resolve('webpack-hot-middleware/client'))
-        .pipe(index)
+        .pipe(localExtensions)
         .build();
 
       const compiler = webpack(config);
@@ -34,15 +34,18 @@ export class WebpackPresetWeb extends AbstractPreset {
         webpackDevMiddleware(compiler, {
           stats: config.stats,
           publicPath: (config.output as webpack.Output).publicPath as string,
-          logLevel: 'error'
+          logLevel: 'SILENT'
         })
       );
 
-      server.use(webpackHotMiddleware(compiler));
+      server.use(
+        webpackHotMiddleware(compiler, {
+          log: false
+        })
+      );
 
       await server.listen(8080, (err, address) => {
         if (err) throw err;
-        console.log(`Development server listening on ${address}`);
       });
     });
 
@@ -53,15 +56,13 @@ export class WebpackPresetWeb extends AbstractPreset {
 
       const config = builder
         .isDev(false)
-        .pipe(index)
+        .pipe(localExtensions)
         .build();
 
       const compiler = webpack(config);
 
       compiler.run(err => {
         if (err) throw err;
-        console.log('Project successfully built');
-        // console.log(err || webpackStatsHandler(stats));
       });
     });
   }

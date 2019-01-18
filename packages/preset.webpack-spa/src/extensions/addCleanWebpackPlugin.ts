@@ -1,15 +1,12 @@
 import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 export const addCleanWebpackPlugin = (config: WebpackConfig) =>
   config.insertPlugin(({ isDev, paths }) =>
     !isDev
-      ? new CopyWebpackPlugin([
-          {
-            from: resolvePath(paths.public),
-            to: resolvePath(paths.build),
-            ignore: [resolvePath(paths.indexHtml)]
-          }
-        ])
+      ? new CleanWebpackPlugin([resolvePath(paths.build)], {
+          allowExternal: true,
+          verbose: false
+        })
       : undefined
   );
