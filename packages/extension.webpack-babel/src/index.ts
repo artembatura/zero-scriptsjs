@@ -1,4 +1,4 @@
-import { AbstractExtension } from '@zero-scripts/core';
+import { AbstractExtension, extensionsRegex } from '@zero-scripts/core';
 import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
 
 export type WebpackBabelExtensionOptions = {
@@ -17,47 +17,40 @@ export class WebpackBabelExtension extends AbstractExtension<
       config.addJsFileExtensions(['ts', 'tsx']);
     }
 
-    config.insertModuleRule(({ isDev, jsFileExtensions, paths }) => {
-      const test = new RegExp(`\\.(${jsFileExtensions.join('|')})$`);
-
-      return {
-        oneOf: [
-          {
-            test,
-            include: resolvePath(paths.src),
-            use: {
-              loader: require.resolve('babel-loader'),
-              options: {
-                babelrc: false,
-                configFile: false,
-                presets: [
-                  require.resolve('@babel/preset-env'),
-                  ...(this.options.typescript
-                    ? [require.resolve('@babel/preset-typescript')]
-                    : []),
-                  ...(this.options.presets ? this.options.presets : [])
-                ],
-                plugins: [...(this.options.plugins ? this.options.plugins : [])]
-              }
-            }
-          },
-          {
-            test,
-            exclude: /@babel(?:\/|\\{1,2})runtime/,
-            loader: require.resolve('babel-loader'),
-            options: {
-              babelrc: false,
-              configFile: false,
-              compact: false,
-              presets: [require.resolve('@babel/preset-env')],
-              cacheDirectory: true,
-              cacheCompression: isDev,
-              sourceMaps: false
-            }
+    config.insertModuleRule(({ isDev, jsFileExtensions, paths }) => ({
+      test: extensionsRegex(jsFileExtensions),
+      oneOf: [
+        {
+          include: resolvePath(paths.src),
+          loader: require.resolve('babel-loader'),
+          options: {
+            babelrc: false,
+            configFile: false,
+            presets: [
+              require.resolve('@babel/preset-env'),
+              ...(this.options.typescript
+                ? [require.resolve('@babel/preset-typescript')]
+                : []),
+              ...(this.options.presets ? this.options.presets : [])
+            ],
+            plugins: [...(this.options.plugins ? this.options.plugins : [])]
           }
-        ]
-      };
-    });
+        },
+        {
+          exclude: /@babel(?:\/|\\{1,2})runtime/,
+          loader: require.resolve('babel-loader'),
+          options: {
+            babelrc: false,
+            configFile: false,
+            compact: false,
+            presets: [require.resolve('@babel/preset-env')],
+            cacheDirectory: true,
+            cacheCompression: isDev,
+            sourceMaps: false
+          }
+        }
+      ]
+    }));
 
     config.insertPlugin(({ paths }) => {
       let ForkTsCheckerPlugin = undefined;
