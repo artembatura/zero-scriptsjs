@@ -1,4 +1,4 @@
-import { AbstractExtension } from '@zero-scripts/core';
+import { AbstractExtension, AbstractPreset } from '@zero-scripts/core';
 import {
   resolvePath,
   WebpackConfig,
@@ -8,13 +8,24 @@ import { ArrayOption, handleArrayOption } from '@zero-scripts/core';
 
 export type WebpackBabelExtensionOptions = {
   presets: ArrayOption<string | [string, object], WebpackConfigOptions>;
-  plugins: ArrayOption<string, WebpackConfigOptions>;
+  plugins: ArrayOption<string | [string, object], WebpackConfigOptions>;
   typescript: boolean;
+  flow: boolean;
 };
 
 export class WebpackBabelExtension extends AbstractExtension<
   WebpackBabelExtensionOptions
 > {
+  constructor(preset: AbstractPreset, options: WebpackBabelExtensionOptions) {
+    super(preset, {
+      flow: false,
+      typescript: false,
+      presets: [],
+      plugins: [],
+      ...options
+    });
+  }
+
   public activate(): void {
     const config = this.preset.getInstance(WebpackConfig);
 
@@ -37,15 +48,30 @@ export class WebpackBabelExtension extends AbstractExtension<
                 babelrc: false,
                 configFile: false,
                 presets: [
-                  [require.resolve('@babel/preset-env'), { loose: true }],
-                  ...(this.options.typescript
-                    ? [require.resolve('@babel/preset-typescript')]
-                    : []),
+                  ['@babel/preset-env', { loose: true, modules: false }],
+                  this.options.typescript && '@babel/preset-typescript',
                   ...handleArrayOption(this.options.presets, options)
-                ],
+                ].filter(Boolean),
                 plugins: [
-                  ...(this.options.plugins ? this.options.plugins : [])
-                ],
+                  ['@babel/plugin-transform-runtime', { useESModules: true }],
+                  '@babel/plugin-syntax-dynamic-import',
+                  this.options.typescript &&
+                    '@babel/plugin-proposal-decorators',
+                  ['@babel/plugin-proposal-class-properties', { loose: true }],
+                  ...handleArrayOption(this.options.plugins, options)
+                ].filter(Boolean),
+                overrides: [
+                  this.options.flow && {
+                    exclude: /\.(ts|tsx)?$/,
+                    plugins: ['@babel/plugin-transform-flow-strip-types']
+                  },
+                  this.options.typescript && {
+                    test: /\.(ts|tsx)?$/,
+                    plugins: [
+                      ['@babel/plugin-proposal-decorators', { legacy: true }]
+                    ]
+                  }
+                ].filter(Boolean),
                 cacheDirectory: true,
                 cacheCompression: !isDev,
                 compact: !isDev
@@ -60,9 +86,7 @@ export class WebpackBabelExtension extends AbstractExtension<
               babelrc: false,
               configFile: false,
               compact: false,
-              presets: [
-                [require.resolve('@babel/preset-env'), { loose: true }]
-              ],
+              presets: [['@babel/preset-env', { loose: true }]],
               cacheDirectory: true,
               cacheCompression: !isDev,
               sourceMaps: false

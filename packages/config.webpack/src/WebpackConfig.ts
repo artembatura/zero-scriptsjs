@@ -23,8 +23,8 @@ export class WebpackConfig extends AbstractConfigBuilder<
       isDev: false,
       additionalEntry,
       sourceMap,
-      moduleFileExtensions: ['.js', '.mjs', '.json', ...moduleFileExtensions],
-      jsFileExtensions: ['js', 'mjs', ...jsFileExtensions],
+      moduleFileExtensions: ['.js', '.json', ...moduleFileExtensions],
+      jsFileExtensions: ['js', ...jsFileExtensions],
       paths: {
         root: '',
         src: 'src',

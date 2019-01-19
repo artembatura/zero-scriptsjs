@@ -4,11 +4,10 @@
 
 Preset, which aimed for development Single Page Applications
 
-Uses [@zero-scripts/config.webpack](../config.webpack)
-
 ## Scripts
 
 - ### `start`
+
   Runs the app in development mode
 
 - ### `build`
