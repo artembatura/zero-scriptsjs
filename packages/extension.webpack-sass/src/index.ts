@@ -13,32 +13,28 @@ export class WebpackSassExtension extends AbstractExtension {
     this.preset
       .getInstance(WebpackConfig)
       .insertModuleRule(options => ({
-        oneOf: [
+        test: /\.(scss|sass)$/,
+        exclude: sassModuleRegex,
+        use: getStyleLoaders(
           {
-            test: /\.(scss|sass)$/,
-            exclude: sassModuleRegex,
-            use: getStyleLoaders(
-              {
-                importLoaders: 2,
-                sourceMap: !options.isDev && options.sourceMap
-              },
-              require.resolve('sass-loader')
-            )(options),
-            sideEffects: true
+            importLoaders: 2,
+            sourceMap: !options.isDev && options.sourceMap
           },
+          require.resolve('sass-loader')
+        )(options),
+        sideEffects: true
+      }))
+      .insertModuleRule(options => ({
+        test: sassModuleRegex,
+        use: getStyleLoaders(
           {
-            test: sassModuleRegex,
-            use: getStyleLoaders(
-              {
-                importLoaders: 2,
-                sourceMap: !options.isDev && options.sourceMap,
-                modules: true,
-                getLocalIdent
-              },
-              require.resolve('sass-loader')
-            )(options)
-          }
-        ]
+            importLoaders: 2,
+            sourceMap: !options.isDev && options.sourceMap,
+            modules: true,
+            getLocalIdent
+          },
+          require.resolve('sass-loader')
+        )(options)
       }))
       .insertPlugin(
         options =>

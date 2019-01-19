@@ -13,26 +13,22 @@ export class WebpackCssExtension extends AbstractExtension {
     this.preset
       .getInstance(WebpackConfig)
       .insertModuleRule(options => ({
-        oneOf: [
-          {
-            test: /\.css$/,
-            exclude: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              sourceMap: !options.isDev && options.sourceMap
-            })(options),
-            sideEffects: true
-          },
-          {
-            test: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              sourceMap: !options.isDev && options.sourceMap,
-              modules: true,
-              getLocalIdent
-            })(options)
-          }
-        ]
+        test: /\.css$/,
+        exclude: cssModuleRegex,
+        use: getStyleLoaders({
+          importLoaders: 1,
+          sourceMap: !options.isDev && options.sourceMap
+        })(options),
+        sideEffects: true
+      }))
+      .insertModuleRule(options => ({
+        test: cssModuleRegex,
+        use: getStyleLoaders({
+          importLoaders: 1,
+          sourceMap: !options.isDev && options.sourceMap,
+          modules: true,
+          getLocalIdent
+        })(options)
       }))
       .insertPlugin(
         options =>

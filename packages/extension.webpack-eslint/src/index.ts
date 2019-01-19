@@ -1,12 +1,16 @@
-import { AbstractExtension, InsertPos } from '@zero-scripts/core';
+import {
+  AbstractExtension,
+  extensionsRegex,
+  InsertPos
+} from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { resolvePath } from '@zero-scripts/config.webpack';
 
 export class WebpackEslintExtension extends AbstractExtension {
   public activate(): void {
-    this.preset.getInstance(WebpackConfig).insertModuleRule(
+    this.preset.getInstance(WebpackConfig).insertCommonModuleRule(
       ({ jsFileExtensions, paths }) => ({
-        test: new RegExp(`\\.(${jsFileExtensions.join('|')})$`),
+        test: extensionsRegex(jsFileExtensions),
         include: resolvePath(paths.src),
         enforce: 'pre',
         use: [

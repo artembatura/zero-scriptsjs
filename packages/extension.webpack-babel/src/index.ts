@@ -1,10 +1,15 @@
-import { AbstractExtension, AbstractPreset } from '@zero-scripts/core';
+import {
+  AbstractExtension,
+  AbstractPreset,
+  extensionsRegex,
+  ArrayOption,
+  handleArrayOption
+} from '@zero-scripts/core';
 import {
   resolvePath,
   WebpackConfig,
   WebpackConfigOptions
 } from '@zero-scripts/config.webpack';
-import { ArrayOption, handleArrayOption } from '@zero-scripts/core';
 
 export type WebpackBabelExtensionOptions = {
   presets: ArrayOption<string | [string, object], WebpackConfigOptions>;
@@ -35,51 +40,45 @@ export class WebpackBabelExtension extends AbstractExtension<
 
     config.insertModuleRule(options => {
       const { isDev, jsFileExtensions, paths } = options;
-      const test = new RegExp(`\\.(${jsFileExtensions.join('|')})$`);
-
       return {
+        test: extensionsRegex(jsFileExtensions),
         oneOf: [
           {
-            test,
             include: resolvePath(paths.src),
-            use: {
-              loader: require.resolve('babel-loader'),
-              options: {
-                babelrc: false,
-                configFile: false,
-                presets: [
-                  ['@babel/preset-env', { loose: true, modules: false }],
-                  this.options.typescript && '@babel/preset-typescript',
-                  ...handleArrayOption(this.options.presets, options)
-                ].filter(Boolean),
-                plugins: [
-                  ['@babel/plugin-transform-runtime', { useESModules: true }],
-                  '@babel/plugin-syntax-dynamic-import',
-                  this.options.typescript &&
-                    '@babel/plugin-proposal-decorators',
-                  ['@babel/plugin-proposal-class-properties', { loose: true }],
-                  ...handleArrayOption(this.options.plugins, options)
-                ].filter(Boolean),
-                overrides: [
-                  this.options.flow && {
-                    exclude: /\.(ts|tsx)?$/,
-                    plugins: ['@babel/plugin-transform-flow-strip-types']
-                  },
-                  this.options.typescript && {
-                    test: /\.(ts|tsx)?$/,
-                    plugins: [
-                      ['@babel/plugin-proposal-decorators', { legacy: true }]
-                    ]
-                  }
-                ].filter(Boolean),
-                cacheDirectory: true,
-                cacheCompression: !isDev,
-                compact: !isDev
-              }
+            loader: require.resolve('babel-loader'),
+            options: {
+              babelrc: false,
+              configFile: false,
+              presets: [
+                ['@babel/preset-env', { loose: true, modules: false }],
+                this.options.typescript && '@babel/preset-typescript',
+                ...handleArrayOption(this.options.presets, options)
+              ].filter(Boolean),
+              plugins: [
+                ['@babel/plugin-transform-runtime', { useESModules: true }],
+                '@babel/plugin-syntax-dynamic-import',
+                this.options.typescript && '@babel/plugin-proposal-decorators',
+                ['@babel/plugin-proposal-class-properties', { loose: true }],
+                ...handleArrayOption(this.options.plugins, options)
+              ].filter(Boolean),
+              overrides: [
+                this.options.flow && {
+                  exclude: /\.(ts|tsx)?$/,
+                  plugins: ['@babel/plugin-transform-flow-strip-types']
+                },
+                this.options.typescript && {
+                  test: /\.(ts|tsx)?$/,
+                  plugins: [
+                    ['@babel/plugin-proposal-decorators', { legacy: true }]
+                  ]
+                }
+              ].filter(Boolean),
+              cacheDirectory: true,
+              cacheCompression: !isDev,
+              compact: !isDev
             }
           },
           {
-            test,
             exclude: /@babel(?:\/|\\{1,2})runtime/,
             loader: require.resolve('babel-loader'),
             options: {
