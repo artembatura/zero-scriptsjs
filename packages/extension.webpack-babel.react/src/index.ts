@@ -12,7 +12,10 @@ export class WebpackBabelReactExtension extends WebpackBabelExtension {
     super(preset, {
       ...rest,
       presets: [
-        require.resolve('@babel/preset-react'),
+        ({ isDev }) => [
+          require.resolve('@babel/preset-react'),
+          { development: isDev }
+        ],
         ...(presets ? presets : [])
       ]
     });

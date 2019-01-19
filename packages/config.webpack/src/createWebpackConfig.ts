@@ -16,8 +16,8 @@ export const createWebpackConfig = ({
   sourceMap
 }: CreateWebpackConfigParameters): Configuration => ({
   mode: isDev ? 'development' : 'production',
-  entry: entry,
-  devtool: isDev ? 'cheap-module-source-map' : sourceMap ? 'source-map' : false,
+  entry,
+  devtool: isDev ? 'eval-source-map' : sourceMap ? 'source-map' : false,
   output: {
     path: !isDev ? outputPath : undefined,
     filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
@@ -30,25 +30,6 @@ export const createWebpackConfig = ({
     minimize: !isDev,
     minimizer: [
       new TerserPlugin({
-        terserOptions: {
-          parse: {
-            ecma: 8
-          },
-          compress: {
-            ecma: 5,
-            warnings: false,
-            comparisons: false,
-            inline: 2
-          },
-          mangle: {
-            safari10: true
-          },
-          output: {
-            ecma: 5,
-            comments: false,
-            ascii_only: true
-          }
-        },
         parallel: true,
         cache: true,
         sourceMap

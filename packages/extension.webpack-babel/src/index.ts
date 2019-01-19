@@ -1,9 +1,14 @@
 import { AbstractExtension } from '@zero-scripts/core';
-import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
+import {
+  resolvePath,
+  WebpackConfig,
+  WebpackConfigOptions
+} from '@zero-scripts/config.webpack';
+import { ArrayOption, handleArrayOption } from '@zero-scripts/core';
 
 export type WebpackBabelExtensionOptions = {
-  presets: string[];
-  plugins: string[];
+  presets: ArrayOption<string | [string, object], WebpackConfigOptions>;
+  plugins: ArrayOption<string, WebpackConfigOptions>;
   typescript: boolean;
 };
 
@@ -17,7 +22,8 @@ export class WebpackBabelExtension extends AbstractExtension<
       config.addJsFileExtensions(['ts', 'tsx']);
     }
 
-    config.insertModuleRule(({ isDev, jsFileExtensions, paths }) => {
+    config.insertModuleRule(options => {
+      const { isDev, jsFileExtensions, paths } = options;
       const test = new RegExp(`\\.(${jsFileExtensions.join('|')})$`);
 
       return {
@@ -31,13 +37,18 @@ export class WebpackBabelExtension extends AbstractExtension<
                 babelrc: false,
                 configFile: false,
                 presets: [
-                  require.resolve('@babel/preset-env'),
+                  [require.resolve('@babel/preset-env'), { loose: true }],
                   ...(this.options.typescript
                     ? [require.resolve('@babel/preset-typescript')]
                     : []),
-                  ...(this.options.presets ? this.options.presets : [])
+                  ...handleArrayOption(this.options.presets, options)
                 ],
-                plugins: [...(this.options.plugins ? this.options.plugins : [])]
+                plugins: [
+                  ...(this.options.plugins ? this.options.plugins : [])
+                ],
+                cacheDirectory: true,
+                cacheCompression: !isDev,
+                compact: !isDev
               }
             }
           },
@@ -49,9 +60,11 @@ export class WebpackBabelExtension extends AbstractExtension<
               babelrc: false,
               configFile: false,
               compact: false,
-              presets: [require.resolve('@babel/preset-env')],
+              presets: [
+                [require.resolve('@babel/preset-env'), { loose: true }]
+              ],
               cacheDirectory: true,
-              cacheCompression: isDev,
+              cacheCompression: !isDev,
               sourceMaps: false
             }
           }
