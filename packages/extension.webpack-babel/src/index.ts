@@ -1,15 +1,36 @@
-import { AbstractExtension, extensionsRegex } from '@zero-scripts/core';
-import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
+import {
+  AbstractExtension,
+  AbstractPreset,
+  extensionsRegex,
+  ArrayOption,
+  handleArrayOption
+} from '@zero-scripts/core';
+import {
+  resolvePath,
+  WebpackConfig,
+  WebpackConfigOptions
+} from '@zero-scripts/config.webpack';
 
 export type WebpackBabelExtensionOptions = {
-  presets: string[];
-  plugins: string[];
+  presets: ArrayOption<string | [string, object], WebpackConfigOptions>;
+  plugins: ArrayOption<string | [string, object], WebpackConfigOptions>;
   typescript: boolean;
+  flow: boolean;
 };
 
 export class WebpackBabelExtension extends AbstractExtension<
   WebpackBabelExtensionOptions
 > {
+  constructor(preset: AbstractPreset, options: WebpackBabelExtensionOptions) {
+    super(preset, {
+      flow: false,
+      typescript: false,
+      presets: [],
+      plugins: [],
+      ...options
+    });
+  }
+
   public activate(): void {
     const config = this.preset.getInstance(WebpackConfig);
 
@@ -17,40 +38,62 @@ export class WebpackBabelExtension extends AbstractExtension<
       config.addJsFileExtensions(['ts', 'tsx']);
     }
 
-    config.insertModuleRule(({ isDev, jsFileExtensions, paths }) => ({
-      test: extensionsRegex(jsFileExtensions),
-      oneOf: [
-        {
-          include: resolvePath(paths.src),
-          loader: require.resolve('babel-loader'),
-          options: {
-            babelrc: false,
-            configFile: false,
-            presets: [
-              require.resolve('@babel/preset-env'),
-              ...(this.options.typescript
-                ? [require.resolve('@babel/preset-typescript')]
-                : []),
-              ...(this.options.presets ? this.options.presets : [])
-            ],
-            plugins: [...(this.options.plugins ? this.options.plugins : [])]
+    config.insertModuleRule(options => {
+      const { isDev, jsFileExtensions, paths } = options;
+      return {
+        test: extensionsRegex(jsFileExtensions),
+        oneOf: [
+          {
+            include: resolvePath(paths.src),
+            loader: require.resolve('babel-loader'),
+            options: {
+              babelrc: false,
+              configFile: false,
+              presets: [
+                ['@babel/preset-env', { loose: true, modules: false }],
+                this.options.typescript && '@babel/preset-typescript',
+                ...handleArrayOption(this.options.presets, options)
+              ].filter(Boolean),
+              plugins: [
+                ['@babel/plugin-transform-runtime', { useESModules: true }],
+                '@babel/plugin-syntax-dynamic-import',
+                this.options.typescript && '@babel/plugin-proposal-decorators',
+                ['@babel/plugin-proposal-class-properties', { loose: true }],
+                ...handleArrayOption(this.options.plugins, options)
+              ].filter(Boolean),
+              overrides: [
+                this.options.flow && {
+                  exclude: /\.(ts|tsx)?$/,
+                  plugins: ['@babel/plugin-transform-flow-strip-types']
+                },
+                this.options.typescript && {
+                  test: /\.(ts|tsx)?$/,
+                  plugins: [
+                    ['@babel/plugin-proposal-decorators', { legacy: true }]
+                  ]
+                }
+              ].filter(Boolean),
+              cacheDirectory: true,
+              cacheCompression: !isDev,
+              compact: !isDev
+            }
+          },
+          {
+            exclude: /@babel(?:\/|\\{1,2})runtime/,
+            loader: require.resolve('babel-loader'),
+            options: {
+              babelrc: false,
+              configFile: false,
+              compact: false,
+              presets: [['@babel/preset-env', { loose: true }]],
+              cacheDirectory: true,
+              cacheCompression: !isDev,
+              sourceMaps: false
+            }
           }
-        },
-        {
-          exclude: /@babel(?:\/|\\{1,2})runtime/,
-          loader: require.resolve('babel-loader'),
-          options: {
-            babelrc: false,
-            configFile: false,
-            compact: false,
-            presets: [require.resolve('@babel/preset-env')],
-            cacheDirectory: true,
-            cacheCompression: isDev,
-            sourceMaps: false
-          }
-        }
-      ]
-    }));
+        ]
+      };
+    });
 
     config.insertPlugin(({ paths }) => {
       let ForkTsCheckerPlugin = undefined;

@@ -5,15 +5,18 @@ import {
   DefinePlugin,
   HotModuleReplacementPlugin
 } from 'webpack';
-import { AbstractConfigBuilder, InsertPos } from '@zero-scripts/core';
-import { validateWebpackConfig } from './validateWebpackConfig';
-const TerserPlugin = require('terser-webpack-plugin');
 import { WebpackConfigOptions } from './WebpackConfigOptions';
-import { resolvePath } from './utils';
-import { ReadOptions } from '@zero-scripts/core';
-import { resolveModule } from './utils';
+import { resolvePath, resolveModule } from './utils';
+import {
+  AbstractConfigBuilder,
+  InsertPos,
+  ReadOptions,
+  extensionsRegex
+} from '@zero-scripts/core';
+import { validateWebpackConfig } from './validateWebpackConfig';
 import ManifestPlugin from 'webpack-assets-manifest';
-import { extensionsRegex } from '@zero-scripts/core';
+
+const TerserPlugin = require('terser-webpack-plugin');
 
 @ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
@@ -31,8 +34,8 @@ export class WebpackConfig extends AbstractConfigBuilder<
       isDev: false,
       additionalEntry,
       sourceMap,
-      moduleFileExtensions: ['.js', '.mjs', '.json', ...moduleFileExtensions],
-      jsFileExtensions: ['js', 'mjs', ...jsFileExtensions],
+      moduleFileExtensions: ['.js', '.json', ...moduleFileExtensions],
+      jsFileExtensions: ['js', ...jsFileExtensions],
       paths: {
         root: '',
         src: 'src',
@@ -162,7 +165,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
           resolveModule(jsFileExtensions, paths.indexJs),
           ...additionalEntry
         ],
-        devtool: isDev ? 'cheap-module-source-map' : sourceMap && 'source-map',
+        devtool: isDev ? 'eval-source-map' : sourceMap && 'source-map',
         output: {
           path: !isDev ? resolvePath(paths.build) : undefined,
           filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
@@ -175,25 +178,6 @@ export class WebpackConfig extends AbstractConfigBuilder<
           minimize: !isDev,
           minimizer: [
             new TerserPlugin({
-              terserOptions: {
-                parse: {
-                  ecma: 8
-                },
-                compress: {
-                  ecma: 5,
-                  warnings: false,
-                  comparisons: false,
-                  inline: 2
-                },
-                mangle: {
-                  safari10: true
-                },
-                output: {
-                  ecma: 5,
-                  comments: false,
-                  ascii_only: true
-                }
-              },
               parallel: true,
               cache: true,
               sourceMap

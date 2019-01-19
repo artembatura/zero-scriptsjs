@@ -4,14 +4,6 @@
 
 Add processing JavaScript code with Babel
 
-Uses [@zero-scripts/config.webpack](../config.webpack)
-
-## Features
-
-- [@babel/core](https://babeljs.io/docs/en/next/babel-core.html)
-- [@babel/preset-env](https://babeljs.io/docs/en/next/babel-preset-env.html)
-- [babel-loader](https://github.com/babel/babel-loader)
-
 ## Installation
 
 ##### yarn
@@ -33,6 +25,7 @@ npm i -D @zero-scripts/extension.webpack-babel
 | plugins    | _string[]_ | `[]`    | Additional Babel plugins  |
 | presets    | _string[]_ | `[]`    | Additional Babel presets  |
 | typescript | _boolean_  | `false` | Enable TypeScript support |
+| flow       | _boolean_  | `false` | Enable Flow support       |
 
 Warning about TypeScript: If you want to checking types on your TypeScript files,
 you need to manually install `fork-ts-checker-webpack-plugin`

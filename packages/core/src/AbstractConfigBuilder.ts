@@ -29,10 +29,10 @@ export abstract class AbstractConfigBuilder<
         appliedModifications.push(modifier.apply(flattenConfig));
       }
     });
-    require('fs').writeFileSync(
-      'webpack-config-generated.json',
-      JSON.stringify(unflatten<any>(flattenConfig))
-    );
+    // require('fs').writeFileSync(
+    //   'webpack-config-generated.json',
+    //   JSON.stringify(unflatten<any>(flattenConfig))
+    // );
     return unflatten<TConfig>(flattenConfig);
   }
 
