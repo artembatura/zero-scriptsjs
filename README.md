@@ -34,7 +34,7 @@ The main idea of project is resolve the inconvenience on using popular tools, on
 
 #### Presets
 
-Package | Developing
+Package | What Develop
 ------- | -----------
 [preset.webpack-spa](packages/preset.webpack-spa) | Single-page applications
 preset.webpack-ssr | Server-side Rendering applications
@@ -42,7 +42,7 @@ preset.webpack-node | Node.js applications
 
 #### Extensions
 
-Package | Adds
+Package | What adds
 ------- | -----------
 [extension.webpack-babel](packages/extension.webpack-babel) | Processing JavaScript code with Babel
 [extension.webpack-babel.react](packages/extension.webpack-babel.react) | JSX support. Inherited from `extension.webpack-babel`
@@ -52,7 +52,7 @@ Package | Adds
 
 #### Configs
 
-Package | Base configuration for
+Package | Configuration for
 ------- | -----------
 [config.webpack](packages/config.webpack) | Webpack 
 
