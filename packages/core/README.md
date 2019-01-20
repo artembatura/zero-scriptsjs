@@ -4,8 +4,6 @@
 
 Main API, on which all ecosystem built
 
-## [General Documentation](https://github.com/zero-scripts/zero-scripts#description)
-
 ## Process of loading extensions
 
 Extensions will be all packages, which are in `devDependencies` and match pattern `extension\\.[a-z]*`
@@ -44,6 +42,8 @@ Suppose, we need add additional preset for `@zero-scripts/extension.webpack-babe
    }
 }
 ```
+
+## [General Documentation](https://github.com/zero-scripts/zero-scripts#description)
 
 ## API
 
