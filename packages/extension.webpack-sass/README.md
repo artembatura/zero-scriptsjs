@@ -2,7 +2,7 @@
 
 ## Description
 
-Add processing Sass and SCSS files: extracting, minify and add vendor prefixes
+Same as `extension.webpack-css`, but for Sass/SCSS
 
 ## Installation
 
