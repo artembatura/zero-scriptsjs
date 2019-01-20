@@ -56,7 +56,7 @@ Package | Configuration for
 ------- | -----------
 [config.webpack](packages/config.webpack) | Webpack 
 
-## [Comparison](COMPARISON.md)
+## [Comparison](COMPARISON.md) with alternatives
 
 ## [Contributing](CONTRIBUTING.md)
 
