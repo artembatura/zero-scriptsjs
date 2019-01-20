@@ -30,7 +30,9 @@ The main idea of project is resolve the inconvenience on using popular tools, on
 
 ## Packages
 
-### Tool:Webpack
+### Webpack
+
+#### Presets
 
 Package | Developing
 ------- | -----------
@@ -38,13 +40,17 @@ Package | Developing
 preset.webpack-ssr | Server-side Rendering applications
 preset.webpack-node | Node.js applications
 
+#### Extensions
+
 Package | Adds
 ------- | -----------
 [extension.webpack-babel](packages/extension.webpack-babel) | Processing JavaScript code with Babel
-[extension.webpack-babel.react](packages/extension.webpack-babel.react) | Inherited from `extension.webpack-babel`
+[extension.webpack-babel.react](packages/extension.webpack-babel.react) | JSX support. Inherited from `extension.webpack-babel`
 [extension.webpack-css](packages/extension.webpack-css) | Processing CSS: extracting, minify and add vendor prefixes
 [extension.webpack-sass](packages/extension.webpack-sass) | Same as `extension.webpack-css`, but for Sass/SCSS
 [extension.webpack-eslint](packages/extension.webpack-eslint) | Processing JavaScript code with ESLint
+
+#### Configs
 
 Package | Base configuration for
 ------- | -----------
