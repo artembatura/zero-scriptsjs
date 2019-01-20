@@ -2,7 +2,7 @@
 
 ## Description
 
-Base configuration for Webpack
+Configuration for Webpack
 
 ## Options
 
