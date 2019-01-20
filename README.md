@@ -18,48 +18,39 @@ The main idea of project is resolve the inconvenience on using popular tools, on
 
 ## Features
 
-- ⏱ **Zero Configuration:** Begin make things faster without worrying about configuration
+- ⏱ **Zero Configuration:** Make things faster without worrying about configuration
 
-- 🔥 **Modular:** Additional feature should be provided as separated extension package. You can always be sure that no unused packages will be can't installed
+- 🔥 **Modular:** Additional feature should be provided as separated extension package. No unused packages not be installed
 
-- ⚡ **Extensible:** Extensions is a [pluggable](packages/core#process-of-loading-extensions) packages. To add a feature you need only install extension to `devDependencies`
+- ⚡ **Extensible:** Extensions is a ["pluggable"](packages/core#process-of-loading-extensions) packages. To add a feature you need only install extension to `devDependencies`
 
-- 🛠 **Universal:** Project can't aimed only to concrete tool, framework or something else
+- 🛠 **Universal:** The project created not only for concrete tool or framework and can be used for any JavaScript tool
 
-- ⚙ **Customizable:** Use the [opportunity](packages/core#passing-options) of providing options to configurations and extensions by `package.json`
+- ⚙ **Customizable:** Use the [availability](packages/core#passing-options) of providing options to configurations and extensions in `package.json`
 
-## [Comparison 🏆](COMPARISON.md)
+## Packages
 
-## Getting started
+### Tool:Webpack
 
-1. Choose a [Preset](#preset) for your application type
-2. Choose a need [extensions](#extension), if need features in Preset are missing
-3. Start developing! =)
+Package | Developing
+------- | -----------
+[preset.webpack-spa](packages/preset.webpack-spa) | Single-page applications
+preset.webpack-ssr | Server-side Rendering applications
+preset.webpack-node | Node.js applications
 
-## Preset
+Package | Adds
+------- | -----------
+[extension.webpack-babel](packages/extension.webpack-babel) | Processing JavaScript code with Babel
+[extension.webpack-babel.react](packages/extension.webpack-babel.react) | Inherited from `extension.webpack-babel`
+[extension.webpack-css](packages/extension.webpack-css) | Processing CSS: extracting, minify and add vendor prefixes
+[extension.webpack-sass](packages/extension.webpack-sass) | Same as `extension.webpack-css`, but for Sass/SCSS
+[extension.webpack-eslint](packages/extension.webpack-eslint) | Processing JavaScript code with ESLint
 
-**A set of scripts and CLI to launch their**
+Package | Base configuration for
+------- | -----------
+[config.webpack](packages/config.webpack) | Webpack 
 
-- ### [webpack-spa](packages/preset.webpack-spa)
-   **Build and develop Single Page Applications**
-
-## Extension
-
-**Adds scripts to preset and can extends configuration**
-
-* ### [webpack-babel](packages/extension.webpack-babel)
-* ### [webpack-babel.react](packages/extension.webpack-babel.react)
-* ### [webpack-css](packages/extension.webpack-css)
-* ### [webpack-sass](packages/extension.webpack-sass)
-* ### [webpack-eslint](packages/extension.webpack-eslint)
-
-## Config
-
-**Initialize base configuration and contains API methods to extends their**
-
-* ### [config.webpack](packages/config.webpack)
-
-Note: This packages cannot need to install manually. It's used by presets and extensions
+## [Comparison](COMPARISON.md)
 
 ## [Contributing](CONTRIBUTING.md)
 
