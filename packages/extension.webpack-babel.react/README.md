@@ -1,10 +1,8 @@
 # @zero-scripts/extension.webpack-babel.react
 
-Inherited from [@zero-scripts/extension.webpack-babel](../extension.webpack-babel)
-
 ## Description
 
-Add processing JavaScript code with Babel
+Adds JSX support. Inherited from `extension.webpack-babel`
 
 ## Installation
 
