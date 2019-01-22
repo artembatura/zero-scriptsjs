@@ -20,15 +20,15 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.2.0",
-    "@zero-scripts/core": "^0.2.0",
-    "@zero-scripts/utils.webpack-styles": "^0.2.0",
-    "mini-css-extract-plugin": "^0.5.0"
+    "@zero-scripts/config.webpack": "0.2.0",
+    "@zero-scripts/core": "0.2.0",
+    "@zero-scripts/utils.webpack-styles": "0.2.0",
+    "mini-css-extract-plugin": "0.5.0"
   },
   "devDependencies": {
     "@types/mini-css-extract-plugin": "0.2.0",
     "@types/node": "10.12.18",
-    "@zero-scripts/ts-config": "^0.2.0",
+    "@zero-scripts/ts-config": "0.2.0",
     "typescript": "3.2.4"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
