@@ -15,7 +15,7 @@ type WebpackEslintExtensionOptions = {
   plugins: ArrayOption<string, WebpackConfigOptions>;
   extends: ArrayOption<string, WebpackConfigOptions>;
   rules: Record<string, string | any[]>;
-  env: object;
+  env: Record<string, boolean>;
 };
 
 export class WebpackEslintExtension extends AbstractExtension<
