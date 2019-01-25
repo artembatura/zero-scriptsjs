@@ -10,7 +10,8 @@ export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
   TOptions
 > {
-  private readonly modifications: ConfigModification[] = [];
+  private readonly _modifications: ConfigModification[] = [];
+  private _options?: any;
 
   public constructor(externalOptions: TOptions) {
     Object.keys(externalOptions).forEach(option => {
@@ -18,9 +19,16 @@ export abstract class AbstractConfigBuilder<
         this.hasOwnProperty(option) &&
         typeof (this as any)[option] !== 'function'
       ) {
+        const prevMeta = Reflect.getMetadata(
+          'data',
+          this.constructor.prototype,
+          option
+        );
+
         Reflect.defineMetadata(
           'data',
           {
+            ...prevMeta,
             externalValue: (externalOptions as any)[option]
           },
           this.constructor.prototype,
@@ -31,13 +39,12 @@ export abstract class AbstractConfigBuilder<
   }
 
   public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
-    const options = this.resolveOptions();
-    console.log(options);
+    const options = this.getOptions();
     const flattenConfig = createBaseConfig
       ? flatten(createBaseConfig(options))
       : new Map();
     const appliedModifications: ConfigModification[] = [];
-    this.modifications.forEach(modifier => {
+    this._modifications.forEach(modifier => {
       if (
         !modifier.id ||
         !appliedModifications.some(
@@ -55,58 +62,67 @@ export abstract class AbstractConfigBuilder<
     return unflatten<TConfig>(flattenConfig);
   }
 
-  public resolveOptions(): TOptions {
-    const keysOfOptions = Object.keys(this).filter(
-      optionKey => typeof (this as any)[optionKey] !== 'function'
-    );
-    let optionsMeta = keysOfOptions
-      .map(
-        optionKey => {
-          const metadata = Reflect.getMetadata(
-            'data',
-            this.constructor.prototype,
-            optionKey
+  public getOptions(): TOptions {
+    if (!this._options) {
+      const keysOfOptions = Object.keys(this).filter(
+        optionKey => typeof (this as any)[optionKey] !== 'function'
+      );
+
+      let optionsMeta = keysOfOptions
+        .map(
+          optionKey => {
+            const metadata = Reflect.getMetadata(
+              'data',
+              this.constructor.prototype,
+              optionKey
+            );
+
+            return (
+              metadata && {
+                optionKey,
+                dependencies: metadata.dependencies,
+                getOptionValue: metadata.getOptionValue,
+                externalValue: metadata.externalValue
+              }
+            );
+          },
+          {} as any
+        )
+        .filter(Boolean);
+
+      // sort for correct resolving dependencies
+      // todo bad perfomance
+      for (let k = 0; k < optionsMeta.length; k++) {
+        optionsMeta.forEach((optionMeta, i) => {
+          const { optionKey } = optionMeta;
+          const index = optionsMeta.findIndex(
+            findEl => findEl.dependencies.indexOf(optionKey) !== -1
           );
 
-          return (
-            metadata && {
-              optionKey,
-              dependencies: metadata.dependencies,
-              getOptionValue: metadata.getOptionValue
-            }
-          );
-        },
-        {} as any
-      )
-      .filter(Boolean);
+          if (index !== -1 && index < i) {
+            optionsMeta = optionsMeta.filter(
+              findEl => findEl.optionKey !== optionKey
+            );
+            optionsMeta.splice(index, 0, optionMeta);
+          }
+        });
+      }
 
-    for (let k = 0; k < optionsMeta.length; k++) {
-      optionsMeta.forEach((el, i) => {
-        const { optionKey } = el;
-        const index = optionsMeta.findIndex(
-          findEl => findEl.dependencies.indexOf(optionKey) !== -1
-        );
-        if (index !== -1 && index < i) {
-          optionsMeta = optionsMeta.filter(
-            findEl => findEl.optionKey !== optionKey
-          );
-          optionsMeta.splice(index, 0, el);
-        }
-      });
+      this._options = optionsMeta.reduce(
+        (result, { optionKey, getOptionValue, externalValue }) => ({
+          ...result,
+          [optionKey]: getOptionValue
+            ? getOptionValue(result, externalValue)
+            : (this as any)[optionKey]
+        }),
+        {} as TOptions
+      );
     }
 
-    return optionsMeta.reduce(
-      (result, { optionKey, getOptionValue }) => ({
-        ...result,
-        [optionKey]: getOptionValue
-          ? getOptionValue(result)
-          : (this as any)[optionKey]
-      }),
-      {}
-    ) as any;
+    return this._options;
   }
 
-  // this.modifications.push(
+  // idea: this.modifications.push(
   //   Modification.array(...)
   // )
   protected addModification<TSelectedValue>(
@@ -122,7 +138,7 @@ export abstract class AbstractConfigBuilder<
       );
     }
 
-    this.modifications.push(
+    this._modifications.push(
       new ConfigModification(
         path,
         config => handler(config.get(path)),
@@ -142,7 +158,7 @@ export abstract class AbstractConfigBuilder<
     return this.addModification(
       selector,
       (array: any[]) => {
-        const element = creator(this.resolveOptions());
+        const element = creator(this.getOptions());
 
         if (!element) {
           return array;

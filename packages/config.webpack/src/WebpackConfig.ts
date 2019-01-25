@@ -23,61 +23,44 @@ function Option<T, TOption extends T[keyof T], TKey extends keyof T>(
   dependencies: TKey[] = []
 ) {
   return (target: any, propertyName: string) => {
-    Reflect.defineMetadata(
-      'data',
-      {
-        dependencies,
-        getOptionValue: undefined,
-        externalValue: undefined,
-        defaultValue: undefined
-      },
-      target,
-      propertyName
-    );
-
-    const values = new Map<any, T>();
+    const values = new Map();
 
     Object.defineProperty(target, propertyName, {
-      set: function(firstValue: any) {
+      set(firstValue: any) {
         Object.defineProperty(this, propertyName, {
           get() {
             return values.get(this);
           },
           set(value: any) {
             values.set(this, value);
-
-            const {
-              externalValue
-            }: {
-              externalValue: TOption;
-            } = Reflect.getMetadata('data', target, propertyName);
-
-            const getOptionValue = (options: any) =>
-              getValue({
-                dependencies: dependencies.reduce(
-                  (object, dependency) => ({
-                    ...object,
-                    [dependency]: options[dependency] || this[dependency]
-                  }),
-                  {} as T
-                ),
-                defaultValue: value,
-                externalValue
-              });
-
-            Reflect.defineMetadata(
-              'data',
-              {
-                getOptionValue,
-                dependencies
-              },
-              target,
-              propertyName
-            );
           },
           enumerable: true
         });
+
         this[propertyName] = firstValue;
+
+        const getOptionValue = (options: any, externalValue: any) =>
+          getValue({
+            dependencies: dependencies.reduce(
+              (object, dependency) => ({
+                ...object,
+                [dependency]: options[dependency] || this[dependency]
+              }),
+              {} as T
+            ),
+            defaultValue: this[propertyName],
+            externalValue
+          });
+
+        Reflect.defineMetadata(
+          'data',
+          {
+            getOptionValue,
+            dependencies
+          },
+          target,
+          propertyName
+        );
       },
       enumerable: true,
       configurable: true
@@ -182,7 +165,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
           indexOfOneOf = rules.length - 1;
         }
 
-        const element = getRule(this.resolveOptions());
+        const element = getRule(this.getOptions());
 
         if (!element) {
           return rules;
