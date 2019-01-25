@@ -17,7 +17,7 @@ export class WebpackCssExtension extends AbstractExtension {
         exclude: cssModuleRegex,
         use: getStyleLoaders({
           importLoaders: 1,
-          sourceMap: !options.isDev && options.sourceMap
+          sourceMap: !options.isDev && options.useSourceMap
         })(options),
         sideEffects: true
       }))
@@ -25,7 +25,7 @@ export class WebpackCssExtension extends AbstractExtension {
         test: cssModuleRegex,
         use: getStyleLoaders({
           importLoaders: 1,
-          sourceMap: !options.isDev && options.sourceMap,
+          sourceMap: !options.isDev && options.useSourceMap,
           modules: true,
           getLocalIdent
         })(options)

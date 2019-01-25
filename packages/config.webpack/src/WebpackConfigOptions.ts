@@ -3,7 +3,8 @@ export type WebpackConfigOptions = {
   additionalEntry: string[];
   moduleFileExtensions: string[];
   jsFileExtensions: string[];
-  sourceMap: boolean;
+  useSourceMap: boolean;
+  useTypescript: boolean;
   paths: {
     root: string;
     src: string;

@@ -4,6 +4,7 @@ import { Selector } from './Selector';
 import { extractFirstPropChain } from './utils/extractFirstPropChain';
 import { InsertPos } from './InsertPos';
 import { ConfigModification } from './ConfigModification';
+import 'reflect-metadata';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
@@ -11,11 +12,29 @@ export abstract class AbstractConfigBuilder<
 > {
   private readonly modifications: ConfigModification[] = [];
 
-  protected constructor(protected readonly options: TOptions) {}
+  public constructor(externalOptions: TOptions) {
+    Object.keys(externalOptions).forEach(option => {
+      if (
+        this.hasOwnProperty(option) &&
+        typeof (this as any)[option] !== 'function'
+      ) {
+        Reflect.defineMetadata(
+          'data',
+          {
+            externalValue: (externalOptions as any)[option]
+          },
+          this.constructor.prototype,
+          option
+        );
+      }
+    });
+  }
 
   public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
+    const options = this.resolveOptions();
+    console.log(options);
     const flattenConfig = createBaseConfig
-      ? flatten(createBaseConfig(this.options))
+      ? flatten(createBaseConfig(options))
       : new Map();
     const appliedModifications: ConfigModification[] = [];
     this.modifications.forEach(modifier => {
@@ -36,7 +55,61 @@ export abstract class AbstractConfigBuilder<
     return unflatten<TConfig>(flattenConfig);
   }
 
-  protected set<TSelectedValue>(
+  public resolveOptions(): TOptions {
+    const keysOfOptions = Object.keys(this).filter(
+      optionKey => typeof (this as any)[optionKey] !== 'function'
+    );
+    let optionsMeta = keysOfOptions
+      .map(
+        optionKey => {
+          const metadata = Reflect.getMetadata(
+            'data',
+            this.constructor.prototype,
+            optionKey
+          );
+
+          return (
+            metadata && {
+              optionKey,
+              dependencies: metadata.dependencies,
+              getOptionValue: metadata.getOptionValue
+            }
+          );
+        },
+        {} as any
+      )
+      .filter(Boolean);
+
+    for (let k = 0; k < optionsMeta.length; k++) {
+      optionsMeta.forEach((el, i) => {
+        const { optionKey } = el;
+        const index = optionsMeta.findIndex(
+          findEl => findEl.dependencies.indexOf(optionKey) !== -1
+        );
+        if (index !== -1 && index < i) {
+          optionsMeta = optionsMeta.filter(
+            findEl => findEl.optionKey !== optionKey
+          );
+          optionsMeta.splice(index, 0, el);
+        }
+      });
+    }
+
+    return optionsMeta.reduce(
+      (result, { optionKey, getOptionValue }) => ({
+        ...result,
+        [optionKey]: getOptionValue
+          ? getOptionValue(result)
+          : (this as any)[optionKey]
+      }),
+      {}
+    ) as any;
+  }
+
+  // this.modifications.push(
+  //   Modification.array(...)
+  // )
+  protected addModification<TSelectedValue>(
     selector: Selector<Required<TConfig>, TSelectedValue>,
     handler: (selectedValue: TSelectedValue) => TSelectedValue,
     modificationId: string | undefined
@@ -66,10 +139,10 @@ export abstract class AbstractConfigBuilder<
     position: InsertPos,
     modificationId: string | undefined
   ): this {
-    return this.set(
+    return this.addModification(
       selector,
       (array: any[]) => {
-        const element = creator(this.options);
+        const element = creator(this.resolveOptions());
 
         if (!element) {
           return array;

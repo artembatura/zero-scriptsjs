@@ -18,7 +18,7 @@ export class WebpackSassExtension extends AbstractExtension {
         use: getStyleLoaders(
           {
             importLoaders: 2,
-            sourceMap: !options.isDev && options.sourceMap
+            sourceMap: !options.isDev && options.useSourceMap
           },
           require.resolve('sass-loader')
         )(options),
@@ -29,7 +29,7 @@ export class WebpackSassExtension extends AbstractExtension {
         use: getStyleLoaders(
           {
             importLoaders: 2,
-            sourceMap: !options.isDev && options.sourceMap,
+            sourceMap: !options.isDev && options.useSourceMap,
             modules: true,
             getLocalIdent
           },

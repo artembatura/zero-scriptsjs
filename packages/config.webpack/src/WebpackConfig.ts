@@ -1,59 +1,137 @@
-import {
-  Configuration,
-  RuleSetRule,
-  Plugin,
-  DefinePlugin,
-  HotModuleReplacementPlugin
-} from 'webpack';
+import { Configuration, RuleSetRule, Plugin } from 'webpack';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
-import { resolvePath, resolveModule } from './utils';
 import {
   AbstractConfigBuilder,
   InsertPos,
-  ReadOptions,
-  extensionsRegex
+  ReadOptions
 } from '@zero-scripts/core';
 import { validateWebpackConfig } from './validateWebpackConfig';
-import ManifestPlugin from 'webpack-assets-manifest';
+import fs from 'fs';
+import { createWebpackConfiguration } from './createWebpackConfiguration';
+import 'reflect-metadata';
 
-const TerserPlugin = require('terser-webpack-plugin');
+type ObjectType<T> = { new (): T } | Function;
+
+function Option<T, TOption extends T[keyof T], TKey extends keyof T>(
+  Class: ObjectType<T>,
+  getValue: (data: {
+    dependencies: { [K in TKey]: T[K] };
+    defaultValue: TOption;
+    externalValue: TOption;
+  }) => TOption = ({ externalValue, defaultValue }) =>
+    externalValue !== undefined ? externalValue : defaultValue,
+  dependencies: TKey[] = []
+) {
+  return (target: any, propertyName: string) => {
+    Reflect.defineMetadata(
+      'data',
+      {
+        dependencies,
+        getOptionValue: undefined,
+        externalValue: undefined,
+        defaultValue: undefined
+      },
+      target,
+      propertyName
+    );
+
+    const values = new Map<any, T>();
+
+    Object.defineProperty(target, propertyName, {
+      set: function(firstValue: any) {
+        Object.defineProperty(this, propertyName, {
+          get() {
+            return values.get(this);
+          },
+          set(value: any) {
+            values.set(this, value);
+
+            const {
+              externalValue
+            }: {
+              externalValue: TOption;
+            } = Reflect.getMetadata('data', target, propertyName);
+
+            const getOptionValue = (options: any) =>
+              getValue({
+                dependencies: dependencies.reduce(
+                  (object, dependency) => ({
+                    ...object,
+                    [dependency]: options[dependency] || this[dependency]
+                  }),
+                  {} as T
+                ),
+                defaultValue: value,
+                externalValue
+              });
+
+            Reflect.defineMetadata(
+              'data',
+              {
+                getOptionValue,
+                dependencies
+              },
+              target,
+              propertyName
+            );
+          },
+          enumerable: true
+        });
+        this[propertyName] = firstValue;
+      },
+      enumerable: true,
+      configurable: true
+    });
+  };
+}
 
 @ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
 > {
-  constructor({
-    sourceMap = true,
-    paths,
-    additionalEntry = [],
-    moduleFileExtensions = [],
-    jsFileExtensions = []
-  }: Partial<WebpackConfigOptions>) {
-    super({
-      isDev: false,
-      additionalEntry,
-      sourceMap,
-      moduleFileExtensions: ['.js', '.json', ...moduleFileExtensions],
-      jsFileExtensions: ['js', ...jsFileExtensions],
-      paths: {
-        root: '',
-        src: 'src',
-        build: 'build',
-        indexJs: 'src/index',
-        indexHtml: 'public/index.html',
-        public: 'public',
-        tsConfig: 'tsconfig.json',
-        ...(paths ? paths : {})
-      }
-    });
-  }
+  @Option(
+    WebpackConfig,
+    ({ externalValue, dependencies: { paths } }) =>
+      typeof externalValue === 'boolean'
+        ? externalValue
+        : fs.existsSync(paths.tsConfig),
+    ['paths', 'useTypescript']
+  )
+  public useTypescript: boolean = false;
+
+  // todo paths are not resolved
+  @Option(WebpackConfig)
+  public paths: WebpackConfigOptions['paths'] = {
+    root: '',
+    src: 'src',
+    build: 'build',
+    indexJs: 'src/index',
+    indexHtml: 'public/index.html',
+    public: 'public',
+    tsConfig: 'tsconfig.json'
+  };
+
+  @Option(WebpackConfig)
+  public useSourceMap: boolean = true;
+
+  @Option(WebpackConfig)
+  public readonly additionalEntry: string[] = [];
+
+  @Option(WebpackConfig)
+  public readonly moduleFileExtensions: string[] = ['.js', '.json'];
+
+  @Option(WebpackConfig)
+  public readonly jsFileExtensions: string[] = ['js'];
+
+  @Option(WebpackConfig)
+  public isDev: boolean = false;
 
   public addJsFileExtension(extension: string): this {
-    this.options.jsFileExtensions.push(extension);
+    this.jsFileExtensions.push(extension);
     const extensionWithDot = '.' + extension;
-    if (!this.options.moduleFileExtensions.includes(extensionWithDot)) {
-      this.options.moduleFileExtensions.push(extensionWithDot);
+    if (!this.moduleFileExtensions.includes(extensionWithDot)) {
+      this.moduleFileExtensions.push(extensionWithDot);
     }
     return this;
   }
@@ -66,12 +144,12 @@ export class WebpackConfig extends AbstractConfigBuilder<
   }
 
   public addEntry(entry: string): this {
-    this.options.additionalEntry.push(entry);
+    this.additionalEntry.push(entry);
     return this;
   }
 
-  public isDev(isDev: boolean): this {
-    this.options.isDev = isDev;
+  public setIsDev(isDev: boolean): this {
+    this.isDev = isDev;
     return this;
   }
 
@@ -88,7 +166,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
   ) {
-    return this.set(
+    return this.addModification(
       c => c.module.rules,
       targetRules => {
         let rules = Array.isArray(targetRules)
@@ -104,7 +182,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
           indexOfOneOf = rules.length - 1;
         }
 
-        const element = getRule(this.options);
+        const element = getRule(this.resolveOptions());
 
         if (!element) {
           return rules;
@@ -151,77 +229,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
   }
 
   public build(): Configuration {
-    const config = super.build(
-      ({
-        paths,
-        moduleFileExtensions,
-        isDev,
-        additionalEntry,
-        sourceMap,
-        jsFileExtensions
-      }) => ({
-        mode: isDev ? 'development' : 'production',
-        entry: [
-          resolveModule(jsFileExtensions, paths.indexJs),
-          ...additionalEntry
-        ],
-        devtool: isDev ? 'eval-source-map' : sourceMap && 'source-map',
-        output: {
-          path: !isDev ? resolvePath(paths.build) : undefined,
-          filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
-          chunkFilename: isDev
-            ? 'js/[name].chunk.js'
-            : 'js/[name].[contenthash:8].chunk.js'
-        },
-        bail: !isDev,
-        optimization: {
-          minimize: !isDev,
-          minimizer: [
-            new TerserPlugin({
-              parallel: true,
-              cache: true,
-              sourceMap
-            })
-          ],
-          splitChunks: {
-            chunks: 'all'
-          },
-          runtimeChunk: true
-        },
-        resolve: {
-          modules: ['node_modules'],
-          extensions: moduleFileExtensions
-        },
-        module: {
-          strictExportPresence: true,
-          rules: [
-            {
-              oneOf: [
-                {
-                  loader: require.resolve('file-loader'),
-                  exclude: [extensionsRegex(moduleFileExtensions), /\.html$/],
-                  options: {
-                    name: 'media/[name].[hash:8].[ext]'
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        plugins: [
-          new DefinePlugin({
-            'process.env': {
-              NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-            }
-          }),
-          new ManifestPlugin({
-            output: 'asset-manifest.json'
-          })
-        ].concat(isDev ? [new HotModuleReplacementPlugin()] : []),
-        node: false,
-        stats: 'errors-only'
-      })
-    );
+    const config = super.build(createWebpackConfiguration);
 
     return validateWebpackConfig(config);
   }

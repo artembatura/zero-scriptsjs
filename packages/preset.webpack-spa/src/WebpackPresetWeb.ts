@@ -17,7 +17,7 @@ export class WebpackPresetWeb extends AbstractPreset {
       const builder = this.getInstance(WebpackConfig);
 
       const config = builder
-        .isDev(true)
+        .setIsDev(true)
         .addEntry(require.resolve('webpack-hot-middleware/client'))
         .pipe(localExtensions)
         .build();
@@ -55,7 +55,7 @@ export class WebpackPresetWeb extends AbstractPreset {
       const builder = this.getInstance(WebpackConfig);
 
       const config = builder
-        .isDev(false)
+        .setIsDev(false)
         .pipe(localExtensions)
         .build();
 

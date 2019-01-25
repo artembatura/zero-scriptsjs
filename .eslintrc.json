@@ -13,7 +13,8 @@
     }
   },
   "rules": {
-    "no-console": "warn"
+    "no-console": "warn",
+    "no-dupe-class-members": "off"
   },
   "overrides": [
     {
