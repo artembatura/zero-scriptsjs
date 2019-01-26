@@ -66,14 +66,14 @@ export class WebpackEslintExtension extends AbstractExtension<
             overrides: [
               {
                 files: ['*.ts', '*.tsx'],
-                parser: 'eslint-plugin-typescript/parser',
-                plugins: ['typescript'],
+                parser: '@typescript-eslint/parser',
+                plugins: ['@typescript-eslint'],
                 rules: {
                   'no-undef': 'off',
                   'no-unused-vars': 'off',
                   'no-restricted-globals': 'off',
                   'no-use-before-define': 'off',
-                  'typescript/no-unused-vars': [
+                  '@typescript-eslint/no-unused-vars': [
                     'warn',
                     {
                       vars: 'all',
