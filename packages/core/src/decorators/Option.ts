@@ -3,10 +3,12 @@ import 'reflect-metadata';
 export function Option<
   T,
   TOption extends keyof T,
-  TDependency extends keyof T = keyof T
+  TDependency extends keyof T | undefined = undefined
 >(
   getValue?: (data: {
-    dependencies: { [K in TDependency]: T[K] };
+    dependencies: TDependency extends keyof T
+      ? { [K in TDependency]: T[K] }
+      : undefined;
     defaultValue: T[TOption];
     externalValue: T[TOption];
   }) => T[TOption],
@@ -40,7 +42,7 @@ export function Option<
             return getValue({
               dependencies:
                 dependencies.length > 0
-                  ? dependencies.reduce(
+                  ? (dependencies as (keyof T)[]).reduce(
                       (object, dependency) => ({
                         ...object,
                         [dependency]: options[dependency] || this[dependency]

@@ -45,7 +45,6 @@ export class WebpackConfig extends AbstractConfigBuilder<
   )
   public readonly additionalEntry: string[] = [];
 
-  // todo if not setted third generic argument, dependencies = all values
   @Option<WebpackConfig, 'moduleFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies: { useTypescript } }) => [
       ...defaultValue,

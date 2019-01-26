@@ -91,9 +91,8 @@ export abstract class AbstractConfigBuilder<
         )
         .filter(Boolean);
 
-      // sort for correct resolving dependencies
+      // temporary solution for correct order of resolving dependencies
       // todo bad perfomance
-      // todo bad resolving
       for (let k = 0; k < optionsMeta.length; k++) {
         optionsMeta.forEach((optionMeta, i) => {
           const { optionKey } = optionMeta;
@@ -129,8 +128,6 @@ export abstract class AbstractConfigBuilder<
           );
         }
       });
-
-      console.log(this._options);
     }
 
     return this._options;
