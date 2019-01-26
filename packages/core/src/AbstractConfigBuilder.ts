@@ -92,6 +92,7 @@ export abstract class AbstractConfigBuilder<
 
       // sort for correct resolving dependencies
       // todo bad perfomance
+      // todo bad resolving
       for (let k = 0; k < optionsMeta.length; k++) {
         optionsMeta.forEach((optionMeta, i) => {
           const { optionKey } = optionMeta;
@@ -107,6 +108,8 @@ export abstract class AbstractConfigBuilder<
           }
         });
       }
+
+      console.log(optionsMeta);
 
       this._options = optionsMeta.reduce(
         (result, { optionKey, getOptionValue, externalValue }) => ({

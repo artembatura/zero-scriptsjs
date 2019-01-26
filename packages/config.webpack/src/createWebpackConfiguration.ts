@@ -4,7 +4,6 @@ import {
   HotModuleReplacementPlugin
 } from 'webpack';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
-import { resolvePath, resolveModule } from './utils';
 import { extensionsRegex } from '@zero-scripts/core';
 import ManifestPlugin from 'webpack-assets-manifest';
 
@@ -13,16 +12,15 @@ const TerserPlugin = require('terser-webpack-plugin');
 export const createWebpackConfiguration = ({
   isDev,
   paths,
-  jsFileExtensions,
   additionalEntry,
   useSourceMap,
   moduleFileExtensions
 }: WebpackConfigOptions): Configuration => ({
   mode: isDev ? 'development' : 'production',
-  entry: [resolveModule(jsFileExtensions, paths.indexJs), ...additionalEntry],
+  entry: [paths.indexJs, ...additionalEntry],
   devtool: isDev ? 'eval-source-map' : useSourceMap && 'source-map',
   output: {
-    path: !isDev ? resolvePath(paths.build) : undefined,
+    path: !isDev ? paths.build : undefined,
     filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
     chunkFilename: isDev
       ? 'js/[name].chunk.js'

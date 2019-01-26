@@ -6,7 +6,6 @@ import {
   handleArrayOption
 } from '@zero-scripts/core';
 import {
-  resolvePath,
   WebpackConfig,
   WebpackConfigOptions
 } from '@zero-scripts/config.webpack';
@@ -38,7 +37,7 @@ export class WebpackBabelExtension extends AbstractExtension<
         test: extensionsRegex(jsFileExtensions),
         oneOf: [
           {
-            include: resolvePath(paths.src),
+            include: paths.src,
             loader: require.resolve('babel-loader'),
             options: {
               babelrc: false,
@@ -108,7 +107,7 @@ export class WebpackBabelExtension extends AbstractExtension<
             typescript: require.resolve('typescript'),
             async: true,
             checkSyntacticErrors: true,
-            tsconfig: resolvePath(paths.tsConfig),
+            tsconfig: paths.tsConfig,
             compilerOptions: {
               module: 'esnext',
               moduleResolution: 'node',
@@ -125,7 +124,7 @@ export class WebpackBabelExtension extends AbstractExtension<
               '!**/src/setupProxy.*',
               '!**/src/setupTests.*'
             ],
-            watch: resolvePath(paths.src),
+            watch: paths.src,
             silent: false
           })
         : undefined;

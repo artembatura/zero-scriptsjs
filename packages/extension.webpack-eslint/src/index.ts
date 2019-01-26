@@ -9,7 +9,6 @@ import {
   WebpackConfig,
   WebpackConfigOptions
 } from '@zero-scripts/config.webpack';
-import { resolvePath } from '@zero-scripts/config.webpack';
 
 type WebpackEslintExtensionOptions = {
   plugins: ArrayOption<string, WebpackConfigOptions>;
@@ -28,7 +27,7 @@ export class WebpackEslintExtension extends AbstractExtension<
       const { jsFileExtensions, paths } = options;
       return {
         test: extensionsRegex(jsFileExtensions),
-        include: resolvePath(paths.src),
+        include: paths.src,
         enforce: 'pre',
         loader: require.resolve('eslint-loader'),
         options: {

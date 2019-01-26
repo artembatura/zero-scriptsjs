@@ -3,128 +3,77 @@ import { WebpackConfigOptions } from './WebpackConfigOptions';
 import {
   AbstractConfigBuilder,
   InsertPos,
-  ReadOptions
+  ReadOptions,
+  Option
 } from '@zero-scripts/core';
 import { validateWebpackConfig } from './validateWebpackConfig';
 import fs from 'fs';
 import { createWebpackConfiguration } from './createWebpackConfiguration';
-import 'reflect-metadata';
-
-type ObjectType<T> = { new (): T } | Function;
-
-function Option<T, TOption extends T[keyof T], TKey extends keyof T>(
-  Class: ObjectType<T>,
-  getValue: (data: {
-    dependencies: { [K in TKey]: T[K] };
-    defaultValue: TOption;
-    externalValue: TOption;
-  }) => TOption = ({ externalValue, defaultValue }) =>
-    externalValue !== undefined ? externalValue : defaultValue,
-  dependencies: TKey[] = []
-) {
-  return (target: any, propertyName: string) => {
-    const values = new Map();
-
-    Object.defineProperty(target, propertyName, {
-      set(firstValue: any) {
-        Object.defineProperty(this, propertyName, {
-          get() {
-            return values.get(this);
-          },
-          set(value: any) {
-            values.set(this, value);
-          },
-          enumerable: true
-        });
-
-        this[propertyName] = firstValue;
-
-        const getOptionValue = (options: any, externalValue: any) =>
-          getValue({
-            dependencies: dependencies.reduce(
-              (object, dependency) => ({
-                ...object,
-                [dependency]: options[dependency] || this[dependency]
-              }),
-              {} as T
-            ),
-            defaultValue: this[propertyName],
-            externalValue
-          });
-
-        Reflect.defineMetadata(
-          'data',
-          {
-            getOptionValue,
-            dependencies
-          },
-          target,
-          propertyName
-        );
-      },
-      enumerable: true,
-      configurable: true
-    });
-  };
-}
+import { resolvePaths } from './resolvePaths';
 
 @ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
 > {
-  @Option(
-    WebpackConfig,
-    ({ externalValue, dependencies: { paths } }) =>
-      typeof externalValue === 'boolean'
-        ? externalValue
-        : fs.existsSync(paths.tsConfig),
-    ['paths', 'useTypescript']
+  @Option<WebpackConfig, 'paths', 'moduleFileExtensions'>(
+    ({ defaultValue, dependencies: { moduleFileExtensions } }) =>
+      resolvePaths(defaultValue, moduleFileExtensions),
+    ['moduleFileExtensions']
   )
-  public useTypescript: boolean = false;
-
-  // todo paths are not resolved
-  @Option(WebpackConfig)
   public paths: WebpackConfigOptions['paths'] = {
     root: '',
     src: 'src',
     build: 'build',
     indexJs: 'src/index',
     indexHtml: 'public/index.html',
-    public: 'public',
+    publicPath: 'public',
     tsConfig: 'tsconfig.json'
   };
 
-  @Option(WebpackConfig)
+  @Option<WebpackConfig, 'useSourceMap'>()
   public useSourceMap: boolean = true;
 
-  @Option(WebpackConfig)
+  @Option<WebpackConfig, 'additionalEntry'>(
+    ({ externalValue, defaultValue }) => [
+      ...defaultValue,
+      ...(externalValue ? externalValue : [])
+    ]
+  )
   public readonly additionalEntry: string[] = [];
 
-  @Option(WebpackConfig)
+  // todo if not setted third generic argument, dependencies = all values
+  @Option<WebpackConfig, 'moduleFileExtensions', 'useTypescript'>(
+    ({ externalValue, defaultValue, dependencies: { useTypescript } }) => [
+      ...defaultValue,
+      ...(useTypescript ? ['.ts'] : []),
+      ...(externalValue ? externalValue : [])
+    ],
+    ['useTypescript']
+  )
   public readonly moduleFileExtensions: string[] = ['.js', '.json'];
 
-  @Option(WebpackConfig)
+  @Option<WebpackConfig, 'jsFileExtensions', 'useTypescript'>(
+    ({ externalValue, defaultValue, dependencies: { useTypescript } }) => [
+      ...defaultValue,
+      ...(useTypescript ? ['ts'] : []),
+      ...(externalValue ? externalValue : [])
+    ],
+    ['useTypescript']
+  )
   public readonly jsFileExtensions: string[] = ['js'];
 
-  @Option(WebpackConfig)
+  @Option<WebpackConfig, 'isDev'>()
   public isDev: boolean = false;
 
-  public addJsFileExtension(extension: string): this {
-    this.jsFileExtensions.push(extension);
-    const extensionWithDot = '.' + extension;
-    if (!this.moduleFileExtensions.includes(extensionWithDot)) {
-      this.moduleFileExtensions.push(extensionWithDot);
-    }
-    return this;
-  }
-
-  public addJsFileExtensions(extensions: string[]): this {
-    extensions.forEach(extension => {
-      this.addJsFileExtension(extension);
-    });
-    return this;
-  }
+  @Option<WebpackConfig, 'useTypescript', 'paths'>(
+    ({ externalValue, dependencies: { paths } }) =>
+      typeof externalValue === 'boolean'
+        ? externalValue
+        : fs.existsSync(paths.tsConfig),
+    ['paths']
+  )
+  public useTypescript: boolean = false;
 
   public addEntry(entry: string): this {
     this.additionalEntry.push(entry);

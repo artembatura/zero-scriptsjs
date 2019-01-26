@@ -11,7 +11,7 @@ export type WebpackConfigOptions = {
     build: string;
     indexJs: string;
     indexHtml: string;
-    public: string;
+    publicPath: string;
     tsConfig: string;
   };
 };

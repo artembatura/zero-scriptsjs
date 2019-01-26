@@ -1,2 +1,2 @@
-export * from './WebpackPresetWeb';
+export * from './WebpackPresetSpa';
 export * from './extensions';

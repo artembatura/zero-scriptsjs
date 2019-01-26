@@ -7,7 +7,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { extensions as localExtensions } from './extensions';
 
-export class WebpackPresetWeb extends AbstractPreset {
+export class WebpackPresetSpa extends AbstractPreset {
   constructor() {
     super([]);
 
@@ -44,7 +44,7 @@ export class WebpackPresetWeb extends AbstractPreset {
         })
       );
 
-      await server.listen(8080, (err, address) => {
+      await server.listen(8080, err => {
         if (err) throw err;
       });
     });

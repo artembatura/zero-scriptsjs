@@ -23,8 +23,7 @@
     "@zero-scripts/core": "0.2.0",
     "file-loader": "3.0.1",
     "terser-webpack-plugin": "1.2.1",
-    "webpack-assets-manifest": "3.1.1",
-    "reflect-metadata": "^0.1.13"
+    "webpack-assets-manifest": "3.1.1"
   },
   "devDependencies": {
     "@types/node": "10.12.18",
