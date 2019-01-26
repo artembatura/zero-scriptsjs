@@ -11,7 +11,10 @@ export function Option<
     externalValue: T[TOption];
   }) => T[TOption],
   dependencies: TDependency[] = [],
-  handler?: (value: T[TOption]) => T[TOption]
+  postModifier?: (
+    value: T[TOption],
+    options: { [K in keyof T]: T[K] }
+  ) => T[TOption]
 ) {
   return (target: any, propertyName: string) => {
     const values = new Map();
@@ -32,10 +35,9 @@ export function Option<
 
         const getOptionValue = (options: any, externalValue: any) => {
           const defaultValue = this[propertyName];
-          let value = null;
 
           if (getValue) {
-            value = getValue({
+            return getValue({
               dependencies:
                 dependencies.length > 0
                   ? dependencies.reduce(
@@ -49,18 +51,17 @@ export function Option<
               defaultValue,
               externalValue
             });
-          } else {
-            value = externalValue !== undefined ? externalValue : defaultValue;
           }
 
-          return handler ? handler(value) : value;
+          return externalValue !== undefined ? externalValue : defaultValue;
         };
 
         Reflect.defineMetadata(
           'data',
           {
             getOptionValue,
-            dependencies
+            dependencies,
+            postModifier
           },
           target,
           propertyName

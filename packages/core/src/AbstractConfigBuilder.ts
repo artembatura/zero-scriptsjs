@@ -82,7 +82,8 @@ export abstract class AbstractConfigBuilder<
                 optionKey,
                 dependencies: metadata.dependencies,
                 getOptionValue: metadata.getOptionValue,
-                externalValue: metadata.externalValue
+                externalValue: metadata.externalValue,
+                postModifier: metadata.postModifier
               }
             );
           },
@@ -109,8 +110,6 @@ export abstract class AbstractConfigBuilder<
         });
       }
 
-      console.log(optionsMeta);
-
       this._options = optionsMeta.reduce(
         (result, { optionKey, getOptionValue, externalValue }) => ({
           ...result,
@@ -120,6 +119,18 @@ export abstract class AbstractConfigBuilder<
         }),
         {} as TOptions
       );
+
+      // apply postModifier
+      optionsMeta.forEach(({ optionKey, postModifier }) => {
+        if (postModifier) {
+          this._options[optionKey] = postModifier(
+            this._options[optionKey],
+            this._options
+          );
+        }
+      });
+
+      console.log(this._options);
     }
 
     return this._options;

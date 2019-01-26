@@ -16,10 +16,13 @@ export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
 > {
-  @Option<WebpackConfig, 'paths', 'moduleFileExtensions'>(
-    ({ defaultValue, dependencies: { moduleFileExtensions } }) =>
-      resolvePaths(defaultValue, moduleFileExtensions),
-    ['moduleFileExtensions']
+  @Option<WebpackConfig, 'paths'>(
+    ({ defaultValue, externalValue }) => ({
+      ...defaultValue,
+      ...externalValue
+    }),
+    [],
+    (value, { jsFileExtensions }) => resolvePaths(value, jsFileExtensions)
   )
   public paths: WebpackConfigOptions['paths'] = {
     root: '',
@@ -46,17 +49,17 @@ export class WebpackConfig extends AbstractConfigBuilder<
   @Option<WebpackConfig, 'moduleFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies: { useTypescript } }) => [
       ...defaultValue,
-      ...(useTypescript ? ['.ts'] : []),
+      ...(useTypescript ? ['.ts', '.tsx'] : []),
       ...(externalValue ? externalValue : [])
     ],
     ['useTypescript']
   )
-  public readonly moduleFileExtensions: string[] = ['.js', '.json'];
+  public readonly moduleFileExtensions: string[] = ['.json', '.js'];
 
   @Option<WebpackConfig, 'jsFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies: { useTypescript } }) => [
       ...defaultValue,
-      ...(useTypescript ? ['ts'] : []),
+      ...(useTypescript ? ['ts', 'tsx'] : []),
       ...(externalValue ? externalValue : [])
     ],
     ['useTypescript']
