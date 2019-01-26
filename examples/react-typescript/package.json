@@ -13,6 +13,7 @@
   "devDependencies": {
     "@zero-scripts/extension.webpack-babel.react": "^0.2.0",
     "@zero-scripts/extension.webpack-css": "^0.2.0",
+    "@zero-scripts/extension.webpack-eslint": "^0.2.0",
     "@zero-scripts/preset.webpack-spa": "^0.2.0",
     "fork-ts-checker-webpack-plugin": "^1.0.0-alpha.3",
     "@types/node": "10.12.18",
