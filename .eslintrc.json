@@ -5,6 +5,10 @@
     "jest": true,
     "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": 9,
+    "sourceType": "module"
+  },
   "settings": {
     "import/resolver": {
       "node": {
@@ -18,14 +22,14 @@
   "overrides": [
     {
       "files": ["**/*.ts"],
-      "parser": "eslint-plugin-typescript/parser",
-      "plugins": ["typescript"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["import", "@typescript-eslint"],
       "rules": {
         "no-undef": "off",
         "no-unused-vars": "off",
         "no-restricted-globals": "off",
         "no-use-before-define": "off",
-        "typescript/no-unused-vars": [
+        "@typescript-eslint/no-unused-vars": [
           "warn",
           { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
         ]
