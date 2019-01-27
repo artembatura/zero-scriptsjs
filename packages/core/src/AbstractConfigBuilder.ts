@@ -1,20 +1,20 @@
 import { flatten } from './utils/flatten';
 import { unflatten } from './utils/unflatten';
-import { Selector } from './Selector';
-import { extractFirstPropChain } from './utils/extractFirstPropChain';
-import { InsertPos } from './InsertPos';
 import { ConfigModification } from './ConfigModification';
 import 'reflect-metadata';
 import { DependencyNode } from './DependencyNode';
 
+class ParametersContainer {}
+
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TOptions
+  TParameters extends Record<string, any>,
+  TConfigModification extends ConfigModification<TConfig, TParameters, any>
 > {
-  private readonly _modifications: ConfigModification[] = [];
-  private _options?: any;
+  public readonly _modifications: TConfigModification[] = [];
+  // public readonly parameters: ParametersContainer = new ParametersContainer();
 
-  public constructor(externalOptions: TOptions) {
+  public constructor(externalOptions: TParameters) {
     Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         'data',
@@ -38,12 +38,14 @@ export abstract class AbstractConfigBuilder<
     });
   }
 
-  public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
-    const options = this.getOptions();
+  public build(
+    createBaseConfig?: (parameters: TParameters) => TConfig
+  ): TConfig {
+    const parameters = this.buildParameters();
     const flattenConfig = createBaseConfig
-      ? flatten(createBaseConfig(options))
+      ? flatten(createBaseConfig(parameters))
       : new Map();
-    const appliedModifications: ConfigModification[] = [];
+    const appliedModifications: TConfigModification[] = [];
     this._modifications.forEach(modifier => {
       if (
         !modifier.id ||
@@ -52,7 +54,7 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(flattenConfig));
+        appliedModifications.push(modifier.apply(flattenConfig, parameters));
       }
     });
     // require('fs').writeFileSync(
@@ -62,143 +64,69 @@ export abstract class AbstractConfigBuilder<
     return unflatten<TConfig>(flattenConfig);
   }
 
-  public getOptions(): TOptions {
-    if (!this._options) {
-      const keysOfOptions = Object.keys(this).filter(
-        optionKey => typeof (this as any)[optionKey] !== 'function'
-      );
+  public buildParameters(): TParameters {
+    const keysOfOptions = Object.keys(this).filter(
+      optionKey => typeof (this as any)[optionKey] !== 'function'
+    );
 
-      let optionsMeta = keysOfOptions
-        .map(
-          optionKey => {
-            const metadata = Reflect.getMetadata(
-              'data',
-              this.constructor.prototype,
-              optionKey
-            );
-
-            return (
-              metadata && {
-                optionKey,
-                dependencies: metadata.dependencies,
-                getOptionValue: metadata.getOptionValue,
-                externalValue: metadata.externalValue,
-                postModifier: metadata.postModifier
-              }
-            );
-          },
-          {} as any
-        )
-        .filter(Boolean);
-
-      const dependencyNodes = Reflect.getMetadata(
-        'dependency-nodes',
-        this.constructor.prototype
-      );
-
-      const rootNode = new DependencyNode('root');
-      dependencyNodes.forEach((node: DependencyNode) => {
-        rootNode.edges.push(node);
-      });
-
-      const resolvedOptions = rootNode
-        .resolve()
-        .map(
-          node =>
-            optionsMeta.find(meta => meta.optionKey === node.id) || ({} as any)
-        );
-
-      this._options = resolvedOptions.reduce(
-        (result, { optionKey, getOptionValue, externalValue }) => ({
-          ...result,
-          [optionKey]: getOptionValue
-            ? getOptionValue(result, externalValue)
-            : (this as any)[optionKey]
-        }),
-        {} as TOptions
-      );
-
-      // apply postModifier
-      optionsMeta.forEach(({ optionKey, postModifier }) => {
-        if (postModifier) {
-          this._options[optionKey] = postModifier(
-            this._options[optionKey],
-            this._options
+    let optionsMeta = keysOfOptions
+      .map(
+        optionKey => {
+          const metadata = Reflect.getMetadata(
+            'data',
+            this.constructor.prototype,
+            optionKey
           );
-        }
-      });
-    }
 
-    return this._options;
-  }
-
-  // idea: this.modifications.push(
-  //   Modification.array(...)
-  // )
-  protected addModification<TSelectedValue>(
-    selector: Selector<Required<TConfig>, TSelectedValue>,
-    handler: (selectedValue: TSelectedValue) => TSelectedValue,
-    modificationId: string | undefined
-  ): this {
-    const path = extractFirstPropChain(String(selector));
-
-    if (!path) {
-      throw new Error(
-        `[${this.constructor.name}]: Parsing prop chain failed from selector`
-      );
-    }
-
-    this._modifications.push(
-      new ConfigModification(
-        path,
-        config => handler(config.get(path)),
-        modificationId
+          return (
+            metadata && {
+              optionKey,
+              dependencies: metadata.dependencies,
+              getOptionValue: metadata.getOptionValue,
+              externalValue: metadata.externalValue,
+              postModifier: metadata.postModifier
+            }
+          );
+        },
+        {} as any
       )
+      .filter(Boolean);
+
+    const dependencyNodes = Reflect.getMetadata(
+      'dependency-nodes',
+      this.constructor.prototype
     );
 
-    return this;
-  }
+    const rootNode = new DependencyNode('root');
+    dependencyNodes.forEach((node: DependencyNode) => {
+      rootNode.edges.push(node);
+    });
 
-  protected insert<TSelectedValue extends any[]>(
-    selector: Selector<Required<TConfig>, TSelectedValue>,
-    creator: (options: TOptions) => TSelectedValue[0] | undefined,
-    position: InsertPos,
-    modificationId: string | undefined
-  ): this {
-    return this.addModification(
-      selector,
-      (array: any[]) => {
-        const element = creator(this.getOptions());
+    const resolvedOptions = rootNode
+      .resolve()
+      .map(
+        node =>
+          optionsMeta.find(meta => meta.optionKey === node.id) || ({} as any)
+      );
 
-        if (!element) {
-          return array;
-        }
-
-        if (!array) {
-          return [element];
-        }
-
-        switch (position) {
-          case InsertPos.Start:
-            return [element, ...array];
-
-          case InsertPos.Middle:
-            array.splice(array.length / 2, 0, element);
-            return array.slice(0);
-
-          case InsertPos.End:
-            return [...array, element];
-
-          default:
-            throw new Error(
-              `[${
-                this.constructor.name
-              }]: Insert position '${position}' doesn't exists`
-            );
-        }
-      },
-      modificationId
+    const options = resolvedOptions.reduce(
+      (result, { optionKey, getOptionValue, externalValue }) => ({
+        ...result,
+        [optionKey]: getOptionValue
+          ? getOptionValue(result, externalValue)
+          : (this as any)[optionKey]
+      }),
+      {} as TParameters
     );
+
+    // apply postModifier
+    optionsMeta.forEach(({ optionKey, postModifier }) => {
+      if (postModifier) {
+        options[optionKey] = postModifier(options[optionKey], options);
+      }
+    });
+
+    return options;
   }
 
   public pipe<T extends (o: this) => this>(func: T | T[]): this {

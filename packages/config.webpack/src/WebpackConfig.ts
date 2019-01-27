@@ -10,11 +10,13 @@ import { validateWebpackConfig } from './validateWebpackConfig';
 import fs from 'fs';
 import { createWebpackConfiguration } from './createWebpackConfiguration';
 import { resolvePaths } from './resolvePaths';
+import { ConfigModification } from '@zero-scripts/core/build/ConfigModification';
 
 @ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
-  WebpackConfigOptions
+  WebpackConfigOptions,
+  ConfigModification<Configuration, WebpackConfigOptions, any>
 > {
   @Option<WebpackConfig, 'paths'>(
     ({ defaultValue, externalValue }) => ({
@@ -92,7 +94,14 @@ export class WebpackConfig extends AbstractConfigBuilder<
     position: InsertPos = InsertPos.End,
     modificationId?: string
   ) {
-    return this.insert(c => c.plugins, getPlugin, position, modificationId);
+    this._modifications.push(
+      new ConfigModification(
+        c => c.plugins,
+        ConfigModification.arrayInsertCreator(getPlugin, position),
+        modificationId
+      )
+    );
+    return this;
   }
 
   public insertModuleRule(
@@ -100,58 +109,64 @@ export class WebpackConfig extends AbstractConfigBuilder<
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
   ) {
-    return this.addModification(
-      c => c.module.rules,
-      targetRules => {
-        let rules = Array.isArray(targetRules)
-          ? targetRules.slice(0)
-          : [{ oneOf: [] }];
+    this._modifications.push(
+      new ConfigModification(
+        c => c.module.rules,
+        (targetRules, parameters) => {
+          let rules = Array.isArray(targetRules)
+            ? targetRules.slice(0)
+            : [{ oneOf: [] }];
 
-        let indexOfOneOf = rules.findIndex(rule =>
-          rule.hasOwnProperty('oneOf')
-        );
+          let indexOfOneOf = rules.findIndex(rule =>
+            rule.hasOwnProperty('oneOf')
+          );
 
-        if (indexOfOneOf === -1) {
-          rules = [...rules, { oneOf: [] }];
-          indexOfOneOf = rules.length - 1;
-        }
+          if (indexOfOneOf === -1) {
+            rules = [...rules, { oneOf: [] }];
+            indexOfOneOf = rules.length - 1;
+          }
 
-        const element = getRule(this.getOptions());
+          const element = getRule(parameters);
 
-        if (!element) {
+          if (!element) {
+            return rules;
+          }
+
+          const oneOf = (rules[indexOfOneOf].oneOf
+            ? rules[indexOfOneOf].oneOf
+            : []) as RuleSetRule[];
+
+          switch (position) {
+            case InsertPos.Start:
+              rules[indexOfOneOf].oneOf = [
+                element,
+                ...(oneOf as RuleSetRule[])
+              ];
+              break;
+
+            case InsertPos.Middle:
+              oneOf.splice(oneOf.length / 2, 0, element);
+              rules[indexOfOneOf].oneOf = oneOf.slice(0);
+              break;
+
+            case InsertPos.End:
+              rules[indexOfOneOf].oneOf = [...oneOf, element];
+              break;
+
+            default:
+              throw new Error(
+                `[${
+                  this.constructor.name
+                }]: Insert position '${position}' doesn't exists`
+              );
+          }
+
           return rules;
-        }
-
-        const oneOf = (rules[indexOfOneOf].oneOf
-          ? rules[indexOfOneOf].oneOf
-          : []) as RuleSetRule[];
-
-        switch (position) {
-          case InsertPos.Start:
-            rules[indexOfOneOf].oneOf = [element, ...(oneOf as RuleSetRule[])];
-            break;
-
-          case InsertPos.Middle:
-            oneOf.splice(oneOf.length / 2, 0, element);
-            rules[indexOfOneOf].oneOf = oneOf.slice(0);
-            break;
-
-          case InsertPos.End:
-            rules[indexOfOneOf].oneOf = [...oneOf, element];
-            break;
-
-          default:
-            throw new Error(
-              `[${
-                this.constructor.name
-              }]: Insert position '${position}' doesn't exists`
-            );
-        }
-
-        return rules;
-      },
-      modificationId
+        },
+        modificationId
+      )
     );
+    return this;
   }
 
   public insertCommonModuleRule(
@@ -159,7 +174,14 @@ export class WebpackConfig extends AbstractConfigBuilder<
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
   ): this {
-    return this.insert(c => c.module.rules, getRule, position, modificationId);
+    this._modifications.push(
+      new ConfigModification(
+        c => c.module.rules,
+        ConfigModification.arrayInsertCreator(getRule, position),
+        modificationId
+      )
+    );
+    return this;
   }
 
   public build(): Configuration {
