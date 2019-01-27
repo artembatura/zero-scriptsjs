@@ -1,9 +1,10 @@
 import 'reflect-metadata';
+import { DependencyNode } from '../DependencyNode';
 
 export function Option<
   T,
   TOption extends keyof T,
-  TDependency extends keyof T | undefined = undefined
+  TDependency extends keyof T & string | undefined = undefined
 >(
   getValue?: (data: {
     dependencies: TDependency extends keyof T
@@ -58,6 +59,9 @@ export function Option<
           return externalValue !== undefined ? externalValue : defaultValue;
         };
 
+        // WebpackConfig: [paths, moduleFileExtensions, ...]
+        // WebpackConfig.paths: []
+
         const prevMeta = Reflect.getMetadata(
           'data',
           this.constructor.prototype,
@@ -83,6 +87,30 @@ export function Option<
           target,
           propertyName
         );
+
+        const dependencyNodes = Reflect.getMetadata('dependency-nodes', target);
+        Reflect.deleteMetadata('dependency-nodes', target);
+        const cloneNodes: any[] = dependencyNodes
+          ? dependencyNodes.slice(0)
+          : [];
+
+        let node = cloneNodes.find(node => node.id === propertyName);
+        if (!node) {
+          node = new DependencyNode(propertyName);
+          dependencies.forEach(propertyName => {
+            let edgeNode = cloneNodes.find(node => node.id === propertyName);
+            if (!edgeNode) {
+              edgeNode = new DependencyNode(propertyName as string);
+              node.edges.push(edgeNode);
+              cloneNodes.push(edgeNode);
+            } else {
+              node.edges.push(edgeNode);
+            }
+          });
+          cloneNodes.push(node);
+        }
+
+        Reflect.defineMetadata('dependency-nodes', cloneNodes, target);
       },
       enumerable: true,
       configurable: true

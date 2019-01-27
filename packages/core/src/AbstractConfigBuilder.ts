@@ -5,6 +5,7 @@ import { extractFirstPropChain } from './utils/extractFirstPropChain';
 import { InsertPos } from './InsertPos';
 import { ConfigModification } from './ConfigModification';
 import 'reflect-metadata';
+import { DependencyNode } from './DependencyNode';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
@@ -90,27 +91,24 @@ export abstract class AbstractConfigBuilder<
         )
         .filter(Boolean);
 
-      console.log(optionsMeta);
+      const dependencyNodes = Reflect.getMetadata(
+        'dependency-nodes',
+        this.constructor.prototype
+      );
 
-      // temporary solution for correct order of resolving dependencies
-      // todo bad perfomance
-      for (let k = 0; k < optionsMeta.length; k++) {
-        optionsMeta.forEach((optionMeta, i) => {
-          const { optionKey } = optionMeta;
-          const index = optionsMeta.findIndex(
-            findEl => findEl.dependencies.indexOf(optionKey) !== -1
-          );
+      const rootNode = new DependencyNode('root');
+      dependencyNodes.forEach((node: DependencyNode) => {
+        rootNode.edges.push(node);
+      });
 
-          if (index !== -1 && index < i) {
-            optionsMeta = optionsMeta.filter(
-              findEl => findEl.optionKey !== optionKey
-            );
-            optionsMeta.splice(index, 0, optionMeta);
-          }
-        });
-      }
+      const resolvedOptions = rootNode
+        .resolve()
+        .map(
+          node =>
+            optionsMeta.find(meta => meta.optionKey === node.id) || ({} as any)
+        );
 
-      this._options = optionsMeta.reduce(
+      this._options = resolvedOptions.reduce(
         (result, { optionKey, getOptionValue, externalValue }) => ({
           ...result,
           [optionKey]: getOptionValue
@@ -129,8 +127,6 @@ export abstract class AbstractConfigBuilder<
           );
         }
       });
-
-      console.log(this._options);
     }
 
     return this._options;

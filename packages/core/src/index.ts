@@ -5,3 +5,4 @@ export * from './runCLI';
 export * from './InsertPos';
 export * from './decorators';
 export * from './helpers';
+export * from './DependencyNode';
