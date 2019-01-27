@@ -15,26 +15,25 @@ export abstract class AbstractConfigBuilder<
 
   public constructor(externalOptions: TOptions) {
     Object.keys(externalOptions).forEach(option => {
-      if (
-        this.hasOwnProperty(option) &&
-        typeof (this as any)[option] !== 'function'
-      ) {
-        const prevMeta = Reflect.getMetadata(
-          'data',
-          this.constructor.prototype,
-          option
-        );
+      const prevMeta = Reflect.getMetadata(
+        'data',
+        this.constructor.prototype,
+        option
+      );
 
-        Reflect.defineMetadata(
-          'data',
-          {
-            ...prevMeta,
-            externalValue: (externalOptions as any)[option]
-          },
-          this.constructor.prototype,
-          option
-        );
+      if (prevMeta) {
+        Reflect.deleteMetadata('data', this.constructor.prototype, option);
       }
+
+      Reflect.defineMetadata(
+        'data',
+        {
+          ...(prevMeta ? prevMeta : {}),
+          externalValue: (externalOptions as any)[option]
+        },
+        this.constructor.prototype,
+        option
+      );
     });
   }
 
@@ -91,6 +90,8 @@ export abstract class AbstractConfigBuilder<
         )
         .filter(Boolean);
 
+      console.log(optionsMeta);
+
       // temporary solution for correct order of resolving dependencies
       // todo bad perfomance
       for (let k = 0; k < optionsMeta.length; k++) {
@@ -128,6 +129,8 @@ export abstract class AbstractConfigBuilder<
           );
         }
       });
+
+      console.log(this._options);
     }
 
     return this._options;

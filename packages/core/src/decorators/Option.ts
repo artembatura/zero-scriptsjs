@@ -58,9 +58,24 @@ export function Option<
           return externalValue !== undefined ? externalValue : defaultValue;
         };
 
+        const prevMeta = Reflect.getMetadata(
+          'data',
+          this.constructor.prototype,
+          propertyName
+        );
+
+        if (prevMeta) {
+          Reflect.deleteMetadata(
+            'data',
+            this.constructor.prototype,
+            propertyName
+          );
+        }
+
         Reflect.defineMetadata(
           'data',
           {
+            ...prevMeta,
             getOptionValue,
             dependencies,
             postModifier
