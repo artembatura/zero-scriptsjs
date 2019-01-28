@@ -1,9 +1,13 @@
 import { extractFirstPropChain } from '../extractFirstPropChain';
 
-test('arrow function', () => {
-  expect(extractFirstPropChain('a => a.b.c')).toBe('b.c');
-});
+describe('extractFirstPropChain', () => {
+  it('function', () => {
+    expect(
+      extractFirstPropChain('function (a) { return a.b.c[0][1].f };')
+    ).toBe('b.c.0.1.f');
+  });
 
-test('function', () => {
-  expect(extractFirstPropChain('function (a) { return a.b.c };')).toBe('b.c');
+  it('arrow function', () => {
+    expect(extractFirstPropChain('a => a.b.c[0][1].f')).toBe('b.c.0.1.f');
+  });
 });

@@ -1,15 +1,13 @@
 export const extractFirstPropChain = (str: string): string => {
-  const regex = /\.([a-zA-Z]+)/gm;
-  let matchResults = regex.exec(str);
-  let results: string[] = [];
+  const result = str.match(/[a-zA-Z](\[([0-9]|[a-zA-Z])+\]|\.[a-zA-Z]+)+/gm);
 
-  while (matchResults !== null) {
-    results.push(matchResults[1]);
-    matchResults = regex.exec(str);
-  }
-
-  if (results.length > 0) {
-    return results.join('.');
+  if (result && result.length > 0) {
+    return result[0]
+      .replace(/\[/g, '.')
+      .replace(/\]/g, '')
+      .split('.')
+      .filter((_, i) => i !== 0)
+      .join('.');
   }
 
   throw new Error(`Can't parse property chain from string: "${str}"`);
