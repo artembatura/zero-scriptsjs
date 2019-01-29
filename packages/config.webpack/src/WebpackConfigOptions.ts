@@ -63,6 +63,4 @@ export class WebpackConfigOptions extends OptionsContainer {
     ['paths']
   )
   public useTypescript: boolean = false;
-
-  // todo method for returning metadata
 }

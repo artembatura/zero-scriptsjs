@@ -11,6 +11,7 @@ Preset, which aimed for development Single Page Applications
   Runs the app in development mode
 
 - ### `build`
+
   Builds the app for production to the `build` folder
 
 ## Installation
@@ -44,3 +45,4 @@ npm i -D @zero-scripts/preset.webpack-spa
 ## Examples
 
 - #### [React](../../examples/react)
+- #### [React TypeScript](../../examples/react-typescript)
