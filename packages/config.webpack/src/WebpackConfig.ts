@@ -36,7 +36,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
     position: InsertPos = InsertPos.End,
     modificationId?: string
   ) {
-    this._modifications.push(
+    this.modifications.push(
       new ConfigModification(
         c => c.plugins,
         ConfigModification.arrayInsertCreator(getPlugin, position),
@@ -47,13 +47,13 @@ export class WebpackConfig extends AbstractConfigBuilder<
   }
 
   protected getOneOfModification(): OneOfModification {
-    const foundModification = this._modifications.find(
+    const foundModification = this.modifications.find(
       modification => modification.id === OneOfModification.id
     );
 
     if (!foundModification) {
       const modification = new OneOfModification();
-      this._modifications.push(modification);
+      this.modifications.push(modification);
       return modification;
     } else {
       return foundModification as OneOfModification;
@@ -74,7 +74,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
   ): this {
-    this._modifications.push(
+    this.modifications.push(
       new ConfigModification(
         c => c.module.rules,
         ConfigModification.arrayInsertCreator(getRule, position),
