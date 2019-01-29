@@ -4,7 +4,6 @@ import {
   HotModuleReplacementPlugin
 } from 'webpack';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
-import { extensionsRegex } from '@zero-scripts/core';
 import ManifestPlugin from 'webpack-assets-manifest';
 
 const TerserPlugin = require('terser-webpack-plugin');
@@ -47,19 +46,7 @@ export const createWebpackConfiguration = ({
   },
   module: {
     strictExportPresence: true,
-    rules: [
-      {
-        oneOf: [
-          {
-            loader: require.resolve('file-loader'),
-            exclude: [extensionsRegex(moduleFileExtensions), /\.html$/],
-            options: {
-              name: 'media/[name].[hash:8].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+    rules: []
   },
   plugins: [
     new DefinePlugin({

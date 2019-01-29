@@ -7,7 +7,11 @@ export const flatten = (
   for (const [key, val] of Object.entries(object)) {
     const realKey: string = prevFlatKey ? prevFlatKey + delimiter + key : key;
 
-    if (val && typeof val === 'object') {
+    if (
+      val &&
+      typeof val === 'object' &&
+      (val.constructor.name === 'Object' || val.constructor.name === 'Array')
+    ) {
       flatten(val, map, delimiter, realKey);
     } else {
       map.set(realKey, val);

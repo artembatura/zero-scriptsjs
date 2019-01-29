@@ -6,3 +6,5 @@ export * from './InsertPos';
 export * from './decorators';
 export * from './helpers';
 export * from './DependencyNode';
+export * from './ConfigModification';
+export * from './ParametersContainer';

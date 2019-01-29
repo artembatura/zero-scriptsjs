@@ -3,40 +3,17 @@ import { unflatten } from './utils/unflatten';
 import { ConfigModification } from './ConfigModification';
 import 'reflect-metadata';
 import { DependencyNode } from './DependencyNode';
-
-class ParametersContainer {}
+import { ParametersContainer } from './ParametersContainer';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
   TParameters extends Record<string, any>,
-  TConfigModification extends ConfigModification<TConfig, TParameters, any>
+  TConfigModification extends ConfigModification<TConfig, TParameters, any>,
+  TParametersContainer extends ParametersContainer<TParameters>
 > {
   public readonly _modifications: TConfigModification[] = [];
-  // public readonly parameters: ParametersContainer = new ParametersContainer();
 
-  public constructor(externalOptions: TParameters) {
-    Object.keys(externalOptions).forEach(option => {
-      const prevMeta = Reflect.getMetadata(
-        'data',
-        this.constructor.prototype,
-        option
-      );
-
-      if (prevMeta) {
-        Reflect.deleteMetadata('data', this.constructor.prototype, option);
-      }
-
-      Reflect.defineMetadata(
-        'data',
-        {
-          ...(prevMeta ? prevMeta : {}),
-          externalValue: (externalOptions as any)[option]
-        },
-        this.constructor.prototype,
-        option
-      );
-    });
-  }
+  constructor(public readonly parameters: TParametersContainer) {}
 
   public build(
     createBaseConfig?: (parameters: TParameters) => TConfig
@@ -59,9 +36,9 @@ export abstract class AbstractConfigBuilder<
     });
     // require('fs').writeFileSync(
     //   'webpack-config-generated.json',
-    //   JSON.stringify(unflatten<any>(flattenConfig))
+    //   JSON.stringify(unflatten(flattenConfig))
     // );
-    return unflatten<TConfig>(flattenConfig);
+    return unflatten(flattenConfig) as TConfig;
   }
 
   public buildParameters(): TParameters {

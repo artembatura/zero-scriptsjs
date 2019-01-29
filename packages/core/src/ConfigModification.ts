@@ -8,6 +8,7 @@ export class ConfigModification<
   TSelectedValue
 > {
   public readonly path: string;
+
   constructor(
     selector: Selector<Required<TConfig>, TSelectedValue>,
     protected readonly createNewValue: (
@@ -34,7 +35,7 @@ export class ConfigModification<
     creator: (parameters: any) => TSelectedValue[0] | undefined,
     position: InsertPos
   ) {
-    return (array: any[], parameters: any) => {
+    return (array: TSelectedValue, parameters: any): TSelectedValue => {
       const element = creator(parameters);
 
       if (!element) {
@@ -42,19 +43,19 @@ export class ConfigModification<
       }
 
       if (!array) {
-        return [element];
+        return [element] as TSelectedValue;
       }
 
       switch (position) {
         case InsertPos.Start:
-          return [element, ...array];
+          return [element, ...array] as TSelectedValue;
 
         case InsertPos.Middle:
           array.splice(array.length / 2, 0, element);
-          return array.slice(0);
+          return array.slice(0) as TSelectedValue;
 
         case InsertPos.End:
-          return [...array, element];
+          return [...array, element] as TSelectedValue;
 
         default:
           throw new Error(
