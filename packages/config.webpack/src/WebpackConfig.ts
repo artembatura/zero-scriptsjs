@@ -1,33 +1,31 @@
 import { Configuration, Plugin, RuleSetRule } from 'webpack';
-import { WebpackConfigOptions } from './WebpackConfigOptions';
 import {
   AbstractConfigBuilder,
+  ConfigModification,
   InsertPos,
-  ReadOptions,
-  ConfigModification
+  ReadOptions
 } from '@zero-scripts/core';
 import { createWebpackConfiguration } from './createWebpackConfiguration';
-import { OneOfModification } from './OneOfModification';
-import { WebpackConfigParameters } from './WebpackConfigParameters';
+import { OneOfModification } from './modifications/OneOfModification';
+import { WebpackConfigOptions } from './WebpackConfigOptions';
 
 @ReadOptions()
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions,
-  ConfigModification<Configuration, WebpackConfigOptions, any>,
-  WebpackConfigParameters
+  ConfigModification<Configuration, WebpackConfigOptions, any>
 > {
-  constructor(parameters: WebpackConfigOptions) {
-    super(new WebpackConfigParameters(parameters));
+  constructor(options: WebpackConfigOptions) {
+    super(new WebpackConfigOptions(options));
   }
 
   public addEntry(entry: string): this {
-    this.parameters.additionalEntry.push(entry);
+    this.options.additionalEntry.push(entry);
     return this;
   }
 
   public setIsDev(isDev: boolean): this {
-    this.parameters.isDev = isDev;
+    this.options.isDev = isDev;
     return this;
   }
 
@@ -61,7 +59,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
   }
 
   public insertModuleRule(
-    getRule: (parameters: WebpackConfigOptions) => RuleSetRule,
+    getRule: (options: WebpackConfigOptions) => RuleSetRule,
     position: InsertPos = InsertPos.Middle
   ) {
     const modification = this.getOneOfModification();

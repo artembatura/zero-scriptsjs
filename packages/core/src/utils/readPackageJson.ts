@@ -1,6 +1,5 @@
-/* eslint-disable import/export */
 import { sync } from 'read-pkg';
-import { Selector } from '../Selector';
+import { Selector } from '../types';
 import { Package } from 'normalize-package-data';
 
 export function readPackageJson<TSelectedValue>(

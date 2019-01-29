@@ -1,4 +1,4 @@
-import { ScriptHandler } from './ScriptHandler';
+import { ScriptHandler } from './types';
 
 export class ScriptsMap {
   private readonly map: Map<string, ScriptHandler> = new Map();

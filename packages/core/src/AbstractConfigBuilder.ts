@@ -1,24 +1,21 @@
 import { flatten } from './utils/flatten';
 import { unflatten } from './utils/unflatten';
 import { ConfigModification } from './ConfigModification';
-import { ParametersContainer } from './ParametersContainer';
+import { OptionsContainer } from './OptionsContainer';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TParameters extends Record<string, any>,
-  TConfigModification extends ConfigModification<TConfig, TParameters, any>,
-  TParametersContainer extends ParametersContainer<TParameters>
+  TOptions extends OptionsContainer,
+  TConfigModification extends ConfigModification<TConfig, TOptions, any>
 > {
   public readonly modifications: TConfigModification[] = [];
 
-  constructor(public readonly parameters: TParametersContainer) {}
+  constructor(public readonly options: TOptions) {}
 
-  public build(
-    createBaseConfig?: (parameters: TParameters) => TConfig
-  ): TConfig {
-    const parameters = this.parameters.build();
+  public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
+    const options = this.options.build();
     const flattenConfig = createBaseConfig
-      ? flatten(createBaseConfig(parameters))
+      ? flatten(createBaseConfig(options))
       : new Map();
     const appliedModifications: TConfigModification[] = [];
     this.modifications.forEach(modifier => {
@@ -29,7 +26,7 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(flattenConfig, parameters));
+        appliedModifications.push(modifier.apply(flattenConfig, options));
       }
     });
     // require('fs').writeFileSync(

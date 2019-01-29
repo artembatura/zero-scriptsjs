@@ -1,10 +1,9 @@
-import { Selector } from './Selector';
+import { Selector, InsertPos } from './types';
 import { extractFirstPropChain } from './utils/extractFirstPropChain';
-import { InsertPos } from './InsertPos';
 
 export class ConfigModification<
   TConfig extends Record<string, any>,
-  TConfigBuilderParameters extends Record<string, any>,
+  TConfigBuilderOptions extends Record<string, any>,
   TSelectedValue
 > {
   public readonly path: string;
@@ -13,30 +12,24 @@ export class ConfigModification<
     selector: Selector<Required<TConfig>, TSelectedValue>,
     protected readonly createNewValue: (
       selectedValue: TSelectedValue,
-      parameters: TConfigBuilderParameters
+      options: TConfigBuilderOptions
     ) => TSelectedValue,
     public readonly id?: string
   ) {
     this.path = extractFirstPropChain(String(selector));
   }
 
-  public apply(
-    target: Map<any, any>,
-    parameters: TConfigBuilderParameters
-  ): this {
-    target.set(
-      this.path,
-      this.createNewValue(target.get(this.path), parameters)
-    );
+  public apply(target: Map<any, any>, options: TConfigBuilderOptions): this {
+    target.set(this.path, this.createNewValue(target.get(this.path), options));
     return this;
   }
 
   public static arrayInsertCreator<TSelectedValue extends any[]>(
-    creator: (parameters: any) => TSelectedValue[0] | undefined,
+    creator: (options: any) => TSelectedValue[0] | undefined,
     position: InsertPos
   ) {
-    return (array: TSelectedValue, parameters: any): TSelectedValue => {
-      const element = creator(parameters);
+    return (array: TSelectedValue, options: any): TSelectedValue => {
+      const element = creator(options);
 
       if (!element) {
         return array;

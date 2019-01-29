@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { DependencyNode } from '../DependencyNode';
+import { DependencyNode } from '../graph';
 
 export function Option<
   T,

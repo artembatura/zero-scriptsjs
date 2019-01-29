@@ -1,7 +1,10 @@
-import { ConfigModification } from '@zero-scripts/core/build/ConfigModification';
 import { Configuration, RuleSetRule } from 'webpack';
-import { WebpackConfigOptions } from './WebpackConfigOptions';
-import { extensionsRegex, InsertPos } from '@zero-scripts/core';
+import {
+  InsertPos,
+  extensionsRegex,
+  ConfigModification
+} from '@zero-scripts/core';
+import { WebpackConfigOptions } from '../WebpackConfigOptions';
 
 export class OneOfModification extends ConfigModification<
   Configuration,
@@ -10,14 +13,14 @@ export class OneOfModification extends ConfigModification<
 > {
   public static readonly id: string = 'one-of';
   public readonly rules: {
-    getRule: (parameters: WebpackConfigOptions) => RuleSetRule;
+    getRule: (options: WebpackConfigOptions) => RuleSetRule;
     position: InsertPos;
   }[] = [];
 
   constructor() {
     super(
       c => c.module.rules,
-      (rules, parameters) => {
+      (rules, options) => {
         const oneOf: RuleSetRule[] = this.rules
           .sort((left, right) => {
             if (left.position < right.position) {
@@ -30,7 +33,7 @@ export class OneOfModification extends ConfigModification<
 
             return 0;
           })
-          .map(({ getRule }) => getRule(parameters))
+          .map(({ getRule }) => getRule(options))
           .filter(Boolean) as RuleSetRule[];
 
         return [
@@ -41,7 +44,7 @@ export class OneOfModification extends ConfigModification<
               {
                 loader: require.resolve('file-loader'),
                 exclude: [
-                  extensionsRegex(parameters.moduleFileExtensions),
+                  extensionsRegex(options.moduleFileExtensions),
                   /\.html$/
                 ],
                 options: {

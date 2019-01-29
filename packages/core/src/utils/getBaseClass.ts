@@ -1,22 +1,5 @@
-type Constructor = { new (): any } | Function;
-
-const getNumberOfBaseClasses = (targetClass: Constructor): number => {
-  let baseClass = targetClass;
-  let size = 0;
-
-  while (baseClass) {
-    const newBaseClass = Object.getPrototypeOf(baseClass);
-
-    if (newBaseClass && newBaseClass !== Object && newBaseClass.name) {
-      baseClass = newBaseClass;
-      size++;
-    } else {
-      break;
-    }
-  }
-
-  return size;
-};
+import { Constructor } from '../types';
+import { getNumberOfBaseClasses } from './getNumberOfBaseClasses';
 
 export const getBaseClass = (
   targetClass: Constructor,

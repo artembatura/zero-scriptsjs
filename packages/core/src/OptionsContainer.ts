@@ -1,48 +1,48 @@
-import { DependencyNode } from './DependencyNode';
+import { DependencyNode } from './graph';
 import 'reflect-metadata';
 
-export class ParametersContainer<TParameters> {
-  constructor(externalParameters: TParameters) {
-    Object.keys(externalParameters).forEach(option => {
+export class OptionsContainer {
+  constructor(externalParameters: OptionsContainer) {
+    Object.keys(externalParameters).forEach(parameter => {
       const prevMeta = Reflect.getMetadata(
         'data',
         this.constructor.prototype,
-        option
+        parameter
       );
 
       if (prevMeta) {
-        Reflect.deleteMetadata('data', this.constructor.prototype, option);
+        Reflect.deleteMetadata('data', this.constructor.prototype, parameter);
       }
 
       Reflect.defineMetadata(
         'data',
         {
           ...(prevMeta ? prevMeta : {}),
-          externalValue: (externalParameters as any)[option]
+          externalValue: (externalParameters as any)[parameter]
         },
         this.constructor.prototype,
-        option
+        parameter
       );
     });
   }
 
-  public build(): TParameters {
+  public build(): this {
     const keysOfOptions = Object.keys(this).filter(
-      optionKey => typeof (this as any)[optionKey] !== 'function'
+      parameterKey => typeof (this as any)[parameterKey] !== 'function'
     );
 
-    let optionsMeta = keysOfOptions
+    let parametersMeta = keysOfOptions
       .map(
-        optionKey => {
+        parameterKey => {
           const metadata = Reflect.getMetadata(
             'data',
             this.constructor.prototype,
-            optionKey
+            parameterKey
           );
 
           return (
             metadata && {
-              optionKey,
+              parameterKey,
               dependencies: metadata.dependencies,
               getOptionValue: metadata.getOptionValue,
               externalValue: metadata.externalValue,
@@ -68,26 +68,30 @@ export class ParametersContainer<TParameters> {
       .resolve()
       .map(
         node =>
-          optionsMeta.find(meta => meta.optionKey === node.id) || ({} as any)
+          parametersMeta.find(meta => meta.parameterKey === node.id) ||
+          ({} as any)
       );
 
-    const options = resolvedOptions.reduce(
-      (result, { optionKey, getOptionValue, externalValue }) => ({
+    const parameters = resolvedOptions.reduce(
+      (result, { parameterKey, getOptionValue, externalValue }) => ({
         ...result,
-        [optionKey]: getOptionValue
+        [parameterKey]: getOptionValue
           ? getOptionValue(result, externalValue)
-          : (this as any)[optionKey]
+          : (this as any)[parameterKey]
       }),
-      {} as TParameters
+      {} as OptionsContainer
     );
 
     // apply postModifier
-    optionsMeta.forEach(({ optionKey, postModifier }) => {
+    parametersMeta.forEach(({ parameterKey, postModifier }) => {
       if (postModifier) {
-        options[optionKey] = postModifier(options[optionKey], options);
+        parameters[parameterKey] = postModifier(
+          parameters[parameterKey],
+          parameters
+        );
       }
     });
 
-    return options;
+    return parameters;
   }
 }

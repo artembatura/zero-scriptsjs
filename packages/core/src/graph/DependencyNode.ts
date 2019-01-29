@@ -1,15 +1,4 @@
-class GraphNode {
-  public readonly edges: GraphNode[] = [];
-
-  public constructor(public readonly id: string) {}
-
-  // public walk(walkFn: (node: GraphNode) => any) {
-  //   walkFn(this);
-  //   this.edges.forEach(edge => {
-  //     edge.walk(walkFn);
-  //   });
-  // }
-}
+import { GraphNode } from './GraphNode';
 
 export class DependencyNode extends GraphNode {
   public readonly edges: DependencyNode[] = [];
