@@ -23,7 +23,7 @@
     "read-pkg": "4.0.1"
   },
   "devDependencies": {
-    "@types/node": "10.12.18",
+    "@types/node": "10.12.20",
     "@types/read-pkg": "3.0.0",
     "@zero-scripts/ts-config": "0.2.0",
     "typescript": "3.2.4"
