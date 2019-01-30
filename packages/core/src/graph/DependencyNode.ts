@@ -21,4 +21,15 @@ export class DependencyNode extends GraphNode {
     resolved.push(this);
     return resolved;
   }
+
+  public addOrGetEdge(id: string): DependencyNode {
+    let node = this.edges.find(node => node.id === id);
+
+    if (!node) {
+      node = new DependencyNode(id);
+      this.edges.push(node);
+    }
+
+    return node;
+  }
 }

@@ -1,8 +1,11 @@
-import { OptionsContainer, Option } from '@zero-scripts/core';
+import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 import { resolvePaths } from './resolvePaths';
 import fs from 'fs';
+import { Omit } from '@zero-scripts/core';
 
-export class WebpackConfigOptions extends OptionsContainer {
+export class WebpackConfigOptions extends AbstractOptionsContainer<
+  Omit<WebpackConfigOptions, 'build'>
+> {
   @Option<WebpackConfigOptions, 'paths'>(
     ({ defaultValue, externalValue }) => ({
       ...defaultValue,

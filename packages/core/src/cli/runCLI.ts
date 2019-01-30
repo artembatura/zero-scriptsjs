@@ -1,5 +1,5 @@
 import { parseScript } from './parseScript';
-import { AbstractPreset } from './AbstractPreset';
+import { AbstractPreset } from '../AbstractPreset';
 
 export const runCLI = async (PresetClass: {
   new (...args: any[]): AbstractPreset;

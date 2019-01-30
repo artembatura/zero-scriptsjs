@@ -5,3 +5,4 @@ export * from './ScriptData';
 export * from './ScriptHandler';
 export * from './Selector';
 export * from './Constructor';
+export * from './Omit';

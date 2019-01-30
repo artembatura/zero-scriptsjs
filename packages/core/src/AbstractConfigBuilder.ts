@@ -1,11 +1,11 @@
 import { flatten } from './utils/flatten';
 import { unflatten } from './utils/unflatten';
 import { ConfigModification } from './ConfigModification';
-import { OptionsContainer } from './OptionsContainer';
+import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TOptions extends OptionsContainer,
+  TOptions extends AbstractOptionsContainer<any>,
   TConfigModification extends ConfigModification<TConfig, TOptions, any>
 > {
   public readonly modifications: TConfigModification[] = [];

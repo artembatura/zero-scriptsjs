@@ -1,5 +1,11 @@
-import 'reflect-metadata';
 import { DependencyNode } from '../graph';
+import {
+  METADATA_OPTIONS,
+  METADATA_ROOT_DEPENDENCY_NODE,
+  OptionMetadata,
+  RootDependencyMetadata
+} from '../metadata';
+import 'reflect-metadata';
 
 export function Option<
   T,
@@ -59,58 +65,56 @@ export function Option<
           return externalValue !== undefined ? externalValue : defaultValue;
         };
 
-        // WebpackConfig: [paths, moduleFileExtensions, ...]
-        // WebpackConfig.paths: []
-
-        const prevMeta = Reflect.getMetadata(
-          'data',
+        const prevMeta: Pick<
+          OptionMetadata<any, any>,
+          'externalValue'
+        > = Reflect.getMetadata(
+          METADATA_OPTIONS,
           this.constructor.prototype,
           propertyName
         );
 
         if (prevMeta) {
           Reflect.deleteMetadata(
-            'data',
+            METADATA_OPTIONS,
             this.constructor.prototype,
             propertyName
           );
         }
 
         Reflect.defineMetadata(
-          'data',
+          METADATA_OPTIONS,
           {
             ...prevMeta,
             getOptionValue,
-            dependencies,
             postModifier
-          },
+          } as OptionMetadata<any, any>,
           target,
           propertyName
         );
 
-        const dependencyNodes = Reflect.getMetadata('dependency-nodes', target);
-        Reflect.deleteMetadata('dependency-nodes', target);
-        const cloneNodes: any[] = dependencyNodes
-          ? dependencyNodes.slice(0)
-          : [];
-
-        let node = cloneNodes.find(node => node.id === propertyName);
-        if (!node) {
-          node = new DependencyNode(propertyName);
-          dependencies.forEach(propertyName => {
-            let edgeNode = cloneNodes.find(node => node.id === propertyName);
-            if (!edgeNode) {
-              edgeNode = new DependencyNode(propertyName as string);
-              node.edges.push(edgeNode);
-              cloneNodes.push(edgeNode);
-            } else {
-              node.edges.push(edgeNode);
-            }
-          });
-          cloneNodes.push(node);
+        if (!Reflect.hasMetadata(METADATA_ROOT_DEPENDENCY_NODE, target)) {
+          Reflect.defineMetadata(
+            METADATA_ROOT_DEPENDENCY_NODE,
+            {
+              instance: new DependencyNode('root')
+            },
+            target
+          );
         }
 
-        Reflect.defineMetadata('dependency-nodes', cloneNodes, target);
+        const {
+          instance: rootNode
+        }: RootDependencyMetadata = Reflect.getMetadata(
+          METADATA_ROOT_DEPENDENCY_NODE,
+          target
+        );
+
+        const node = rootNode.addOrGetEdge(propertyName);
+
+        dependencies.forEach(propertyName => {
+          node.addOrGetEdge(propertyName as string);
+        });
       },
       enumerable: true,
       configurable: true
