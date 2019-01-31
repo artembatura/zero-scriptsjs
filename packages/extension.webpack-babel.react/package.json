@@ -26,7 +26,7 @@
     "@zero-scripts/extension.webpack-babel": "0.2.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.18",
+    "@types/node": "10.12.20",
     "@zero-scripts/ts-config": "0.2.0",
     "typescript": "3.2.4"
   },
