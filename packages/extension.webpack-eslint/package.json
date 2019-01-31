@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Adds processing JavaScript code with ESLint",
   "author": {
     "name": "Artem Batura",
@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "1.1.1",
-    "@zero-scripts/config.webpack": "^0.3.0",
+    "@zero-scripts/config.webpack": "^0.3.1",
     "@zero-scripts/core": "^0.3.0",
     "babel-eslint": "10.0.1",
     "eslint": "5.12.1",

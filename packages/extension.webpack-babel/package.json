@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-babel",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Adds processing JavaScript code with Babel",
   "author": {
     "name": "Artem Batura",
@@ -29,7 +29,7 @@
     "@babel/preset-env": "7.3.1",
     "@babel/preset-typescript": "7.1.0",
     "@babel/runtime": "7.3.1",
-    "@zero-scripts/config.webpack": "^0.3.0",
+    "@zero-scripts/config.webpack": "^0.3.1",
     "@zero-scripts/core": "^0.3.0",
     "babel-loader": "8.0.5"
   },

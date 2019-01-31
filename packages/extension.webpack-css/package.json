@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-css",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Adds processing CSS files: extracting, minify and add vendor prefixes",
   "author": {
     "name": "Artem Batura",
@@ -20,9 +20,9 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.3.0",
+    "@zero-scripts/config.webpack": "^0.3.1",
     "@zero-scripts/core": "^0.3.0",
-    "@zero-scripts/utils.webpack-styles": "^0.3.0",
+    "@zero-scripts/utils.webpack-styles": "^0.3.1",
     "mini-css-extract-plugin": "0.5.0"
   },
   "devDependencies": {
