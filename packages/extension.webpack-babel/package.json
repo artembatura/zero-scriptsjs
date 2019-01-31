@@ -20,6 +20,8 @@
     "build"
   ],
   "dependencies": {
+    "@zero-scripts/config.webpack": "0.2.0",
+    "@zero-scripts/core": "0.2.0",
     "@babel/core": "7.2.2",
     "@babel/runtime": "7.3.1",
     "@babel/preset-env": "7.3.1",
@@ -29,13 +31,11 @@
     "@babel/plugin-transform-flow-strip-types": "7.2.3",
     "@babel/plugin-proposal-decorators": "7.3.0",
     "@babel/plugin-proposal-class-properties": "7.3.0",
-    "@zero-scripts/config.webpack": "0.2.0",
-    "@zero-scripts/core": "0.2.0",
     "babel-loader": "8.0.5"
   },
   "devDependencies": {
-    "@types/node": "10.12.20",
     "@zero-scripts/ts-config": "0.2.0",
+    "@types/node": "10.12.20",
     "typescript": "3.2.4"
   },
   "optionalDependencies": {
