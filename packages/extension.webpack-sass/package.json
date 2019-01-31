@@ -31,7 +31,7 @@
     "@types/mini-css-extract-plugin": "0.2.0",
     "@types/node": "10.12.20",
     "@zero-scripts/ts-config": "^0.3.0",
-    "typescript": "3.2.4"
+    "typescript": "3.3.1"
   },
   "publishConfig": {
     "access": "public"

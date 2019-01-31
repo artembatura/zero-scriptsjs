@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/node": "10.12.20",
     "@zero-scripts/ts-config": "^0.3.0",
-    "typescript": "3.2.4"
+    "typescript": "3.3.1"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
