@@ -4,7 +4,7 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "changelog": {
-    "repo": "artemirq/zero-scripts",
+    "repo": "zero-scripts/zero-scripts",
     "cacheDir": ".changelog",
     "labels": {
       "tag: breaking change": ":boom: Breaking Change",
@@ -12,7 +12,8 @@
       "tag: bug fix": ":bug: Bug Fix",
       "tag: enhancement": ":nail_care: Enhancement",
       "tag: documentation": ":memo: Documentation",
-      "tag: internal": ":house: Internal"
+      "tag: internal": ":house: Internal",
+      "tag: new package": ":new: New Package"
     }
   }
 }
