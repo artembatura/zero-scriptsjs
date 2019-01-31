@@ -2,7 +2,7 @@
 
 ## Description
 
-Main API, on which all ecosystem built
+Framework for creating presets, configurations and extensions
 
 ## Process of loading extensions
 

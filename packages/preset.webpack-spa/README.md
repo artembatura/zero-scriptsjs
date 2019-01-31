@@ -2,7 +2,7 @@
 
 ## Description
 
-Preset, which aimed for development Single Page Applications
+For development Single Page Applications
 
 ## Scripts
 

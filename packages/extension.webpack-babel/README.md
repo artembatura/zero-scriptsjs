@@ -26,7 +26,9 @@ npm i -D @zero-scripts/extension.webpack-babel
 | presets | _string[]_ | `[]`    | Additional Babel presets |
 | flow    | _boolean_  | `false` | Enable Flow support      |
 
-Warning about TypeScript. If you want to enable check types on your TypeScript files,
+#### Notes
+
+- If you want to enable check types on your TypeScript files,
 you just need to install `fork-ts-checker-webpack-plugin` in your project
 
 ## Usage

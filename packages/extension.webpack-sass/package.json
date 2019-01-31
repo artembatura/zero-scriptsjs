@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-sass",
   "version": "0.2.0",
-  "description": "Add processing Sass and SCSS files: extracting, minify and add vendor prefixes",
+  "description": "Adds processing Sass and SCSS files: extracting, minify and add vendor prefixes",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

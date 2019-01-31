@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint",
   "version": "0.2.0",
-  "description": "Add processing JavaScript code with ESLint",
+  "description": "Adds processing JavaScript code with ESLint",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -27,7 +27,7 @@
     "eslint-formatter-pretty": "2.1.1",
     "eslint-loader": "2.1.1",
     "eslint-plugin-import": "2.16.0",
-    "@typescript-eslint/eslint-plugin": "^1.1.1"
+    "@typescript-eslint/eslint-plugin": "1.1.1"
   },
   "devDependencies": {
     "@zero-scripts/ts-config": "0.2.0",

@@ -2,7 +2,7 @@
 
 ## Description
 
-Same as `extension.webpack-css`, but for Sass and SCSS
+Same as [`@zero-scripts/extension.webpack-css`](../extension.webpack-css), but for Sass and SCSS
 
 ## Installation
 

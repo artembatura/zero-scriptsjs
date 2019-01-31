@@ -2,7 +2,7 @@
 
 ## Description
 
-Adds JSX support. Inherited from `extension.webpack-babel`
+Adds React/JSX support. Inherited from [`@zero-scripts/extension.webpack-babel`](../extension.webpack-babel)
 
 ## Installation
 
