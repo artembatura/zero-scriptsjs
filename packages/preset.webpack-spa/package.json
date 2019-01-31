@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/preset.webpack-spa",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "For development Single Page Applications",
   "author": {
     "name": "Artem Batura",
@@ -24,9 +24,9 @@
     "webpack-spa": "./bin/cli.js"
   },
   "dependencies": {
-    "@zero-scripts/config.webpack": "0.2.0",
-    "@zero-scripts/core": "0.2.0",
     "@artemir/friendly-errors-webpack-plugin": "1.8.0",
+    "@zero-scripts/config.webpack": "^0.3.0",
+    "@zero-scripts/core": "^0.3.0",
     "clean-webpack-plugin": "1.0.1",
     "copy-webpack-plugin": "4.6.0",
     "fastify": "2.0.0-rc.4",
@@ -43,7 +43,7 @@
     "@types/webpack": "4.4.22",
     "@types/webpack-dev-middleware": "2.0.2",
     "@types/webpack-hot-middleware": "2.16.4",
-    "@zero-scripts/ts-config": "0.2.0",
+    "@zero-scripts/ts-config": "^0.3.0",
     "typescript": "3.2.4"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",

@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Adds processing JavaScript code with ESLint",
   "author": {
     "name": "Artem Batura",
@@ -20,18 +20,18 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "0.2.0",
-    "@zero-scripts/core": "0.2.0",
+    "@typescript-eslint/eslint-plugin": "1.1.1",
+    "@zero-scripts/config.webpack": "^0.3.0",
+    "@zero-scripts/core": "^0.3.0",
     "babel-eslint": "10.0.1",
     "eslint": "5.12.1",
     "eslint-formatter-pretty": "2.1.1",
     "eslint-loader": "2.1.1",
-    "eslint-plugin-import": "2.16.0",
-    "@typescript-eslint/eslint-plugin": "1.1.1"
+    "eslint-plugin-import": "2.16.0"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "0.2.0",
     "@types/node": "10.12.20",
+    "@zero-scripts/ts-config": "^0.3.0",
     "typescript": "3.2.4"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
