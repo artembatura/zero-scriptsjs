@@ -1,4 +1,4 @@
-import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { InsertPos } from '@zero-scripts/core';
 
@@ -7,7 +7,7 @@ export const addHtmlWebpackPlugin = (config: WebpackConfig) =>
     ({ isDev, paths }) =>
       new HtmlWebpackPlugin({
         inject: true,
-        template: resolvePath(paths.indexHtml),
+        template: paths.indexHtml,
         minify: !isDev
           ? {
               removeComments: true,

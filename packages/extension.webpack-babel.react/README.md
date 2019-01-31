@@ -18,18 +18,11 @@ yarn add -D @zero-scripts/extension.webpack-babel.react
 npm i -D @zero-scripts/extension.webpack-babel.react
 ```
 
-## Options
+## [Options](../extension.webpack-babel)
 
-| Option     | Type       | Default | Description                     |
-| ---------- | ---------- | ------- | ------------------------------- |
-| plugins    | _string[]_ | `[]`    | Additional Babel plugins        |
-| presets    | _string[]_ | `[]`    | Additional Babel presets        |
-| typescript | _boolean_  | `false` | Enable TypeScript support       |
-| flow       | _boolean_  | `false` | Strip Flow type annotations     |
-| propTypes  | _boolean_  | `false` | Strip PropTypes in `production` |
-
-Warning about TypeScript: If you want to checking types on your TypeScript files,
-you need to manually install `fork-ts-checker-webpack-plugin`
+| Option    | Type      | Default | Description                     |
+| --------- | --------- | ------- | ------------------------------- |
+| propTypes | _boolean_ | `false` | Strip PropTypes in `production` |
 
 ## Usage
 

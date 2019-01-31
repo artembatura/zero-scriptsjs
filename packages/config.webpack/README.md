@@ -6,19 +6,20 @@ Configuration for Webpack
 
 ## Options
 
-| Option    | Type      | Default |
-| --------- | --------- | ------- |
-| sourceMap | _Boolean_ | `true`  |
-| additionalEntry | _Array_ | `[]` |
-| moduleFileExtensions | _Array_ | `[]` |
-| jsFileExtensions | _Array_ | `[]` |
-| paths | _Object_ | |
-| paths.root | _String_ | ` ` |
-| paths.src | _String_ | `src` |
-| paths.build | _String_ | `build` |
-| paths.indexJs | _String_ | `src/index` |
-| paths.indexHtml | _String_ | `public/index.html` |
-| paths.public | _String_ | `public` |
+| Option               | Type      | Default                                        |
+| -------------------- | --------- | ---------------------------------------------- |
+| useSourceMap         | _Boolean_ | `true`                                         |
+| useTypescript        | _boolean_ | `true` if `tsconfig.json` exists, else `false` |
+| additionalEntry      | _Array_   | `[]`                                           |
+| moduleFileExtensions | _Array_   | `[]`                                           |
+| jsFileExtensions     | _Array_   | `[]`                                           |
+| paths                | _Object_  |                                                |
+| paths.root           | _String_  | ``                                             |
+| paths.src            | _String_  | `src`                                          |
+| paths.build          | _String_  | `build`                                        |
+| paths.indexJs        | _String_  | `src/index`                                    |
+| paths.indexHtml      | _String_  | `public/index.html`                            |
+| paths.public         | _String_  | `public`                                       |
 
 ## Passing options
 

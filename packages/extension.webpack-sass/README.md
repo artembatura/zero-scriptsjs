@@ -2,7 +2,7 @@
 
 ## Description
 
-Same as `extension.webpack-css`, but for Sass/SCSS
+Same as `extension.webpack-css`, but for Sass and SCSS
 
 ## Installation
 

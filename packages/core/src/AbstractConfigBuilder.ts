@@ -1,23 +1,23 @@
 import { flatten } from './utils/flatten';
 import { unflatten } from './utils/unflatten';
-import { Selector } from './Selector';
-import { extractFirstPropChain } from './utils/extractFirstPropChain';
-import { InsertPos } from './InsertPos';
 import { ConfigModification } from './ConfigModification';
+import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TOptions
+  TOptions extends AbstractOptionsContainer<any>,
+  TConfigModification extends ConfigModification<TConfig, TOptions, any>
 > {
-  private readonly modifications: ConfigModification[] = [];
+  public readonly modifications: TConfigModification[] = [];
 
-  protected constructor(protected readonly options: TOptions) {}
+  constructor(public readonly options: TOptions) {}
 
   public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
+    const options = this.options.build();
     const flattenConfig = createBaseConfig
-      ? flatten(createBaseConfig(this.options))
+      ? flatten(createBaseConfig(options))
       : new Map();
-    const appliedModifications: ConfigModification[] = [];
+    const appliedModifications: TConfigModification[] = [];
     this.modifications.forEach(modifier => {
       if (
         !modifier.id ||
@@ -26,80 +26,14 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(flattenConfig));
+        appliedModifications.push(modifier.apply(flattenConfig, options));
       }
     });
     // require('fs').writeFileSync(
     //   'webpack-config-generated.json',
-    //   JSON.stringify(unflatten<any>(flattenConfig))
+    //   JSON.stringify(unflatten(flattenConfig))
     // );
-    return unflatten<TConfig>(flattenConfig);
-  }
-
-  protected set<TSelectedValue>(
-    selector: Selector<Required<TConfig>, TSelectedValue>,
-    handler: (selectedValue: TSelectedValue) => TSelectedValue,
-    modificationId: string | undefined
-  ): this {
-    const path = extractFirstPropChain(String(selector));
-
-    if (!path) {
-      throw new Error(
-        `[${this.constructor.name}]: Parsing prop chain failed from selector`
-      );
-    }
-
-    this.modifications.push(
-      new ConfigModification(
-        path,
-        config => handler(config.get(path)),
-        modificationId
-      )
-    );
-
-    return this;
-  }
-
-  protected insert<TSelectedValue extends any[]>(
-    selector: Selector<Required<TConfig>, TSelectedValue>,
-    creator: (options: TOptions) => TSelectedValue[0] | undefined,
-    position: InsertPos,
-    modificationId: string | undefined
-  ): this {
-    return this.set(
-      selector,
-      (array: any[]) => {
-        const element = creator(this.options);
-
-        if (!element) {
-          return array;
-        }
-
-        if (!array) {
-          return [element];
-        }
-
-        switch (position) {
-          case InsertPos.Start:
-            return [element, ...array];
-
-          case InsertPos.Middle:
-            array.splice(array.length / 2, 0, element);
-            return array.slice(0);
-
-          case InsertPos.End:
-            return [...array, element];
-
-          default:
-            throw new Error(
-              `[${
-                this.constructor.name
-              }]: Insert position '${position}' doesn't exists`
-            );
-        }
-      },
-      modificationId
-    );
+    return unflatten(flattenConfig) as TConfig;
   }
 
   public pipe<T extends (o: this) => this>(func: T | T[]): this {

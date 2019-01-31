@@ -1,6 +1,6 @@
 import { readPackageJson } from './readPackageJson';
 
-const packageJsonOptionsKey = 'zero-scripts';
+export const packageJsonOptionsKey = 'zero-scripts';
 
 export const readZeroScriptsOptions = (key?: string) =>
   readPackageJson(data =>

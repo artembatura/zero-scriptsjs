@@ -2,7 +2,7 @@
 
 ## Description
 
-Add processing JavaScript code with ESLint
+Adds processing JavaScript code with ESLint
 
 ## Installation
 
@@ -20,12 +20,12 @@ npm i -D @zero-scripts/extension.webpack-eslint
 
 ## Options
 
-| Option     | Type       | Default |
-| ---------- | ---------- | ------- |
-| plugins | _string[]_ | `[]` |
-| extends | _string[]_ | `[]` |
-| rules | _{ [string]: string / any[] }_ | `{}` |
-| env | _{ [string]: boolean }_ | `{}` |
+| Option  | Type                           | Default |
+| ------- | ------------------------------ | ------- |
+| plugins | _string[]_                     | `[]`    |
+| extends | _string[]_                     | `[]`    |
+| rules   | _{ [string]: string / any[] }_ | `{}`    |
+| env     | _{ [string]: boolean }_        | `{}`    |
 
 ## Usage
 

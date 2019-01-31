@@ -1,4 +1,4 @@
-import { ScriptHandler } from './ScriptHandler';
+import { ScriptHandler } from './types';
 
 export class ScriptsMap {
   private readonly map: Map<string, ScriptHandler> = new Map();
@@ -17,7 +17,9 @@ export class ScriptsMap {
 
   public set(key: string, value: ScriptHandler): this {
     if (this.has(key)) {
-      throw new Error(`Cannot override scripts (${key})`);
+      throw new Error(
+        `[${this.constructor.name}] Cannot override script (${key})`
+      );
     }
     this.map.set(key, value);
     return this;

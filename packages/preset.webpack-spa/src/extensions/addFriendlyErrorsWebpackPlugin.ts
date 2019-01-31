@@ -1,4 +1,5 @@
 import { WebpackConfig } from '@zero-scripts/config.webpack';
+import path from 'path';
 
 const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 
@@ -17,9 +18,9 @@ export const addFriendlyErrorsWebpackPlugin = (config: WebpackConfig) =>
       : new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
             messages: [
-              `You application successfully built and available at ${
-                paths.build
-              } folder`
+              `You application successfully built and available at ${paths.build
+                .split(path.sep)
+                .pop()} folder`
             ]
           }
         })

@@ -3,7 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export const getStyleLoaders = (cssOptions: any, preprocessor?: string) => ({
   isDev,
-  sourceMap
+  useSourceMap
 }: WebpackConfigOptions): Array<any> => {
   const loaders = [
     isDev
@@ -28,7 +28,7 @@ export const getStyleLoaders = (cssOptions: any, preprocessor?: string) => ({
             stage: 3
           })
         ],
-        sourceMap: !isDev && sourceMap
+        sourceMap: !isDev && useSourceMap
       }
     }
   ];
@@ -37,7 +37,7 @@ export const getStyleLoaders = (cssOptions: any, preprocessor?: string) => ({
     loaders.push({
       loader: require.resolve(preprocessor),
       options: {
-        sourceMap: !isDev && sourceMap
+        sourceMap: !isDev && useSourceMap
       }
     });
   }

@@ -1,6 +1,6 @@
 import { AbstractExtension } from './AbstractExtension';
 import { readPackageJson } from './utils/readPackageJson';
-import { ExtensionConstructor } from './ExtensionConstructor';
+import { ExtensionConstructor } from './types';
 import { packageIsExtension } from './packageIsExtension';
 import { ScriptsMap } from './ScriptsMap';
 import { getBaseClass } from './utils/getBaseClass';

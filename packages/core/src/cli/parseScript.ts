@@ -1,4 +1,4 @@
-import { ScriptData } from './ScriptData';
+import { ScriptData } from '../types';
 
 const isLongParam = (arg: string) => arg.indexOf('--') === 0;
 
@@ -10,19 +10,15 @@ const isParam = (arg: string) => isShortParam(arg) || isLongParam(arg);
 const hasScript = (arg: string, namesOfScripts: string[]) =>
   namesOfScripts.includes(arg);
 
-export function parseScript(
+export const parseScript = (
   argv: string[],
   definedScripts: string[]
-): ScriptData | undefined {
-  let name: string | undefined;
-
-  let options: Record<string, string | boolean> = {};
-
-  let args: string[] = [];
-
-  let met: boolean = false;
-
-  let skipNextArg: boolean = false;
+): ScriptData | undefined => {
+  let name: string | undefined,
+    options: Record<string, string | boolean> = {},
+    args: string[] = [],
+    met: boolean = false,
+    skipNextArg: boolean = false;
 
   const isScript = (arg: string) => hasScript(arg, definedScripts);
 
@@ -52,4 +48,4 @@ export function parseScript(
   }
 
   return { name, args, options };
-}
+};

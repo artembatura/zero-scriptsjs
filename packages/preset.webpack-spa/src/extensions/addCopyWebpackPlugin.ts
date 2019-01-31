@@ -1,4 +1,4 @@
-import { resolvePath, WebpackConfig } from '@zero-scripts/config.webpack';
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 export const addCopyWebpackPlugin = (config: WebpackConfig) =>
@@ -6,9 +6,9 @@ export const addCopyWebpackPlugin = (config: WebpackConfig) =>
     !isDev
       ? new CopyWebpackPlugin([
           {
-            from: resolvePath(paths.public),
-            to: resolvePath(paths.build),
-            ignore: [resolvePath(paths.indexHtml)]
+            from: paths.publicPath,
+            to: paths.build,
+            ignore: [paths.indexHtml]
           }
         ])
       : undefined

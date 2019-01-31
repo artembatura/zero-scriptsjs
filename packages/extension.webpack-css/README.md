@@ -2,7 +2,7 @@
 
 ## Description
 
-Add processing CSS files: extracting, minify and add vendor prefixes
+Adds processing CSS files: extracting, minify and add vendor prefixes
 
 ## Installation
 

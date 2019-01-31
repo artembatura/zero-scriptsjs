@@ -1,12 +1,62 @@
-export class ConfigModification<TMap extends Map<any, any> = any> {
-  constructor(
-    public readonly path: string,
-    protected readonly createNewValue: (map: TMap) => any,
-    public readonly id?: string
-  ) {}
+import { Selector, InsertPos } from './types';
+import { extractFirstPropChain } from './utils/extractFirstPropChain';
 
-  public apply(target: TMap): this {
-    target.set(this.path, this.createNewValue(target));
+export class ConfigModification<
+  TConfig extends Record<string, any>,
+  TConfigBuilderOptions extends Record<string, any>,
+  TSelectedValue
+> {
+  public readonly path: string;
+
+  constructor(
+    selector: Selector<Required<TConfig>, TSelectedValue>,
+    protected readonly createNewValue: (
+      selectedValue: TSelectedValue,
+      options: TConfigBuilderOptions
+    ) => TSelectedValue,
+    public readonly id?: string
+  ) {
+    this.path = extractFirstPropChain(String(selector));
+  }
+
+  public apply(target: Map<any, any>, options: TConfigBuilderOptions): this {
+    target.set(this.path, this.createNewValue(target.get(this.path), options));
     return this;
+  }
+
+  public static arrayInsertCreator<TSelectedValue extends any[]>(
+    creator: (options: any) => TSelectedValue[0] | undefined,
+    position: InsertPos
+  ) {
+    return (array: TSelectedValue, options: any): TSelectedValue => {
+      const element = creator(options);
+
+      if (!element) {
+        return array;
+      }
+
+      if (!array) {
+        return [element] as TSelectedValue;
+      }
+
+      switch (position) {
+        case InsertPos.Start:
+          return [element, ...array] as TSelectedValue;
+
+        case InsertPos.Middle:
+          array.splice(array.length / 2, 0, element);
+          return array.slice(0) as TSelectedValue;
+
+        case InsertPos.End:
+          return [...array, element] as TSelectedValue;
+
+        default:
+          throw new Error(
+            `[${
+              this.constructor.name
+            }]: Insert position '${position}' doesn't exists`
+          );
+      }
+    };
   }
 }

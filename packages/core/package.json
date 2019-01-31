@@ -20,7 +20,8 @@
     "build"
   ],
   "dependencies": {
-    "read-pkg": "4.0.1"
+    "read-pkg": "4.0.1",
+    "reflect-metadata": "0.1.13"
   },
   "devDependencies": {
     "@types/node": "10.12.18",
