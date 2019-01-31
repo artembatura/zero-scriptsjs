@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-sass",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Adds processing Sass and SCSS files: extracting, minify and add vendor prefixes",
   "author": {
     "name": "Artem Batura",
@@ -20,9 +20,9 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.3.1",
-    "@zero-scripts/core": "^0.3.0",
-    "@zero-scripts/utils.webpack-styles": "^0.3.1",
+    "@zero-scripts/config.webpack": "^0.3.2",
+    "@zero-scripts/core": "^0.3.2",
+    "@zero-scripts/utils.webpack-styles": "^0.3.2",
     "mini-css-extract-plugin": "0.5.0",
     "node-sass": "4.11.0",
     "sass-loader": "7.1.0"
@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/mini-css-extract-plugin": "0.2.0",
     "@types/node": "10.12.20",
-    "@zero-scripts/ts-config": "^0.3.0",
+    "@zero-scripts/ts-config": "^0.3.2",
     "typescript": "3.3.1"
   },
   "publishConfig": {

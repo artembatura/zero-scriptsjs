@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/core",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "Framework for creating presets, configurations and extensions",
   "author": {
     "name": "Artem Batura",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/node": "10.12.20",
     "@types/read-pkg": "3.0.0",
-    "@zero-scripts/ts-config": "^0.3.0",
+    "@zero-scripts/ts-config": "^0.3.2",
     "typescript": "3.3.1"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
