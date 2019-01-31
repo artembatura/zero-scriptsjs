@@ -8,6 +8,7 @@
     { "path": "extension.webpack-babel.react" },
     { "path": "extension.webpack-css" },
     { "path": "extension.webpack-eslint" },
+    { "path": "extension.webpack-eslint.react" },
     { "path": "extension.webpack-sass" },
     { "path": "utils.webpack-styles" }
   ]
