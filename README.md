@@ -45,10 +45,11 @@ preset.webpack-node | Node.js applications
 Package | What adds
 ------- | -----------
 [extension.webpack-babel](packages/extension.webpack-babel) | Processing JavaScript code with Babel
-[extension.webpack-babel.react](packages/extension.webpack-babel.react) | JSX support. Inherited from `extension.webpack-babel`
+[extension.webpack-babel.react](packages/extension.webpack-babel.react) | With React/JSX support. Inherited from `extension.webpack-babel`
 [extension.webpack-css](packages/extension.webpack-css) | Processing CSS: extracting, minify and add vendor prefixes
 [extension.webpack-sass](packages/extension.webpack-sass) | Same as `extension.webpack-css`, but for Sass/SCSS
 [extension.webpack-eslint](packages/extension.webpack-eslint) | Processing JavaScript code with ESLint
+[extension.webpack-eslint.react](packages/extension.webpack-eslint.react) | With React/JSX rules. Inherited from `extension.webpack-eslint`
 
 #### Configs
 
