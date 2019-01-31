@@ -1,0 +1,11 @@
+{
+  "extends": "@zero-scripts/ts-config",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "build"
+  },
+  "references": [
+    { "path": "../extension.webpack-eslint" },
+    { "path": "../core" }
+  ]
+}

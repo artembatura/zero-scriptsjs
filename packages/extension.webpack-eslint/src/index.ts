@@ -10,11 +10,13 @@ import {
   WebpackConfigOptions
 } from '@zero-scripts/config.webpack';
 
-type WebpackEslintExtensionOptions = {
+export type WebpackEslintExtensionOptions = {
   plugins: ArrayOption<string, WebpackConfigOptions>;
   extends: ArrayOption<string, WebpackConfigOptions>;
   rules: Record<string, string | any[]>;
   env: Record<string, boolean>;
+  parserOptions: Record<string, any>;
+  settings: Record<string, any>;
 };
 
 export class WebpackEslintExtension extends AbstractExtension<
@@ -48,10 +50,9 @@ export class WebpackEslintExtension extends AbstractExtension<
             parserOptions: {
               ecmaVersion: 9,
               sourceType: 'module',
-              ecmaFeatures: {
-                jsx: true
-              }
+              ...(this.options.parserOptions ? this.options.parserOptions : {})
             },
+            settings: this.options.settings ? this.options.settings : {},
             env: {
               browser: true,
               node: true,

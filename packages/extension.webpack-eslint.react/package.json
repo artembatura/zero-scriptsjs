@@ -1,7 +1,7 @@
 {
-  "name": "@zero-scripts/extension.webpack-babel",
+  "name": "@zero-scripts/extension.webpack-eslint.react",
   "version": "0.2.0",
-  "description": "Add processing JavaScript code with Babel",
+  "description": "Adds processing JavaScript code with ESLint. With rules for React/JSX",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -20,28 +20,18 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "0.2.0",
     "@zero-scripts/core": "0.2.0",
-    "@babel/core": "7.2.2",
-    "@babel/runtime": "7.3.1",
-    "@babel/preset-env": "7.3.1",
-    "@babel/preset-typescript": "7.1.0",
-    "@babel/plugin-syntax-dynamic-import": "7.2.0",
-    "@babel/plugin-transform-runtime": "7.2.0",
-    "@babel/plugin-transform-flow-strip-types": "7.2.3",
-    "@babel/plugin-proposal-decorators": "7.3.0",
-    "@babel/plugin-proposal-class-properties": "7.3.0",
-    "babel-loader": "8.0.5"
+    "@zero-scripts/extension.webpack-eslint": "0.2.0",
+    "eslint-config-react-app": "3.0.6",
+    "eslint-plugin-flowtype": "3.2.1",
+    "eslint-plugin-jsx-a11y": "6.2.0",
+    "eslint-plugin-react": "7.12.4"
   },
   "devDependencies": {
     "@zero-scripts/ts-config": "0.2.0",
     "@types/node": "10.12.20",
     "typescript": "3.2.4"
   },
-  "optionalDependencies": {
-    "fork-ts-checker-webpack-plugin": "~1.0.0-alpha.6"
-  },
-  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
     "access": "public"
   },
@@ -50,7 +40,8 @@
     "config",
     "zero-scripts",
     "extension",
-    "babel",
+    "eslint",
+    "react",
     "@zero-scripts/config.webpack"
   ]
 }
