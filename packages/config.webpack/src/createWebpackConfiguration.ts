@@ -58,6 +58,13 @@ export const createWebpackConfiguration = ({
       output: 'asset-manifest.json'
     })
   ].concat(isDev ? [new HotModuleReplacementPlugin()] : []),
-  node: false,
+  node: {
+    module: 'empty',
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  },
   stats: 'errors-only'
 });
