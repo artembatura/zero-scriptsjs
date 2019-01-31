@@ -8,6 +8,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "composite": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "skipLibCheck": true
   }
 }
