@@ -12,6 +12,7 @@ export class OneOfModification extends ConfigModification<
   RuleSetRule[]
 > {
   public static readonly id: string = 'one-of';
+
   public readonly rules: {
     getRule: (options: WebpackConfigOptions) => RuleSetRule;
     position: InsertPos;

@@ -7,19 +7,19 @@ import {
 } from './metadata';
 
 export abstract class AbstractOptionsContainer<TOptions> {
-  constructor(externalParameters: TOptions) {
-    Object.keys(externalParameters).forEach(parameter => {
+  constructor(externalOptions: TOptions) {
+    Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         METADATA_OPTIONS,
         this.constructor.prototype,
-        parameter
+        option
       );
 
       if (prevMeta) {
         Reflect.deleteMetadata(
           METADATA_OPTIONS,
           this.constructor.prototype,
-          parameter
+          option
         );
       }
 
@@ -27,10 +27,10 @@ export abstract class AbstractOptionsContainer<TOptions> {
         METADATA_OPTIONS,
         {
           ...(prevMeta ? prevMeta : {}),
-          externalValue: (externalParameters as any)[parameter]
+          externalValue: (externalOptions as any)[option]
         },
         this.constructor.prototype,
-        parameter
+        option
       );
     });
   }

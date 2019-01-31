@@ -17,7 +17,9 @@ export class ScriptsMap {
 
   public set(key: string, value: ScriptHandler): this {
     if (this.has(key)) {
-      throw new Error(`Cannot override scripts (${key})`);
+      throw new Error(
+        `[${this.constructor.name}] Cannot override script (${key})`
+      );
     }
     this.map.set(key, value);
     return this;

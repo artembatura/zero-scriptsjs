@@ -62,8 +62,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
     getRule: (options: WebpackConfigOptions) => RuleSetRule,
     position: InsertPos = InsertPos.Middle
   ) {
-    const modification = this.getOneOfModification();
-    modification.rules.push({ getRule, position });
+    this.getOneOfModification().rules.push({ getRule, position });
     return this;
   }
 
