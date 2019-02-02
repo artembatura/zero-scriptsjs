@@ -23,7 +23,7 @@
     "@babel/preset-react": "7.0.0",
     "@zero-scripts/core": "^0.3.2",
     "@zero-scripts/extension.webpack-babel": "^0.3.2",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.23"
+    "babel-plugin-transform-react-remove-prop-types": "0.4.24"
   },
   "devDependencies": {
     "@types/node": "10.12.21",
