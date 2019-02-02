@@ -20,7 +20,7 @@
     "build"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "1.1.1",
+    "@typescript-eslint/eslint-plugin": "1.2.0",
     "@zero-scripts/config.webpack": "^0.3.2",
     "@zero-scripts/core": "^0.3.2",
     "babel-eslint": "10.0.1",
