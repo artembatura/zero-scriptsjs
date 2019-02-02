@@ -26,7 +26,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.23"
   },
   "devDependencies": {
-    "@types/node": "10.12.20",
+    "@types/node": "10.12.21",
     "@zero-scripts/ts-config": "^0.3.2",
     "typescript": "3.3.1"
   },
