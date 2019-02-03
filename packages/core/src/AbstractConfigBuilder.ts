@@ -1,5 +1,3 @@
-import { flatten } from './utils/flatten';
-import { unflatten } from './utils/unflatten';
 import { ConfigModification } from './ConfigModification';
 import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 
@@ -14,9 +12,9 @@ export abstract class AbstractConfigBuilder<
 
   public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
     const options = this.options.build();
-    const flattenConfig = createBaseConfig
-      ? flatten(createBaseConfig(options))
-      : new Map();
+    const config: TConfig = createBaseConfig
+      ? createBaseConfig(options)
+      : ({} as TConfig);
     const appliedModifications: TConfigModification[] = [];
     this.modifications.forEach(modifier => {
       if (
@@ -26,14 +24,14 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(flattenConfig, options));
+        appliedModifications.push(modifier.apply(config, options));
       }
     });
     // require('fs').writeFileSync(
     //   'webpack-config-generated.json',
-    //   JSON.stringify(unflatten(flattenConfig))
+    //   JSON.stringify(config)
     // );
-    return unflatten(flattenConfig) as TConfig;
+    return config;
   }
 
   public pipe<T extends (o: this) => this>(func: T | T[]): this {
