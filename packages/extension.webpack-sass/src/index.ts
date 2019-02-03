@@ -9,7 +9,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const safePostCssParser = require('postcss-safe-parser');
 
-const sassModuleRegex = /\.module\.(scss|sass)$/;
+const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 
 export class WebpackSassExtension extends AbstractExtension {
   public activate(): void {
