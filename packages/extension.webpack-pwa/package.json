@@ -1,0 +1,42 @@
+{
+  "name": "@zero-scripts/extension.webpack-pwa",
+  "version": "0.3.2",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "@zero-scripts/config.webpack": "^0.3.2",
+    "@zero-scripts/core": "^0.3.2",
+    "workbox-webpack-plugin": "4.0.0-beta.2"
+  },
+  "devDependencies": {
+    "@types/node": "10.12.21",
+    "@zero-scripts/ts-config": "^0.3.2",
+    "typescript": "3.3.1",
+    "@types/workbox-webpack-plugin": "3.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "extension",
+    "@zero-scripts/config.webpack"
+  ]
+}
