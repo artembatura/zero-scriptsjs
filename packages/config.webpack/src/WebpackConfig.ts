@@ -1,4 +1,4 @@
-import { Configuration, Plugin, RuleSetRule } from 'webpack';
+import { Configuration, Options, Plugin, RuleSetRule } from 'webpack';
 import {
   AbstractConfigBuilder,
   ConfigModification,
@@ -75,6 +75,21 @@ export class WebpackConfig extends AbstractConfigBuilder<
       new ConfigModification(
         c => c.module.rules,
         ConfigModification.arrayInsertCreator(getRule, position),
+        modificationId
+      )
+    );
+    return this;
+  }
+
+  public insertMinimizer(
+    getMinimizer: (options: WebpackConfigOptions) => Plugin,
+    position: InsertPos = InsertPos.Middle,
+    modificationId?: string
+  ): this {
+    this.modifications.push(
+      new ConfigModification(
+        c => c.optimization.minimizer,
+        ConfigModification.arrayInsertCreator(getMinimizer, position),
         modificationId
       )
     );

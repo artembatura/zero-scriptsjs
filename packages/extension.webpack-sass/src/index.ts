@@ -5,6 +5,9 @@ import {
   getLocalIdent
 } from '@zero-scripts/utils.webpack-styles';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+const safePostCssParser = require('postcss-safe-parser');
 
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
@@ -46,6 +49,20 @@ export class WebpackSassExtension extends AbstractExtension {
             : undefined,
         undefined,
         'mini-css-extract-plugin'
+      )
+      .insertMinimizer(
+        ({ useSourceMap }) =>
+          new OptimizeCSSAssetsPlugin({
+            cssProcessorOptions: {
+              parser: safePostCssParser,
+              map: useSourceMap
+                ? {
+                    inline: false,
+                    annotation: true
+                  }
+                : false
+            }
+          })
       );
   }
 }
