@@ -1,3 +1,26 @@
+## 0.4.0 (2019-02-03)
+
+#### :rocket: New Feature
+* `config.webpack`, `extension.webpack-css`, `extension.webpack-sass`
+  * [#105](https://github.com/zero-scripts/zero-scripts/pull/105) extension.webpack-{css,sass}: Add styles minification ([@artemirq](https://github.com/artemirq))
+* `config.webpack`, `extension.webpack-pwa`
+  * [#104](https://github.com/zero-scripts/zero-scripts/pull/104) extension.webpack-pwa: Create extension, which adds PWA capabilities ([@artemirq](https://github.com/artemirq))
+
+#### :bug: Bug Fix
+* `core`
+  * [#102](https://github.com/zero-scripts/zero-scripts/pull/102) core: Improvement, Bugfix. Change algorithm of modification configuration ([@artemirq](https://github.com/artemirq))
+
+#### :nail_care: Enhancement
+* `core`
+  * [#102](https://github.com/zero-scripts/zero-scripts/pull/102) core: Improvement, Bugfix. Change algorithm of modification configuration ([@artemirq](https://github.com/artemirq))
+
+#### :new: New Package
+* `config.webpack`, `extension.webpack-pwa`
+  * [#104](https://github.com/zero-scripts/zero-scripts/pull/104) extension.webpack-pwa: Create extension, which adds PWA capabilities ([@artemirq](https://github.com/artemirq))
+
+#### Committers: 1
+- Artem Batura ([@artemirq](https://github.com/artemirq))
+
 ## 0.3.0 (2019-01-31)
 
 #### :boom: Breaking Change
