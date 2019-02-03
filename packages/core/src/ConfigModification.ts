@@ -1,8 +1,10 @@
 import { Selector, InsertPos } from './types';
 import { extractFirstPropChain } from './utils/extractFirstPropChain';
+import setValue from 'set-value';
+import getValue from 'get-value';
 
 export class ConfigModification<
-  TConfig extends Record<string, any>,
+  TConfig extends Required<Record<string, any>>,
   TConfigBuilderOptions extends Record<string, any>,
   TSelectedValue
 > {
@@ -19,8 +21,12 @@ export class ConfigModification<
     this.path = extractFirstPropChain(String(selector));
   }
 
-  public apply(target: Map<any, any>, options: TConfigBuilderOptions): this {
-    target.set(this.path, this.createNewValue(target.get(this.path), options));
+  public apply(target: TConfig, options: TConfigBuilderOptions): this {
+    setValue(
+      target,
+      this.path,
+      this.createNewValue(getValue(target, this.path), options)
+    );
     return this;
   }
 

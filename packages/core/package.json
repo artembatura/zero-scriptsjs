@@ -21,13 +21,17 @@
   ],
   "dependencies": {
     "read-pkg": "4.0.1",
-    "reflect-metadata": "0.1.13"
+    "reflect-metadata": "0.1.13",
+    "set-value": "3.0.0",
+    "get-value": "3.0.1"
   },
   "devDependencies": {
     "@types/node": "10.12.21",
     "@types/read-pkg": "3.0.0",
     "@zero-scripts/ts-config": "^0.3.2",
-    "typescript": "3.3.1"
+    "typescript": "3.3.1",
+    "@types/set-value": "2.0.0",
+    "@types/get-value": "3.0.0"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
