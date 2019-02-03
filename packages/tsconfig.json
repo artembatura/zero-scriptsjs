@@ -10,6 +10,7 @@
     { "path": "extension.webpack-eslint" },
     { "path": "extension.webpack-eslint.react" },
     { "path": "extension.webpack-sass" },
+    { "path": "extension.webpack-pwa" },
     { "path": "utils.webpack-styles" }
   ]
 }
