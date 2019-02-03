@@ -81,6 +81,21 @@ export class WebpackConfig extends AbstractConfigBuilder<
     return this;
   }
 
+  public insertMinimizer(
+    getMinimizer: (options: WebpackConfigOptions) => Plugin,
+    position: InsertPos = InsertPos.Middle,
+    modificationId?: string
+  ): this {
+    this.modifications.push(
+      new ConfigModification(
+        c => c.optimization.minimizer,
+        ConfigModification.arrayInsertCreator(getMinimizer, position),
+        modificationId
+      )
+    );
+    return this;
+  }
+
   public build(): Configuration {
     return super.build(createWebpackConfiguration);
   }
