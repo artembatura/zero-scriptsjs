@@ -1,4 +1,4 @@
-import { Configuration, Options, Plugin, RuleSetRule } from 'webpack';
+import { Configuration, Plugin, RuleSetRule } from 'webpack';
 import {
   AbstractConfigBuilder,
   ConfigModification,
