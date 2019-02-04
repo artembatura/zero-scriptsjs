@@ -50,6 +50,7 @@ Package | What adds
 [extension.webpack-sass](packages/extension.webpack-sass) | Same as `extension.webpack-css`, but for Sass/SCSS
 [extension.webpack-eslint](packages/extension.webpack-eslint) | Processing JavaScript code with ESLint
 [extension.webpack-eslint.react](packages/extension.webpack-eslint.react) | With React/JSX rules. Inherited from `extension.webpack-eslint`
+[extension.webpack-pwa](packages/extension.webpack-pwa) | PWA capabilities
 
 #### Configs
 
