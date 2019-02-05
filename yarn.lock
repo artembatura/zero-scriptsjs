@@ -4458,10 +4458,10 @@ fast-safe-stringify@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz#04b26106cc56681f51a044cfc0d76cf0008ac2c2"
   integrity sha512-q8BZ89jjc+mz08rSxROs8VsrBBcn1SIw1kq9NjolL509tkABRk9io01RAjSaEv1Xb2uFLt8VtRiZbGp5H8iDtg==
 
-fastify@2.0.0-rc.5:
-  version "2.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.0.0-rc.5.tgz#9730e4c6b3f6c2f84e95616bd80bfb253fc9c417"
-  integrity sha512-ZWOvD3ZwH8mJGpfwX8P//eQ7EnH9Z/qd+RRMZH7wNSIkI8EI5WGSV5Ccg5W7gWcJvzNMUK0IIA1qEGXQoJLR9w==
+fastify@2.0.0-rc.6:
+  version "2.0.0-rc.6"
+  resolved "https://registry.yarnpkg.com/fastify/-/fastify-2.0.0-rc.6.tgz#48fc6ebddcaa8c3aea1026bc851dfdf72ebe8d48"
+  integrity sha512-n3iaVl8Jf1Sd51+R8u3oMSRH4dtJNxzlKM3sKyoGAc1VP3VP2SmTq954XKTnHZjFaFn9DKORoFpd0oTiK3MBew==
   dependencies:
     abstract-logging "^1.0.0"
     ajv "^6.6.0"
