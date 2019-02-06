@@ -24,7 +24,13 @@ export const createWebpackConfiguration = ({
     filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
     chunkFilename: isDev
       ? 'js/[name].chunk.js'
-      : 'js/[name].[contenthash:8].chunk.js'
+      : 'js/[name].[contenthash:8].chunk.js',
+    devtoolModuleFilenameTemplate: !isDev
+      ? info =>
+          path
+            .relative(paths.src, info.absoluteResourcePath)
+            .replace(/\\/g, '/')
+      : info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
   },
   bail: !isDev,
   optimization: {
