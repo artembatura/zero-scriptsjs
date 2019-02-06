@@ -5,8 +5,9 @@ import {
 } from 'webpack';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 import ManifestPlugin from 'webpack-assets-manifest';
-
-const TerserPlugin = require('terser-webpack-plugin');
+import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import path from 'path';
 
 export const createWebpackConfiguration = ({
   isDev,
@@ -57,7 +58,16 @@ export const createWebpackConfiguration = ({
     new ManifestPlugin({
       output: 'asset-manifest.json'
     })
-  ].concat(isDev ? [new HotModuleReplacementPlugin()] : []),
+  ].concat(
+    isDev
+      ? [
+          new HotModuleReplacementPlugin(),
+          new HotAcceptPlugin({
+            test: path.basename(paths.indexJs)
+          })
+        ]
+      : []
+  ),
   node: {
     module: 'empty',
     dgram: 'empty',
