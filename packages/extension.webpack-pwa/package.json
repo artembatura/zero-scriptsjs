@@ -24,7 +24,7 @@
     "workbox-webpack-plugin": "4.0.0-rc.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.23",
+    "@types/node": "10.12.24",
     "@types/workbox-webpack-plugin": "3.6.0",
     "@zero-scripts/ts-config": "^0.4.0",
     "typescript": "3.3.3"

@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/get-value": "3.0.0",
-    "@types/node": "10.12.23",
+    "@types/node": "10.12.24",
     "@types/read-pkg": "3.0.0",
     "@types/set-value": "2.0.0",
     "@zero-scripts/ts-config": "^0.4.0",
