@@ -22,15 +22,15 @@
   "dependencies": {
     "@zero-scripts/core": "^0.4.0",
     "@zero-scripts/extension.webpack-eslint": "^0.4.0",
-    "eslint-config-react-app": "3.0.6",
-    "eslint-plugin-flowtype": "3.2.1",
+    "eslint-config-react-app": "3.0.7",
+    "eslint-plugin-flowtype": "3.4.1",
     "eslint-plugin-jsx-a11y": "6.2.1",
     "eslint-plugin-react": "7.12.4"
   },
   "devDependencies": {
-    "@types/node": "10.12.21",
+    "@types/node": "10.12.24",
     "@zero-scripts/ts-config": "^0.4.0",
-    "typescript": "3.3.1"
+    "typescript": "3.3.3"
   },
   "publishConfig": {
     "access": "public"
