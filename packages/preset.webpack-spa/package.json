@@ -42,7 +42,7 @@
     "@types/node": "10.12.24",
     "@types/webpack": "4.4.24",
     "@types/webpack-dev-middleware": "2.0.2",
-    "@types/webpack-hot-middleware": "2.16.4",
+    "@types/webpack-hot-middleware": "2.16.5",
     "@zero-scripts/ts-config": "^0.4.0",
     "typescript": "3.3.3"
   },
