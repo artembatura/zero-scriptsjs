@@ -17,3 +17,8 @@ tasks:
       - yarn
     args:
       - compile
+workflow:
+  - install
+  - sail:parallel:
+      - build
+      - test
