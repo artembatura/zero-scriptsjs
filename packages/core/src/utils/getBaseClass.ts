@@ -1,36 +1,20 @@
 import { Constructor } from '../types';
-import { getNumberOfBaseClasses } from './getNumberOfBaseClasses';
 
 export const getBaseClass = (
   targetClass: Constructor,
-  position: number = 0,
-  includeTargetClass: boolean = true
+  position: number = 0
 ) => {
-  let baseClass = targetClass;
-  let currentPosition: number = includeTargetClass
-    ? getNumberOfBaseClasses(targetClass) + 1
-    : getNumberOfBaseClasses(targetClass);
+  const baseClasses: any[] = [targetClass];
 
-  while (baseClass) {
-    const newBaseClass = includeTargetClass
-      ? baseClass
-      : Object.getPrototypeOf(baseClass);
+  for (
+    let baseClass = targetClass;
+    (baseClass = Object.getPrototypeOf(baseClass)) && baseClass.name;
 
-    if (includeTargetClass) {
-      includeTargetClass = false;
-    }
-
-    if (newBaseClass && newBaseClass !== Object && newBaseClass.name) {
-      baseClass = newBaseClass;
-      currentPosition--;
-
-      if (currentPosition === position) {
-        return baseClass;
-      }
-    } else {
-      break;
-    }
+  ) {
+    baseClasses.push(baseClass);
   }
 
-  return undefined;
+  return position >= baseClasses.length
+    ? undefined
+    : baseClasses.reverse()[position];
 };
