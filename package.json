@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "root",
-  "description": "https://en.wikipedia.org/wiki/Monorepo",
+  "description": "Bla-bla-bla",
   "workspaces": [
     "packages/*",
     "examples/*"
