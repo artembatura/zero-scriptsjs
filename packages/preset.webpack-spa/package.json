@@ -31,7 +31,7 @@
     "copy-webpack-plugin": "4.6.0",
     "fastify": "2.0.0-rc.6",
     "html-webpack-plugin": "4.0.0-beta.5",
-    "webpack": "4.29.4",
+    "webpack": "4.29.5",
     "webpack-dev-middleware": "3.5.2",
     "webpack-hot-middleware": "2.24.3"
   },
