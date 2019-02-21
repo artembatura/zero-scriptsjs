@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/node": "10.12.24",
     "@zero-scripts/ts-config": "^0.4.0",
-    "typescript": "3.3.3"
+    "typescript": "3.3.3333"
   },
   "publishConfig": {
     "access": "public"
