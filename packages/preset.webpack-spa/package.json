@@ -32,7 +32,7 @@
     "fastify": "2.0.1",
     "html-webpack-plugin": "4.0.0-beta.5",
     "webpack": "4.29.6",
-    "webpack-dev-middleware": "3.6.0",
+    "webpack-dev-middleware": "3.6.1",
     "webpack-hot-middleware": "2.24.3"
   },
   "devDependencies": {
