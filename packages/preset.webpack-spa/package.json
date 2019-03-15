@@ -29,7 +29,7 @@
     "@zero-scripts/core": "^0.4.0",
     "clean-webpack-plugin": "1.0.1",
     "copy-webpack-plugin": "5.0.1",
-    "fastify": "2.0.1",
+    "fastify": "2.1.0",
     "html-webpack-plugin": "4.0.0-beta.5",
     "webpack": "4.29.6",
     "webpack-dev-middleware": "3.6.1",
