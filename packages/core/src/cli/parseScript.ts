@@ -28,12 +28,13 @@ export const parseScript = (
       continue;
     }
 
-    if (isParam(arg)) {
+    if (typeof arg === 'string' && isParam(arg)) {
       const paramKey = isShortParam(arg) ? arg.slice(1) : arg.slice(2);
       const nextArg = argv[i + 1];
-      const nextArgIsParamVal = !isScript(nextArg) && !isParam(nextArg);
+      const nextArgIsParamVal =
+        nextArg && !isScript(nextArg) && !isParam(nextArg);
 
-      skipNextArg = nextArgIsParamVal;
+      skipNextArg = Boolean(nextArgIsParamVal);
       options[paramKey] = nextArgIsParamVal ? nextArg : true;
     } else if (!met && isScript(arg)) {
       met = true;

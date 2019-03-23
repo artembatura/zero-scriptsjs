@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-spa start",
-    "prod": "webpack-spa build"
+    "build": "webpack-spa build"
   },
   "dependencies": {
     "react": "16.7.0",
