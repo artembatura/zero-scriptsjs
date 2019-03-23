@@ -28,7 +28,7 @@ export class WebpackPresetSpa extends AbstractPreset {
         compiler.hooks.failed.tap('smokeTest', async () => {
           setTimeout(() => {
             process.exit(1);
-          }, 150);
+          }, 300);
         });
 
         compiler.hooks.done.tap('smokeTest', async stats => {
@@ -38,7 +38,7 @@ export class WebpackPresetSpa extends AbstractPreset {
             } else {
               process.exit(0);
             }
-          }, 150);
+          }, 300);
         });
       }
 
@@ -62,12 +62,7 @@ export class WebpackPresetSpa extends AbstractPreset {
         })
       );
 
-      // process.on('SIGINT', async () => {
-      //   await server.close();
-      //   process.exit(0);
-      // });
-
-      await server.listen(8080, err => {
+      await server.listen(parseInt(options.port as string) || 8080, err => {
         if (err) throw err;
       });
     });

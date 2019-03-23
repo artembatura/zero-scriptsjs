@@ -1,6 +1,7 @@
 import * as path from "path";
 import { spawn } from 'child_process';
 import { request } from 'http';
+import getPort from 'get-port';
 
 const packageJson = require('../package.json');
 
@@ -9,7 +10,7 @@ const getCommand = (cmd: string) => process.platform === 'win32' ? cmd + '.cmd' 
 const waitForHttpStatus = ({
   host,
   port,
-  timeout = 100,
+  timeout = 150,
   ejectTimeout = 8000,
   method = 'GET',
   expectedStatusCode = 200,
@@ -50,10 +51,12 @@ const waitForHttpStatus = ({
   });
 
 describe(packageJson.name, () => {
-  beforeEach(() => jest.setTimeout(1000 * 60 * 5));
+  beforeEach(() => jest.setTimeout(1000 * 60));
 
   it('start', async () => {
-    const proc = spawn(getCommand('yarn'), ['start', '--smokeTest'], {
+    const port = await getPort();
+
+    const proc = spawn(getCommand('yarn'), ['start', '--smokeTest', `--port`, port.toString()], {
       cwd: path.join(require.resolve('../package.json'), '..')
     });
 
@@ -74,7 +77,7 @@ describe(packageJson.name, () => {
     }
 
     await waitForHttpStatus({
-      port: 8080,
+      port,
       host: 'localhost',
       canContinue: () => errors.length === 0
     });
@@ -91,6 +94,7 @@ describe(packageJson.name, () => {
 
     if (proc.stdout) {
       proc.stdout.on('data', data => {
+        console.log(data.toString());
         if (data.toString().toLowerCase().indexOf('error') !== -1) {
           errors.push(data.toString());
         }
@@ -99,6 +103,7 @@ describe(packageJson.name, () => {
 
     if (proc.stderr) {
       proc.stderr.on('data', data => {
+        console.log(data.toString());
         errors.push(data.toString());
       });
     }
