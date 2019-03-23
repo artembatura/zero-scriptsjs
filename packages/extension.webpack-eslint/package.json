@@ -30,9 +30,7 @@
     "eslint-plugin-import": "2.16.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.24",
-    "@zero-scripts/ts-config": "^0.4.0",
-    "typescript": "3.3.4000"
+    "@zero-scripts/ts-config": "^0.4.0"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {

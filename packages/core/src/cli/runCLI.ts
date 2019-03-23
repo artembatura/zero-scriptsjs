@@ -12,7 +12,7 @@ export const runCLI = async (PresetClass: {
     const scriptHandler = preset.scripts.get(script.name);
 
     if (scriptHandler) {
-      return scriptHandler(script);
+      return await scriptHandler(script);
     }
   }
 
