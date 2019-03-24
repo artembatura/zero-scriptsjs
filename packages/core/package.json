@@ -21,15 +21,15 @@
   ],
   "dependencies": {
     "get-value": "3.0.1",
-    "read-pkg": "5.0.0",
+    "set-value": "3.0.0",
     "reflect-metadata": "0.1.13",
-    "set-value": "3.0.0"
+    "normalize-package-data": "2.5.0"
   },
   "devDependencies": {
     "@types/get-value": "3.0.0",
-    "@types/read-pkg": "3.0.0",
     "@types/set-value": "2.0.0",
-    "@zero-scripts/ts-config": "^0.4.0"
+    "@zero-scripts/ts-config": "^0.4.0",
+    "@types/normalize-package-data": "2.4.0"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
