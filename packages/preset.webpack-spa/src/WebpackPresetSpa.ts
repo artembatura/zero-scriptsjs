@@ -11,7 +11,7 @@ export class WebpackPresetSpa extends AbstractPreset {
   constructor() {
     super([]);
 
-    this.scripts.set('start', async () => {
+    this.scripts.set('start', async ({ options }) => {
       process.env.NODE_ENV = 'development';
 
       const builder = this.getInstance(WebpackConfig);
@@ -23,6 +23,24 @@ export class WebpackPresetSpa extends AbstractPreset {
         .build();
 
       const compiler = webpack(config);
+
+      if (options.smokeTest) {
+        compiler.hooks.failed.tap('smokeTest', async () => {
+          setTimeout(() => {
+            process.exit(1);
+          }, 300);
+        });
+
+        compiler.hooks.done.tap('smokeTest', async stats => {
+          setTimeout(() => {
+            if (stats.hasErrors() || stats.hasWarnings()) {
+              process.exit(1);
+            } else {
+              process.exit(0);
+            }
+          }, 300);
+        });
+      }
 
       const server: fastify.FastifyInstance<
         Server,
@@ -44,7 +62,7 @@ export class WebpackPresetSpa extends AbstractPreset {
         })
       );
 
-      await server.listen(8080, err => {
+      await server.listen(parseInt(options.port as string) || 8080, err => {
         if (err) throw err;
       });
     });

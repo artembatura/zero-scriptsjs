@@ -1777,6 +1777,11 @@
     "@types/minimatch" "*"
     "@types/webpack" "*"
 
+"@types/get-port@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/get-port/-/get-port-4.0.1.tgz#364e5f7db300a736dc74007f3625a48c360a1c82"
+  integrity sha512-rPeWy62y0uG7kDT2676V7Ix/UDwAgGqbClhM+h4SlUBvoov3/QOUFXad9xmFGCU2DEGxhFeXbGeZU3kG2KMXRg==
+
 "@types/get-value@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/get-value/-/get-value-3.0.0.tgz#f198ef1f1e50593107ba435dba2d6e0d968d5446"
@@ -1859,10 +1864,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.20.tgz#f79f959acd3422d0889bd1ead1664bd2d17cd367"
   integrity sha512-9spv6SklidqxevvZyOUGjZVz4QRXGu2dNaLyXIFzFYZW0AGDykzPRIUFJXTlQXyfzAucddwTcGtJNim8zqSOPA==
 
-"@types/node@10.12.24":
-  version "10.12.24"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.24.tgz#b13564af612a22a20b5d95ca40f1bffb3af315cf"
-  integrity sha512-GWWbvt+z9G5otRBW8rssOFgRY87J9N/qbhqfjMZ+gUuL6zoL+Hm6gP/8qQBG4jjimqdaNLCehcVapZ/Fs2WjCQ==
+"@types/node@11.11.0":
+  version "11.11.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.0.tgz#070e9ce7c90e727aca0e0c14e470f9a93ffe9390"
+  integrity sha512-D5Rt+HXgEywr3RQJcGlZUCTCx1qVbCZpVk3/tOOA6spLNZdGm8BU+zRgdRYDoF1pO3RuXLxADzMrF903JlQXqg==
 
 "@types/normalize-package-data@*":
   version "2.4.0"
@@ -1909,10 +1914,10 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/read-pkg@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/read-pkg/-/read-pkg-4.0.0.tgz#773457698f405b53a73471538e76e433e04cb786"
-  integrity sha512-mnQ7ukQhFGkbErwioo+ahHhkdIhw/llqW97ijWi6l3JYKXAokElLZxlEOtlYYmPKLUJxRKhplOa514n2TyVxjg==
+"@types/read-pkg@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/read-pkg/-/read-pkg-3.0.0.tgz#17ab6f0b396a58a5567ee387f558f2caedc8ae53"
+  integrity sha512-oU5aK3cmIcJ4+r+MaXMJ53RHdri8c2XbwI2Tjn1hpxCh48XIqHdJT6opwVd1ZF2FcucXQMv6sh/TtOm00DMZIQ==
   dependencies:
     "@types/normalize-package-data" "*"
 
@@ -5271,6 +5276,11 @@ get-pkg-repo@^1.0.0:
     normalize-package-data "^2.3.0"
     parse-github-repo-url "^1.3.0"
     through2 "^2.0.0"
+
+get-port@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/get-port/-/get-port-4.2.0.tgz#e37368b1e863b7629c43c5a323625f95cf24b119"
+  integrity sha512-/b3jarXkH8KJoOMQc3uVGHASwGLPq3gSFJ7tgJm2diza+bydJPTGOibin2steecKeOylE8oY2JERlVWkAJO6yw==
 
 get-port@^3.2.0:
   version "3.2.0"
@@ -11131,10 +11141,10 @@ typescript@3.2.4:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.4.tgz#c585cb952912263d915b462726ce244ba510ef3d"
   integrity sha512-0RNDbSdEokBeEAkgNbxJ+BLwSManFy9TeXz8uW+48j/xhEXv1ePME60olyzw2XzUqUBNAYFeJadIqAgNqIACwg==
 
-typescript@3.3.4000:
-  version "3.3.4000"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
-  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
+typescript@3.3.3333:
+  version "3.3.3333"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3333.tgz#171b2c5af66c59e9431199117a3bcadc66fdcfd6"
+  integrity sha512-JjSKsAfuHBE/fB2oZ8NxtRTk5iGcg6hkYXMnZ3Wc+b2RSqejEqTaem11mHASMnFilHrax3sLK0GDzcJrekZYLw==
 
 uglify-js@3.4.x, uglify-js@^3.1.4:
   version "3.4.9"
