@@ -35,4 +35,6 @@ export class WebpackBabelReactExtension extends WebpackBabelExtension {
   }
 }
 
+export { WebpackBabelExtensionOptions };
+
 export default WebpackBabelReactExtension;

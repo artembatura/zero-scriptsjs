@@ -1,21 +1,25 @@
 import { ConfigModification } from './ConfigModification';
 import { AbstractOptionsContainer } from './AbstractOptionsContainer';
+import { ExtractOptionsFromOptionsContainer } from './types';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TOptions extends AbstractOptionsContainer<any>,
-  TConfigModification extends ConfigModification<TConfig, TOptions, any>
+  TOptionsContainer extends AbstractOptionsContainer
 > {
-  public readonly modifications: TConfigModification[] = [];
+  public readonly modifications: ConfigModification<TConfig, any, any>[] = [];
 
-  public constructor(public readonly options: TOptions) {}
+  constructor(public readonly optionsContainer: TOptionsContainer) {}
 
-  public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
-    const options = this.options.build();
+  public build(
+    createBaseConfig?: (
+      options: ExtractOptionsFromOptionsContainer<TOptionsContainer>
+    ) => TConfig
+  ): TConfig {
+    const options = this.optionsContainer.build();
     const config: TConfig = createBaseConfig
       ? createBaseConfig(options)
       : ({} as TConfig);
-    const appliedModifications: TConfigModification[] = [];
+    const appliedModifications: ConfigModification<TConfig, any, any>[] = [];
     this.modifications.forEach(modifier => {
       if (
         !modifier.id ||
@@ -24,7 +28,7 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(config as TConfig, options));
+        appliedModifications.push(modifier.apply(config, options));
       }
     });
     // require('fs').writeFileSync(

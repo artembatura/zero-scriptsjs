@@ -2,34 +2,19 @@ import {
   AbstractExtension,
   AbstractPreset,
   extensionsRegex,
-  ArrayOption,
-  handleArrayOption
+  ReadOptions
 } from '@zero-scripts/core';
-import {
-  WebpackConfig,
-  WebpackConfigOptions
-} from '@zero-scripts/config.webpack';
+import { WebpackConfig } from '@zero-scripts/config.webpack';
+import { WebpackBabelExtensionOptions } from './WebpackBabelExtensionOptions';
 
-export type WebpackBabelExtensionOptions = {
-  presets: ArrayOption<string | [string, object], WebpackConfigOptions>;
-  plugins: ArrayOption<string | [string, object], WebpackConfigOptions>;
-  flow: boolean;
-};
-
+@ReadOptions(WebpackBabelExtensionOptions)
 export class WebpackBabelExtension extends AbstractExtension<
   WebpackBabelExtensionOptions
 > {
-  constructor(preset: AbstractPreset, options: WebpackBabelExtensionOptions) {
-    super(preset, {
-      flow: false,
-      presets: [],
-      plugins: [],
-      ...options
-    });
-  }
+  public activate(preset: AbstractPreset): void {
+    const config = preset.getInstance(WebpackConfig);
 
-  public activate(): void {
-    const config = this.preset.getInstance(WebpackConfig);
+    const { plugins, flow, presets } = this.optionsContainer.build();
 
     config.insertModuleRule(options => {
       const { isDev, jsFileExtensions, paths, useTypescript } = options;
@@ -45,17 +30,17 @@ export class WebpackBabelExtension extends AbstractExtension<
               presets: [
                 ['@babel/preset-env', { loose: true, modules: false }],
                 useTypescript && '@babel/preset-typescript',
-                ...handleArrayOption(this.options.presets, options)
+                ...presets
               ].filter(Boolean),
               plugins: [
                 ['@babel/plugin-transform-runtime', { useESModules: true }],
                 '@babel/plugin-syntax-dynamic-import',
                 useTypescript && '@babel/plugin-proposal-decorators',
                 ['@babel/plugin-proposal-class-properties', { loose: true }],
-                ...handleArrayOption(this.options.plugins, options)
+                ...plugins
               ].filter(Boolean),
               overrides: [
-                this.options.flow && {
+                flow && {
                   exclude: /\.(ts|tsx)?$/,
                   plugins: ['@babel/plugin-transform-flow-strip-types']
                 },
@@ -131,5 +116,7 @@ export class WebpackBabelExtension extends AbstractExtension<
     });
   }
 }
+
+export { WebpackBabelExtensionOptions };
 
 export default WebpackBabelExtension;

@@ -16,5 +16,10 @@
     "@zero-scripts/extension.webpack-eslint.react": "^0.4.0",
     "@zero-scripts/extension.webpack-pwa": "^0.4.0",
     "@zero-scripts/preset.webpack-spa": "^0.4.0"
+  },
+  "zero-scripts": {
+    "@zero-scripts/config.webpack": {
+      "useTypescript": true
+    }
   }
 }

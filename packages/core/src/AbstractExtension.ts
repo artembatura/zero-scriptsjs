@@ -1,10 +1,10 @@
 import { AbstractPreset } from './AbstractPreset';
+import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 
-export abstract class AbstractExtension<TOptions = any> {
-  constructor(
-    protected readonly preset: AbstractPreset,
-    protected readonly options: TOptions
-  ) {}
+export abstract class AbstractExtension<
+  TOptionsContainer extends AbstractOptionsContainer
+> {
+  constructor(public readonly optionsContainer: TOptionsContainer) {}
 
-  abstract activate(): void;
+  abstract activate(preset: AbstractPreset): void;
 }
