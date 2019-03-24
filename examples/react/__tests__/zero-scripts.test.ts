@@ -10,7 +10,7 @@ const getCommand = (cmd: string) => process.platform === 'win32' ? cmd + '.cmd' 
 const waitForHttpStatus = ({
   host,
   port,
-  timeout = 150,
+  timeout = 100,
   ejectTimeout = 8000,
   method = 'GET',
   expectedStatusCode = 200,

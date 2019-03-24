@@ -24,11 +24,12 @@ export class WebpackPresetSpa extends AbstractPreset {
 
       const compiler = webpack(config);
 
+      // for e2e tests
       if (options.smokeTest) {
         compiler.hooks.failed.tap('smokeTest', async () => {
           setTimeout(() => {
             process.exit(1);
-          }, 300);
+          }, 350);
         });
 
         compiler.hooks.done.tap('smokeTest', async stats => {
@@ -38,7 +39,7 @@ export class WebpackPresetSpa extends AbstractPreset {
             } else {
               process.exit(0);
             }
-          }, 300);
+          }, 350);
         });
       }
 
