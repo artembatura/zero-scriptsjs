@@ -1876,10 +1876,10 @@
     "@types/uglify-js" "*"
     source-map "^0.6.0"
 
-"@types/workbox-webpack-plugin@3.6.1":
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/@types/workbox-webpack-plugin/-/workbox-webpack-plugin-3.6.1.tgz#19d1964fc3f65d84fc9de3238f416942d47127f4"
-  integrity sha512-pC1jP7LVvCd/ffNKX4VFm0mdLoeLHP7uoz4C5F9OgiH41fBZT7i3ElFMnw1vXYaa3llHrHlPGlH97UA4NP7BxA==
+"@types/workbox-webpack-plugin@4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@types/workbox-webpack-plugin/-/workbox-webpack-plugin-4.1.0.tgz#aa99758f53fbd932dc27fefaf468d9d08d6397d0"
+  integrity sha512-7oZryKIFFefEtIl/maU8kgeKkk7rRrR7SWORNTVfrVhxAn3b6/pcskz6l2TSJrKd6yIghY+IdUWYF1otogNtyw==
 
 "@types/yargs@^12.0.2", "@types/yargs@^12.0.9":
   version "12.0.10"
