@@ -36,6 +36,7 @@ export abstract class AbstractOptionsContainer {
     });
   }
 
+  // TODO: cache part of data, which used to build options
   public build<T extends ExtractOptionsFromOptionsContainer<this>>(): T {
     // exclude non-option members
     const { build, ...options } = this;

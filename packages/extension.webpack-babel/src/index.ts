@@ -8,9 +8,9 @@ import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackBabelExtensionOptions } from './WebpackBabelExtensionOptions';
 
 @ReadOptions(WebpackBabelExtensionOptions)
-export class WebpackBabelExtension extends AbstractExtension<
-  WebpackBabelExtensionOptions
-> {
+export class WebpackBabelExtension<
+  TParentExtensionOptions extends WebpackBabelExtensionOptions = WebpackBabelExtensionOptions
+> extends AbstractExtension<TParentExtensionOptions> {
   public activate(preset: AbstractPreset): void {
     const config = preset.getInstance(WebpackConfig);
 
