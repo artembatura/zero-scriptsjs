@@ -8,7 +8,7 @@ export abstract class AbstractConfigBuilder<
 > {
   public readonly modifications: TConfigModification[] = [];
 
-  constructor(public readonly options: TOptions) {}
+  public constructor(public readonly options: TOptions) {}
 
   public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
     const options = this.options.build();
@@ -24,7 +24,7 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(config, options));
+        appliedModifications.push(modifier.apply(config as TConfig, options));
       }
     });
     // require('fs').writeFileSync(
