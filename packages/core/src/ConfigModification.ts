@@ -2,16 +2,18 @@ import { Selector, InsertPos } from './types';
 import { extractFirstPropChain } from './utils/extractFirstPropChain';
 import setValue from 'set-value';
 import getValue from 'get-value';
+import { DeepRequired } from './types';
 
 export class ConfigModification<
-  TConfig extends Required<Record<string, any>>,
+  TConfig extends Record<string, any>,
   TConfigBuilderOptions extends Record<string, any>,
-  TSelectedValue
+  TSelectedValue,
+  TRequiredConfiguration extends DeepRequired<TConfig> = DeepRequired<TConfig>
 > {
   public readonly path: string;
 
   constructor(
-    selector: Selector<Required<TConfig>, TSelectedValue>,
+    selector: Selector<TRequiredConfiguration, TSelectedValue>,
     protected readonly createNewValue: (
       selectedValue: TSelectedValue,
       options: TConfigBuilderOptions
