@@ -34,7 +34,7 @@
     "@types/node": "11.13.0",
     "get-port": "4.2.0",
     "@types/get-port": "4.0.1",
-    "utility-types": "3.4.1"
+    "utility-types": "3.5.0"
   },
   "husky": {
     "hooks": {
