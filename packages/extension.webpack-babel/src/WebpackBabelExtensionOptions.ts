@@ -10,7 +10,7 @@ export class WebpackBabelExtensionOptions extends AbstractOptionsContainer {
       ...(externalValue ? externalValue : [])
     ]
   )
-  public presets: string[] = [];
+  public presets: (string | [string, any])[] = [];
 
   @Option<WebpackBabelExtensionOptions, 'plugins'>(
     ({ externalValue, defaultValue }) => [
@@ -18,5 +18,5 @@ export class WebpackBabelExtensionOptions extends AbstractOptionsContainer {
       ...(externalValue ? externalValue : [])
     ]
   )
-  public plugins: string[] = [];
+  public plugins: (string | [string, any])[] = [];
 }

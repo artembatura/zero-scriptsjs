@@ -10,7 +10,7 @@ export class WebpackBabelReactExtension extends WebpackBabelExtension<
   activate(preset: AbstractPreset): void {
     const { optionsContainer } = preset.getInstance(WebpackConfig);
     // give defaultValue of isDev option,
-    // which can be modified before config building start
+    // which can be modified before config building is started
     const { isDev } = optionsContainer.build();
     console.log(`isDev: ${isDev}`);
 
