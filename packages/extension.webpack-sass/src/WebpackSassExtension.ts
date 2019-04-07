@@ -3,7 +3,7 @@ import {
   AbstractPreset,
   ReadOptions
 } from '@zero-scripts/core';
-import { WebpackCssExtensionOptions } from './WebpackCssExtensionOptions';
+import { WebpackSassExtensionOptions } from './WebpackSassExtensionOptions';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   getLocalIdent,
@@ -13,33 +13,38 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const safePostCssParser = require('postcss-safe-parser');
+const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 
-const cssModuleRegex = /\.(module|m)\.css$/;
-
-@ReadOptions(WebpackCssExtensionOptions)
-export class WebpackCssExtension<
-  TParentExtensionOptions extends WebpackCssExtensionOptions = WebpackCssExtensionOptions
-> extends AbstractExtension<TParentExtensionOptions> {
-  public activate(preset: AbstractPreset): void {
+@ReadOptions(WebpackSassExtensionOptions)
+export class WebpackSassExtension extends AbstractExtension<
+  WebpackSassExtensionOptions
+> {
+  activate(preset: AbstractPreset): void {
     preset
       .getInstance(WebpackConfig)
       .insertModuleRule(options => ({
-        test: /\.css$/,
-        exclude: cssModuleRegex,
-        use: getStyleLoaders({
-          importLoaders: 1,
-          sourceMap: !options.isDev && options.useSourceMap
-        })(options),
+        test: /\.(scss|sass)$/,
+        exclude: sassModuleRegex,
+        use: getStyleLoaders(
+          {
+            importLoaders: 2,
+            sourceMap: !options.isDev && options.useSourceMap
+          },
+          require.resolve('sass-loader')
+        )(options),
         sideEffects: true
       }))
       .insertModuleRule(options => ({
-        test: cssModuleRegex,
-        use: getStyleLoaders({
-          importLoaders: 1,
-          sourceMap: !options.isDev && options.useSourceMap,
-          modules: true,
-          getLocalIdent
-        })(options)
+        test: sassModuleRegex,
+        use: getStyleLoaders(
+          {
+            importLoaders: 2,
+            sourceMap: !options.isDev && options.useSourceMap,
+            modules: true,
+            getLocalIdent
+          },
+          require.resolve('sass-loader')
+        )(options)
       }))
       .insertPlugin(
         options =>

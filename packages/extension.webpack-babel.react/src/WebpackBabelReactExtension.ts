@@ -4,9 +4,9 @@ import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackBabelReactExtensionOptions } from './WebpackBabelReactExtensionOptions';
 
 @ReadOptions(WebpackBabelReactExtensionOptions)
-export class WebpackBabelReactExtension extends WebpackBabelExtension<
-  WebpackBabelReactExtensionOptions
-> {
+export class WebpackBabelReactExtension<
+  TParentExtensionOptions extends WebpackBabelReactExtensionOptions = WebpackBabelReactExtensionOptions
+> extends WebpackBabelExtension<TParentExtensionOptions> {
   activate(preset: AbstractPreset): void {
     const { optionsContainer } = preset.getInstance(WebpackConfig);
     // give defaultValue of isDev option,

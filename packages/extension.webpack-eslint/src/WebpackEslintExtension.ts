@@ -9,9 +9,9 @@ import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackEslintExtensionOptions } from './WebpackEslintExtensionOptions';
 
 @ReadOptions(WebpackEslintExtensionOptions)
-export class WebpackEslintExtension extends AbstractExtension<
-  WebpackEslintExtensionOptions
-> {
+export class WebpackEslintExtension<
+  TParentExtensionOptions extends WebpackEslintExtensionOptions = WebpackEslintExtensionOptions
+> extends AbstractExtension<TParentExtensionOptions> {
   public activate(preset: AbstractPreset): void {
     const config = preset.getInstance(WebpackConfig);
 

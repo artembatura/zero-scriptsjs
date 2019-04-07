@@ -5,10 +5,10 @@ import {
   OptionMetadata,
   RootDependencyMetadata
 } from './metadata';
-import { ExtractOptionsFromOptionsContainer } from './types/ExtractOptionsFromOptionsContainer';
+import { ExtractOptionsFromOptionsContainer } from './types';
 
 export abstract class AbstractOptionsContainer {
-  constructor(externalOptions: object) {
+  public constructor(externalOptions: object) {
     Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         METADATA_OPTIONS,
