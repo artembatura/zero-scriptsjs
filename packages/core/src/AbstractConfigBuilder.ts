@@ -1,21 +1,31 @@
 import { ConfigModification } from './ConfigModification';
 import { AbstractOptionsContainer } from './AbstractOptionsContainer';
+import { ExtractOptionsFromOptionsContainer } from './types';
+import { cloneInstance } from './utils/cloneInstance';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TOptions extends AbstractOptionsContainer<any>,
-  TConfigModification extends ConfigModification<TConfig, TOptions, any>
+  TOptionsContainer extends AbstractOptionsContainer
 > {
-  public readonly modifications: TConfigModification[] = [];
+  public readonly modifications: ConfigModification<TConfig, any, any>[] = [];
+  private readonly _beforeBuild: ((config: this) => any)[] = [];
+  private readonly _afterBuild: ((config: TConfig) => any)[] = [];
 
-  public constructor(public readonly options: TOptions) {}
+  public constructor(public readonly optionsContainer: TOptionsContainer) {}
 
-  public build(createBaseConfig?: (options: TOptions) => TConfig): TConfig {
-    const options = this.options.build();
+  public build(
+    createBaseConfig?: (
+      options: ExtractOptionsFromOptionsContainer<TOptionsContainer>
+    ) => TConfig
+  ): TConfig {
+    this._beforeBuild.forEach(func => {
+      func(this);
+    });
+    const options = this.optionsContainer.build();
     const config: TConfig = createBaseConfig
       ? createBaseConfig(options)
       : ({} as TConfig);
-    const appliedModifications: TConfigModification[] = [];
+    const appliedModifications: ConfigModification<TConfig, any, any>[] = [];
     this.modifications.forEach(modifier => {
       if (
         !modifier.id ||
@@ -24,14 +34,27 @@ export abstract class AbstractConfigBuilder<
             Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
         )
       ) {
-        appliedModifications.push(modifier.apply(config as TConfig, options));
+        appliedModifications.push(modifier.apply(config, options));
       }
     });
-    // require('fs').writeFileSync(
-    //   'webpack-config-generated.json',
-    //   JSON.stringify(config)
-    // );
+    this._afterBuild.forEach(func => {
+      func(config);
+    });
     return config;
+  }
+
+  public beforeBuild(func: (config: this) => any) {
+    this._beforeBuild.push(func);
+    return this;
+  }
+
+  public afterBuild(func: (config: TConfig) => any) {
+    this._afterBuild.push(func);
+    return this;
+  }
+
+  public clone() {
+    return cloneInstance(this);
   }
 
   public pipe<T extends (o: this) => this>(func: T | T[]): this {

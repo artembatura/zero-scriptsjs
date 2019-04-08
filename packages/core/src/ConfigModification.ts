@@ -12,7 +12,7 @@ export class ConfigModification<
 > {
   public readonly path: string;
 
-  constructor(
+  public constructor(
     selector: Selector<TRequiredConfiguration, TSelectedValue>,
     protected readonly createNewValue: (
       selectedValue: TSelectedValue,

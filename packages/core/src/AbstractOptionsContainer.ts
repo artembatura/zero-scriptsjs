@@ -5,9 +5,10 @@ import {
   OptionMetadata,
   RootDependencyMetadata
 } from './metadata';
+import { ExtractOptionsFromOptionsContainer } from './types';
 
-export abstract class AbstractOptionsContainer<TOptions> {
-  constructor(externalOptions: TOptions) {
+export abstract class AbstractOptionsContainer {
+  public constructor(externalOptions: object) {
     Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         METADATA_OPTIONS,
@@ -35,12 +36,12 @@ export abstract class AbstractOptionsContainer<TOptions> {
     });
   }
 
-  public build(): TOptions {
+  public build<T extends ExtractOptionsFromOptionsContainer<this>>(): T {
     // exclude non-option members
     const { build, ...options } = this;
 
-    type OptionsMetaArray = (OptionMetadata<TOptions, any> & {
-      optionKey: keyof TOptions;
+    type OptionsMetaArray = (OptionMetadata<T, any> & {
+      optionKey: keyof T;
     })[];
 
     const optionsMeta = Object.keys(options).map(optionKey => {
@@ -83,14 +84,14 @@ export abstract class AbstractOptionsContainer<TOptions> {
           ) as OptionsMetaArray[0]
       );
 
-    const builtOptions: TOptions = resolvedOptions.reduce(
+    const builtOptions: T = resolvedOptions.reduce(
       (result, { optionKey, getOptionValue, externalValue }) => ({
         ...result,
         [optionKey]: getOptionValue
           ? getOptionValue(result, externalValue)
           : (this as any)[optionKey]
       }),
-      {} as TOptions
+      {} as T
     );
 
     // apply post modifier

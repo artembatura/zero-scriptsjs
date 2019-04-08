@@ -9,23 +9,18 @@ import { createWebpackConfiguration } from './createWebpackConfiguration';
 import { OneOfModification } from './modifications/OneOfModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
-@ReadOptions()
+@ReadOptions(WebpackConfigOptions)
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
-  WebpackConfigOptions,
-  ConfigModification<Configuration, WebpackConfigOptions, any>
+  WebpackConfigOptions
 > {
-  constructor(options: WebpackConfigOptions) {
-    super(new WebpackConfigOptions(options));
-  }
-
   public addEntry(entry: string): this {
-    this.options.additionalEntry.push(entry);
+    this.optionsContainer.additionalEntry.push(entry);
     return this;
   }
 
   public setIsDev(isDev: boolean): this {
-    this.options.isDev = isDev;
+    this.optionsContainer.isDev = isDev;
     return this;
   }
 

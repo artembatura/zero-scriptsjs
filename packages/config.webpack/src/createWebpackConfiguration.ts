@@ -8,6 +8,7 @@ import ManifestPlugin from 'webpack-assets-manifest';
 import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import path from 'path';
+import { ExtractOptionsFromOptionsContainer } from '@zero-scripts/core/build/types/ExtractOptionsFromOptionsContainer';
 
 export const createWebpackConfiguration = ({
   isDev,
@@ -15,7 +16,9 @@ export const createWebpackConfiguration = ({
   additionalEntry,
   useSourceMap,
   moduleFileExtensions
-}: WebpackConfigOptions): Configuration => ({
+}: ExtractOptionsFromOptionsContainer<
+  WebpackConfigOptions
+>): Configuration => ({
   mode: isDev ? 'development' : 'production',
   entry: [paths.indexJs, ...additionalEntry],
   devtool: isDev ? 'eval-source-map' : useSourceMap && 'source-map',

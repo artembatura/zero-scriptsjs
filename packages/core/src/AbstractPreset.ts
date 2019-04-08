@@ -4,7 +4,6 @@ import { ExtensionConstructor } from './types';
 import { packageIsExtension } from './packageIsExtension';
 import { ScriptsMap } from './ScriptsMap';
 import { getBaseClass } from './utils/getBaseClass';
-import { readZeroScriptsOptions } from './utils/readZeroScriptsOptions';
 
 export abstract class AbstractPreset {
   public readonly scripts: ScriptsMap = new ScriptsMap();
@@ -19,11 +18,7 @@ export abstract class AbstractPreset {
         const ExtensionClass = (require(packageName) as {
           default: ExtensionConstructor;
         }).default;
-        const tempOptions: object = readZeroScriptsOptions(packageName);
-        const extensionOptions =
-          typeof tempOptions === 'object' ? tempOptions : {};
-        // console.log(`${packageName}: ${JSON.stringify(extensionOptions)}`);
-        return new ExtensionClass(this, extensionOptions);
+        return new ExtensionClass();
       })
       .forEach(extension => {
         const newBaseClass = getBaseClass(extension.constructor, 1);
@@ -40,14 +35,14 @@ export abstract class AbstractPreset {
 
           if (conflictExtension) {
             throw new Error(
-              `Extensions conflict. Check devDependencies and choose one: ${
+              `Extensions conflict. Check devDependencies and choose one between: ${
                 extension.constructor.name
               } or ${conflictExtension.constructor.name}`
             );
           }
         }
 
-        extension.activate();
+        extension.activate(this);
         this.extensions.push(extension);
       });
   }
