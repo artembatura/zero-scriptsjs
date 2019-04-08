@@ -9,6 +9,7 @@
     "sourceMap": true,
     "composite": true,
     "experimentalDecorators": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "incremental": true
   }
 }
