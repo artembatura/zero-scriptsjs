@@ -6,6 +6,7 @@ import {
   RootDependencyMetadata
 } from './metadata';
 import { ExtractOptionsFromOptionsContainer } from './types';
+import { BooleanLiteral } from '@babel/types';
 
 export abstract class AbstractOptionsContainer {
   public constructor(externalOptions: object) {
@@ -83,7 +84,8 @@ export abstract class AbstractOptionsContainer {
           optionsMeta.find(
             meta => meta.optionKey === node.id
           ) as OptionsMetaArray[0]
-      );
+      )
+      .filter(Boolean);
 
     const builtOptions: T = resolvedOptions.reduce(
       (result, { optionKey, getOptionValue, externalValue }) => ({

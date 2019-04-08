@@ -7,27 +7,27 @@ import { WebpackBabelReactExtensionOptions } from './WebpackBabelReactExtensionO
 export class WebpackBabelReactExtension<
   TParentExtensionOptions extends WebpackBabelReactExtensionOptions = WebpackBabelReactExtensionOptions
 > extends WebpackBabelExtension<TParentExtensionOptions> {
-  activate(preset: AbstractPreset): void {
-    const { optionsContainer } = preset.getInstance(WebpackConfig);
-    // give defaultValue of isDev option,
-    // which can be modified before config building is started
-    const { isDev } = optionsContainer.build();
-    console.log(`isDev: ${isDev}`);
+  public activate(preset: AbstractPreset): void {
+    const _config = preset.getInstance(WebpackConfig);
 
-    this.optionsContainer.presets.push([
-      '@babel/preset-react',
-      { development: isDev, useBuiltIns: true }
-    ]);
+    _config.beforeBuild(config => {
+      const { isDev } = config.optionsContainer.build();
 
-    const { propTypes } = this.optionsContainer.build();
-    console.log(`propTypes: ${propTypes}`);
-
-    if (isDev && propTypes) {
-      this.optionsContainer.plugins.push([
-        'babel-plugin-transform-react-remove-prop-types',
-        { removeImport: true }
+      this.optionsContainer.presets.push([
+        '@babel/preset-react',
+        { development: isDev, useBuiltIns: true }
       ]);
-    }
+
+      // TODO: given undefined
+      const { propTypes } = this.optionsContainer.build();
+
+      if (isDev && propTypes) {
+        this.optionsContainer.plugins.push([
+          'babel-plugin-transform-react-remove-prop-types',
+          { removeImport: true }
+        ]);
+      }
+    });
 
     super.activate(preset);
   }
