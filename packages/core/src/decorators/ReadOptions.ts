@@ -28,6 +28,8 @@ export const ReadOptions = <TOptionsContainer extends AbstractOptionsContainer>(
 
       // if optionsKey is not defined
       // find key by splitting class name
+      // TODO: in future we refuse from automatic correspond
+      //  class name to package (perf, non-obviousness)
       const key = !optionsKey
         ? zeroScriptsOptions &&
           Object.keys(zeroScriptsOptions).find(packageName => {
@@ -45,10 +47,11 @@ export const ReadOptions = <TOptionsContainer extends AbstractOptionsContainer>(
           ? zeroScriptsOptions[key]
           : {};
 
-      // console.log(
-      //   `${key || DecoratedClass.name}: ${JSON.stringify(this.options)}`
-      // );
+      const [optionsContainerInstance, ...restArgs] =
+        args[0] instanceof AbstractOptionsContainer
+          ? args
+          : [new OptionsContainer(externalOptions), ...args.slice(1)];
 
-      super(new OptionsContainer(externalOptions), ...args);
+      super(optionsContainerInstance, ...restArgs);
     }
   };

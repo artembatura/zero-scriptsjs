@@ -13,7 +13,6 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
 const safePostCssParser = require('postcss-safe-parser');
-
 const cssModuleRegex = /\.(module|m)\.css$/;
 
 @ReadOptions(WebpackCssExtensionOptions)

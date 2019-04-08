@@ -1,1 +1,1 @@
-export type Constructor = { new (): any } | Function;
+export type Constructor<T = any> = { new (): T } | Function;

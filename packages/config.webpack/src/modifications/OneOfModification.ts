@@ -18,7 +18,7 @@ export class OneOfModification extends ConfigModification<
     position: InsertPos;
   }[] = [];
 
-  constructor() {
+  public constructor() {
     super(
       c => c.module.rules,
       (rules, options) => {

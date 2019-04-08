@@ -12,14 +12,12 @@ export class WebpackBabelReactExtension<
 
     _config.beforeBuild(config => {
       const { isDev } = config.optionsContainer.build();
+      const { propTypes } = this.optionsContainer.build();
 
       this.optionsContainer.presets.push([
         '@babel/preset-react',
         { development: isDev, useBuiltIns: true }
       ]);
-
-      // TODO: given undefined
-      const { propTypes } = this.optionsContainer.build();
 
       if (isDev && propTypes) {
         this.optionsContainer.plugins.push([

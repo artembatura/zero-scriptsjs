@@ -40,10 +40,6 @@ export abstract class AbstractConfigBuilder<
     this._afterBuild.forEach(func => {
       func(config);
     });
-    // require('fs').writeFileSync(
-    //   'webpack-config-generated.json',
-    //   JSON.stringify(config)
-    // );
     return config;
   }
 
