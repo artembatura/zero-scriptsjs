@@ -74,7 +74,7 @@ export class WebpackBabelExtension<
         };
       });
 
-      config.insertPlugin(({ paths, useTypescript }) => {
+      config.insertPlugin(({ paths, useTypescript, isDev }) => {
         let ForkTsCheckerPlugin = undefined;
 
         if (useTypescript) {
@@ -91,17 +91,10 @@ export class WebpackBabelExtension<
         return ForkTsCheckerPlugin
           ? new ForkTsCheckerPlugin({
               typescript: require.resolve('typescript'),
-              async: true,
+              async: isDev,
               checkSyntacticErrors: true,
+              useTypescriptIncrementalApi: true,
               tsconfig: paths.tsConfig,
-              compilerOptions: {
-                module: 'esnext',
-                moduleResolution: 'node',
-                resolveJsonModule: true,
-                isolatedModules: true,
-                noEmit: true,
-                jsx: 'preserve'
-              },
               reportFiles: [
                 '**',
                 '!**/*.json',
