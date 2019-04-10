@@ -7,8 +7,8 @@
     "build": "webpack-spa build"
   },
   "dependencies": {
-    "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   },
   "devDependencies": {
     "@zero-scripts/extension.webpack-babel.react": "^0.4.0",
