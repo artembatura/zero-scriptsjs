@@ -1,28 +1,34 @@
-import { Selector } from '../types';
 import { Package } from 'normalize-package-data';
-import path from 'path';
+import { lstatSync } from 'fs';
+import { sep } from 'path';
+
+import { Selector } from '../types';
+import { readJson } from './readJson';
 
 export type Options = {
-  cwd: string;
-  normalize: boolean;
+  path?: string;
+  normalize?: boolean;
 };
 
-export function readPackageJson<TSelectedValue>(
-  selector?: Selector<Package, TSelectedValue>,
+export function readPackageJson<TPackage extends Package, TSelectedValue>(
+  selector?: Selector<TPackage, TSelectedValue>,
   options?: Options
-): TSelectedValue {
-  const _options: Options = {
-    cwd: process.cwd(),
+): TSelectedValue | TPackage {
+  const { normalize, path }: Required<Options> = {
+    path: process.cwd(),
     normalize: true,
     ...(options ? options : {})
   };
 
-  const filePath = path.resolve(_options.cwd, 'package.json');
-  const json = require(filePath);
-
-  if (_options.normalize) {
-    require('normalize-package-data')(json);
+  if (!lstatSync(path).isDirectory()) {
+    throw new Error(`[readPackageJson]: ${path} isn't directory`);
   }
 
-  return selector ? selector(json) : json;
+  const packageJson = readJson(path + sep + 'package.json', selector);
+
+  if (normalize) {
+    require('normalize-package-data')(packageJson);
+  }
+
+  return packageJson;
 }

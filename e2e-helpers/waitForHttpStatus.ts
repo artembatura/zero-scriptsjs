@@ -1,6 +1,6 @@
 import { request } from 'http';
 
-export const waitForHttpStatus = ({
+export const waitForHttpStatus = async ({
   host,
   port,
   timeout = 100,
@@ -16,29 +16,28 @@ export const waitForHttpStatus = ({
   method?: string;
   expectedStatusCode?: number;
   canContinue?: () => boolean;
-}) =>
-  new Promise((resolve, reject) => {
-    const retry = () => setTimeout(main, timeout);
+}) => {
+  const retry = () => setTimeout(main, timeout);
 
-    let totalTimeout = 0;
-    const main = () => {
-      const req = request({ port, host }, response => {
-        if (response.statusCode === expectedStatusCode) {
-          return resolve();
-        }
+  let totalTimeout = 0;
+  const main = () => {
+    const req = request({ port, host, method }, response => {
+      if (response.statusCode === expectedStatusCode) {
+        return Promise.resolve();
+      }
 
-        if (!canContinue() || totalTimeout > ejectTimeout) {
-          return reject();
-        }
+      if (!canContinue() || totalTimeout > ejectTimeout) {
+        return Promise.reject();
+      }
 
-        totalTimeout += timeout;
+      totalTimeout += timeout;
 
-        retry();
-      });
+      retry();
+    });
 
-      req.on('error', retry);
-      req.end();
-    };
+    req.on('error', retry);
+    req.end();
+  };
 
-    main();
-  });
+  main();
+};

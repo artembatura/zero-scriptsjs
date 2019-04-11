@@ -1,6 +1,6 @@
 import { getBaseClass } from '../getBaseClass';
 
-describe(getBaseClass.name, () => {
+describe('utils:getBaseClass', () => {
   it('basic', () => {
     class Parent {}
     class Child extends Parent {}

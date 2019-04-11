@@ -1,5 +1,4 @@
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
-import * as path from 'path';
 import { crossPlatformCommand } from './crossPlatformCommand';
 import { waitForHttpStatus } from './waitForHttpStatus';
 

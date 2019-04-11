@@ -1,6 +1,6 @@
 import { extractFirstPropChain } from '../extractFirstPropChain';
 
-describe(extractFirstPropChain.name, () => {
+describe('utils:extractFirstPropChain', () => {
   it('function', () => {
     expect(extractFirstPropChain('function (a) { return a.b.c.f };')).toBe(
       'b.c.f'
