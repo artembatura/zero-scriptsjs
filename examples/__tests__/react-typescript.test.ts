@@ -2,7 +2,7 @@ import getPort = require('get-port');
 import { run } from '../../e2e-helpers/run';
 import * as path from "path";
 
-const workPath = path.join(require.resolve('../react-typescript/package.json'), '..');
+const workPath = path.resolve(path.join(__dirname, '..'), 'react-typescript');
 
 describe('example:react-typescript', () => {
   beforeAll(() => jest.setTimeout(1000 * 60));

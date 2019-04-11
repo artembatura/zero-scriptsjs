@@ -2,7 +2,7 @@ import getPort = require('get-port');
 import { run } from '../../e2e-helpers/run';
 import * as path from "path";
 
-const workPath = path.join(require.resolve('../react/package.json'), '..');
+const workPath = path.resolve(path.join(__dirname, '..'), 'react');
 
 describe('example:react', () => {
   beforeAll(() => jest.setTimeout(1000 * 60));
