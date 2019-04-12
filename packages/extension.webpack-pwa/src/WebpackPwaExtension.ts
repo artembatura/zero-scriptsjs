@@ -8,7 +8,7 @@ import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackPwaExtensionOptions } from './WebpackPwaExtensionOptions';
 import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 
-@ReadOptions(WebpackPwaExtensionOptions)
+@ReadOptions(WebpackPwaExtensionOptions, 'extension.webpack-pwa')
 export class WebpackPwaExtension extends AbstractExtension<
   WebpackPwaExtensionOptions
 > {

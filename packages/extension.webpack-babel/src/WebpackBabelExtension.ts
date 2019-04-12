@@ -7,7 +7,7 @@ import {
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackBabelExtensionOptions } from './WebpackBabelExtensionOptions';
 
-@ReadOptions(WebpackBabelExtensionOptions)
+@ReadOptions(WebpackBabelExtensionOptions, 'extension.webpack-babel')
 export class WebpackBabelExtension<
   TParentExtensionOptions extends WebpackBabelExtensionOptions = WebpackBabelExtensionOptions
 > extends AbstractExtension<TParentExtensionOptions> {

@@ -9,7 +9,7 @@ import { createWebpackConfiguration } from './createWebpackConfiguration';
 import { OneOfModification } from './modifications/OneOfModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
-@ReadOptions(WebpackConfigOptions)
+@ReadOptions(WebpackConfigOptions, 'config.webpack')
 export class WebpackConfig extends AbstractConfigBuilder<
   Configuration,
   WebpackConfigOptions
