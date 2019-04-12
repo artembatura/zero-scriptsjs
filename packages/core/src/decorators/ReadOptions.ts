@@ -1,5 +1,5 @@
-import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 import { AbstractOptionsContainer } from '../AbstractOptionsContainer';
+import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 
 /**
  * ReadOptions Decorator
@@ -17,19 +17,21 @@ import { AbstractOptionsContainer } from '../AbstractOptionsContainer';
  *   constructor(optionsContainer: AbstractOptionsContainer, secondArg: number, thirdArg: string): {}
  * }
  */
-export const ReadOptions = <TOptionsContainer extends AbstractOptionsContainer>(
+export function ReadOptions<TOptionsContainer extends AbstractOptionsContainer>(
   OptionsContainer: { new (externalOptions: object): TOptionsContainer },
   optionsKey: string
-) => <T extends { new (...args: any[]): any }>(DecoratedClass: T) =>
-  class extends DecoratedClass {
-    constructor(...args: any[]) {
-      const externalOptions = readZeroScriptsOptions(optionsKey);
+) {
+  return <T extends { new (...args: any[]): any }>(DecoratedClass: T) =>
+    class extends DecoratedClass {
+      constructor(...args: any[]) {
+        const externalOptions = readZeroScriptsOptions(optionsKey);
 
-      const [optionsContainerInstance, ...restArgs] =
-        args[0] instanceof AbstractOptionsContainer
-          ? args
-          : [new OptionsContainer(externalOptions), ...args.slice(1)];
+        const [optionsContainerInstance, ...restArgs] =
+          args[0] instanceof AbstractOptionsContainer
+            ? args
+            : [new OptionsContainer(externalOptions), ...args.slice(1)];
 
-      super(optionsContainerInstance, ...restArgs);
-    }
-  };
+        super(optionsContainerInstance, ...restArgs);
+      }
+    };
+}

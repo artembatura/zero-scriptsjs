@@ -1,10 +1,11 @@
-import { WebpackConfig } from '@zero-scripts/config.webpack';
 import path from 'path';
+
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 
 const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 
-export const addFriendlyErrorsWebpackPlugin = (config: WebpackConfig) =>
-  config.insertPlugin(({ isDev, paths }) =>
+export function addFriendlyErrorsWebpackPlugin(config: WebpackConfig) {
+  return config.insertPlugin(({ isDev, paths }) =>
     isDev
       ? new FriendlyErrorsPlugin({
           compilationSuccessInfo: {
@@ -25,3 +26,4 @@ export const addFriendlyErrorsWebpackPlugin = (config: WebpackConfig) =>
           }
         })
   );
+}

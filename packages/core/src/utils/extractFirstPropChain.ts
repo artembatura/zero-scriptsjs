@@ -1,4 +1,4 @@
-export const extractFirstPropChain = (str: string): string => {
+export function extractFirstPropChain(str: string): string {
   const result = str.match(/[a-zA-Z](\[([0-9]|[a-zA-Z])+\]|\.[a-zA-Z]+)+/gm);
 
   if (result && result.length > 0) {
@@ -11,4 +11,4 @@ export const extractFirstPropChain = (str: string): string => {
   }
 
   throw new Error(`Can't parse property chain from string: "${str}"`);
-};
+}

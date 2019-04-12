@@ -1,2 +1,3 @@
-export const extensionsRegex = (extensions: string[], fileName: string = '') =>
-  new RegExp(`${fileName}\\.(${extensions.join('|')})$`);
+export function extensionsRegex(extensions: string[], fileName: string = '') {
+  return new RegExp(`${fileName}\\.(${extensions.join('|')})$`);
+}

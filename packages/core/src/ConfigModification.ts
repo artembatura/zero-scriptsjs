@@ -1,8 +1,8 @@
-import { Selector, InsertPos } from './types';
-import { extractFirstPropChain } from './utils/extractFirstPropChain';
-import setValue from 'set-value';
 import getValue from 'get-value';
-import { DeepRequired } from './types';
+import setValue from 'set-value';
+
+import { Selector, InsertPos, DeepRequired } from './types';
+import { extractFirstPropChain } from './utils/extractFirstPropChain';
 
 export class ConfigModification<
   TConfig extends Record<string, any>,

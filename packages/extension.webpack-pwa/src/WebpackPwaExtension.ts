@@ -1,12 +1,14 @@
+import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   AbstractExtension,
   AbstractPreset,
   InsertPos,
   ReadOptions
 } from '@zero-scripts/core';
-import { WebpackConfig } from '@zero-scripts/config.webpack';
+
 import { WebpackPwaExtensionOptions } from './WebpackPwaExtensionOptions';
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
 
 @ReadOptions(WebpackPwaExtensionOptions, 'extension.webpack-pwa')
 export class WebpackPwaExtension extends AbstractExtension<

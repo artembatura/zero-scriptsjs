@@ -1,5 +1,7 @@
 import path from 'path';
+
 import { getRootDir } from './getRootDir';
 
-export const resolvePath = (relPath: string): string =>
-  path.resolve(getRootDir(), relPath);
+export function resolvePath(relPath: string): string {
+  return path.resolve(getRootDir(), relPath);
+}

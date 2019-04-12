@@ -1,6 +1,7 @@
-import { WebpackBabelExtension } from '@zero-scripts/extension.webpack-babel';
-import { AbstractPreset, ReadOptions } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
+import { AbstractPreset, ReadOptions } from '@zero-scripts/core';
+import { WebpackBabelExtension } from '@zero-scripts/extension.webpack-babel';
+
 import { WebpackBabelReactExtensionOptions } from './WebpackBabelReactExtensionOptions';
 
 @ReadOptions(WebpackBabelReactExtensionOptions, 'extension.webpack-babel.react')

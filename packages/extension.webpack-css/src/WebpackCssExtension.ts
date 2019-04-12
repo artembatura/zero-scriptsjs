@@ -1,16 +1,18 @@
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   AbstractExtension,
   AbstractPreset,
   ReadOptions
 } from '@zero-scripts/core';
-import { WebpackCssExtensionOptions } from './WebpackCssExtensionOptions';
-import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   getLocalIdent,
   getStyleLoaders
 } from '@zero-scripts/utils.webpack-styles';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import { WebpackCssExtensionOptions } from './WebpackCssExtensionOptions';
 
 const safePostCssParser = require('postcss-safe-parser');
 const cssModuleRegex = /\.(module|m)\.css$/;

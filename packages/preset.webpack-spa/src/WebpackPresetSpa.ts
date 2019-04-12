@@ -1,10 +1,12 @@
-import { AbstractPreset } from '@zero-scripts/core';
-import webpack from 'webpack';
 import fastify from 'fastify';
 import { IncomingMessage, Server, ServerResponse } from 'http';
+import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+
 import { WebpackConfig } from '@zero-scripts/config.webpack';
+import { AbstractPreset } from '@zero-scripts/core';
+
 import { extensions as localExtensions } from './extensions';
 
 export class WebpackPresetSpa extends AbstractPreset {

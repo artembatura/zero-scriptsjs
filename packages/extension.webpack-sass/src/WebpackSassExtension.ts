@@ -1,16 +1,18 @@
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   AbstractExtension,
   AbstractPreset,
   ReadOptions
 } from '@zero-scripts/core';
-import { WebpackSassExtensionOptions } from './WebpackSassExtensionOptions';
-import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   getLocalIdent,
   getStyleLoaders
 } from '@zero-scripts/utils.webpack-styles';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import { WebpackSassExtensionOptions } from './WebpackSassExtensionOptions';
 
 const safePostCssParser = require('postcss-safe-parser');
 const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
@@ -19,7 +21,7 @@ const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 export class WebpackSassExtension extends AbstractExtension<
   WebpackSassExtensionOptions
 > {
-  activate(preset: AbstractPreset): void {
+  public activate(preset: AbstractPreset): void {
     preset
       .getInstance(WebpackConfig)
       .insertModuleRule(options => ({

@@ -1,3 +1,4 @@
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   AbstractExtension,
   AbstractPreset,
@@ -5,7 +6,7 @@ import {
   InsertPos,
   ReadOptions
 } from '@zero-scripts/core';
-import { WebpackConfig } from '@zero-scripts/config.webpack';
+
 import { WebpackEslintExtensionOptions } from './WebpackEslintExtensionOptions';
 
 @ReadOptions(WebpackEslintExtensionOptions, 'extension.webpack-eslint')

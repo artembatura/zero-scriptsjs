@@ -1,2 +1,3 @@
-export const packageIsExtension = (packageName: string) =>
-  !!packageName.match('extension\\.[a-z]*');
+export function packageIsExtension(packageName: string) {
+  return !!packageName.match('extension\\.[a-z]*');
+}

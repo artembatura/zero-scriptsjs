@@ -1,7 +1,9 @@
-import { WebpackConfig } from '@zero-scripts/config.webpack';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
-export const addCleanWebpackPlugin = (config: WebpackConfig) =>
-  config.insertPlugin(({ isDev }) =>
+import { WebpackConfig } from '@zero-scripts/config.webpack';
+
+export function addCleanWebpackPlugin(config: WebpackConfig) {
+  return config.insertPlugin(({ isDev }) =>
     !isDev ? new CleanWebpackPlugin() : undefined
   );
+}

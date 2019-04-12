@@ -1,5 +1,5 @@
-import { Package } from 'normalize-package-data';
 import { lstatSync } from 'fs';
+import { Package } from 'normalize-package-data';
 import { sep } from 'path';
 
 import { Selector } from '../types';

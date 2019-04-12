@@ -1,10 +1,11 @@
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
   AbstractExtension,
   AbstractPreset,
   extensionsRegex,
   ReadOptions
 } from '@zero-scripts/core';
-import { WebpackConfig } from '@zero-scripts/config.webpack';
+
 import { WebpackBabelExtensionOptions } from './WebpackBabelExtensionOptions';
 
 @ReadOptions(WebpackBabelExtensionOptions, 'extension.webpack-babel')
@@ -81,6 +82,7 @@ export class WebpackBabelExtension<
           try {
             ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
           } catch (e) {
+            // eslint-disable-next-line no-console
             console.log(
               'Warning: If you want to checking types on your Typescript files' +
                 ' , you need to manually install fork-ts-checker-webpack-plugin'
