@@ -1,7 +1,7 @@
 import { resolveModule, resolvePath } from './utils';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
-export const resolvePaths = (
+export function resolvePaths(
   {
     tsConfig,
     indexJs,
@@ -12,12 +12,14 @@ export const resolvePaths = (
     src
   }: WebpackConfigOptions['paths'],
   extensions: string[]
-): WebpackConfigOptions['paths'] => ({
-  src: resolvePath(src),
-  root: resolvePath(root),
-  publicPath: resolvePath(publicPath),
-  build: resolvePath(build),
-  indexHtml: resolvePath(indexHtml),
-  indexJs: resolveModule(extensions, indexJs),
-  tsConfig: resolvePath(tsConfig)
-});
+): WebpackConfigOptions['paths'] {
+  return {
+    src: resolvePath(src),
+    root: resolvePath(root),
+    publicPath: resolvePath(publicPath),
+    build: resolvePath(build),
+    indexHtml: resolvePath(indexHtml),
+    indexJs: resolveModule(extensions, indexJs),
+    tsConfig: resolvePath(tsConfig)
+  };
+}

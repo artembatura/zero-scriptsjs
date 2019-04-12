@@ -1,2 +1,3 @@
-export const crossPlatformCommand = (cmd: string) =>
-  process.platform === 'win32' ? cmd + '.cmd' : cmd;
+export function crossPlatformCommand(cmd: string) {
+  return process.platform === 'win32' ? cmd + '.cmd' : cmd;
+}

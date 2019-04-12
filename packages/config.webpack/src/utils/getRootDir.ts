@@ -1,3 +1,5 @@
 import { realpathSync } from 'fs';
 
-export const getRootDir = () => realpathSync(process.cwd());
+export function getRootDir() {
+  return realpathSync(process.cwd());
+}

@@ -1,10 +1,12 @@
 import { Configuration, Plugin, RuleSetRule } from 'webpack';
+
 import {
   AbstractConfigBuilder,
   ConfigModification,
   InsertPos,
   ReadOptions
 } from '@zero-scripts/core';
+
 import { createWebpackConfiguration } from './createWebpackConfiguration';
 import { OneOfModification } from './modifications/OneOfModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';

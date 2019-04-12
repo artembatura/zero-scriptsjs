@@ -1,7 +1,8 @@
 import fs from 'fs';
+
 import { resolvePath } from './resolvePath';
 
-export const resolveModule = (extensions: string[], relativePath: string) => {
+export function resolveModule(extensions: string[], relativePath: string) {
   const extension = extensions.find(extension =>
     fs.existsSync(resolvePath(`${relativePath}.${extension}`))
   );
@@ -11,4 +12,4 @@ export const resolveModule = (extensions: string[], relativePath: string) => {
   }
 
   return resolvePath(`${relativePath}.js`);
-};
+}

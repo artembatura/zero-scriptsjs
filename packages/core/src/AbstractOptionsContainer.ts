@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+
 import {
   METADATA_OPTIONS,
   METADATA_ROOT_DEPENDENCY_NODE,
@@ -38,7 +39,8 @@ export abstract class AbstractOptionsContainer {
 
   public build<T extends ExtractOptionsFromOptionsContainer<this>>(): T {
     // exclude non-option members
-    const { build, ...options } = this;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { build: _, ...options } = this;
 
     type OptionsMetaArray = (OptionMetadata<T, any> & {
       optionKey: keyof T;

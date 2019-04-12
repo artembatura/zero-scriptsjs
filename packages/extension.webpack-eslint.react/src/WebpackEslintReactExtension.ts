@@ -1,5 +1,6 @@
 import { AbstractPreset, ReadOptions } from '@zero-scripts/core';
 import { WebpackEslintExtension } from '@zero-scripts/extension.webpack-eslint';
+
 import { WebpackEslintReactExtensionOptions } from './WebpackEslintReactExtensionOptions';
 
 @ReadOptions(

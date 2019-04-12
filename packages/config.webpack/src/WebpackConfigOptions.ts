@@ -1,6 +1,8 @@
+import { existsSync } from 'fs';
+
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
+
 import { resolvePaths } from './resolvePaths';
-import fs from 'fs';
 
 export class WebpackConfigOptions extends AbstractOptionsContainer {
   @Option<WebpackConfigOptions, 'paths'>(
@@ -59,7 +61,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer {
     ({ externalValue, dependencies: { paths } }) =>
       typeof externalValue === 'boolean'
         ? externalValue
-        : fs.existsSync(paths.tsConfig),
+        : existsSync(paths.tsConfig),
     ['paths']
   )
   public useTypescript: boolean = false;

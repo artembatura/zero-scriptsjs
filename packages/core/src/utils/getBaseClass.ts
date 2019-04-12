@@ -1,9 +1,6 @@
 import { Constructor } from '../types';
 
-export const getBaseClass = (
-  targetClass: Constructor,
-  position: number = 0
-) => {
+export function getBaseClass(targetClass: Constructor, position: number = 0) {
   const baseClasses: any[] = [targetClass];
 
   for (
@@ -17,4 +14,4 @@ export const getBaseClass = (
   return position >= baseClasses.length
     ? undefined
     : baseClasses.reverse()[position];
-};
+}

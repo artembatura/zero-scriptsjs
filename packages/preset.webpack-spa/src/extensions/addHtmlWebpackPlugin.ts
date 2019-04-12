@@ -1,9 +1,10 @@
-import { WebpackConfig } from '@zero-scripts/config.webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { InsertPos } from '@zero-scripts/core';
 
-export const addHtmlWebpackPlugin = (config: WebpackConfig) =>
-  config.insertPlugin(
+export function addHtmlWebpackPlugin(config: WebpackConfig) {
+  return config.insertPlugin(
     ({ isDev, paths }) =>
       new HtmlWebpackPlugin({
         inject: true,
@@ -25,3 +26,4 @@ export const addHtmlWebpackPlugin = (config: WebpackConfig) =>
       }),
     InsertPos.Start
   );
+}

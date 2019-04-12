@@ -1,9 +1,9 @@
 import { AbstractExtension } from './AbstractExtension';
-import { readPackageJson } from './utils/readPackageJson';
-import { ExtensionConstructor } from './types';
 import { packageIsExtension } from './packageIsExtension';
 import { ScriptsMap } from './ScriptsMap';
+import { ExtensionConstructor } from './types';
 import { getBaseClass } from './utils/getBaseClass';
+import { readPackageJson } from './utils/readPackageJson';
 
 export abstract class AbstractPreset {
   public readonly scripts: ScriptsMap = new ScriptsMap();

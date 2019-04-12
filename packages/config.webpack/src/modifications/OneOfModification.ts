@@ -1,9 +1,11 @@
 import { Configuration, RuleSetRule } from 'webpack';
+
 import {
   InsertPos,
   extensionsRegex,
   ConfigModification
 } from '@zero-scripts/core';
+
 import { WebpackConfigOptions } from '../WebpackConfigOptions';
 
 export class OneOfModification extends ConfigModification<

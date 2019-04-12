@@ -1,9 +1,10 @@
-import { parseScript } from './parseScript';
+/* eslint-disable no-console */
 import { AbstractPreset } from '../AbstractPreset';
+import { parseScript } from './parseScript';
 
-export const runCLI = async (PresetClass: {
+export async function runCLI(PresetClass: {
   new (...args: any[]): AbstractPreset;
-}) => {
+}) {
   const preset = new PresetClass();
   const scriptsNames = Array.from(preset.scripts.keys());
   const script = parseScript(process.argv.slice(2), scriptsNames);
@@ -18,4 +19,4 @@ export const runCLI = async (PresetClass: {
 
   console.log(`[${preset.constructor.name}] Script not found in CLI arguments`);
   console.log(`Available scripts: [${scriptsNames.join(', ')}]`);
-};
+}

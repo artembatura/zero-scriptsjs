@@ -1,5 +1,5 @@
-import { ConfigModification } from './ConfigModification';
 import { AbstractOptionsContainer } from './AbstractOptionsContainer';
+import { ConfigModification } from './ConfigModification';
 import { ExtractOptionsFromOptionsContainer } from './types';
 import { cloneInstance } from './utils/cloneInstance';
 

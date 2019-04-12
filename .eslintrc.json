@@ -1,6 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "plugins": ["eslint-plugin-import-helpers"],
   "env": {
     "jest": true,
     "node": true
@@ -18,7 +19,19 @@
   },
   "rules": {
     "no-console": "warn",
-    "no-dupe-class-members": "off"
+    "no-dupe-class-members": "off",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlines-between": "always",
+        "groups": [
+          ["builtin", "external", "internal"],
+          "/^@zero-scripts/",
+          ["parent", "sibling", "index"]
+        ],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ]
   },
   "overrides": [
     {
