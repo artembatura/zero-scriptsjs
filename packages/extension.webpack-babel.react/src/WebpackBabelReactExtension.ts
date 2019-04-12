@@ -3,7 +3,7 @@ import { AbstractPreset, ReadOptions } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackBabelReactExtensionOptions } from './WebpackBabelReactExtensionOptions';
 
-@ReadOptions(WebpackBabelReactExtensionOptions)
+@ReadOptions(WebpackBabelReactExtensionOptions, 'extension.webpack-babel.react')
 export class WebpackBabelReactExtension<
   TParentExtensionOptions extends WebpackBabelReactExtensionOptions = WebpackBabelReactExtensionOptions
 > extends WebpackBabelExtension<TParentExtensionOptions> {

@@ -15,7 +15,7 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 const safePostCssParser = require('postcss-safe-parser');
 const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 
-@ReadOptions(WebpackSassExtensionOptions)
+@ReadOptions(WebpackSassExtensionOptions, 'extension.webpack-sass')
 export class WebpackSassExtension extends AbstractExtension<
   WebpackSassExtensionOptions
 > {

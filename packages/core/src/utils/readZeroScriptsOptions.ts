@@ -3,8 +3,10 @@ import { readPackageJson } from './readPackageJson';
 export const packageJsonOptionsKey = 'zero-scripts';
 
 export const readZeroScriptsOptions = (key?: string) =>
-  readPackageJson(data =>
-    key
+  readPackageJson(data => {
+    const value = key
       ? data[packageJsonOptionsKey] && data[packageJsonOptionsKey][key]
-      : data[packageJsonOptionsKey]
-  );
+      : data[packageJsonOptionsKey];
+
+    return value ? value : {};
+  });

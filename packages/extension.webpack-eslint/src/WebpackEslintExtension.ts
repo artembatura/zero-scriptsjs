@@ -8,7 +8,7 @@ import {
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { WebpackEslintExtensionOptions } from './WebpackEslintExtensionOptions';
 
-@ReadOptions(WebpackEslintExtensionOptions)
+@ReadOptions(WebpackEslintExtensionOptions, 'extension.webpack-eslint')
 export class WebpackEslintExtension<
   TParentExtensionOptions extends WebpackEslintExtensionOptions = WebpackEslintExtensionOptions
 > extends AbstractExtension<TParentExtensionOptions> {
