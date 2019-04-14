@@ -30,7 +30,7 @@ export class WebpackBabelExtension<
                 babelrc: false,
                 configFile: false,
                 presets: [
-                  ['@babel/preset-env', { loose: true, modules: false }],
+                  ['@babel/preset-env', { loose: true, modules: false, targets: { esmodules: true }, useBuiltIns: 'usage' }],
                   useTypescript && '@babel/preset-typescript',
                   ...presets
                 ].filter(Boolean),
