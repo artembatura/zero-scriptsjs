@@ -37,7 +37,7 @@
     "@zero-scripts/ts-config": "^0.4.0"
   },
   "optionalDependencies": {
-    "fork-ts-checker-webpack-plugin": "~1.1.0"
+    "fork-ts-checker-webpack-plugin": "~1.2.0"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
