@@ -28,7 +28,7 @@
     "@zero-scripts/config.webpack": "^0.4.0",
     "@zero-scripts/core": "^0.4.0",
     "clean-webpack-plugin": "2.0.1",
-    "copy-webpack-plugin": "5.0.2",
+    "copy-webpack-plugin": "5.0.3",
     "fastify": "2.3.0",
     "html-webpack-plugin": "4.0.0-beta.5",
     "webpack": "4.30.0",
