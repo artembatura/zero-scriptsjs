@@ -11335,10 +11335,10 @@ utila@^0.4.0, utila@~0.4:
   resolved "https://registry.yarnpkg.com/utila/-/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
 
-utility-types@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.5.0.tgz#d80c95b774575d1683f5ba807879c52d8f35db1c"
-  integrity sha512-1XdYkHN+Dcgh1PQEER1CF5BXkGLvf7Owor6tYSyEs+lbHi4obz4ZeJZQVZyinKvFaGwriBKRlEk5hiApfhglQg==
+utility-types@3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.6.0.tgz#9ee14be5f4ffc58e9010cf331e1f6999f57dcc52"
+  integrity sha512-pAevxvCjA1RndJMe6gKZJzRVguivqhQTWoIPd4sJHcEf2FRcvKLi/2tZCtd/PYENnMSPBAQzelK7xIeWCAhR7w==
 
 uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.2"
