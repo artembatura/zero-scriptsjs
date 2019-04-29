@@ -56,12 +56,4 @@ export abstract class AbstractConfigBuilder<
   public clone() {
     return cloneInstance(this);
   }
-
-  public pipe<T extends (o: this) => this>(func: T | T[]): this {
-    if (Array.isArray(func)) {
-      func.forEach(f => f(this));
-      return this;
-    }
-    return func(this);
-  }
 }
