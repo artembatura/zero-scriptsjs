@@ -1,7 +1,6 @@
 {
-  "name": "@zero-scripts/preset.webpack-spa",
+  "name": "@zero-scripts/extension.webpack-spa",
   "version": "0.4.0",
-  "description": "For development Single Page Applications",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -17,28 +16,22 @@
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
-    "bin",
     "build"
   ],
-  "bin": {
-    "webpack-spa": "./bin/cli.js"
-  },
   "dependencies": {
     "@zero-scripts/config.webpack": "^0.4.0",
     "@zero-scripts/core": "^0.4.0",
-    "fastify": "2.3.0",
-    "webpack": "4.30.0",
-    "webpack-dev-middleware": "3.6.2",
-    "webpack-hot-middleware": "2.24.4",
-    "@zero-scripts/extension.webpack-spa": "^0.4.0"
+    "clean-webpack-plugin": "2.0.1",
+    "copy-webpack-plugin": "5.0.3",
+    "html-webpack-plugin": "4.0.0-beta.5",
+    "@artemir/friendly-errors-webpack-plugin": "1.8.0"
   },
   "devDependencies": {
-    "@types/webpack": "4.4.27",
-    "@types/webpack-dev-middleware": "2.0.2",
-    "@types/webpack-hot-middleware": "2.16.5",
-    "@zero-scripts/ts-config": "^0.4.0"
+    "@zero-scripts/ts-config": "^0.4.0",
+    "@types/clean-webpack-plugin": "0.1.3",
+    "@types/copy-webpack-plugin": "5.0.0",
+    "@types/html-webpack-plugin": "3.2.0"
   },
-  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
     "access": "public"
   },
@@ -46,8 +39,10 @@
     "webpack",
     "config",
     "zero-scripts",
-    "preset",
+    "extension",
     "spa",
+    "single-page",
+    "application",
     "@zero-scripts/config.webpack"
   ]
 }

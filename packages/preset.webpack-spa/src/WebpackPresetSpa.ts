@@ -7,11 +7,9 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { AbstractPreset } from '@zero-scripts/core';
 
-import { extensions as localExtensions } from './extensions';
-
 export class WebpackPresetSpa extends AbstractPreset {
   constructor() {
-    super([]);
+    super(['@zero-scripts/extension.webpack-spa']);
 
     this.scripts.set('start', async ({ options }) => {
       process.env.NODE_ENV = 'development';
@@ -21,7 +19,6 @@ export class WebpackPresetSpa extends AbstractPreset {
       const config = builder
         .setIsDev(true)
         .addEntry(require.resolve('webpack-hot-middleware/client'))
-        .pipe(localExtensions)
         .build();
 
       const compiler = webpack(config);
@@ -75,10 +72,7 @@ export class WebpackPresetSpa extends AbstractPreset {
 
       const builder = this.getInstance(WebpackConfig);
 
-      const config = builder
-        .setIsDev(false)
-        .pipe(localExtensions)
-        .build();
+      const config = builder.setIsDev(false).build();
 
       const compiler = webpack(config);
 

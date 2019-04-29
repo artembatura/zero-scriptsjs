@@ -11,6 +11,7 @@
     { "path": "extension.webpack-eslint.react" },
     { "path": "extension.webpack-sass" },
     { "path": "extension.webpack-pwa" },
+    { "path": "extension.webpack-spa" },
     { "path": "utils.webpack-styles" }
   ]
 }
