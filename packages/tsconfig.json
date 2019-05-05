@@ -4,6 +4,7 @@
     { "path": "core" },
     { "path": "config.webpack" },
     { "path": "preset.webpack-spa" },
+    { "path": "preset.webpack-spa.react" },
     { "path": "extension.webpack-babel" },
     { "path": "extension.webpack-babel.react" },
     { "path": "extension.webpack-css" },

@@ -12,8 +12,8 @@ export abstract class AbstractPreset {
 
   protected constructor(protected readonly standardExtensions: string[] = []) {
     Object.keys(readPackageJson(data => data.devDependencies) as object)
-      .concat(standardExtensions)
       .filter(packageIsExtension)
+      .concat(standardExtensions)
       .map((packageName: string) => {
         const ExtensionClass = (require(packageName) as {
           default: ExtensionConstructor;
@@ -26,6 +26,7 @@ export abstract class AbstractPreset {
         if (newBaseClass) {
           const conflictExtension = this.extensions.find(ext => {
             const iterableBaseClass = getBaseClass(ext.constructor, 1);
+
             return (
               ext.constructor.name === extension.constructor.name ||
               (iterableBaseClass !== undefined &&

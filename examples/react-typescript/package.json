@@ -3,23 +3,19 @@
   "version": "0.4.0",
   "private": true,
   "scripts": {
-    "start": "webpack-spa start",
-    "prod": "webpack-spa build"
+    "start": "webpack-react start",
+    "build": "webpack-react build"
   },
   "dependencies": {
-    "react": "16.7.0",
-    "react-dom": "16.7.0"
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   },
   "devDependencies": {
-    "@types/node": "11.13.2",
-    "@types/react": "16.8.13",
-    "@types/react-dom": "16.8.3",
-    "@zero-scripts/extension.webpack-babel.react": "^0.4.0",
-    "@zero-scripts/extension.webpack-css": "^0.4.0",
-    "@zero-scripts/extension.webpack-eslint.react": "^0.4.0",
-    "@zero-scripts/extension.webpack-pwa": "^0.4.0",
-    "@zero-scripts/preset.webpack-spa": "^0.4.0",
-    "fork-ts-checker-webpack-plugin": "1.0.0-alpha.10",
-    "typescript": "3.4.2"
+    "@types/node": "12.0.0",
+    "@types/react": "16.8.16",
+    "@types/react-dom": "16.8.4",
+    "@zero-scripts/preset.webpack-spa.react": "^0.4.0",
+    "fork-ts-checker-webpack-plugin": "1.3.0",
+    "typescript": "3.4.5"
   }
 }
