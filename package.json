@@ -27,7 +27,7 @@
     "eslint-plugin-prettier": "3.0.1",
     "get-port": "5.0.0",
     "husky": "2.2.0",
-    "jest": "24.7.1",
+    "jest": "24.8.0",
     "lerna": "3.13.4",
     "lerna-changelog": "0.8.2",
     "lint-staged": "8.1.6",
