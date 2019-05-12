@@ -53,7 +53,7 @@ export abstract class AbstractConfigBuilder<
     return this;
   }
 
-  public clone() {
+  public clone(): this {
     return cloneInstance(this);
   }
 }

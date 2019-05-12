@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 
+import { resolve } from './graph';
 import {
   METADATA_OPTIONS,
   METADATA_ROOT_DEPENDENCY_NODE,
@@ -76,8 +77,7 @@ export abstract class AbstractOptionsContainer {
       this.constructor.prototype
     );
 
-    const resolvedOptions = rootNode
-      .resolve()
+    const resolvedOptions = resolve(rootNode)
       .filter(node => node.id !== 'root')
       .map(
         node =>

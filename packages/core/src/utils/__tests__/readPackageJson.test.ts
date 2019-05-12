@@ -1,6 +1,6 @@
 import { readPackageJson } from '../readPackageJson';
 
-describe('utils:readPackageJson', () => {
+describe('core/utils/readPackageJson', () => {
   it('relative', () => {
     const json = readPackageJson(undefined, {
       path: __dirname
