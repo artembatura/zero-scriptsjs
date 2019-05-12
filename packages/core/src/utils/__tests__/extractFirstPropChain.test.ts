@@ -1,6 +1,6 @@
 import { extractFirstPropChain } from '../extractFirstPropChain';
 
-describe('utils:extractFirstPropChain', () => {
+describe('utils/extractFirstPropChain', () => {
   it('function', () => {
     const result = extractFirstPropChain('function (a) { return a.b.c.f };');
 

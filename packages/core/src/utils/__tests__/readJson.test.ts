@@ -6,10 +6,10 @@ type PackageJson = {
   dependencies: object;
 };
 
-describe('utils:readJson', () => {
+describe('utils/readJson', () => {
   const packageJsonPath = `${__dirname}/package.json`;
 
-  it('default', () => {
+  it('basic', () => {
     const json = readJson(packageJsonPath);
 
     expect(json).toEqual({
@@ -19,7 +19,7 @@ describe('utils:readJson', () => {
     });
   });
 
-  it('selector', () => {
+  it('with selector', () => {
     const packageJsonName = readJson(
       packageJsonPath,
       ({ name }: PackageJson) => name
@@ -28,7 +28,7 @@ describe('utils:readJson', () => {
     expect(packageJsonName).toBe('testPackageName');
   });
 
-  it('caching', () => {
+  it('check caching', () => {
     const json1 = readJson(packageJsonPath);
     const json2 = readJson(packageJsonPath);
 

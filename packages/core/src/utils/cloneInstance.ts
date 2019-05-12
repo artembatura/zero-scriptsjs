@@ -1,4 +1,4 @@
-export function cloneInstance(original: object) {
+export function cloneInstance<T>(original: T): T {
   return Object.assign(
     Object.create(Object.getPrototypeOf(original)),
     original

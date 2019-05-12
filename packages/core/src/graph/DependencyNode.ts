@@ -9,12 +9,13 @@ export class DependencyNode extends GraphNode {
   ): DependencyNode[] {
     seen.push(this);
     this.edges.forEach(edge => {
-      if (resolved.indexOf(edge) === -1) {
-        if (seen.indexOf(edge) !== -1) {
+      if (resolved.findIndex(item => item.id === edge.id) === -1) {
+        if (seen.findIndex(item => item.id === edge.id) !== -1) {
           throw new Error(
             `Circular reference detected: ${this.id} => ${edge.id}`
           );
         }
+
         edge.resolve(resolved, seen);
       }
     });
@@ -31,5 +32,9 @@ export class DependencyNode extends GraphNode {
     }
 
     return node;
+  }
+
+  public toString(): string {
+    return this.id;
   }
 }
