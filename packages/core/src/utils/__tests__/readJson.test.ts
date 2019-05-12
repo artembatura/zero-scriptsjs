@@ -6,7 +6,7 @@ type PackageJson = {
   dependencies: object;
 };
 
-describe('utils/readJson', () => {
+describe('core/utils/readJson', () => {
   const packageJsonPath = `${__dirname}/package.json`;
 
   it('basic', () => {

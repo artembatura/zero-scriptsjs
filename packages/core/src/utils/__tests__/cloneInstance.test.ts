@@ -1,6 +1,6 @@
 import { cloneInstance } from '../cloneInstance';
 
-describe('utils/cloneInstance', () => {
+describe('core/utils/cloneInstance', () => {
   it('default', () => {
     class Clazz {
       prop = false;

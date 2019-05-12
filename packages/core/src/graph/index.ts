@@ -1,2 +1,2 @@
 export * from './DependencyNode';
-export * from './GraphNode';
+export * from './resolve';

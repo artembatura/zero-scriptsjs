@@ -1,6 +1,6 @@
 import { extensionsRegex } from '../extensionsRegex';
 
-describe('helpers/extensionsRegex', () => {
+describe('core/helpers/extensionsRegex', () => {
   it('single', () => {
     const result = extensionsRegex(['js']);
     const resultWithFileName = extensionsRegex(['js'], 'file');

@@ -1,6 +1,6 @@
-import { DependencyNode } from '../DependencyNode';
+import { DependencyNode, resolve } from '..';
 
-describe('graph/DependencyNode', () => {
+describe('core/graph/resolve', () => {
   it('default', () => {
     const root = new DependencyNode('root');
     const parent0 = root.addOrGetEdge('parent-0');
@@ -12,7 +12,7 @@ describe('graph/DependencyNode', () => {
     parent1.addOrGetEdge('child-11');
     parent1.addOrGetEdge('child-12');
 
-    const result = root.resolve().map(v => v.toString());
+    const result = resolve(root).map(v => v.toString());
 
     expect(result).toEqual([
       'child-01',
@@ -32,7 +32,7 @@ describe('graph/DependencyNode', () => {
     c.addOrGetEdge('a');
 
     const throwable = () => {
-      a.resolve();
+      resolve(a);
     };
 
     expect(throwable).toThrow(Error);
