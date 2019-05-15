@@ -28,7 +28,7 @@
     "@zero-scripts/core": "^0.4.0",
     "fastify": "2.3.0",
     "webpack": "4.30.0",
-    "webpack-dev-middleware": "3.6.2",
+    "webpack-dev-middleware": "3.7.0",
     "webpack-hot-middleware": "2.24.4",
     "@zero-scripts/extension.webpack-spa": "^0.4.0"
   },
