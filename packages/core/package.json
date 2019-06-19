@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "get-value": "3.0.1",
-    "set-value": "3.0.0",
+    "set-value": "3.0.1",
     "reflect-metadata": "0.1.13",
     "normalize-package-data": "2.5.0"
   },
