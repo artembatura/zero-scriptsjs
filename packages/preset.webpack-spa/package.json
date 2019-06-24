@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/webpack": "4.4.27",
-    "@types/webpack-dev-middleware": "2.0.2",
+    "@types/webpack-dev-middleware": "2.0.3",
     "@types/webpack-hot-middleware": "2.16.5",
     "@zero-scripts/ts-config": "^0.4.0"
   },
