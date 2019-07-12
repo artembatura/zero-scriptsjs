@@ -8,7 +8,7 @@ import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { AbstractPreset } from '@zero-scripts/core';
 
 export class WebpackPresetSpa extends AbstractPreset {
-  constructor() {
+  public constructor() {
     super(['@zero-scripts/extension.webpack-spa']);
 
     this.scripts.set('start', async ({ options }) => {
@@ -21,25 +21,25 @@ export class WebpackPresetSpa extends AbstractPreset {
         .addEntry(require.resolve('webpack-hot-middleware/client'))
         .build();
 
-      const compiler = webpack(config);
+      const compiler = webpack([config]);
 
       // for e2e tests
       if (options.smokeTest) {
-        compiler.hooks.failed.tap('smokeTest', async () => {
+        compiler.hooks.invalid.tap('smokeTest', async () => {
           setTimeout(() => {
             process.exit(1);
           }, 350);
         });
 
-        compiler.hooks.done.tap('smokeTest', async stats => {
-          setTimeout(() => {
-            if (stats.hasErrors() || stats.hasWarnings()) {
-              process.exit(1);
-            } else {
-              process.exit(0);
-            }
-          }, 350);
-        });
+        // compiler.hooks.done.tap('smokeTest', async stats => {
+        //   setTimeout(() => {
+        //     if (stats.hasErrors() || stats.hasWarnings()) {
+        //       process.exit(1);
+        //     } else {
+        //       process.exit(0);
+        //     }
+        //   }, 350);
+        // });
       }
 
       const server: fastify.FastifyInstance<
