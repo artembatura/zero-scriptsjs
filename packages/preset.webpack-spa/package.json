@@ -27,13 +27,12 @@
     "@zero-scripts/config.webpack": "^0.4.0",
     "@zero-scripts/core": "^0.4.0",
     "fastify": "2.6.0",
-    "webpack": "4.30.0",
+    "webpack": "4.35.3",
     "webpack-dev-middleware": "3.7.0",
     "webpack-hot-middleware": "2.25.0",
     "@zero-scripts/extension.webpack-spa": "^0.4.0"
   },
   "devDependencies": {
-    "@types/webpack": "4.4.27",
     "@types/webpack-dev-middleware": "2.0.3",
     "@types/webpack-hot-middleware": "2.16.5",
     "@zero-scripts/ts-config": "^0.4.0"

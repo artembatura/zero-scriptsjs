@@ -1,7 +1,10 @@
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import _HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const HtmlWebpackPlugin = _HtmlWebpackPlugin as any;
 
 import { WebpackConfig } from '@zero-scripts/config.webpack';
 import {
@@ -13,6 +16,7 @@ import {
 
 import { WebpackSpaExtensionOptions } from './WebpackSpaExtensionOptions';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 
 @ReadOptions(WebpackSpaExtensionOptions, 'extension.webpack-spa')
