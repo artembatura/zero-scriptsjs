@@ -2,6 +2,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import _HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const HtmlWebpackPlugin = _HtmlWebpackPlugin as any;
@@ -84,6 +85,12 @@ export class WebpackSpaExtension<
               : false
           }),
         InsertPos.Start
+      )
+      .insertPlugin(
+        () =>
+          new ScriptExtHtmlWebpackPlugin({
+            module: /.*.m?js/gm
+          })
       );
   }
 }

@@ -11,7 +11,8 @@ export class WebpackEslintReactExtension extends WebpackEslintExtension<
   WebpackEslintReactExtensionOptions
 > {
   public activate(preset: AbstractPreset): void {
-    this.optionsContainer.extends.push('eslint-config-react-app');
+    // TODO: we can back to eslint-config-react-app, when it's released
+    this.optionsContainer.extends.push('eslint-config-react-app-fresh');
 
     this.optionsContainer.parserOptions = {
       ...this.optionsContainer.parserOptions,

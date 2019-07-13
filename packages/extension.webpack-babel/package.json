@@ -31,7 +31,8 @@
     "@babel/runtime": "7.5.4",
     "@zero-scripts/config.webpack": "^0.4.0",
     "@zero-scripts/core": "^0.4.0",
-    "babel-loader": "8.0.6"
+    "babel-loader": "8.0.6",
+    "core-js": "3.0.1"
   },
   "devDependencies": {
     "@zero-scripts/ts-config": "^0.4.0"

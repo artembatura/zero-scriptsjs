@@ -1,0 +1,23 @@
+{
+  "extends": "@zero-scripts/ts-config",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "build"
+  },
+  "references": [
+    {
+      "path": "../core"
+    },
+    {
+      "path": "../preset.webpack-spa"
+    },
+    { "path": "../extension.webpack-babel.react" },
+    {
+      "path": "../extension.webpack-css"
+    },
+    { "path": "../extension.webpack-eslint.react" },
+    {
+      "path": "../extension.webpack-pwa"
+    }
+  ]
+}

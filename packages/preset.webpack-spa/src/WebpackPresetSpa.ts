@@ -8,8 +8,8 @@ import { WebpackConfig } from '@zero-scripts/config.webpack';
 import { AbstractPreset } from '@zero-scripts/core';
 
 export class WebpackPresetSpa extends AbstractPreset {
-  public constructor() {
-    super(['@zero-scripts/extension.webpack-spa']);
+  public constructor(defaultExtensions: string[] = []) {
+    super(['@zero-scripts/extension.webpack-spa', ...defaultExtensions]);
 
     this.scripts.set('start', async ({ options }) => {
       process.env.NODE_ENV = 'development';

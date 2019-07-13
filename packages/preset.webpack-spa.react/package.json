@@ -1,7 +1,6 @@
 {
-  "name": "@zero-scripts/extension.webpack-eslint.react",
+  "name": "@zero-scripts/preset.webpack-spa.react",
   "version": "0.4.0",
-  "description": "Adds processing JavaScript code with ESLint. With rules for React/JSX",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -17,16 +16,19 @@
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
+    "bin",
     "build"
   ],
+  "bin": {
+    "webpack-react": "./bin/cli.js"
+  },
   "dependencies": {
     "@zero-scripts/core": "^0.4.0",
-    "@zero-scripts/extension.webpack-eslint": "^0.4.0",
-    "eslint-config-react-app-fresh": "4.0.2",
-    "eslint-plugin-flowtype": "3.11.1",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.2",
-    "eslint-plugin-react-hooks": "1.7.0-alpha.0"
+    "@zero-scripts/extension.webpack-babel.react": "^0.4.0",
+    "@zero-scripts/extension.webpack-css": "^0.4.0",
+    "@zero-scripts/extension.webpack-eslint.react": "^0.4.0",
+    "@zero-scripts/extension.webpack-pwa": "^0.4.0",
+    "@zero-scripts/preset.webpack-spa": "^0.4.0"
   },
   "devDependencies": {
     "@zero-scripts/ts-config": "^0.4.0"
@@ -35,12 +37,13 @@
     "access": "public"
   },
   "keywords": [
-    "webpack",
-    "config",
     "zero-scripts",
-    "extension",
+    "webpack",
+    "preset",
+    "@zero-scripts/preset.webpack-spa.react",
+    "babel",
     "eslint",
-    "react",
-    "@zero-scripts/config.webpack"
+    "pwa",
+    "css"
   ]
 }

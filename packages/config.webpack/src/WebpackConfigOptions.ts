@@ -42,7 +42,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer {
     ],
     ['useTypescript']
   )
-  public readonly moduleFileExtensions: string[] = ['.json', '.js'];
+  public readonly moduleFileExtensions: string[] = ['.json', '.js', '.mjs'];
 
   @Option<WebpackConfigOptions, 'jsFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies: { useTypescript } }) => [
@@ -52,7 +52,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer {
     ],
     ['useTypescript']
   )
-  public readonly jsFileExtensions: string[] = ['js'];
+  public readonly jsFileExtensions: string[] = ['js', 'mjs'];
 
   @Option<WebpackConfigOptions, 'isDev'>()
   public isDev: boolean = false;
