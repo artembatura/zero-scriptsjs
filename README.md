@@ -51,6 +51,7 @@ Package | What adds
 [extension.webpack-eslint](packages/extension.webpack-eslint) | Processing JavaScript code with ESLint
 [extension.webpack-eslint.react](packages/extension.webpack-eslint.react) | With React/JSX rules. Inherited from `extension.webpack-eslint`
 [extension.webpack-pwa](packages/extension.webpack-pwa) | PWA capabilities
+[extension.webpack-spa](packages/extension.webpack-spa) | SPA capabilities
 
 #### Configs
 
@@ -59,8 +60,6 @@ Package | Configuration for
 [config.webpack](packages/config.webpack) | Webpack 
 
 ## [Comparison](COMPARISON.md) with alternatives
-
-## [Contributing](CONTRIBUTING.md)
 
 ## License
 
