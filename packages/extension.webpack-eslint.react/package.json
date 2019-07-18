@@ -23,7 +23,7 @@
     "@zero-scripts/core": "^0.4.0",
     "@zero-scripts/extension.webpack-eslint": "^0.4.0",
     "eslint-config-react-app-fresh": "4.0.2",
-    "eslint-plugin-flowtype": "3.12.0",
+    "eslint-plugin-flowtype": "3.12.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.2",
     "eslint-plugin-react-hooks": "1.7.0-alpha.0"
