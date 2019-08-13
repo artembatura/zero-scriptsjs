@@ -2,11 +2,9 @@ container:
   image: node:alpine
 
 test_task:
-  depends_on:
-    - build
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat yarn.lock
-    populate_script: yarn install
+    populate_script: yarn
   build_script: yarn compile
   test_script: yarn test
