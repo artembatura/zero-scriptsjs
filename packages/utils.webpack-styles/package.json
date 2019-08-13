@@ -25,7 +25,7 @@
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.7.0",
-    "style-loader": "0.23.1"
+    "style-loader": "1.0.0"
   },
   "devDependencies": {
     "@types/loader-utils": "1.1.3",
