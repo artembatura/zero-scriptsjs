@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/artemirq/zero-scripts" target="blank">
-    <img src="https://svgshare.com/i/A_0.svg" width="320" alt="Zero Scripts Logo" />
+    <img width="296" alt="Zero Scripts Logo" src="https://user-images.githubusercontent.com/17342159/63062152-7f68f180-bf00-11e9-9da5-f02c66134533.png">
   </a>
 </p>
 
