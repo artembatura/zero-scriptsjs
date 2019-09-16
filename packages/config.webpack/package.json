@@ -22,7 +22,7 @@
   "dependencies": {
     "@zero-scripts/core": "^0.4.0",
     "file-loader": "4.2.0",
-    "terser-webpack-plugin": "2.0.0",
+    "terser-webpack-plugin": "2.1.0",
     "webpack-assets-manifest": "3.1.1",
     "hot-accept-webpack-plugin": "1.1.1"
   },
