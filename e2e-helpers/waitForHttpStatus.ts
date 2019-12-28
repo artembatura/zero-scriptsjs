@@ -1,38 +1,56 @@
 import { request } from 'http';
 
-export async function waitForHttpStatus({
-  host,
-  port,
-  timeout = 100,
-  method: requestMethod = 'GET',
-  expectedStatusCode = 200,
-  canContinue = () => true
-}: {
+type FuncParams = {
   host: string;
   port: number;
+  interval?: number;
   timeout?: number;
   method?: string;
   expectedStatusCode?: number;
   canContinue?: () => boolean;
-}): Promise<void> {
-  const retry = () => setTimeout(main, timeout);
+};
 
-  function main() {
-    const req = request({ port, host, method: requestMethod }, response => {
-      if (response.statusCode === expectedStatusCode) {
-        return Promise.resolve();
+export function waitForHttpStatus({
+  host,
+  port,
+  interval = 150,
+  timeout = 15000,
+  method: requestMethod = 'GET',
+  expectedStatusCode = 200,
+  canContinue = () => true
+}: FuncParams): Promise<void> {
+  return new Promise((resolve, reject) => {
+    let attemptsCount = 0;
+
+    function main(retryFn: () => void) {
+      attemptsCount++;
+
+      const req = request({ port, host, method: requestMethod }, response => {
+        if (response.statusCode === expectedStatusCode) {
+          return resolve();
+        }
+
+        if (!canContinue()) {
+          return reject();
+        }
+
+        retryFn();
+      });
+
+      req.on('error', retryFn);
+      req.end();
+    }
+
+    const retry = () => {
+      if (attemptsCount * interval >= timeout) {
+        throw new Error(
+          'Timeout Http exception. Please, check that command is running correctly'
+        );
       }
 
-      if (!canContinue()) {
-        return Promise.reject();
-      }
+      setTimeout(main.bind(null, retry), interval);
+    };
 
-      retry();
-    });
-
-    req.on('error', retry);
-    req.end();
-  }
-
-  main();
+    main(retry);
+  });
 }

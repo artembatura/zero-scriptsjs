@@ -29,6 +29,7 @@ export class ConfigModification<
       this.path,
       this.createNewValue(getValue(target, this.path), options)
     );
+
     return this;
   }
 
@@ -60,9 +61,7 @@ export class ConfigModification<
 
         default:
           throw new Error(
-            `[${
-              this.constructor.name
-            }]: Insert position '${position}' doesn't exists`
+            `[${this.constructor.name}]: Insert position '${position}' doesn't exists`
           );
       }
     };

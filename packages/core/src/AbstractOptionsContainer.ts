@@ -1,5 +1,7 @@
 import 'reflect-metadata';
 
+import { SyncHook } from 'tapable';
+
 import { resolve } from './graph';
 import {
   METADATA_OPTIONS,
@@ -7,9 +9,15 @@ import {
   OptionMetadata,
   RootDependencyMetadata
 } from './metadata';
-import { ExtractOptionsFromOptionsContainer } from './types';
+import { ExtractOptions } from './types';
 
-export abstract class AbstractOptionsContainer {
+export abstract class AbstractOptionsContainer<
+  TArgHook extends AbstractOptionsContainer = any
+> {
+  public readonly hooks = {
+    beforeBuild: new SyncHook<TArgHook>(['selfOptionsContainer'])
+  };
+
   public constructor(externalOptions: object) {
     Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
@@ -38,10 +46,12 @@ export abstract class AbstractOptionsContainer {
     });
   }
 
-  public build<T extends ExtractOptionsFromOptionsContainer<this>>(): T {
+  public build<T extends ExtractOptions<this>>(): T {
+    this.hooks.beforeBuild.call(this as any);
+
     // exclude non-option members
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { build: _, ...options } = this;
+    const { build: _, hooks, ...options } = this;
 
     type OptionsMetaArray = (OptionMetadata<T, any> & {
       optionKey: keyof T;
@@ -56,9 +66,7 @@ export abstract class AbstractOptionsContainer {
         )
       ) {
         throw new Error(
-          `Must need to use Option decorator on your ${
-            this.constructor.name
-          } properties`
+          `Must need to use Option decorator on your ${this.constructor.name} properties`
         );
       }
 
@@ -96,7 +104,6 @@ export abstract class AbstractOptionsContainer {
       {} as T
     );
 
-    // apply post modifier
     optionsMeta.forEach(({ optionKey, postModifier }) => {
       if (postModifier) {
         builtOptions[optionKey] = postModifier(

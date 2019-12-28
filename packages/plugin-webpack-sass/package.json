@@ -1,0 +1,48 @@
+{
+  "name": "@zero-scripts/plugin-webpack-sass",
+  "version": "0.4.0",
+  "description": "Adds processing Sass and SCSS files: extracting, minify and add vendor prefixes",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "@types/optimize-css-assets-webpack-plugin": "5.0.0",
+    "@zero-scripts/webpack-config": "^0.4.0",
+    "@zero-scripts/core": "^0.4.0",
+    "@zero-scripts/utils-webpack-styles": "^0.4.0",
+    "mini-css-extract-plugin": "0.8.0",
+    "node-sass": "4.12.0",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "postcss-safe-parser": "4.0.1",
+    "sass-loader": "8.0.0"
+  },
+  "devDependencies": {
+    "@types/mini-css-extract-plugin": "0.8.0",
+    "@zero-scripts/ts-config": "^0.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "extension",
+    "sass",
+    "scss"
+  ]
+}

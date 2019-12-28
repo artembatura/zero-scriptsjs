@@ -1,59 +1,45 @@
+import { SyncHook } from 'tapable';
+
+import { AbstractModificationsContainer } from './AbstractModificationsContainer';
 import { AbstractOptionsContainer } from './AbstractOptionsContainer';
-import { ConfigModification } from './ConfigModification';
-import { ExtractOptionsFromOptionsContainer } from './types';
-import { cloneInstance } from './utils/cloneInstance';
+import { ExtractOptions } from './types';
 
 export abstract class AbstractConfigBuilder<
   TConfig extends Record<string, any>,
-  TOptionsContainer extends AbstractOptionsContainer
+  TOptionsContainer extends AbstractOptionsContainer,
+  TModificationsContainer extends AbstractModificationsContainer<
+    TConfig,
+    TOptionsContainer
+  > = any
 > {
-  public readonly modifications: ConfigModification<TConfig, any, any>[] = [];
-  private readonly _beforeBuild: ((config: this) => any)[] = [];
-  private readonly _afterBuild: ((config: TConfig) => any)[] = [];
+  public readonly hooks = {
+    beforeBuild: new SyncHook<TOptionsContainer>(['optionsContainer']),
+    build: new SyncHook<
+      TModificationsContainer,
+      ExtractOptions<TOptionsContainer>
+    >(['modifications', 'configOptions'])
+  };
 
-  public constructor(public readonly optionsContainer: TOptionsContainer) {}
+  protected constructor(
+    protected readonly optionsContainer: TOptionsContainer,
+    protected readonly modificationsContainer: TModificationsContainer
+  ) {}
 
   public build(
-    createBaseConfig?: (
-      options: ExtractOptionsFromOptionsContainer<TOptionsContainer>
-    ) => TConfig
+    createBaseConfig?: (options: ExtractOptions<TOptionsContainer>) => TConfig
   ): TConfig {
-    this._beforeBuild.forEach(func => {
-      func(this);
-    });
+    this.hooks.beforeBuild.call(this.optionsContainer);
+
     const options = this.optionsContainer.build();
+
     const config: TConfig = createBaseConfig
       ? createBaseConfig(options)
       : ({} as TConfig);
-    const appliedModifications: ConfigModification<TConfig, any, any>[] = [];
-    this.modifications.forEach(modifier => {
-      if (
-        !modifier.id ||
-        !appliedModifications.some(
-          appliedModifier =>
-            Boolean(appliedModifier.id) && appliedModifier.id === modifier.id
-        )
-      ) {
-        appliedModifications.push(modifier.apply(config, options));
-      }
-    });
-    this._afterBuild.forEach(func => {
-      func(config);
-    });
+
+    this.hooks.build.call(this.modificationsContainer, options);
+
+    this.modificationsContainer.applyAll(config, options);
+
     return config;
-  }
-
-  public beforeBuild(func: (config: this) => any) {
-    this._beforeBuild.push(func);
-    return this;
-  }
-
-  public afterBuild(func: (config: TConfig) => any) {
-    this._afterBuild.push(func);
-    return this;
-  }
-
-  public clone(): this {
-    return cloneInstance(this);
   }
 }

@@ -1,16 +1,28 @@
 {
-  "name": "example.react",
+  "name": "example-react",
   "version": "0.4.0",
   "private": true,
   "scripts": {
-    "start": "webpack-react start",
-    "build": "webpack-react build"
+    "start": "run start",
+    "build": "run build"
   },
   "dependencies": {
     "react": "16.8.6",
     "react-dom": "16.8.6"
   },
   "devDependencies": {
-    "@zero-scripts/preset.webpack-spa.react": "^0.4.0"
+    "@zero-scripts/core": "^0.4.0",
+    "@zero-scripts/plugin-webpack-spa": "^0.4.0",
+    "@zero-scripts/plugin-webpack-react": "^0.4.0",
+    "@zero-scripts/plugin-webpack-babel": "^0.4.0",
+    "@zero-scripts/plugin-webpack-css": "^0.4.0"
+  },
+  "zero-scripts": {
+    "workspace": [
+      "@zero-scripts/plugin-webpack-spa",
+      "@zero-scripts/plugin-webpack-react",
+      "@zero-scripts/plugin-webpack-babel",
+      "@zero-scripts/plugin-webpack-css"
+    ]
   }
 }

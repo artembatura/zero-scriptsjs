@@ -32,8 +32,13 @@
       "single",
       { "avoidEscape": true, "allowTemplateLiterals": false }
     ],
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "no-console": "warn",
     "no-dupe-class-members": "off",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
     "import-helpers/order-imports": [
       "warn",
       {

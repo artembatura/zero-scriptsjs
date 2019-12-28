@@ -1,5 +1,5 @@
 container:
-  image: node:alpine
+  image: sitapati/docker-alpine-python-node:latest
 
 test_task:
   node_modules_cache:

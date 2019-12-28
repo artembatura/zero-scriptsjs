@@ -1,2 +1,1 @@
-export * from './parseScript';
-export * from './runCLI';
+export * from './run';

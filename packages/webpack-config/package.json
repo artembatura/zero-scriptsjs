@@ -1,0 +1,47 @@
+{
+  "name": "@zero-scripts/webpack-config",
+  "version": "0.4.0",
+  "description": "Base configuration for Webpack",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "@zero-scripts/core": "^0.4.0",
+    "file-loader": "4.2.0",
+    "terser-webpack-plugin": "2.0.0",
+    "webpack-assets-manifest": "3.1.1",
+    "hot-accept-webpack-plugin": "1.1.1"
+  },
+  "devDependencies": {
+    "@types/webpack": "4.32.1",
+    "@types/webpack-assets-manifest": "3.0.0",
+    "@zero-scripts/ts-config": "^0.4.0",
+    "@types/terser-webpack-plugin": "1.2.1"
+  },
+  "peerDependencies": {
+    "webpack": ">=4.20.0"
+  },
+  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts"
+  ]
+}

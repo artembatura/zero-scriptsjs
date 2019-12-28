@@ -1,5 +1,5 @@
 import { lstatSync } from 'fs';
-import { Package } from 'normalize-package-data';
+import normalizePackageData, { Package } from 'normalize-package-data';
 import { sep } from 'path';
 
 import { Selector } from '../types';
@@ -21,13 +21,13 @@ export function readPackageJson<TPackage extends Package, TSelectedValue>(
   };
 
   if (!lstatSync(path).isDirectory()) {
-    throw new Error(`[readPackageJson]: ${path} isn't directory`);
+    throw new Error(`Path "${path}" is not a directory`);
   }
 
   const packageJson = readJson(path + sep + 'package.json', selector);
 
   if (normalize) {
-    require('normalize-package-data')(packageJson);
+    normalizePackageData(packageJson);
   }
 
   return packageJson;
