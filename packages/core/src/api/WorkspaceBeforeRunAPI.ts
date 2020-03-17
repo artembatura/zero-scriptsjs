@@ -3,10 +3,10 @@ import { AbstractPlugin } from '../AbstractPlugin';
 import { Task } from '../Task';
 import { PluginConstructor } from '../types';
 import { AbstractConfigBuilderConstructor } from '../types/AbstractConfigBuilderConstructor';
-import { Workspace } from '../Workspace';
+import { WorkSpace } from '../WorkSpace';
 
 export class WorkspaceBeforeRunAPI {
-  public constructor(private readonly ws: Workspace) {}
+  public constructor(private readonly ws: WorkSpace) {}
 
   public addTask(task: Task<any, any>) {
     if (this.ws.tasks.has(task.name)) {

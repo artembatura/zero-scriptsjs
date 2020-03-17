@@ -34,12 +34,12 @@ export class Task<TOptions extends {}, _TArgs extends string[]> {
     return this;
   }
 
-  public run(args: _TArgs, options: TOptions): void {
+  public run(args: _TArgs, options: TOptions): void | Promise<void> {
     if (!this._handler) {
       throw new Error(`Handler for task ${this.name} is not found`);
     }
 
-    this._handler(args, options);
+    return this._handler(args, options);
   }
 }
 

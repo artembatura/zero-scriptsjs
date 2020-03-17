@@ -6,7 +6,7 @@ export * from './helpers';
 export * from './types';
 export * from './decorators';
 export * from './AbstractPlugin';
-export * from './Workspace';
+export * from './WorkSpace';
 export * from './Task';
 export * from './AbstractModificationsContainer';
 export * from './api';

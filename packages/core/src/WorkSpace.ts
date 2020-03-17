@@ -4,7 +4,7 @@ import { AbstractPlugin } from './AbstractPlugin';
 import { WorkspaceBeforeRunAPI } from './api';
 import { Task } from './Task';
 
-export class Workspace {
+export class WorkSpace {
   public readonly tasks: Map<string, Task<any, any>> = new Map();
   public readonly configBuilderInstances: Map<string, any> = new Map();
   public readonly plugins: AbstractPlugin[] = [];
