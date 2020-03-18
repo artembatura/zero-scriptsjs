@@ -20,16 +20,16 @@
     "build"
   ],
   "dependencies": {
-    "@babel/preset-react": "7.0.0",
+    "@babel/preset-react": "7.8.3",
     "@zero-scripts/core": "^0.4.0",
     "@zero-scripts/plugin-webpack-babel": "^0.4.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "@zero-scripts/plugin-webpack-eslint": "^0.4.0",
-    "eslint-config-react-app": "5.1.0",
-    "eslint-plugin-flowtype": "4.3.0",
+    "eslint-config-react-app": "5.2.0",
+    "eslint-plugin-flowtype": "4.6.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "2.0.1"
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "2.5.0"
   },
   "devDependencies": {
     "@zero-scripts/ts-config": "^0.4.0"

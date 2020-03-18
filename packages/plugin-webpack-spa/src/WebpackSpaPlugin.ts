@@ -55,28 +55,17 @@ export class WebpackSpaPlugin<
           // for e2e tests
           if (options.smokeTest) {
             compiler.hooks.invalid.tap('smokeTest', async () => {
-              setTimeout(() => {
-                process.exit(1);
-              }, 250);
+              process.exit(1);
             });
 
             compiler.hooks.done.tap('smokeTest', async () => {
-              setTimeout(() => {
-                process.exit(0);
-              }, 1500);
+              process.exit(0);
             });
           }
 
           const server: fastify.FastifyInstance = fastify();
 
-          server.use(
-            webpackDevMiddleware(compiler, {
-              stats: config.stats,
-              publicPath: (config.output as webpack.Output)
-                .publicPath as string,
-              logLevel: 'SILENT'
-            })
-          );
+          server.use(webpackDevMiddleware(compiler));
 
           server.use(
             webpackHotMiddleware(compiler, {

@@ -19,23 +19,22 @@ export function waitForHttpStatus({
   expectedStatusCode = 200,
   canContinue = () => true
 }: FuncParams): Promise<void> {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let attemptsCount = 0;
 
     function main(retryFn: () => void) {
       attemptsCount++;
 
-      const req = request({ port, host, method: requestMethod }, response => {
-        if (response.statusCode === expectedStatusCode) {
-          return resolve();
-        }
+      const req = request(
+        { port, host, method: requestMethod, timeout: 300 },
+        response => {
+          if (response.statusCode === expectedStatusCode) {
+            return resolve();
+          }
 
-        if (!canContinue()) {
-          return reject();
+          retryFn();
         }
-
-        retryFn();
-      });
+      );
 
       req.on('error', retryFn);
       req.end();
@@ -46,6 +45,10 @@ export function waitForHttpStatus({
         throw new Error(
           'Timeout Http exception. Please, check that command is running correctly'
         );
+      }
+
+      if (!canContinue()) {
+        return resolve();
       }
 
       setTimeout(main.bind(null, retry), interval);

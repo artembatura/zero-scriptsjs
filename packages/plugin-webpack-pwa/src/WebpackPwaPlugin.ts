@@ -1,4 +1,4 @@
-import WorkboxWebpackPlugin from 'workbox-webpack-plugin';
+import { GenerateSW } from 'workbox-webpack-plugin';
 
 import {
   AbstractPlugin,
@@ -22,12 +22,11 @@ export class WebpackPwaPlugin extends AbstractPlugin<WebpackPwaPluginOptions> {
           modifications.insertPlugin(
             () =>
               !configOptions.isDev
-                ? new WorkboxWebpackPlugin.GenerateSW({
+                ? new GenerateSW({
                     clientsClaim: true,
                     exclude: [/\.map$/, /asset-manifest\.json$/],
-                    importWorkboxFrom: 'cdn',
                     navigateFallback: '/index.html',
-                    navigateFallbackBlacklist: [
+                    navigateFallbackDenylist: [
                       new RegExp('^/_'),
                       new RegExp('/[^/]+\\.[^/]+$')
                     ]

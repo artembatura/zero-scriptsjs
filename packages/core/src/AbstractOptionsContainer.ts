@@ -15,7 +15,7 @@ export abstract class AbstractOptionsContainer<
   TArgHook extends AbstractOptionsContainer = any
 > {
   public readonly hooks = {
-    beforeBuild: new SyncHook<TArgHook>(['selfOptionsContainer'])
+    beforeBuild: new SyncHook<[TArgHook]>(['optionsContainer'])
   };
 
   public constructor(externalOptions: object) {
