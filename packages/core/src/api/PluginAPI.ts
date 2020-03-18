@@ -1,9 +1,9 @@
-import { Workspace } from '../Workspace';
+import { WorkSpace } from '../WorkSpace';
 
 export class PluginAPI {
-  public constructor(private readonly ws: Workspace) {}
+  public constructor(private readonly ws: WorkSpace) {}
 
-  get hooks(): typeof Workspace.prototype.hooks {
+  get hooks(): typeof WorkSpace.prototype.hooks {
     return this.ws.hooks;
   }
 }
