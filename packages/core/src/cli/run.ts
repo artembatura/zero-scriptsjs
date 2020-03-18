@@ -123,8 +123,10 @@ export async function run(argv: string[]): Promise<void> {
       : workFlow.flow
     : cliMeta.args;
 
-  for (const taskLine of taskQueue) {
-    const { _: args, ...options } = mri(taskLine.split(' '));
+  for (const taskString of taskQueue) {
+    const taskArgv = taskString.split(' ');
+
+    const { _: args, ...options } = mri(taskArgv);
     const [taskName, ...restArgs] = args;
 
     const task = workSpaceInstance.tasks.get(taskName);
@@ -136,6 +138,12 @@ export async function run(argv: string[]): Promise<void> {
       );
     }
 
-    await task.run(restArgs, options);
+    const useCommonArgsAndOptions =
+      Object.keys(options).length === 0 && restArgs.length === 0;
+
+    const finalArgs = useCommonArgsAndOptions ? cliMeta.args : restArgs;
+    const finalOptions = useCommonArgsAndOptions ? cliMeta.options : options;
+
+    await task.run(finalArgs, finalOptions);
   }
 }

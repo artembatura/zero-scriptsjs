@@ -13,7 +13,7 @@ interface IOptions {
 }
 
 const defaultOptions = {
-  timeout: 15000,
+  timeout: 30000,
   interval: 150
 };
 
