@@ -1,11 +1,9 @@
 import getPort = require('get-port');
-import { run } from '../../e2e-helpers/run';
 import * as path from 'path';
 
-const workPath = path.resolve(path.join(__dirname, '..'), 'react-typescript');
+import { run } from '../../e2e-helpers/run';
 
-const COMPLETE_START_MESSAGE = /.*Your application is available at .*/;
-const COMPLETE_BUILD_MESSAGE = /.*Your application successfully built and available at .*/;
+const workPath = path.resolve(path.join(__dirname, '..'), 'react-typescript');
 
 describe('example:react-typescript', () => {
   beforeAll(() => jest.setTimeout(1000 * 60));
@@ -13,32 +11,22 @@ describe('example:react-typescript', () => {
   it('start', async () => {
     const port = await getPort();
 
-    const {
-      messages
-    } = await run(workPath, ['start', '--smokeTest', `--port`, port.toString()], {
-      port
-    });
+    const output = await run(
+      workPath,
+      ['start', '--smokeTest', '--port', port.toString()],
+      {
+        port
+      }
+    );
 
-    const isContainCompleteMsg = messages.some(msg => COMPLETE_START_MESSAGE.test(msg));
-
-    try {
-      expect(isContainCompleteMsg).toBe(true);
-    } catch (e) {
-      throw new Error("Result of stdout: \n" + messages.join("") + "\n doesn't include complete message " + COMPLETE_START_MESSAGE);
-    }
+    expect(output).toContain('Your application is available at');
   });
 
   it('build', async () => {
-    const {
-      messages
-    } = await run(workPath, ['build']);
+    const output = await run(workPath, ['build']);
 
-    const isContainCompleteMsg = messages.some(msg => COMPLETE_BUILD_MESSAGE.test(msg));
-
-    try {
-      expect(isContainCompleteMsg).toBe(true);
-    } catch (e) {
-      throw new Error("Result of stdout: \n" + messages.join("") + "\n doesn't include complete message " + COMPLETE_BUILD_MESSAGE);
-    }
+    expect(output).toContain(
+      'Your application successfully built and available at'
+    );
   });
 });

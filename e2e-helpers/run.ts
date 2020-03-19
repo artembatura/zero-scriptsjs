@@ -1,5 +1,4 @@
-import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
-import processExists from 'process-exists';
+import { spawn } from 'child_process';
 
 import { crossPlatformCommand } from './crossPlatformCommand';
 import { waitForHttpStatus } from './waitForHttpStatus';
@@ -13,7 +12,7 @@ interface IOptions {
 }
 
 const defaultOptions = {
-  timeout: 30000,
+  timeout: 25000,
   interval: 150
 };
 
@@ -21,64 +20,66 @@ export async function run(
   cwd: string,
   args: string[],
   options?: IOptions
-): Promise<{
-  errors: string[];
-  messages: string[];
-  process: ChildProcessWithoutNullStreams;
-}> {
+): Promise<string> {
   const interval = options?.interval || defaultOptions.interval;
   const timeout = options?.timeout || defaultOptions.timeout;
+  let processIsFinished: boolean = false;
 
   const spawnProc = spawn(crossPlatformCommand('yarn'), args, {
     cwd
   });
 
-  const stdoutMessages: string[] = [];
-  const stderrMessages: string[] = [];
+  const output: string[] = [];
 
   spawnProc.stdout &&
     spawnProc.stdout.on('data', data => {
-      stdoutMessages.push(data.toString());
+      output.push(data.toString());
     });
 
   spawnProc.stderr &&
     spawnProc.stderr.on('data', data => {
-      stderrMessages.push(data.toString());
+      output.push(data.toString());
     });
 
+  spawnProc.on('exit', code => {
+    output.push(`Process finished with code ${code}`);
+
+    processIsFinished = true;
+  });
+
+  spawnProc.on('error', error => {
+    output.push(`Caught error: ${error}`);
+
+    processIsFinished = true;
+  });
+
   spawnProc.on('uncaughtException', (err, origin) => {
-    stderrMessages.push(
-      `Caught exception: ${err}\n` + `Exception origin: ${origin}`
-    );
+    output.push(`Caught exception: ${err}\n` + `Exception origin: ${origin}`);
+
+    processIsFinished = true;
   });
 
   if (options?.port) {
     await waitForHttpStatus({
       port: options.port,
       host: 'localhost',
-      canContinue: () => stderrMessages.length === 0,
+      canContinue: () => !processIsFinished,
       timeout,
       interval
     });
-  }
+  } else {
+    for (let attemptsCount = 0; !processIsFinished; attemptsCount++) {
+      await wait(interval);
 
-  for (
-    let attemptsCount = 0;
-    await processExists(spawnProc.pid);
-    attemptsCount++
-  ) {
-    await wait(interval);
-
-    if (attemptsCount * interval >= timeout) {
-      throw new Error(
-        'Timeout exception. Please, check that command is running correctly'
-      );
+      if (attemptsCount * interval >= timeout) {
+        throw new Error(
+          `Timeout exception. Please, check that command "${args.join(
+            ' '
+          )}" is running correctly`
+        );
+      }
     }
   }
 
-  return {
-    process: spawnProc,
-    errors: stderrMessages,
-    messages: stdoutMessages
-  };
+  return output.join('');
 }

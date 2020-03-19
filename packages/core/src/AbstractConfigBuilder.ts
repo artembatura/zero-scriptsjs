@@ -13,10 +13,9 @@ export abstract class AbstractConfigBuilder<
   > = any
 > {
   public readonly hooks = {
-    beforeBuild: new SyncHook<TOptionsContainer>(['optionsContainer']),
+    beforeBuild: new SyncHook<[TOptionsContainer]>(['optionsContainer']),
     build: new SyncHook<
-      TModificationsContainer,
-      ExtractOptions<TOptionsContainer>
+      [TModificationsContainer, ExtractOptions<TOptionsContainer>]
     >(['modifications', 'configOptions'])
   };
 
