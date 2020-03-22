@@ -22,15 +22,15 @@
   "dependencies": {
     "@zero-scripts/core": "^0.4.0",
     "file-loader": "6.0.0",
+    "hot-accept-webpack-plugin": "1.1.1",
     "terser-webpack-plugin": "2.3.5",
-    "webpack-assets-manifest": "3.1.1",
-    "hot-accept-webpack-plugin": "1.1.1"
+    "webpack-assets-manifest": "3.1.1"
   },
   "devDependencies": {
-    "@types/webpack": "4.41.7",
+    "@types/terser-webpack-plugin": "2.2.0",
     "@types/webpack-assets-manifest": "3.0.0",
     "@zero-scripts/ts-config": "^0.4.0",
-    "@types/terser-webpack-plugin": "2.2.0"
+    "@types/webpack": "4.41.8"
   },
   "peerDependencies": {
     "webpack": ">=4.20.0"

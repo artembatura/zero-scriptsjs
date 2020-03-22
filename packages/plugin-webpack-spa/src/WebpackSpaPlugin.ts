@@ -1,6 +1,6 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import fastify from 'fastify';
+import express from 'express';
 import _HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
@@ -62,15 +62,9 @@ export class WebpackSpaPlugin<
             });
           }
 
-          const server: fastify.FastifyInstance = fastify();
+          const server = express();
 
-          server.use(
-            webpackDevMiddleware(compiler, {
-              publicPath: (config.output as webpack.Output)
-                .publicPath as string,
-              logLevel: 'silent'
-            })
-          );
+          server.use(webpackDevMiddleware(compiler));
 
           server.use(
             webpackHotMiddleware(compiler, {
@@ -78,9 +72,7 @@ export class WebpackSpaPlugin<
             })
           );
 
-          await server.listen(parseInt(options.port) || 8080, err => {
-            if (err) throw err;
-          });
+          await server.listen(parseInt(options.port) || 8080);
         }) as any)
       );
 
