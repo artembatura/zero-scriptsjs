@@ -34,7 +34,7 @@
     "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
     "ts-jest": "25.2.1",
-    "typescript": "3.9.0-dev.20200319",
+    "typescript": "3.8.3",
     "utility-types": "3.10.0"
   },
   "husky": {

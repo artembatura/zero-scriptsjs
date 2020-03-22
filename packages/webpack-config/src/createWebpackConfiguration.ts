@@ -87,6 +87,9 @@ export function createWebpackConfiguration({
       // eslint-disable-next-line @typescript-eslint/camelcase
       child_process: 'empty'
     },
-    stats: 'errors-only'
-  };
+    stats: 'errors-only',
+    infrastructureLogging: {
+      level: 'error'
+    }
+  } /* TODO: remove this when new types is out https://github.com/webpack/webpack/blob/master/declarations/WebpackOptions.d.ts */ as Configuration;
 }
