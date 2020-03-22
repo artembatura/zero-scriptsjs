@@ -3,7 +3,6 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import fastify from 'fastify';
 import _HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -65,7 +64,13 @@ export class WebpackSpaPlugin<
 
           const server: fastify.FastifyInstance = fastify();
 
-          server.use(webpackDevMiddleware(compiler));
+          server.use(
+            webpackDevMiddleware(compiler, {
+              publicPath: (config.output as webpack.Output)
+                .publicPath as string,
+              logLevel: 'silent'
+            })
+          );
 
           server.use(
             webpackHotMiddleware(compiler, {
@@ -102,7 +107,7 @@ export class WebpackSpaPlugin<
       webpackConfigBuilder.hooks.build.tap(
         'WebpackSpaPlugin',
         (modifications, { isDev, paths }) => {
-          if (isDev) {
+          if (!isDev) {
             modifications.insertPlugin(() => new CleanWebpackPlugin());
 
             modifications.insertPlugin(
@@ -121,11 +126,9 @@ export class WebpackSpaPlugin<
                 new FriendlyErrorsPlugin({
                   compilationSuccessInfo: {
                     messages: [
-                      'Your application is available at http://localhost:8080'
-                    ],
-                    notes: [
-                      'The development build is not optimized',
-                      'To create a production build, run `build` script'
+                      `Your application successfully built and available at ${paths.build
+                        .split(path.sep)
+                        .pop()} folder`
                     ]
                   }
                 })
@@ -136,44 +139,39 @@ export class WebpackSpaPlugin<
                 new FriendlyErrorsPlugin({
                   compilationSuccessInfo: {
                     messages: [
-                      `Your application successfully built and available at ${paths.build
-                        .split(path.sep)
-                        .pop()} folder`
+                      'Your application is available at http://localhost:8080'
+                    ],
+                    notes: [
+                      'The development build is not optimized',
+                      'To create a production build, run `build` script'
                     ]
                   }
                 })
             );
           }
 
-          modifications
-            .insertPlugin(
-              () =>
-                new HtmlWebpackPlugin({
-                  inject: true,
-                  template: paths.indexHtml,
-                  minify: !isDev
-                    ? {
-                        removeComments: true,
-                        collapseWhitespace: true,
-                        removeRedundantAttributes: true,
-                        useShortDoctype: true,
-                        removeEmptyAttributes: true,
-                        removeStyleLinkTypeAttributes: true,
-                        keepClosingSlash: true,
-                        minifyJS: true,
-                        minifyCSS: true,
-                        minifyURLs: true
-                      }
-                    : false
-                }),
-              InsertPos.Start
-            )
-            .insertPlugin(
-              () =>
-                new ScriptExtHtmlWebpackPlugin({
-                  module: /.*.m?js/gm
-                })
-            );
+          modifications.insertPlugin(
+            () =>
+              new HtmlWebpackPlugin({
+                inject: true,
+                template: paths.indexHtml,
+                minify: !isDev
+                  ? {
+                      removeComments: true,
+                      collapseWhitespace: true,
+                      removeRedundantAttributes: true,
+                      useShortDoctype: true,
+                      removeEmptyAttributes: true,
+                      removeStyleLinkTypeAttributes: true,
+                      keepClosingSlash: true,
+                      minifyJS: true,
+                      minifyCSS: true,
+                      minifyURLs: true
+                    }
+                  : false
+              }),
+            InsertPos.Start
+          );
         }
       );
     });

@@ -19,25 +19,23 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/webpack-config": "^0.4.0",
+    "@artemir/friendly-errors-webpack-plugin": "1.8.0",
     "@zero-scripts/core": "^0.4.0",
+    "@zero-scripts/webpack-config": "^0.4.0",
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "5.1.1",
-    "html-webpack-plugin": "4.0.0-beta.14",
-    "@artemir/friendly-errors-webpack-plugin": "1.8.0",
-    "script-ext-html-webpack-plugin": "2.1.4",
     "fastify": "2.12.1",
+    "html-webpack-plugin": "4.0.0-beta.14",
     "webpack": "4.42.0",
-    "webpack-dev-middleware": "4.0.0-rc.1",
+    "webpack-dev-middleware": "3.7.2",
     "webpack-hot-middleware": "2.25.0"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.4.0",
     "@types/clean-webpack-plugin": "0.1.3",
     "@types/copy-webpack-plugin": "5.0.0",
-    "@types/script-ext-html-webpack-plugin": "2.1.1",
     "@types/webpack-dev-middleware": "3.7.0",
-    "@types/webpack-hot-middleware": "2.25.0"
+    "@types/webpack-hot-middleware": "2.25.0",
+    "@zero-scripts/ts-config": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"

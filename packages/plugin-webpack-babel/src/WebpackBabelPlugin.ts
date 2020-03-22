@@ -35,11 +35,11 @@ export class WebpackBabelPlugin<
                       [
                         '@babel/preset-env',
                         {
-                          loose: true,
                           modules: false,
                           targets: { esmodules: true },
-                          useBuiltIns: 'usage',
-                          corejs: '3'
+                          useBuiltIns: 'entry',
+                          corejs: 3,
+                          exclude: ['transform-typeof-symbol']
                         }
                       ],
                       useTypescript && '@babel/preset-typescript',
