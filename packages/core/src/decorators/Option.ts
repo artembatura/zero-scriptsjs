@@ -11,7 +11,7 @@ import {
 export function Option<
   T,
   TOption extends keyof T,
-  TDependency extends keyof T & string | undefined = undefined
+  TDependency extends (keyof T & string) | undefined = undefined
 >(
   getValue?: (data: {
     dependencies: TDependency extends keyof T
