@@ -1,7 +1,7 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import express from 'express';
-import _HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -17,9 +17,6 @@ import {
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackSpaPluginOptions } from './WebpackSpaPluginOptions';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const HtmlWebpackPlugin = _HtmlWebpackPlugin as any;
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
@@ -76,12 +73,6 @@ export class WebpackSpaPlugin<
         }) as any)
       );
 
-      /**
-       * .addTask(() => {
-       *   ...
-       * }, new TaskParameters())
-       */
-
       api.addTask(
         new Task('build').handle(() => {
           process.env.NODE_ENV = 'production';
@@ -100,68 +91,64 @@ export class WebpackSpaPlugin<
         'WebpackSpaPlugin',
         (modifications, { isDev, paths }) => {
           if (!isDev) {
-            modifications.insertPlugin(() => new CleanWebpackPlugin());
+            modifications.insertPlugin(new CleanWebpackPlugin());
 
             modifications.insertPlugin(
-              () =>
-                new CopyWebpackPlugin([
-                  {
-                    from: paths.publicPath,
-                    to: paths.build,
-                    ignore: [paths.indexHtml]
-                  }
-                ])
+              new CopyWebpackPlugin([
+                {
+                  from: paths.publicPath,
+                  to: paths.build,
+                  ignore: [paths.indexHtml]
+                }
+              ])
             );
 
             modifications.insertPlugin(
-              () =>
-                new FriendlyErrorsPlugin({
-                  compilationSuccessInfo: {
-                    messages: [
-                      `Your application successfully built and available at ${paths.build
-                        .split(path.sep)
-                        .pop()} folder`
-                    ]
-                  }
-                })
+              new FriendlyErrorsPlugin({
+                compilationSuccessInfo: {
+                  messages: [
+                    `Your application successfully built and available at ${paths.build
+                      .split(path.sep)
+                      .pop()} folder`
+                  ]
+                }
+              })
             );
           } else {
             modifications.insertPlugin(
-              () =>
-                new FriendlyErrorsPlugin({
-                  compilationSuccessInfo: {
-                    messages: [
-                      'Your application is available at http://localhost:8080'
-                    ],
-                    notes: [
-                      'The development build is not optimized',
-                      'To create a production build, run `build` script'
-                    ]
-                  }
-                })
+              new FriendlyErrorsPlugin({
+                compilationSuccessInfo: {
+                  messages: [
+                    'Your application is available at http://localhost:8080'
+                  ],
+                  notes: [
+                    'The development build is not optimized',
+                    'To create a production build, run `build` script'
+                  ]
+                }
+              })
             );
           }
 
           modifications.insertPlugin(
-            () =>
-              new HtmlWebpackPlugin({
-                inject: true,
-                template: paths.indexHtml,
-                minify: !isDev
-                  ? {
-                      removeComments: true,
-                      collapseWhitespace: true,
-                      removeRedundantAttributes: true,
-                      useShortDoctype: true,
-                      removeEmptyAttributes: true,
-                      removeStyleLinkTypeAttributes: true,
-                      keepClosingSlash: true,
-                      minifyJS: true,
-                      minifyCSS: true,
-                      minifyURLs: true
-                    }
-                  : false
-              }),
+            new HtmlWebpackPlugin({
+              inject: true,
+              template: paths.indexHtml,
+              minify: !isDev
+                ? {
+                    removeComments: true,
+                    collapseWhitespace: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    keepClosingSlash: true,
+                    minifyJS: true,
+                    minifyCSS: true,
+                    minifyURLs: true
+                  }
+                : false
+            }),
             InsertPos.Start
           );
         }

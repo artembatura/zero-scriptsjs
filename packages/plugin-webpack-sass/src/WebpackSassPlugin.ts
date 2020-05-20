@@ -24,7 +24,7 @@ export class WebpackSassPlugin extends AbstractPlugin<
       webpackConfigBuilder.hooks.build.tap(
         'WebpackSassPlugin',
         (modifications, configOptions) => {
-          modifications.insertModuleRule(() => ({
+          modifications.insertModuleRule({
             test: /\.(scss|sass)$/,
             exclude: sassModuleRegex,
             use: getStyleLoaders(
@@ -35,9 +35,9 @@ export class WebpackSassPlugin extends AbstractPlugin<
               require.resolve('sass-loader')
             )(configOptions),
             sideEffects: true
-          }));
+          });
 
-          modifications.insertModuleRule(() => ({
+          modifications.insertModuleRule({
             test: sassModuleRegex,
             use: getStyleLoaders(
               {
@@ -48,33 +48,31 @@ export class WebpackSassPlugin extends AbstractPlugin<
               },
               require.resolve('sass-loader')
             )(configOptions)
-          }));
+          });
 
-          modifications.insertPlugin(
-            () =>
-              !configOptions.isDev
-                ? new MiniCssExtractPlugin({
-                    filename: 'css/[name].[contenthash:8].css',
-                    chunkFilename: 'css/[name].[contenthash:8].chunk.css'
-                  })
-                : undefined,
-            undefined,
-            'mini-css-extract-plugin'
-          );
+          if (!configOptions.isDev) {
+            modifications.insertPlugin(
+              new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].chunk.css'
+              }),
+              undefined,
+              'mini-css-extract-plugin'
+            );
+          }
 
           modifications.insertMinimizer(
-            () =>
-              new OptimizeCSSAssetsPlugin({
-                cssProcessorOptions: {
-                  parser: safePostCssParser,
-                  map: configOptions.useSourceMap
-                    ? {
-                        inline: false,
-                        annotation: true
-                      }
-                    : false
-                }
-              })
+            new OptimizeCSSAssetsPlugin({
+              cssProcessorOptions: {
+                parser: safePostCssParser,
+                map: configOptions.useSourceMap
+                  ? {
+                      inline: false,
+                      annotation: true
+                    }
+                  : false
+              }
+            })
           );
         }
       );

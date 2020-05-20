@@ -23,7 +23,7 @@ export class WebpackEslintPlugin<
           const pluginOptions = this.optionsContainer.build();
 
           modifications.insertCommonModuleRule(
-            () => ({
+            {
               test: extensionsRegex(jsFileExtensions),
               include: paths.src,
               enforce: 'pre',
@@ -76,7 +76,7 @@ export class WebpackEslintPlugin<
                   ]
                 }
               }
-            }),
+            },
             InsertPos.Start
           );
         }

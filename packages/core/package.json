@@ -25,11 +25,11 @@
   ],
   "dependencies": {
     "get-value": "3.0.1",
-    "mri": "1.1.4",
+    "mri": "1.1.5",
     "normalize-package-data": "2.5.0",
     "reflect-metadata": "0.1.13",
-    "set-value": "3.0.1",
-    "tapable": "2.0.0-beta.10"
+    "set-value": "3.0.2",
+    "tapable": "2.0.0-beta.11"
   },
   "devDependencies": {
     "@types/get-value": "3.0.1",
