@@ -19,21 +19,20 @@ export class WebpackPwaPlugin extends AbstractPlugin<WebpackPwaPluginOptions> {
       webpackConfigBuilder.hooks.build.tap(
         'WebpackPwaPlugin',
         (modifications, configOptions) => {
-          modifications.insertPlugin(
-            () =>
-              !configOptions.isDev
-                ? new GenerateSW({
-                    clientsClaim: true,
-                    exclude: [/\.map$/, /asset-manifest\.json$/],
-                    navigateFallback: '/index.html',
-                    navigateFallbackDenylist: [
-                      new RegExp('^/_'),
-                      new RegExp('/[^/]+\\.[^/]+$')
-                    ]
-                  })
-                : undefined,
-            InsertPos.End
-          );
+          if (!configOptions.isDev) {
+            modifications.insertPlugin(
+              new GenerateSW({
+                clientsClaim: true,
+                exclude: [/\.map$/, /asset-manifest\.json$/],
+                navigateFallback: '/index.html',
+                navigateFallbackDenylist: [
+                  new RegExp('^/_'),
+                  new RegExp('/[^/]+\\.[^/]+$')
+                ]
+              }),
+              InsertPos.End
+            );
+          }
         }
       );
     });

@@ -16,7 +16,7 @@ export class OneOfModification extends ConfigModification<
   public static readonly id: string = 'one-of';
 
   public readonly rules: {
-    getRule: (options: WebpackConfigOptions) => RuleSetRule;
+    rule: RuleSetRule;
     position: InsertPos;
   }[] = [];
 
@@ -36,7 +36,7 @@ export class OneOfModification extends ConfigModification<
 
             return 0;
           })
-          .map(({ getRule }) => getRule(options))
+          .map(ruleMeta => ruleMeta.rule)
           .filter(Boolean) as RuleSetRule[];
 
         return [

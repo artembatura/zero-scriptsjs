@@ -1,11 +1,8 @@
 import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
-import {
-  Configuration,
-  DefinePlugin,
-  HotModuleReplacementPlugin
-} from 'webpack';
+import type { Configuration } from 'webpack';
+import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack';
 import ManifestPlugin from 'webpack-assets-manifest';
 
 import { ExtractOptions } from '@zero-scripts/core';
@@ -91,5 +88,5 @@ export function createWebpackConfiguration({
     infrastructureLogging: {
       level: 'error'
     }
-  } /* TODO: remove this when new types is out https://github.com/webpack/webpack/blob/master/declarations/WebpackOptions.d.ts */ as Configuration;
+  } as Configuration;
 }
