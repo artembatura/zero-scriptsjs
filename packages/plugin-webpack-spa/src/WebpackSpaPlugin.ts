@@ -50,11 +50,11 @@ export class WebpackSpaPlugin<
 
           // for e2e tests
           if (options.smokeTest) {
-            compiler.hooks.invalid.tap('smokeTest', async () => {
+            compiler.hooks.invalid.tap('smokeTest', () => {
               process.exit(1);
             });
 
-            compiler.hooks.done.tap('smokeTest', async () => {
+            compiler.hooks.done.tap('smokeTest', () => {
               process.exit(0);
             });
           }

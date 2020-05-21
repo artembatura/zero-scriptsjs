@@ -19,14 +19,14 @@ describe('example:react', () => {
       }
     );
 
-    expect(output).toContain('Your application is available at ');
+    expect(output).toContain('Your application is available at');
   });
 
   it('build', async () => {
     const output = await run(workPath, ['build']);
 
     expect(output).toContain(
-      'Your application successfully built and available at '
+      'Your application successfully built and available at'
     );
   });
 });

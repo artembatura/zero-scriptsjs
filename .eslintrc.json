@@ -26,10 +26,7 @@
     }
   },
   "rules": {
-    "prettier/prettier": [
-      "warn",
-      { "singleQuote": true, "arrowParens": "avoid", "trailingComma": "none" }
-    ],
+    "prettier/prettier": ["warn"],
     "quotes": [
       "warn",
       "single",
