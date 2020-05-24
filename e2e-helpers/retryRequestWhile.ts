@@ -1,24 +1,23 @@
-import { request } from 'http';
+import { IncomingMessage, request } from 'http';
 
 type FuncParams = {
-  host: string;
-  port: number;
+  port?: number;
   interval?: number;
   timeout?: number;
   method?: string;
-  expectedStatusCode?: number;
-  canContinue?: () => boolean;
+  doWhile: (response: IncomingMessage) => boolean;
 };
 
-export function waitForHttpStatus({
-  host,
-  port,
-  interval = 150,
-  timeout = 15000,
-  method: requestMethod = 'GET',
-  expectedStatusCode = 200,
-  canContinue = () => true
-}: FuncParams): Promise<void> {
+export function retryRequestWhile(
+  host: string,
+  {
+    port,
+    interval = 350,
+    timeout = 3000,
+    method: requestMethod = 'GET',
+    doWhile
+  }: FuncParams
+): Promise<{ status?: number }> {
   return new Promise(resolve => {
     let attemptsCount = 0;
 
@@ -26,10 +25,10 @@ export function waitForHttpStatus({
       attemptsCount++;
 
       const req = request(
-        { port, host, method: requestMethod, timeout: 300 },
+        { port, host, method: requestMethod, timeout: interval - 50 },
         response => {
-          if (response.statusCode === expectedStatusCode) {
-            return resolve();
+          if (!doWhile(response)) {
+            return resolve({ status: response.statusCode });
           }
 
           retryFn();
@@ -45,10 +44,6 @@ export function waitForHttpStatus({
         throw new Error(
           'Timeout Http exception. Please, check that command is running correctly'
         );
-      }
-
-      if (!canContinue()) {
-        return resolve();
       }
 
       setTimeout(main.bind(null, retry), interval);
