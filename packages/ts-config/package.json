@@ -2,7 +2,7 @@
   "name": "@zero-scripts/ts-config",
   "private": true,
   "version": "0.4.0",
-  "description": "Common configuration for building @zero-scripts packages, written in Typescript",
+  "description": "TypeScript config for @zero-scripts packages",
   "main": "tsconfig.json",
   "license": "MIT"
 }

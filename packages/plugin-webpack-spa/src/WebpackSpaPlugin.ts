@@ -24,6 +24,7 @@ const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 type StartTaskOptions = {
   smokeTest: boolean;
   port: string;
+  smokePort: string;
 };
 
 @ReadOptions(WebpackSpaPluginOptions, 'extension.webpack-spa')
@@ -48,28 +49,28 @@ export class WebpackSpaPlugin<
 
           const compiler = webpack([config]);
 
+          const devServer = express();
+
+          devServer.use(webpackDevMiddleware(compiler));
+
+          devServer.use(
+            webpackHotMiddleware(compiler, {
+              log: false
+            })
+          );
+
           // for e2e tests
           if (options.smokeTest) {
             compiler.hooks.invalid.tap('smokeTest', () => {
               process.exit(1);
             });
 
-            compiler.hooks.done.tap('smokeTest', () => {
-              process.exit(0);
+            devServer.get('/terminate-dev-server', () => {
+              process.exit(1);
             });
+
+            devServer.listen(parseInt(options.port) || 8080);
           }
-
-          const server = express();
-
-          server.use(webpackDevMiddleware(compiler));
-
-          server.use(
-            webpackHotMiddleware(compiler, {
-              log: false
-            })
-          );
-
-          await server.listen(parseInt(options.port) || 8080);
         }) as any)
       );
 
