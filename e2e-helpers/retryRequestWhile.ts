@@ -13,7 +13,7 @@ export function retryRequestWhile(
   {
     port,
     interval = 350,
-    timeout = 3000,
+    timeout = 15000,
     method: requestMethod = 'GET',
     doWhile
   }: FuncParams

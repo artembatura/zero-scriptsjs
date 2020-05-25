@@ -13,9 +13,7 @@
     "lint-staged": "lint-staged",
     "test": "jest"
   },
-  "dependencies": {
-    "@nearform/multistream": "^5.0.0-2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/get-port": "4.2.0",
     "@types/jest": "25.2.3",

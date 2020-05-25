@@ -1953,14 +1953,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nearform/multistream@^5.0.0-2":
-  version "5.0.0-2"
-  resolved "https://registry.yarnpkg.com/@nearform/multistream/-/multistream-5.0.0-2.tgz#e7074ae2fe806d68ec6650dee83c25d04d2395cc"
-  integrity sha512-fgLnMSNxxx+DPZtX+P8cak6JxESJ3NvNoi5Y8c4WOePcvW7Ip3wqMB8kxR6fm6oadnPGJn66SWO/omkoKjjDJA==
-  dependencies:
-    once "^1.4.0"
-    readable-stream "^3.4.0"
-
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
@@ -10762,7 +10754,7 @@ read@1, read@~1.0.1:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
-"readable-stream@2 || 3", readable-stream@^3.0.2, readable-stream@^3.1.1, readable-stream@^3.4.0, readable-stream@^3.6.0:
+"readable-stream@2 || 3", readable-stream@^3.0.2, readable-stream@^3.1.1, readable-stream@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
   integrity sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==

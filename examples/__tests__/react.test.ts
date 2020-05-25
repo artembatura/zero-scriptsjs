@@ -9,12 +9,12 @@ import { terminateDevServer } from '../../e2e-helpers/terminateDevServer';
 const workPath = path.resolve(path.join(__dirname, '..'), 'react');
 
 describe('example:react', () => {
-  beforeAll(() => jest.setTimeout(1000 * 60));
+  beforeAll(() => jest.setTimeout(1000 * 45));
 
   it('start', async () => {
     const devServerPort = await getPort();
 
-    const res = run(workPath, [
+    const process = run(workPath, [
       'start',
       '--port',
       devServerPort.toString(),
@@ -22,7 +22,7 @@ describe('example:react', () => {
     ]);
 
     const [output, httpRes] = await Promise.all([
-      readStream(res.outputStream),
+      readStream(process.stdout),
       retryRequestWhile('localhost', {
         port: devServerPort,
         doWhile: res => res.statusCode !== 200
@@ -37,9 +37,9 @@ describe('example:react', () => {
   });
 
   it('build', async () => {
-    const res = run(workPath, ['build']);
+    const process = run(workPath, ['build']);
 
-    const output = await readStream(res.outputStream);
+    const output = await readStream(process.stdout);
 
     expect(output).toContain(
       'Your application successfully built and available at'
