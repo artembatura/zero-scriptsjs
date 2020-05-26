@@ -7,15 +7,15 @@
     "build": "run build"
   },
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@zero-scripts/core": "^0.4.0",
-    "@zero-scripts/plugin-webpack-spa": "^0.4.0",
-    "@zero-scripts/plugin-webpack-react": "^0.4.0",
-    "@zero-scripts/plugin-webpack-babel": "^0.4.0",
-    "@zero-scripts/plugin-webpack-css": "^0.4.0"
+    "@zero-scripts/core": "workspace:^0.4.0",
+    "@zero-scripts/plugin-webpack-babel": "workspace:^0.4.0",
+    "@zero-scripts/plugin-webpack-css": "workspace:^0.4.0",
+    "@zero-scripts/plugin-webpack-react": "workspace:^0.4.0",
+    "@zero-scripts/plugin-webpack-spa": "workspace:^0.4.0"
   },
   "zero-scripts": {
     "workspace": [

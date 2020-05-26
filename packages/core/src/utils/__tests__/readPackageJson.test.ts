@@ -20,7 +20,7 @@ describe('core/utils/readPackageJson', () => {
 
     expect(json).toMatchObject({
       private: true,
-      name: 'root'
+      name: '@zero-scriptsjs/monorepo'
     });
   });
 });

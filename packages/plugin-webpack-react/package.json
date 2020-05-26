@@ -21,18 +21,28 @@
   ],
   "dependencies": {
     "@babel/preset-react": "7.9.4",
-    "@zero-scripts/core": "^0.4.0",
-    "@zero-scripts/plugin-webpack-babel": "^0.4.0",
+    "@zero-scripts/core": "workspace:^0.4.0",
+    "@zero-scripts/plugin-webpack-babel": "workspace:^0.4.0",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:^0.4.0",
+    "@zero-scripts/webpack-config": "workspace:^0.4.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
-    "@zero-scripts/plugin-webpack-eslint": "^0.4.0",
     "eslint-config-react-app": "5.2.1",
-    "eslint-plugin-flowtype": "5.1.0",
+    "eslint-plugin-flowtype": "4.7.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.2"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.4.0"
+    "@zero-scripts/ts-config": "workspace:^0.4.0"
+  },
+  "peerDependencies": {
+    "@babel/core": "7.x",
+    "@typescript-eslint/eslint-plugin": "2.x",
+    "@typescript-eslint/parser": "2.x",
+    "babel-eslint": "10.x",
+    "eslint": "6.x",
+    "eslint-plugin-import": "2.x",
+    "webpack": "4.x"
   },
   "publishConfig": {
     "access": "public"

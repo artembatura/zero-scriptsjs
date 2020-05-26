@@ -1,5 +1,5 @@
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: require.resolve('jest-environment-node'),
   roots: ['packages/', 'examples/'],
   testMatch: ['**/__tests__/*.test.ts'],
   transform: {
