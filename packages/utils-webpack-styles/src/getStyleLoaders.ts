@@ -1,5 +1,3 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 export function getStyleLoaders(cssOptions: any, preprocessor?: string) {
@@ -8,7 +6,7 @@ export function getStyleLoaders(cssOptions: any, preprocessor?: string) {
       isDev
         ? require.resolve('style-loader')
         : {
-            loader: MiniCssExtractPlugin.loader
+            loader: require('mini-css-extract-plugin').loader
           },
       {
         loader: require.resolve('css-loader'),

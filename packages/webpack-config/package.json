@@ -20,7 +20,7 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "^0.4.0",
+    "@zero-scripts/core": "workspace:^0.4.0",
     "file-loader": "6.0.0",
     "hot-accept-webpack-plugin": "1.1.2",
     "terser-webpack-plugin": "3.0.1",
@@ -28,12 +28,12 @@
   },
   "devDependencies": {
     "@types/terser-webpack-plugin": "2.2.0",
+    "@types/webpack": "4.41.13",
     "@types/webpack-assets-manifest": "3.0.1",
-    "@zero-scripts/ts-config": "^0.4.0",
-    "@types/webpack": "4.41.13"
+    "@zero-scripts/ts-config": "workspace:^0.4.0"
   },
   "peerDependencies": {
-    "webpack": ">=4.20.0"
+    "webpack": "4.x"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {

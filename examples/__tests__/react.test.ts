@@ -21,6 +21,10 @@ describe('example:react', () => {
       '--smokeTest'
     ]);
 
+    // process.once('uncaughtException', () => {
+    //
+    // });
+
     const [output, httpRes] = await Promise.all([
       readStream(process.stdout),
       retryRequestWhile('localhost', {
