@@ -22,16 +22,18 @@ export function ReadOptions<TOptionsContainer extends AbstractOptionsContainer>(
   optionsKey: string
 ) {
   return <T extends { new (...args: any[]): any }>(DecoratedClass: T) =>
-    class extends DecoratedClass {
-      constructor(...args: any[]) {
-        const externalOptions = readZeroScriptsOptions(optionsKey);
+    ({
+      [DecoratedClass.name]: class extends DecoratedClass {
+        constructor(...args: any[]) {
+          const externalOptions = readZeroScriptsOptions(optionsKey);
 
-        const [optionsContainerInstance, ...restArgs] =
-          args[0] instanceof AbstractOptionsContainer
-            ? args
-            : [new OptionsContainer(externalOptions), ...args.slice(1)];
+          const [optionsContainerInstance, ...restArgs] =
+            args[0] instanceof AbstractOptionsContainer
+              ? args
+              : [new OptionsContainer(externalOptions), ...args.slice(1)];
 
-        super(optionsContainerInstance, ...restArgs);
+          super(optionsContainerInstance, ...restArgs);
+        }
       }
-    };
+    }[DecoratedClass.name]);
 }

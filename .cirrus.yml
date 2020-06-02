@@ -1,10 +1,10 @@
 container:
-  image: node:alpine
+  image: nikolaik/python-nodejs:python3.5-nodejs14-alpine
 
 test_task:
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat yarn.lock
-    populate_script: yarn
+    populate_script: yarn install
   build_script: yarn compile
   test_script: yarn test
