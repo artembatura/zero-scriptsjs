@@ -23,30 +23,22 @@ export class WebpackPresetSpa extends AbstractPreset {
 
       const compiler = webpack([config]);
 
-      // for e2e tests
-      if (options.smokeTest) {
-        compiler.hooks.invalid.tap('smokeTest', async () => {
-          setTimeout(() => {
-            process.exit(1);
-          }, 350);
-        });
-
-        // compiler.hooks.done.tap('smokeTest', async stats => {
-        //   setTimeout(() => {
-        //     if (stats.hasErrors() || stats.hasWarnings()) {
-        //       process.exit(1);
-        //     } else {
-        //       process.exit(0);
-        //     }
-        //   }, 350);
-        // });
-      }
-
       const server: fastify.FastifyInstance<
         Server,
         IncomingMessage,
         ServerResponse
       > = fastify();
+
+      // for e2e tests
+      if (options.smokeTest) {
+        compiler.hooks.invalid.tap('smokeTest', () => {
+          process.exit(1);
+        });
+
+        server.get('/terminate-dev-server', () => {
+          process.exit(1);
+        });
+      }
 
       server.use(
         webpackDevMiddleware(compiler, {
