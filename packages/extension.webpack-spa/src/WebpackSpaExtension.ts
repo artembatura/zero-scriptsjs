@@ -46,7 +46,7 @@ export class WebpackSpaExtension<
           ? new FriendlyErrorsPlugin({
               compilationSuccessInfo: {
                 messages: [
-                  'You application is available at http://localhost:8080'
+                  'Your application is available at http://localhost:8080'
                 ],
                 notes: [
                   'The development build is not optimized',
@@ -57,7 +57,7 @@ export class WebpackSpaExtension<
           : new FriendlyErrorsPlugin({
               compilationSuccessInfo: {
                 messages: [
-                  `You application successfully built and available at ${paths.build
+                  `Your application successfully built and available at ${paths.build
                     .split(path.sep)
                     .pop()} folder`
                 ]
