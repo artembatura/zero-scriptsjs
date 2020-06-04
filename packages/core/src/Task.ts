@@ -42,11 +42,3 @@ export class Task<TOptions extends {}, _TArgs extends string[]> {
     return this._handler(args, options);
   }
 }
-
-// replace with factory
-// const task = new Task('task-0')
-// .expectArguments(new StringRule().maxLength(1), new StringRule())
-// .expectOption('option-0', new StringRule())
-// .handle(([arg0], options) => {});
-
-// task.run(['abc', 'ac'], { 'option-0': '123' });

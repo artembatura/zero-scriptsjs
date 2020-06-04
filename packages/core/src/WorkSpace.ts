@@ -13,24 +13,4 @@ export class WorkSpace {
   };
 
   public constructor(public readonly name: string) {}
-
-  // private readonly rootDepNode: DependencyNode = new DependencyNode('root');
-  // private readonly beforeApplyMap: Map<string, Function> = new Map();
-
-  // public beforeApply<
-  //   T extends PluginConstructor,
-  //   TPlugin = T extends PluginConstructor<infer R> ? R : never
-  // >(PluginClass: T, id: string, fnCallback: (plugin: TPlugin) => void): void {
-  //   const dependencyNode =
-  //     findRecursive(this.rootDepNode, PluginClass.name) ||
-  //     this.rootDepNode.addOrGetEdge(PluginClass.name);
-  //
-  //   const callbackId = `${PluginClass.name}/${id}`;
-  //
-  //   this.beforeApplyMap.set(callbackId, fnCallback);
-  //
-  //   dependencyNode.addOrGetEdge(callbackId);
-  //
-  //   return undefined;
-  // }
 }

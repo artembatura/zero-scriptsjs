@@ -9,7 +9,7 @@ import { terminateDevServer } from '../../e2e-helpers/terminateDevServer';
 const workPath = path.resolve(path.join(__dirname, '..'), 'react');
 
 describe('example:react', () => {
-  beforeAll(() => jest.setTimeout(1000 * 45));
+  beforeAll(() => jest.setTimeout(1000 * 120));
 
   it('start', async () => {
     const devServerPort = await getPort();
