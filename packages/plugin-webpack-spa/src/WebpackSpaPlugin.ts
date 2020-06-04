@@ -103,33 +103,31 @@ export class WebpackSpaPlugin<
                 }
               ])
             );
-
-            modifications.insertPlugin(
-              new FriendlyErrorsPlugin({
-                compilationSuccessInfo: {
-                  messages: [
-                    `Your application successfully built and available at ${paths.build
-                      .split(path.sep)
-                      .pop()} folder`
-                  ]
-                }
-              })
-            );
-          } else {
-            modifications.insertPlugin(
-              new FriendlyErrorsPlugin({
-                compilationSuccessInfo: {
-                  messages: [
-                    'Your application is available at http://localhost:8080'
-                  ],
-                  notes: [
-                    'The development build is not optimized',
-                    'To create a production build, run `build` script'
-                  ]
-                }
-              })
-            );
           }
+
+          modifications.insertPlugin(
+            isDev
+              ? new FriendlyErrorsPlugin({
+                  compilationSuccessInfo: {
+                    messages: [
+                      'Your application is available at http://localhost:8080'
+                    ],
+                    notes: [
+                      'The development build is not optimized',
+                      'To create a production build, run `build` script'
+                    ]
+                  }
+                })
+              : new FriendlyErrorsPlugin({
+                  compilationSuccessInfo: {
+                    messages: [
+                      `Your application successfully built and available at ${paths.build
+                        .split(path.sep)
+                        .pop()} folder`
+                    ]
+                  }
+                })
+          );
 
           modifications.insertPlugin(
             new HtmlWebpackPlugin({
