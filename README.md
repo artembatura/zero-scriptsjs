@@ -7,6 +7,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/artemirq/zero-scripts/pulls)
 
 - [About](#about)
+- [Why?](#why)
 - [Highlights](#highlights)
 - [Guide](#guide)
   - [Getting started with React](#getting-started-with-react)
@@ -23,7 +24,7 @@
 
 # About
 
-The main idea is resolve the inconvenience on using popular tools. Supporting and extending large and complex configurations it is a chore work. For example, Webpack doesn't ship out-of-box presets for any project types.
+This project is attempt to combine task manager, configuration management facilities and plugin system into one solution to simplify configuring development processes on building applications.
 
 # Highlights
 
@@ -35,15 +36,25 @@ Make things faster without worrying about configuration. We ship a reasonably go
 
 - ### ⚡ Extensible & Modular
 
-Extensions is a ["pluggable"](packages/core#process-of-loading-extensions) packages. To add a feature you need only add package to `devDependencies`.
+Package plugin system. Extensions is a ["pluggable"](packages/core#process-of-loading-extensions) packages. To add a feature you need only add package to `devDependencies`.
 
-_Unused packages will not be installed, because you choose what you needed._
+_Most unused packages will not be installed, because you choose what you needed._
 
 ---
 
 - ### ⚙ Customizable
 
 Extensions have a [set of options](packages/core#passing-options). It allows modifying configurations for your requirements.
+
+# Why?
+
+**Most of popular bundlers doesn't ship configuration management facilities**. As result supporting and extending complex configurations it is a chore work in every project.
+
+We know popular tools which solve this problem. For example CRA, Vue CLI and other. **These tools was created to simplify development only for specific projects and do not combine the best among themselves**.
+
+Also, CRA is not extensible out of the box and ship everything even if you don't need some features. You can eject CRA, but you will lose all advantages, and you will need to support configuration yourself.
+
+# How it works?
 
 # Guide
 
@@ -215,6 +226,12 @@ yarn add @zero-scripts/preset.webpack-pwa
 npm i @zero-scripts/preset.webpack-pwa
 ```
 
+# What's next?
+
+Currently, we have some plans to ship more presets and extensions for development server-side Node.js applications and Node.js/browser libraries.
+
+If you like this project or you have some opinion, you can share it with us!
+
 # Comparison with alternatives
 
 | Project          | Modular                  | Zero Configuration       | Extensible               | Universal                | Customizable             | Scaffold Applications    |
@@ -225,11 +242,11 @@ npm i @zero-scripts/preset.webpack-pwa
 
 ## Features explanation
 
-- **Modular**. Availability to install **only** used packages. Most of the popular alternatives install all dependencies no matter what you use. For example, CRA ships with ESLint/Babel/etc without the possibility of choosing what you needed.
+- **Modular**. Availability to install only used packages. Most of the popular alternatives install all dependencies no matter what you use. For example, CRA ships with ESLint/Babel/etc without the possibility of choosing what you needed.
 - **Zero Configuration**. Project ships a reasonably good configuration at default. No additional configuration needed for the most projects.
 - **Extensible**. Easy to add a required features by installing additional packages. Or extend it locally with special API.
-- **Universal**. Project tied to concrete tool. For example, you cannot build ecosystem with Neutrino which will use Rollup as a build tool.
-- **Customizable**. Easy to modify some parts of tool configuration by passing options. For example, you need to add additional Babel plugin/loader to Webpack configuration.
+- **Universal**. Project tied to concrete tool. For example, you cannot build ecosystem with Neutrino which will use Rollup as a bundler tool.
+- **Customizable**. Easy to modify some parts of bundler configuration by passing options. For example, you need to add additional Babel plugin/loader to Webpack configuration.
 
 # License
 
