@@ -7,11 +7,12 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/artemirq/zero-scripts/pulls)
 
 - [About](#about)
-- [Why?](#why)
 - [Highlights](#highlights)
-- [Guide](#guide)
-  - [Getting started with React](#getting-started-with-react)
-  - [Getting started with SPA](#getting-started-with-spa)
+- [Why?](#why)
+- [How it works?](#how-it-works)
+- [Getting started](#getting-started)
+  - **[Getting started with React](#getting-started-with-react)**
+  - **[Getting started with SPA](#getting-started-with-spa)**
     - [Adding Babel](#adding-babel)
     - [Adding Babel (React)](#adding-babel-react)
     - [Adding ESLint](#adding-eslint)
@@ -24,7 +25,9 @@
 
 # About
 
-This project is attempt to combine task manager, configuration management facilities and plugin system into one solution to simplify configuring development processes on building applications.
+This project is attempt to combine task manager, configuration management facilities and extension system into one solution to simplify configuring development processes on building applications.
+
+We provide an ecosystem of ready packages for development modern JavaScript projects (based on Webpack, but not limited to it).
 
 # Highlights
 
@@ -36,33 +39,80 @@ Make things faster without worrying about configuration. We ship a reasonably go
 
 - ### ⚡ Extensible & Modular
 
-Package plugin system. Extensions is a ["pluggable"](packages/core#process-of-loading-extensions) packages. To add a feature you need only add package to `devDependencies`.
+Extensions is a ["pluggable"](#process-of-loading-extensions) packages. To add a feature you need only add package to `devDependencies`.
 
-_Most unused packages will not be installed, because you choose what you needed._
+_Big part of unused packages will not be installed, because you choose what you needed._
 
 ---
 
 - ### ⚙ Customizable
 
-Extensions have a [set of options](packages/core#passing-options). It allows modifying configurations for your requirements.
+Extensions and configurations have own [set of options](#passing-options). It's allow modifying everything for your requirements.
 
 # Why?
 
 **Most of popular bundlers doesn't ship configuration management facilities**. As result supporting and extending complex configurations it is a chore work in every project.
 
-We know popular tools which solve this problem. For example CRA, Vue CLI and other. **These tools was created to simplify development only for specific projects and do not combine the best among themselves**.
+We know popular tools which solve this problem: CRA, Vue CLI and other. **Projects like this was created to simplify development only for specific projects and do not combine the best among themselves**.
 
-Also, CRA is not extensible out of the box and ship everything even if you don't need some features. You can eject CRA, but you will lose all advantages, and you will need to support configuration yourself.
+CRA is not extensible out of the box and ship all features even if you don't need. You can eject CRA, but you will lose all advantages, and you will need to support configuration yourself.
 
 # How it works?
 
-# Guide
+**Preset** is a base package which contain scripts and [loads](#process-of-loading-extensions) extensions.
 
-At start, you need to choose basic preset, which contain necessary scripts. Then you can add extensions, which adds necessary functions for your project.
+**Extension** is an additional package, which complements preset and can add more scripts or extend a bundler configuration.
+
+## Process of loading extensions
+
+Extensions will be all packages, which defined in `devDependencies` and match pattern `extension\\.[a-z]*`.
+
+These packages will be automatically loaded and applied by preset.
+
+### Example
+
+Adding Babel
+
+```diff
+{
+   "devDependencies": {
+      "@zero-scripts/preset.webpack-spa": "^0.5.0",
++      "@zero-scripts/extension.webpack-babel": "^0.5.0"
+   }
+}
+```
+
+## Passing options
+
+You can pass options to config or extension in package.json file using `zero-scripts` field
+
+### Example
+
+Adding Linaria Babel preset
+
+```diff
+{
+   "devDependencies": {
+      "@zero-scripts/preset.webpack-spa": "^0.5.0",
+      "@zero-scripts/extension.webpack-babel": "^0.5.0"
+   },
++   "zero-scripts": {
++      "@zero-scripts/extension.webpack-babel": {
++         "presets": [
++            "linaria/babel"
++         ]
++      }
++   }
+}
+```
+
+# Getting Started
+
+At start, you need to choose basic preset, which contain necessary scripts. Then you can install extensions, which adds extra features for your project.
 
 ## Getting started with React
 
-This preset includes all required features for most React projects.<br>
+This preset includes all required features for the most React projects.<br>
 
 This is the fastest way to get started with React, but you can go with more [flexible way](#getting-started-with-spa) and choose the necessary functions yourself.
 
@@ -94,6 +144,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 
 Your app is ready to be deployed.
+
+#### [`More info`](./packages/preset.webpack-spa.react)
 
 ## Getting started with SPA
 
@@ -128,109 +180,119 @@ The build is minified and the filenames include the hashes.<br>
 
 Your app is ready to be deployed.
 
+#### [`More info`](./packages/preset.webpack-spa)
+
 ### Adding Babel
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-babel
+yarn add @zero-scripts/extension.webpack-babel
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-babel
+npm i @zero-scripts/extension.webpack-babel
 ```
+
+#### [`More info`](./packages/extension.webpack-babel)
 
 ### Adding Babel (React)
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-babel.react
+yarn add @zero-scripts/extension.webpack-babel.react
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-babel.react
+npm i @zero-scripts/extension.webpack-babel.react
 ```
+
+#### [`More info`](./packages/extension.webpack-babel.react)
 
 ### Adding ESLint
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-eslint
+yarn add @zero-scripts/extension.webpack-eslint
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-eslint
+npm i @zero-scripts/extension.webpack-eslint
 ```
+
+#### [`More info`](./packages/extension.webpack-eslint)
 
 ### Adding ESLint (React)
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-eslint.react
+yarn add @zero-scripts/extension.webpack-eslint.react
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-eslint.react
+npm i @zero-scripts/extension.webpack-eslint.react
 ```
+
+#### [`More info`](./packages/extension.webpack-eslint.react)
 
 ### Adding CSS
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-css
+yarn add @zero-scripts/extension.webpack-css
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-css
+npm i @zero-scripts/extension.webpack-css
 ```
+
+#### [`More info`](./packages/extension.webpack-css)
 
 ### Adding Sass
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-sass
+yarn add @zero-scripts/extension.webpack-sass
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-sass
+npm i @zero-scripts/extension.webpack-sass
 ```
+
+#### [`More info`](./packages/extension.webpack-sass)
 
 ### Adding PWA capabilities
 
 #### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-pwa
+yarn add @zero-scripts/extension.webpack-pwa
 ```
 
 #### npm
 
 ```
-npm i @zero-scripts/preset.webpack-pwa
+npm i @zero-scripts/extension.webpack-pwa
 ```
 
-# What's next?
-
-Currently, we have some plans to ship more presets and extensions for development server-side Node.js applications and Node.js/browser libraries.
-
-If you like this project or you have some opinion, you can share it with us!
+#### [`More info`](./packages/extension.webpack-pwa)
 
 # Comparison with alternatives
 
