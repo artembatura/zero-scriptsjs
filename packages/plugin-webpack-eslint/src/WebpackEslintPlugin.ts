@@ -9,6 +9,8 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackEslintPluginOptions } from './WebpackEslintPluginOptions';
 
+const rr = require.resolve;
+
 @ReadOptions(WebpackEslintPluginOptions, 'extension.webpack-eslint')
 export class WebpackEslintPlugin<
   TOptions extends WebpackEslintPluginOptions = WebpackEslintPluginOptions
@@ -27,14 +29,14 @@ export class WebpackEslintPlugin<
               test: extensionsRegex(jsFileExtensions),
               include: paths.src,
               enforce: 'pre',
-              loader: require.resolve('eslint-loader'),
+              loader: rr('eslint-loader'),
               options: {
-                eslintPath: require.resolve('eslint'),
-                formatter: require.resolve('eslint-formatter-pretty'),
+                eslintPath: rr('eslint'),
+                formatter: rr('eslint-formatter-pretty'),
                 ignore: false,
                 useEslintrc: false,
                 baseConfig: {
-                  parser: 'babel-eslint',
+                  parser: rr('babel-eslint'),
                   extends: ['eslint:recommended', ...pluginOptions.extends],
                   plugins: ['import', ...pluginOptions.plugins],
                   parserOptions: {
@@ -56,7 +58,7 @@ export class WebpackEslintPlugin<
                   overrides: [
                     {
                       files: ['*.ts', '*.tsx'],
-                      parser: '@typescript-eslint/parser',
+                      parser: rr('@typescript-eslint/parser'),
                       plugins: ['@typescript-eslint'],
                       rules: {
                         'no-undef': 'off',

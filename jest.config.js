@@ -7,6 +7,7 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
+      packageJson: 'package.json',
       tsConfig: {
         ...require('./packages/ts-config/tsconfig.json').compilerOptions
       }

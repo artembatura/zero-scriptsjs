@@ -28,19 +28,15 @@ export class WebpackCssPlugin<
             test: /\.css$/,
             exclude: cssModuleRegex,
             sideEffects: true,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              sourceMap: !configOptions.isDev && configOptions.useSourceMap
-            })(configOptions)
+            use: getStyleLoaders(MiniCssExtractPlugin.loader)(configOptions)
           });
 
           modifications.insertModuleRule({
             test: cssModuleRegex,
-            use: getStyleLoaders({
-              importLoaders: 1,
-              sourceMap: !configOptions.isDev && configOptions.useSourceMap,
-              modules: true,
-              getLocalIdent
+            use: getStyleLoaders(MiniCssExtractPlugin.loader, {
+              modules: {
+                getLocalIdent
+              }
             })(configOptions)
           });
 

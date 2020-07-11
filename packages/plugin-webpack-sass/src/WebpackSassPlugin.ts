@@ -28,10 +28,8 @@ export class WebpackSassPlugin extends AbstractPlugin<
             test: /\.(scss|sass)$/,
             exclude: sassModuleRegex,
             use: getStyleLoaders(
-              {
-                importLoaders: 2,
-                sourceMap: !configOptions.isDev && configOptions.useSourceMap
-              },
+              MiniCssExtractPlugin.loader,
+              undefined,
               require.resolve('sass-loader')
             )(configOptions),
             sideEffects: true
@@ -40,11 +38,11 @@ export class WebpackSassPlugin extends AbstractPlugin<
           modifications.insertModuleRule({
             test: sassModuleRegex,
             use: getStyleLoaders(
+              MiniCssExtractPlugin.loader,
               {
-                importLoaders: 2,
-                sourceMap: !configOptions.isDev && configOptions.useSourceMap,
-                modules: true,
-                getLocalIdent
+                modules: {
+                  getLocalIdent
+                }
               },
               require.resolve('sass-loader')
             )(configOptions)

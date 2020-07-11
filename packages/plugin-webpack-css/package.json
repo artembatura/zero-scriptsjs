@@ -20,17 +20,17 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "workspace:^0.4.0",
-    "@zero-scripts/utils-webpack-styles": "workspace:^0.4.0",
-    "@zero-scripts/webpack-config": "workspace:^0.4.0",
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/utils-webpack-styles": "workspace:*",
+    "@zero-scripts/webpack-config": "workspace:*",
     "mini-css-extract-plugin": "0.9.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss-safe-parser": "4.0.2"
   },
   "devDependencies": {
-    "@types/mini-css-extract-plugin": "0.9.1",
     "@types/optimize-css-assets-webpack-plugin": "5.0.1",
-    "@zero-scripts/ts-config": "workspace:^0.4.0"
+    "@zero-scripts/ts-config": "workspace:*",
+    "@types/mini-css-extract-plugin": "0.9.1"
   },
   "optionalDependencies": {
     "webpack": "^4.0.0"

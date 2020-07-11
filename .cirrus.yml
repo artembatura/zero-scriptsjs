@@ -4,8 +4,8 @@ container:
 test_task:
   pnpm_cache:
     folder: /usr/local/lib/node_modules/pnpm
-    populate_script: npm i -g pnpm
-    fingerprint_script: npm show pnpm version
+  install_pnpm_script:
+    npm i -g pnpm
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat pnpm-lock.yaml

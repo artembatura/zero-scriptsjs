@@ -47,7 +47,7 @@ export class WebpackSpaPlugin<
             .addEntry(require.resolve('webpack-hot-middleware/client'))
             .build();
 
-          const compiler = webpack([config]);
+          const compiler = webpack(config);
 
           const devServer = express();
 
@@ -68,9 +68,9 @@ export class WebpackSpaPlugin<
             devServer.get('/terminate-dev-server', () => {
               process.exit(1);
             });
-
-            devServer.listen(parseInt(options.port) || 8080);
           }
+
+          devServer.listen(parseInt(options.port) || 8080);
         }) as any)
       );
 

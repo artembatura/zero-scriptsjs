@@ -1,19 +1,29 @@
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
-export function getStyleLoaders(cssOptions: any, preprocessor?: string) {
+const rr = require.resolve;
+
+export function getStyleLoaders(
+  devLoader: string,
+  cssOptions?: any,
+  preprocessor?: string
+) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
     const loaders = [
       isDev
-        ? require.resolve('style-loader')
+        ? rr('style-loader')
         : {
-            loader: require('mini-css-extract-plugin').loader
+            loader: devLoader
           },
       {
-        loader: require.resolve('css-loader'),
-        options: cssOptions
+        loader: rr('css-loader'),
+        options: {
+          sourceMap: !isDev && useSourceMap,
+          importLoaders: preprocessor ? 2 : 1,
+          ...cssOptions
+        }
       },
       {
-        loader: require.resolve('postcss-loader'),
+        loader: rr('postcss-loader'),
         options: {
           ident: 'postcss',
           plugins: () => [
@@ -32,7 +42,7 @@ export function getStyleLoaders(cssOptions: any, preprocessor?: string) {
 
     if (preprocessor) {
       loaders.push({
-        loader: require.resolve(preprocessor),
+        loader: rr(preprocessor),
         options: {
           sourceMap: !isDev && useSourceMap
         }

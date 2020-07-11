@@ -20,8 +20,8 @@
   ],
   "dependencies": {
     "@artemir/friendly-errors-webpack-plugin": "1.8.0",
-    "@zero-scripts/core": "workspace:^0.4.0",
-    "@zero-scripts/webpack-config": "workspace:^0.4.0",
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/webpack-config": "workspace:*",
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "5.0.1",
     "express": "4.17.1",
@@ -36,7 +36,7 @@
     "@types/webpack": "4.41.21",
     "@types/webpack-dev-middleware": "3.7.1",
     "@types/webpack-hot-middleware": "2.25.3",
-    "@zero-scripts/ts-config": "workspace:^0.4.0"
+    "@zero-scripts/ts-config": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

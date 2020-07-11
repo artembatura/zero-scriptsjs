@@ -1,7 +1,7 @@
 import getPort = require('get-port');
 import * as path from 'path';
 
-import { readStream } from '../../e2e-helpers/readStream';
+import { readProcessOutput } from '../../e2e-helpers/readProcessOutput';
 import { retryRequestWhile } from '../../e2e-helpers/retryRequestWhile';
 import { run } from '../../e2e-helpers/run';
 import { terminateDevServer } from '../../e2e-helpers/terminateDevServer';
@@ -16,20 +16,22 @@ describe('example:react', () => {
 
     const process = run(workPath, [
       'start',
+      '--',
       '--port',
       devServerPort.toString(),
       '--smokeTest'
     ]);
 
-    // process.once('uncaughtException', () => {
-    //
-    // });
+    let outputStreamIsFinished = false;
 
     const [output, httpRes] = await Promise.all([
-      readStream(process.stdout),
+      readProcessOutput(process).finally(() => {
+        outputStreamIsFinished = true;
+      }),
       retryRequestWhile('localhost', {
         port: devServerPort,
-        doWhile: res => res.statusCode !== 200
+        doWhile: res => res.statusCode !== 200,
+        forceResolveIf: () => outputStreamIsFinished
       }).then(r => {
         terminateDevServer(devServerPort);
         return r;
@@ -43,7 +45,7 @@ describe('example:react', () => {
   it('build', async () => {
     const process = run(workPath, ['build']);
 
-    const output = await readStream(process.stdout);
+    const output = await readProcessOutput(process);
 
     expect(output).toContain(
       'Your application successfully built and available at'

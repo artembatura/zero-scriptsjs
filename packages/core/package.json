@@ -34,43 +34,11 @@
   "devDependencies": {
     "@types/get-value": "3.0.1",
     "@types/mri": "1.1.0",
-    "@types/node": "^14.0.5",
+    "@types/node": "14.0.5",
     "@types/normalize-package-data": "2.4.0",
     "@types/set-value": "2.0.0",
-    "@zero-scripts/ts-config": "workspace:^0.4.0",
-    "utility-types": "^3.10.0"
-  },
-  "peerDependencies": {
-    "@zero-scripts/plugin-webpack-babel": "*",
-    "@zero-scripts/plugin-webpack-css": "*",
-    "@zero-scripts/plugin-webpack-eslint": "*",
-    "@zero-scripts/plugin-webpack-pwa": "*",
-    "@zero-scripts/plugin-webpack-react": "*",
-    "@zero-scripts/plugin-webpack-sass": "*",
-    "@zero-scripts/plugin-webpack-spa": "*"
-  },
-  "peerDependenciesMeta": {
-    "@zero-scripts/plugin-webpack-babel": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-css": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-eslint": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-pwa": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-react": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-sass": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-spa": {
-      "optional": true
-    }
+    "@zero-scripts/ts-config": "workspace:*",
+    "utility-types": "3.10.0"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {

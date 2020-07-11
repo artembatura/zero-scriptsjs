@@ -21,10 +21,10 @@
   ],
   "dependencies": {
     "@babel/preset-react": "7.9.4",
-    "@zero-scripts/core": "workspace:^0.4.0",
-    "@zero-scripts/plugin-webpack-babel": "workspace:^0.4.0",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:^0.4.0",
-    "@zero-scripts/webpack-config": "workspace:^0.4.0",
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/plugin-webpack-babel": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
+    "@zero-scripts/webpack-config": "workspace:*",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-flowtype": "4.7.0",
@@ -33,7 +33,7 @@
     "eslint-plugin-react-hooks": "4.0.2"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "workspace:^0.4.0"
+    "@zero-scripts/ts-config": "workspace:*"
   },
   "peerDependencies": {
     "@babel/core": "7.x",

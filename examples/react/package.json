@@ -11,11 +11,12 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@zero-scripts/core": "workspace:^0.4.0",
-    "@zero-scripts/plugin-webpack-babel": "workspace:^0.4.0",
-    "@zero-scripts/plugin-webpack-css": "workspace:^0.4.0",
-    "@zero-scripts/plugin-webpack-react": "workspace:^0.4.0",
-    "@zero-scripts/plugin-webpack-spa": "workspace:^0.4.0"
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/plugin-webpack-babel": "workspace:*",
+    "@zero-scripts/plugin-webpack-css": "workspace:*",
+    "@zero-scripts/plugin-webpack-react": "workspace:*",
+    "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*"
   },
   "zero-scripts": {
     "workspace": [
