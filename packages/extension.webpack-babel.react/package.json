@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-babel.react",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Adds processing JavaScript code with Babel. With support for React/JSX",
   "author": {
     "name": "Artem Batura",
@@ -21,12 +21,12 @@
   ],
   "dependencies": {
     "@babel/preset-react": "7.6.3",
-    "@zero-scripts/core": "^0.4.0",
-    "@zero-scripts/extension.webpack-babel": "^0.4.0",
+    "@zero-scripts/core": "^0.5.0",
+    "@zero-scripts/extension.webpack-babel": "^0.5.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.4.0"
+    "@zero-scripts/ts-config": "^0.5.0"
   },
   "publishConfig": {
     "access": "public"

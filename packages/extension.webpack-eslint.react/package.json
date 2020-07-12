@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint.react",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Adds processing JavaScript code with ESLint. With rules for React/JSX",
   "author": {
     "name": "Artem Batura",
@@ -20,8 +20,8 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "^0.4.0",
-    "@zero-scripts/extension.webpack-eslint": "^0.4.0",
+    "@zero-scripts/core": "^0.5.0",
+    "@zero-scripts/extension.webpack-eslint": "^0.5.0",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-flowtype": "4.3.0",
     "eslint-plugin-jsx-a11y": "6.2.3",
@@ -29,7 +29,7 @@
     "eslint-plugin-react-hooks": "2.1.2"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.4.0"
+    "@zero-scripts/ts-config": "^0.5.0"
   },
   "publishConfig": {
     "access": "public"

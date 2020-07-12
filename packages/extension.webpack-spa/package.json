@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-spa",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -19,19 +19,19 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.4.0",
-    "@zero-scripts/core": "^0.4.0",
+    "@artemir/friendly-errors-webpack-plugin": "1.8.0",
+    "@zero-scripts/config.webpack": "^0.5.0",
+    "@zero-scripts/core": "^0.5.0",
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "5.0.4",
     "html-webpack-plugin": "4.0.0-beta.8",
-    "@artemir/friendly-errors-webpack-plugin": "1.8.0",
     "script-ext-html-webpack-plugin": "2.1.4"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.4.0",
     "@types/clean-webpack-plugin": "0.1.3",
     "@types/copy-webpack-plugin": "5.0.0",
-    "@types/script-ext-html-webpack-plugin": "2.1.1"
+    "@types/script-ext-html-webpack-plugin": "2.1.1",
+    "@zero-scripts/ts-config": "^0.5.0"
   },
   "publishConfig": {
     "access": "public"
