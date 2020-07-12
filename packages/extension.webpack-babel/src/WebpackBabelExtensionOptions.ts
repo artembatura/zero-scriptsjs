@@ -19,4 +19,12 @@ export class WebpackBabelExtensionOptions extends AbstractOptionsContainer {
     ]
   )
   public plugins: (string | [string, any])[] = [];
+
+  @Option<WebpackBabelExtensionOptions, 'jsLoaders'>(
+    ({ externalValue, defaultValue }) => [
+      ...defaultValue,
+      ...(externalValue ? externalValue : [])
+    ]
+  )
+  public jsLoaders: Array<{ loader: string; options: object } | string> = [];
 }

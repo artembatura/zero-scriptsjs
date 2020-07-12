@@ -39,15 +39,13 @@ export abstract class AbstractOptionsContainer {
   }
 
   public build<T extends ExtractOptionsFromOptionsContainer<this>>(): T {
-    // exclude non-option members
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { build: _, ...options } = this;
+    const properties = Object.getOwnPropertyNames(this);
 
     type OptionsMetaArray = (OptionMetadata<T, any> & {
       optionKey: keyof T;
     })[];
 
-    const optionsMeta = Object.keys(options).map(optionKey => {
+    const optionsMeta = properties.map(optionKey => {
       if (
         !Reflect.hasMetadata(
           METADATA_OPTIONS,
@@ -56,9 +54,7 @@ export abstract class AbstractOptionsContainer {
         )
       ) {
         throw new Error(
-          `Must need to use Option decorator on your ${
-            this.constructor.name
-          } properties`
+          `Must need to use Option decorator on your ${this.constructor.name} properties`
         );
       }
 

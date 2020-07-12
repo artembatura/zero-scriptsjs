@@ -2,7 +2,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 import { WebpackConfigOptions } from '@zero-scripts/config.webpack';
 
-export function getStyleLoaders(cssOptions: any, preprocessor?: string) {
+export function getStyleLoaders(
+  cssOptions: any,
+  preprocessor?: string,
+  cssLoader?: string
+) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
     const loaders = [
       isDev
@@ -11,7 +15,7 @@ export function getStyleLoaders(cssOptions: any, preprocessor?: string) {
             loader: MiniCssExtractPlugin.loader
           },
       {
-        loader: require.resolve('css-loader'),
+        loader: cssLoader || require.resolve('css-loader'),
         options: cssOptions
       },
       {
