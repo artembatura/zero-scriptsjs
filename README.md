@@ -98,29 +98,34 @@ Adding support for [Astroturf](https://github.com/4Catalyzer/astroturf)
 
 ```diff
 {
-  "devDependencies": {
-    "@zero-scripts/preset.webpack-spa.react": "^0.4.0"
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
++   "astroturf": "0.10.4"
   },
-  "zero-scripts": {
-    "extension.webpack-babel.react": {
-      "jsLoaders": [
-        {
-          "loader": "astroturf/loader",
-          "options": {
-            "extension": ".astro.css"
-          }
-        }
-      ]
-    },
-    "extension.webpack-css": {
-      "styleLoaders": [
-        {
-          "test": "\\.astro.css",
-          "loader": "astroturf/css-loader"
-        }
-      ]
-    }
-  }
+  "devDependencies": {
+    "@zero-scripts/preset.webpack-spa.react": "^0.5.0"
+  },
++ "zero-scripts": {
++   "extension.webpack-babel.react": {
++     "jsLoaders": [
++       {
++         "loader": "astroturf/loader",
++         "options": {
++           "extension": ".astro.css"
++         }
++       }
++     ]
++   },
++   "extension.webpack-css": {
++     "styleLoaders": [
++       {
++         "test": "\\.astro.css",
++         "loader": "astroturf/css-loader"
++       }
++     ]
++   }
++ }
 }
 ```
 
@@ -311,8 +316,6 @@ npm i @zero-scripts/extension.webpack-pwa
 ```
 
 #### [`More info`](./packages/extension.webpack-pwa)
-
-# All plugins
 
 # Comparison with alternatives
 
