@@ -1,10 +1,4 @@
-<p align="center">
-  <a href="https://github.com/artemirq/zero-scripts" target="blank">
-    <img width="296" alt="Zero Scripts Logo" src="https://user-images.githubusercontent.com/17342159/63062152-7f68f180-bf00-11e9-9da5-f02c66134533.png">
-  </a>
-</p>
-
-<p align="center">A new approach to modular development modern JavaScript projects without configuration</p>
+<p align="center">A modular approach to develop modern JavaScript projects with minimal configuration.</p>
 
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/v/@zero-scripts/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/dm/@zero-scripts/core.svg" alt="NPM Downloads" /></a>
@@ -12,55 +6,310 @@
 <a href="https://www.npmjs.com/~zero-scripts"><img src="https://img.shields.io/npm/l/@zero-scripts/core.svg" alt="Package License" /></a>
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/artemirq/zero-scripts/pulls)
 
-## Description
+- [About](#about)
+- [Highlights](#highlights)
+- [Why?](#why)
+- [How it works?](#how-it-works)
+- [Getting started](#getting-started)
+  - **[Getting started with React](#getting-started-with-react)**
+  - **[Getting started with SPA](#getting-started-with-spa)**
+    - [Adding Babel](#adding-babel)
+    - [Adding Babel (React)](#adding-babel-react)
+    - [Adding ESLint](#adding-eslint)
+    - [Adding ESLint (React)](#adding-eslint-react)
+    - [Adding CSS](#adding-css)
+    - [Adding Sass](#adding-sass)
+    - [Adding PWA capabilities](#adding-pwa-capabilities)
+- [Comparison with alternatives](#comparisoncomparisonmd-with-alternatives)
+- [License](#license)
 
-The main idea of project is resolve the inconvenience on using popular tools, on use which creates large and complex configurations. Supporting and extending such configuration it is a chore work
+# About
 
-## Features
+This project is attempt to combine task manager, configuration management facilities and extension system into one solution to simplify configuring development processes on building applications.
 
-- ⏱ **Zero Configuration:** Make things faster without worrying about configuration
+We provide an ecosystem of ready packages for development modern JavaScript projects (based on Webpack, but not limited to it).
 
-- 🔥 **Modular:** Additional feature should be provided as separated extension package. No unused packages not be installed
+# Highlights
 
-- ⚡ **Extensible:** Extensions is a ["pluggable"](packages/core#process-of-loading-extensions) packages. To add a feature you need only install extension to `devDependencies`
+- ### ⏱ Zero Configuration
 
-- 🛠 **Universal:** The project created not only for concrete tool or framework and can be used for any JavaScript tool
+Make things faster without worrying about configuration. We ship a reasonably good configuration and modern features at default.
 
-- ⚙ **Customizable:** Use the [availability](packages/core#passing-options) of providing options to configurations and extensions in `package.json`
+---
 
-## Packages
+- ### ⚡ Extensible & Modular
 
-### Webpack
+Extensions is a ["pluggable"](#process-of-loading-extensions) packages. To add a feature you need only add package to `devDependencies`.
 
-#### Presets
+_Big part of unused packages will not be installed, because you choose what you needed._
 
-Package | What Develop
-------- | -----------
-[preset.webpack-spa](packages/preset.webpack-spa) | Single-page applications
-preset.webpack-ssr | Server-side Rendering applications
-preset.webpack-node | Node.js applications
+---
 
-#### Extensions
+- ### ⚙ Customizable
 
-Package | What adds
-------- | -----------
-[extension.webpack-babel](packages/extension.webpack-babel) | Processing JavaScript code with Babel
-[extension.webpack-babel.react](packages/extension.webpack-babel.react) | With React/JSX support. Inherited from `extension.webpack-babel`
-[extension.webpack-css](packages/extension.webpack-css) | Processing CSS: extracting, minify and add vendor prefixes
-[extension.webpack-sass](packages/extension.webpack-sass) | Same as `extension.webpack-css`, but for Sass/SCSS
-[extension.webpack-eslint](packages/extension.webpack-eslint) | Processing JavaScript code with ESLint
-[extension.webpack-eslint.react](packages/extension.webpack-eslint.react) | With React/JSX rules. Inherited from `extension.webpack-eslint`
-[extension.webpack-pwa](packages/extension.webpack-pwa) | PWA capabilities
-[extension.webpack-spa](packages/extension.webpack-spa) | SPA capabilities
+Extensions and configurations have own [set of options](#passing-options). It's allow modifying everything for your requirements.
 
-#### Configs
+# Why?
 
-Package | Configuration for
-------- | -----------
-[config.webpack](packages/config.webpack) | Webpack 
+**Most of popular bundlers doesn't ship configuration management facilities**. As result supporting and extending complex configurations it is a chore work in every project.
 
-## [Comparison](COMPARISON.md) with alternatives
+We know popular tools which solve this problem: CRA, Vue CLI and other. **Projects like this was created to simplify development only for specific projects and do not combine the best among themselves**.
 
-## License
+CRA is not extensible out of the box and ship all features even if you don't need. You can eject CRA, but you will lose all advantages, and you will need to support configuration yourself.
 
-Zero Scripts is [MIT licensed](./LICENSE)
+# How it works?
+
+**Preset** is a base package which contain scripts and [loads](#process-of-loading-extensions) extensions.
+
+**Extension** is an additional package, which complements preset and can add more scripts or extend a bundler configuration.
+
+## Process of loading extensions
+
+Extensions will be all packages, which defined in `devDependencies` and match pattern `extension\\.[a-z]*`.
+
+These packages will be automatically loaded and applied by preset.
+
+### Example
+
+Adding Babel
+
+```diff
+{
+   "devDependencies": {
+      "@zero-scripts/preset.webpack-spa": "^0.5.0",
++      "@zero-scripts/extension.webpack-babel": "^0.5.0"
+   }
+}
+```
+
+## Passing options
+
+You can pass options to config or extension in package.json file using `zero-scripts` field
+
+### Example
+
+Adding Linaria Babel preset
+
+```diff
+{
+   "devDependencies": {
+      "@zero-scripts/preset.webpack-spa": "^0.5.0",
+      "@zero-scripts/extension.webpack-babel": "^0.5.0"
+   },
++   "zero-scripts": {
++      "@zero-scripts/extension.webpack-babel": {
++         "presets": [
++            "linaria/babel"
++         ]
++      }
++   }
+}
+```
+
+# Getting Started
+
+At start, you need to choose basic preset, which contain necessary scripts. Then you can install extensions, which adds extra features for your project.
+
+## Getting started with React
+
+This preset includes all required features for the most React projects.<br>
+
+This is the fastest way to get started with React, but you can go with more [flexible way](#getting-started-with-spa) and choose the necessary functions yourself.
+
+### yarn
+
+```
+yarn add @zero-scripts/preset.webpack-spa.react
+```
+
+### npm
+
+```
+npm i @zero-scripts/preset.webpack-spa.react
+```
+
+### `npm run start` or `yarn start`
+
+Runs the app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will automatically reload if you make changes to the code.<br>
+You will see the build errors and lint warnings in the console.
+
+### `npm run build` or `yarn build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+
+Your app is ready to be deployed.
+
+#### [`More info`](./packages/preset.webpack-spa.react)
+
+## Getting started with SPA
+
+Basically this way intended to use without any framework. However, you can extend preset with extensions.
+
+### yarn
+
+```
+yarn add @zero-scripts/preset.webpack-spa
+```
+
+### npm
+
+```
+npm i @zero-scripts/preset.webpack-spa
+```
+
+### `npm run start` or `yarn start`
+
+Runs the app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will automatically reload if you make changes to the code.<br>
+You will see the build errors and lint warnings in the console.
+
+### `npm run build` or `yarn build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+
+Your app is ready to be deployed.
+
+#### [`More info`](./packages/preset.webpack-spa)
+
+### Adding Babel
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-babel
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-babel
+```
+
+#### [`More info`](./packages/extension.webpack-babel)
+
+### Adding Babel (React)
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-babel.react
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-babel.react
+```
+
+#### [`More info`](./packages/extension.webpack-babel.react)
+
+### Adding ESLint
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-eslint
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-eslint
+```
+
+#### [`More info`](./packages/extension.webpack-eslint)
+
+### Adding ESLint (React)
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-eslint.react
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-eslint.react
+```
+
+#### [`More info`](./packages/extension.webpack-eslint.react)
+
+### Adding CSS
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-css
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-css
+```
+
+#### [`More info`](./packages/extension.webpack-css)
+
+### Adding Sass
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-sass
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-sass
+```
+
+#### [`More info`](./packages/extension.webpack-sass)
+
+### Adding PWA capabilities
+
+#### yarn
+
+```
+yarn add @zero-scripts/extension.webpack-pwa
+```
+
+#### npm
+
+```
+npm i @zero-scripts/extension.webpack-pwa
+```
+
+#### [`More info`](./packages/extension.webpack-pwa)
+
+# Comparison with alternatives
+
+| Project          | Modular                  | Zero Configuration       | Extensible               | Universal                | Customizable             | Scaffold Applications    |
+| ---------------- | ------------------------ | ------------------------ | ------------------------ | ------------------------ | ------------------------ | ------------------------ |
+| Zero Scripts     | <p align="center">✅</p> | <p align="center">✅</p> | <p align="center">✅</p> | <p align="center">✅</p> | <p align="center">✅</p> | <p align="center">❌</p> |
+| Neutrino         | <p align="center">✅</p> | <p align="center">✅</p> | <p align="center">✅</p> | <p align="center">❌</p> | <p align="center">✅</p> | <p align="center">✅</p> |
+| create-react-app | <p align="center">❌</p> | <p align="center">✅</p> | <p align="center">⚠</p>  | <p align="center">❌</p> | <p align="center">⚠</p>  | <p align="center">✅</p> |
+
+## Features explanation
+
+- **Modular**. Availability to install only used packages. Most of the popular alternatives install all dependencies no matter what you use. For example, CRA ships with ESLint/Babel/etc without the possibility of choosing what you needed.
+- **Zero Configuration**. Project ships a reasonably good configuration at default. No additional configuration needed for the most projects.
+- **Extensible**. Easy to add a required features by installing additional packages. Or extend it locally with special API.
+- **Universal**. Project tied to concrete tool. For example, you cannot build ecosystem with Neutrino which will use Rollup as a bundler tool.
+- **Customizable**. Easy to modify some parts of bundler configuration by passing options. For example, you need to add additional Babel plugin/loader to Webpack configuration.
+
+# License
+
+Zero Scripts has [MIT license](./LICENSE)

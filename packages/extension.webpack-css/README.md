@@ -1,8 +1,6 @@
 # @zero-scripts/extension.webpack-css
 
-## Description
-
-Adds processing CSS files: extracting, minify and add vendor prefixes
+Extract, minify and add vendor prefixes.
 
 ## Installation
 
