@@ -20,16 +20,17 @@ npm i -D @zero-scripts/extension.webpack-babel
 
 ## Options
 
-| Option  | Type       | Default | Description              |
-| ------- | ---------- | ------- | ------------------------ |
-| plugins | _string[]_ | `[]`    | Additional Babel plugins |
-| presets | _string[]_ | `[]`    | Additional Babel presets |
-| flow    | _boolean_  | `false` | Enable Flow support      |
+| Option    | Type                                         | Default | Description                |
+| --------- | -------------------------------------------- | ------- | -------------------------- |
+| plugins   | _string[]_                                   | `[]`    | Additional Babel plugins   |
+| presets   | _string[]_                                   | `[]`    | Additional Babel presets   |
+| flow      | _boolean_                                    | `false` | Enable Flow support        |
+| jsLoaders | _Array<{ loader: string; options: object }>_ | `[]`    | Additional Webpack loaders |
 
 #### Notes
 
-- If you want to enable check types on your TypeScript files,
-you just need to install `fork-ts-checker-webpack-plugin` in your project
+- If you want to enable checking types for your TypeScript files,
+  you need install `fork-ts-checker-webpack-plugin` in your project
 
 ## Usage
 

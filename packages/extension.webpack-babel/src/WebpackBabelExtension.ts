@@ -16,7 +16,12 @@ export class WebpackBabelExtension<
     const _config = preset.getInstance(WebpackConfig);
 
     _config.beforeBuild(config => {
-      const { plugins, flow, presets } = this.optionsContainer.build();
+      const {
+        plugins,
+        flow,
+        presets,
+        jsLoaders
+      } = this.optionsContainer.build();
 
       config.insertModuleRule(options => {
         const { isDev, jsFileExtensions, paths, useTypescript } = options;
@@ -25,47 +30,61 @@ export class WebpackBabelExtension<
           oneOf: [
             {
               include: paths.src,
-              loader: require.resolve('babel-loader'),
-              options: {
-                babelrc: false,
-                configFile: false,
-                presets: [
-                  [
-                    '@babel/preset-env',
-                    {
-                      loose: true,
-                      modules: false,
-                      targets: { esmodules: true },
-                      useBuiltIns: 'usage',
-                      corejs: '3'
-                    }
-                  ],
-                  useTypescript && '@babel/preset-typescript',
-                  ...presets
-                ].filter(Boolean),
-                plugins: [
-                  ['@babel/plugin-transform-runtime', { useESModules: true }],
-                  '@babel/plugin-syntax-dynamic-import',
-                  useTypescript && '@babel/plugin-proposal-decorators',
-                  ['@babel/plugin-proposal-class-properties', { loose: true }],
-                  ...plugins
-                ].filter(Boolean),
-                overrides: [
-                  flow && {
-                    exclude: /\.(ts|tsx)?$/,
-                    plugins: ['@babel/plugin-transform-flow-strip-types']
-                  },
-                  useTypescript && {
-                    test: /\.(ts|tsx)?$/,
+              use: [
+                {
+                  loader: require.resolve('babel-loader'),
+                  options: {
+                    babelrc: false,
+                    configFile: false,
+                    presets: [
+                      [
+                        '@babel/preset-env',
+                        {
+                          loose: true,
+                          modules: false,
+                          targets: { esmodules: true },
+                          useBuiltIns: 'usage',
+                          corejs: '3'
+                        }
+                      ],
+                      useTypescript && '@babel/preset-typescript',
+                      ...presets
+                    ].filter(Boolean),
                     plugins: [
-                      ['@babel/plugin-proposal-decorators', { legacy: true }]
-                    ]
+                      [
+                        '@babel/plugin-transform-runtime',
+                        { useESModules: true }
+                      ],
+                      '@babel/plugin-syntax-dynamic-import',
+                      useTypescript && '@babel/plugin-proposal-decorators',
+                      [
+                        '@babel/plugin-proposal-class-properties',
+                        { loose: true }
+                      ],
+                      ...plugins
+                    ].filter(Boolean),
+                    overrides: [
+                      flow && {
+                        exclude: /\.(ts|tsx)?$/,
+                        plugins: ['@babel/plugin-transform-flow-strip-types']
+                      },
+                      useTypescript && {
+                        test: /\.(ts|tsx)?$/,
+                        plugins: [
+                          [
+                            '@babel/plugin-proposal-decorators',
+                            { legacy: true }
+                          ]
+                        ]
+                      }
+                    ].filter(Boolean),
+                    cacheDirectory: true,
+                    cacheCompression: !isDev,
+                    compact: !isDev
                   }
-                ].filter(Boolean),
-                cacheDirectory: true,
-                cacheCompression: !isDev,
-                compact: !isDev
-              }
+                },
+                ...jsLoaders
+              ]
             },
             {
               exclude: /@babel(?:\/|\\{1,2})runtime/,

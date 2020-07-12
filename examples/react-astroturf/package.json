@@ -1,0 +1,37 @@
+{
+  "name": "example.react-astroturf",
+  "version": "0.4.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack-react start",
+    "build": "webpack-react build"
+  },
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "astroturf": "0.10.4"
+  },
+  "devDependencies": {
+    "@zero-scripts/preset.webpack-spa.react": "^0.4.0"
+  },
+  "zero-scripts": {
+    "extension.webpack-babel.react": {
+      "jsLoaders": [
+        {
+          "loader": "astroturf/loader",
+          "options": {
+            "extension": ".astro.css"
+          }
+        }
+      ]
+    },
+    "extension.webpack-css": {
+      "styleLoaders": [
+        {
+          "test": "\\.astro\\.css",
+          "loader": "astroturf/css-loader"
+        }
+      ]
+    }
+  }
+}

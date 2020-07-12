@@ -16,6 +16,12 @@ yarn add -D @zero-scripts/extension.webpack-css
 npm i -D @zero-scripts/extension.webpack-css
 ```
 
+## Options
+
+| Option       | Type                                                                                | Default | Description              |
+| ------------ | ----------------------------------------------------------------------------------- | ------- | ------------------------ |
+| styleLoaders | _Array<{ test: string; loader: string; exclude?: string; preprocessor?: string; }>_ | `[]`    | Additional style loaders |
+
 ## Usage
 
 ```

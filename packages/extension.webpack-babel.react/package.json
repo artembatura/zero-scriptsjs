@@ -38,6 +38,7 @@
     "extension",
     "babel",
     "@zero-scripts/config.webpack",
-    "react"
+    "react",
+    "astroturf"
   ]
 }

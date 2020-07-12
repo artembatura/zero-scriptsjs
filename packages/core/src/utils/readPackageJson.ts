@@ -10,7 +10,10 @@ export type Options = {
   normalize?: boolean;
 };
 
-export function readPackageJson<TPackage extends Package, TSelectedValue>(
+export function readPackageJson<
+  TPackage extends Package & { 'zero-scripts': Record<string, any> },
+  TSelectedValue
+>(
   selector?: Selector<TPackage, TSelectedValue>,
   options?: Options
 ): TSelectedValue | TPackage {
@@ -24,11 +27,11 @@ export function readPackageJson<TPackage extends Package, TSelectedValue>(
     throw new Error(`[readPackageJson]: ${path} isn't directory`);
   }
 
-  const packageJson = readJson(path + sep + 'package.json', selector);
+  const packageJson = readJson(path + sep + 'package.json') as TPackage;
 
   if (normalize) {
     require('normalize-package-data')(packageJson);
   }
 
-  return packageJson;
+  return selector ? selector(packageJson) : packageJson;
 }

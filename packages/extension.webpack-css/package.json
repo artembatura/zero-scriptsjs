@@ -42,6 +42,7 @@
     "zero-scripts",
     "extension",
     "css",
-    "@zero-scripts/config.webpack"
+    "@zero-scripts/config.webpack",
+    "astroturf"
   ]
 }

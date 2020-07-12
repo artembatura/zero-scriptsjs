@@ -15,7 +15,12 @@ describe('core/utils/readJson', () => {
     expect(json).toEqual({
       name: 'testPackageName',
       version: '1.0.0',
-      dependencies: {}
+      dependencies: {},
+      'zero-scripts': {
+        someExtension: {
+          param1: true
+        }
+      }
     });
   });
 

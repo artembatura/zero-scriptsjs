@@ -10,6 +10,8 @@
 - [Highlights](#highlights)
 - [Why?](#why)
 - [How it works?](#how-it-works)
+  - [Process of loading extensions](#process-of-loading-extensions)
+  - [Passing options](#passing-options)
 - [Getting started](#getting-started)
   - **[Getting started with React](#getting-started-with-react)**
   - **[Getting started with SPA](#getting-started-with-spa)**
@@ -20,7 +22,11 @@
     - [Adding CSS](#adding-css)
     - [Adding Sass](#adding-sass)
     - [Adding PWA capabilities](#adding-pwa-capabilities)
-- [Comparison with alternatives](#comparisoncomparisonmd-with-alternatives)
+- Examples
+  - [React](examples/react)
+  - [React w/ TypeScript](examples/react-typescript)
+  - [React w/ Astroturf](examples/react-astroturf)
+- [Comparison with alternatives](#comparison-with-alternatives)
 - [License](#license)
 
 # About
@@ -75,10 +81,10 @@ Adding Babel
 
 ```diff
 {
-   "devDependencies": {
-      "@zero-scripts/preset.webpack-spa": "^0.5.0",
-+      "@zero-scripts/extension.webpack-babel": "^0.5.0"
-   }
+ "devDependencies": {
+   "@zero-scripts/preset.webpack-spa": "^0.5.0",
++  "@zero-scripts/extension.webpack-babel": "^0.5.0"
+ }
 }
 ```
 
@@ -88,21 +94,33 @@ You can pass options to config or extension in package.json file using `zero-scr
 
 ### Example
 
-Adding Linaria Babel preset
+Adding support for [Astroturf](https://github.com/4Catalyzer/astroturf)
 
 ```diff
 {
-   "devDependencies": {
-      "@zero-scripts/preset.webpack-spa": "^0.5.0",
-      "@zero-scripts/extension.webpack-babel": "^0.5.0"
-   },
-+   "zero-scripts": {
-+      "@zero-scripts/extension.webpack-babel": {
-+         "presets": [
-+            "linaria/babel"
-+         ]
-+      }
-+   }
+  "devDependencies": {
+    "@zero-scripts/preset.webpack-spa.react": "^0.4.0"
+  },
+  "zero-scripts": {
+    "extension.webpack-babel.react": {
+      "jsLoaders": [
+        {
+          "loader": "astroturf/loader",
+          "options": {
+            "extension": ".astro.css"
+          }
+        }
+      ]
+    },
+    "extension.webpack-css": {
+      "styleLoaders": [
+        {
+          "test": "\\.astro.css",
+          "loader": "astroturf/css-loader"
+        }
+      ]
+    }
+  }
 }
 ```
 
@@ -115,6 +133,8 @@ At start, you need to choose basic preset, which contain necessary scripts. Then
 This preset includes all required features for the most React projects.<br>
 
 This is the fastest way to get started with React, but you can go with more [flexible way](#getting-started-with-spa) and choose the necessary functions yourself.
+
+#### [`More info`](./packages/preset.webpack-spa.react)
 
 ### yarn
 
@@ -145,11 +165,11 @@ The build is minified and the filenames include the hashes.<br>
 
 Your app is ready to be deployed.
 
-#### [`More info`](./packages/preset.webpack-spa.react)
-
 ## Getting started with SPA
 
 Basically this way intended to use without any framework. However, you can extend preset with extensions.
+
+#### [`More info`](./packages/preset.webpack-spa)
 
 ### yarn
 
@@ -179,8 +199,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 
 Your app is ready to be deployed.
-
-#### [`More info`](./packages/preset.webpack-spa)
 
 ### Adding Babel
 
@@ -293,6 +311,8 @@ npm i @zero-scripts/extension.webpack-pwa
 ```
 
 #### [`More info`](./packages/extension.webpack-pwa)
+
+# All plugins
 
 # Comparison with alternatives
 
