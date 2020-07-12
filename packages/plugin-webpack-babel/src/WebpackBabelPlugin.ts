@@ -8,6 +8,8 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
+const rr = require.resolve;
+
 @ReadOptions(WebpackBabelPluginOptions, 'plugin-webpack-babel')
 export class WebpackBabelPlugin<
   TParentOptions extends WebpackBabelPluginOptions = WebpackBabelPluginOptions
@@ -26,13 +28,13 @@ export class WebpackBabelPlugin<
             oneOf: [
               {
                 include: paths.src,
-                loader: require.resolve('babel-loader'),
+                loader: rr('babel-loader'),
                 options: {
                   babelrc: false,
                   configFile: false,
                   presets: [
                     [
-                      '@babel/preset-env',
+                      rr('@babel/preset-env'),
                       {
                         modules: false,
                         targets: { esmodules: true },
@@ -41,15 +43,18 @@ export class WebpackBabelPlugin<
                         exclude: ['transform-typeof-symbol']
                       }
                     ],
-                    useTypescript && '@babel/preset-typescript',
+                    useTypescript && rr('@babel/preset-typescript'),
                     ...pluginOptions.presets
                   ].filter(Boolean),
                   plugins: [
-                    ['@babel/plugin-transform-runtime', { useESModules: true }],
-                    '@babel/plugin-syntax-dynamic-import',
-                    useTypescript && '@babel/plugin-proposal-decorators',
                     [
-                      '@babel/plugin-proposal-class-properties',
+                      rr('@babel/plugin-transform-runtime'),
+                      { useESModules: true }
+                    ],
+                    rr('@babel/plugin-syntax-dynamic-import'),
+                    useTypescript && rr('@babel/plugin-proposal-decorators'),
+                    [
+                      rr('@babel/plugin-proposal-class-properties'),
                       { loose: true }
                     ],
                     ...pluginOptions.plugins
@@ -57,12 +62,15 @@ export class WebpackBabelPlugin<
                   overrides: [
                     pluginOptions.flow && {
                       exclude: /\.(ts|tsx)?$/,
-                      plugins: ['@babel/plugin-transform-flow-strip-types']
+                      plugins: [rr('@babel/plugin-transform-flow-strip-types')]
                     },
                     useTypescript && {
                       test: /\.(ts|tsx)?$/,
                       plugins: [
-                        ['@babel/plugin-proposal-decorators', { legacy: true }]
+                        [
+                          rr('@babel/plugin-proposal-decorators'),
+                          { legacy: true }
+                        ]
                       ]
                     }
                   ].filter(Boolean),
@@ -73,12 +81,12 @@ export class WebpackBabelPlugin<
               },
               {
                 exclude: /@babel(?:\/|\\{1,2})runtime/,
-                loader: require.resolve('babel-loader'),
+                loader: rr('babel-loader'),
                 options: {
                   babelrc: false,
                   configFile: false,
                   compact: false,
-                  presets: [['@babel/preset-env', { loose: true }]],
+                  presets: [[rr('@babel/preset-env'), { loose: true }]],
                   cacheDirectory: true,
                   cacheCompression: !isDev,
                   sourceMaps: false
@@ -93,7 +101,7 @@ export class WebpackBabelPlugin<
 
               modifications.insertPlugin(
                 new ForkTsCheckerPlugin({
-                  typescript: require.resolve('typescript'),
+                  typescript: rr('typescript'),
                   async: isDev,
                   checkSyntacticErrors: true,
                   useTypescriptIncrementalApi: true,

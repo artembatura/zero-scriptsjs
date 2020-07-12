@@ -6,6 +6,7 @@ type FuncParams = {
   timeout?: number;
   method?: string;
   doWhile: (response: IncomingMessage) => boolean;
+  forceResolveIf: () => boolean;
 };
 
 export function retryRequestWhile(
@@ -15,7 +16,8 @@ export function retryRequestWhile(
     interval = 350,
     timeout = 15000,
     method: requestMethod = 'GET',
-    doWhile
+    doWhile,
+    forceResolveIf
   }: FuncParams
 ): Promise<{ status?: number }> {
   return new Promise(resolve => {
@@ -44,6 +46,12 @@ export function retryRequestWhile(
         throw new Error(
           'Timeout Http exception. Please, check that command is running correctly'
         );
+      }
+
+      if (forceResolveIf()) {
+        return resolve({
+          status: undefined
+        });
       }
 
       setTimeout(main.bind(null, retry), interval);

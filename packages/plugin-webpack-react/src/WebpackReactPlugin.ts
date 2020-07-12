@@ -5,6 +5,8 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
 
+const rr = require.resolve;
+
 @ReadOptions(WebpackReactPluginOptions, 'plugin-webpack-react')
 export class WebpackReactPlugin<
   TParentOptions extends WebpackReactPluginOptions | undefined = undefined
@@ -31,13 +33,13 @@ export class WebpackReactPlugin<
             'WebpackReactPlugin',
             optionsContainer => {
               optionsContainer.presets.push([
-                '@babel/preset-react',
+                rr('@babel/preset-react'),
                 { development: configOptions.isDev, useBuiltIns: true }
               ]);
 
               if (configOptions.isDev && pluginOptions.propTypes) {
                 optionsContainer.plugins.push([
-                  'babel-plugin-transform-react-remove-prop-types',
+                  rr('babel-plugin-transform-react-remove-prop-types'),
                   { removeImport: true }
                 ]);
               }
@@ -49,7 +51,7 @@ export class WebpackReactPlugin<
           eslintPlugin.optionsContainer.hooks.beforeBuild.tap(
             'WebpackReactPlugin',
             optionsContainer => {
-              optionsContainer.extends.push('eslint-config-react-app');
+              optionsContainer.extends.push(rr('eslint-config-react-app'));
 
               optionsContainer.parserOptions = {
                 ...optionsContainer.parserOptions,

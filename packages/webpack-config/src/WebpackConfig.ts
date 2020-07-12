@@ -21,7 +21,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
   }
 
   /**
-   * API methods, which designed for changing configuration options inside from tasks
+   * API methods, which designed for modify configuration options from tasks
    */
 
   public addEntry(entry: string): this {

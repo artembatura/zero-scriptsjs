@@ -21,16 +21,20 @@
   ],
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "2.34.0",
-    "@zero-scripts/webpack-config": "^0.4.0",
-    "@zero-scripts/core": "^0.4.0",
+    "@typescript-eslint/parser": "2.34.0",
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/webpack-config": "workspace:*",
     "babel-eslint": "10.1.0",
-    "eslint": "7.0.0",
+    "eslint": "6.8.0",
     "eslint-formatter-pretty": "3.0.1",
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.20.2"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.4.0"
+    "@zero-scripts/ts-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "webpack": "4.x"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {

@@ -7,20 +7,19 @@
     "build": "run build"
   },
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@types/node": "13.9.1",
-    "@types/react": "16.9.23",
-    "@types/react-dom": "16.9.5",
-    "fork-ts-checker-webpack-plugin": "4.1.0",
-    "typescript": "3.8.3",
-    "@zero-scripts/core": "^0.4.0",
-    "@zero-scripts/plugin-webpack-spa": "^0.4.0",
-    "@zero-scripts/plugin-webpack-react": "^0.4.0",
-    "@zero-scripts/plugin-webpack-babel": "^0.4.0",
-    "@zero-scripts/plugin-webpack-css": "^0.4.0"
+    "@types/react": "16.9.35",
+    "@types/react-dom": "16.9.8",
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/plugin-webpack-babel": "workspace:*",
+    "@zero-scripts/plugin-webpack-css": "workspace:*",
+    "@zero-scripts/plugin-webpack-react": "workspace:*",
+    "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "fork-ts-checker-webpack-plugin": "4.1.5",
+    "typescript": "3.9.3"
   },
   "zero-scripts": {
     "workspace": [

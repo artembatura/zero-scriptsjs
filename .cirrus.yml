@@ -2,6 +2,13 @@ container:
   image: nikolaik/python-nodejs:python3.5-nodejs14-alpine
 
 test_task:
-  install_script: yarn install
-  build_script: yarn compile
-  test_script: yarn test
+  pnpm_cache:
+    folder: /usr/local/lib/node_modules/pnpm
+  install_pnpm_script:
+    npm i -g pnpm
+  node_modules_cache:
+    folder: node_modules
+    fingerprint_script: cat pnpm-lock.yaml
+    populate_script: pnpm i
+  build_script: pnpm compile
+  test_script: pnpm test

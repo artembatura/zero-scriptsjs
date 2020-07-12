@@ -1,7 +1,7 @@
 {
   "version": "0.4.0",
   "packages": ["packages/*"],
-  "npmClient": "yarn",
+  "npmClient": "pnpm",
   "useWorkspaces": true,
   "changelog": {
     "repo": "artemirq/zero-scripts",
