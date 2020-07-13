@@ -95,13 +95,17 @@ export class WebpackSpaPlugin<
             modifications.insertPlugin(new CleanWebpackPlugin());
 
             modifications.insertPlugin(
-              new CopyWebpackPlugin([
-                {
-                  from: paths.publicPath,
-                  to: paths.build,
-                  ignore: [paths.indexHtml]
-                }
-              ])
+              new CopyWebpackPlugin({
+                patterns: [
+                  {
+                    from: paths.publicPath,
+                    to: paths.build,
+                    globOptions: {
+                      ignore: [paths.indexHtml]
+                    }
+                  }
+                ]
+              })
             );
           }
 
