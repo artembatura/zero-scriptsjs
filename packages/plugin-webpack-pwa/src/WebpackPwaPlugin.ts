@@ -10,7 +10,7 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackPwaPluginOptions } from './WebpackPwaPluginOptions';
 
-@ReadOptions(WebpackPwaPluginOptions, 'extension.webpack-pwa')
+@ReadOptions(WebpackPwaPluginOptions, 'plugin-webpack-pwa')
 export class WebpackPwaPlugin extends AbstractPlugin<WebpackPwaPluginOptions> {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackPwaPlugin', api => {

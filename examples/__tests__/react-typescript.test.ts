@@ -11,7 +11,7 @@ const workPath = path.resolve(path.join(__dirname, '..'), 'react-typescript');
 describe('example:react-typescript', () => {
   beforeAll(() => jest.setTimeout(1000 * 120));
 
-  it('start', async () => {
+  it('run start', async () => {
     const devServerPort = await getPort();
 
     const process = run(workPath, [
@@ -42,7 +42,7 @@ describe('example:react-typescript', () => {
     expect(httpRes.status).toBe(200);
   });
 
-  it('build', async () => {
+  it('run build', async () => {
     const process = run(workPath, ['build']);
 
     const output = await readProcessOutput(process);

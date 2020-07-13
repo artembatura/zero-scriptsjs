@@ -5,7 +5,8 @@ const rr = require.resolve;
 export function getStyleLoaders(
   devLoader: string,
   cssOptions?: any,
-  preprocessor?: string
+  preprocessor?: string,
+  customStyleLoader?: string
 ) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
     const loaders = [
@@ -15,11 +16,11 @@ export function getStyleLoaders(
             loader: devLoader
           },
       {
-        loader: rr('css-loader'),
+        loader: rr(customStyleLoader || 'css-loader'),
         options: {
           sourceMap: !isDev && useSourceMap,
           importLoaders: preprocessor ? 2 : 1,
-          ...cssOptions
+          ...(cssOptions ? cssOptions : {})
         }
       },
       {

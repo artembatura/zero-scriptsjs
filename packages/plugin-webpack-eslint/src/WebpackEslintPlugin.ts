@@ -11,7 +11,7 @@ import { WebpackEslintPluginOptions } from './WebpackEslintPluginOptions';
 
 const rr = require.resolve;
 
-@ReadOptions(WebpackEslintPluginOptions, 'extension.webpack-eslint')
+@ReadOptions(WebpackEslintPluginOptions, 'plugin-webpack-eslint')
 export class WebpackEslintPlugin<
   TOptions extends WebpackEslintPluginOptions = WebpackEslintPluginOptions
 > extends AbstractPlugin<TOptions> {
