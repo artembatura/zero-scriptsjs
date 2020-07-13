@@ -13,9 +13,14 @@ describe('core/utils/readJson', () => {
     const json = readJson(packageJsonPath);
 
     expect(json).toEqual({
-      name: 'testPackageName',
+      name: 'test-package-name',
       version: '1.0.0',
-      dependencies: {}
+      dependencies: {},
+      'zero-scripts': {
+        someExtension: {
+          param1: true
+        }
+      }
     });
   });
 
@@ -25,7 +30,7 @@ describe('core/utils/readJson', () => {
       ({ name }: PackageJson) => name
     );
 
-    expect(packageJsonName).toBe('testPackageName');
+    expect(packageJsonName).toBe('test-package-name');
   });
 
   it('check caching', () => {

@@ -13,7 +13,7 @@ import { WebpackSassPluginOptions } from './WebpackSassPluginOptions';
 const safePostCssParser = require('postcss-safe-parser');
 const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 
-@ReadOptions(WebpackSassPluginOptions, 'extension.webpack-sass')
+@ReadOptions(WebpackSassPluginOptions, 'plugin-webpack-sass')
 export class WebpackSassPlugin extends AbstractPlugin<
   WebpackSassPluginOptions
 > {

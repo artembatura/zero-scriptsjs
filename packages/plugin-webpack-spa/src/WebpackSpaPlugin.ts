@@ -27,7 +27,7 @@ type StartTaskOptions = {
   smokePort: string;
 };
 
-@ReadOptions(WebpackSpaPluginOptions, 'extension.webpack-spa')
+@ReadOptions(WebpackSpaPluginOptions, 'plugin-webpack-spa')
 export class WebpackSpaPlugin<
   TOptions extends WebpackSpaPluginOptions = WebpackSpaPluginOptions
 > extends AbstractPlugin<TOptions> {

@@ -28,56 +28,64 @@ export class WebpackBabelPlugin<
             oneOf: [
               {
                 include: paths.src,
-                loader: rr('babel-loader'),
-                options: {
-                  babelrc: false,
-                  configFile: false,
-                  presets: [
-                    [
-                      rr('@babel/preset-env'),
-                      {
-                        modules: false,
-                        targets: { esmodules: true },
-                        useBuiltIns: 'entry',
-                        corejs: 3,
-                        exclude: ['transform-typeof-symbol']
-                      }
-                    ],
-                    useTypescript && rr('@babel/preset-typescript'),
-                    ...pluginOptions.presets
-                  ].filter(Boolean),
-                  plugins: [
-                    [
-                      rr('@babel/plugin-transform-runtime'),
-                      { useESModules: true }
-                    ],
-                    rr('@babel/plugin-syntax-dynamic-import'),
-                    useTypescript && rr('@babel/plugin-proposal-decorators'),
-                    [
-                      rr('@babel/plugin-proposal-class-properties'),
-                      { loose: true }
-                    ],
-                    ...pluginOptions.plugins
-                  ].filter(Boolean),
-                  overrides: [
-                    pluginOptions.flow && {
-                      exclude: /\.(ts|tsx)?$/,
-                      plugins: [rr('@babel/plugin-transform-flow-strip-types')]
-                    },
-                    useTypescript && {
-                      test: /\.(ts|tsx)?$/,
+                use: [
+                  {
+                    loader: rr('babel-loader'),
+                    options: {
+                      babelrc: false,
+                      configFile: false,
+                      presets: [
+                        [
+                          rr('@babel/preset-env'),
+                          {
+                            modules: false,
+                            targets: { esmodules: true },
+                            useBuiltIns: 'entry',
+                            corejs: 3,
+                            exclude: ['transform-typeof-symbol']
+                          }
+                        ],
+                        useTypescript && rr('@babel/preset-typescript'),
+                        ...pluginOptions.presets
+                      ].filter(Boolean),
                       plugins: [
                         [
+                          rr('@babel/plugin-transform-runtime'),
+                          { useESModules: true }
+                        ],
+                        rr('@babel/plugin-syntax-dynamic-import'),
+                        useTypescript &&
                           rr('@babel/plugin-proposal-decorators'),
-                          { legacy: true }
-                        ]
-                      ]
+                        [
+                          rr('@babel/plugin-proposal-class-properties'),
+                          { loose: true }
+                        ],
+                        ...pluginOptions.plugins
+                      ].filter(Boolean),
+                      overrides: [
+                        pluginOptions.flow && {
+                          exclude: /\.(ts|tsx)?$/,
+                          plugins: [
+                            rr('@babel/plugin-transform-flow-strip-types')
+                          ]
+                        },
+                        useTypescript && {
+                          test: /\.(ts|tsx)?$/,
+                          plugins: [
+                            [
+                              rr('@babel/plugin-proposal-decorators'),
+                              { legacy: true }
+                            ]
+                          ]
+                        }
+                      ].filter(Boolean),
+                      cacheDirectory: true,
+                      cacheCompression: !isDev,
+                      compact: !isDev
                     }
-                  ].filter(Boolean),
-                  cacheDirectory: true,
-                  cacheCompression: !isDev,
-                  compact: !isDev
-                }
+                  },
+                  ...pluginOptions.jsLoaders
+                ]
               },
               {
                 exclude: /@babel(?:\/|\\{1,2})runtime/,

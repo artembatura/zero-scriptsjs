@@ -49,15 +49,15 @@ export abstract class AbstractOptionsContainer<
   public build<T extends ExtractOptions<this>>(): T {
     this.hooks.beforeBuild.call(this as any);
 
-    // exclude non-option members
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { build: _, hooks, ...options } = this;
+    const properties = Object.getOwnPropertyNames(this).filter(
+      prop => prop !== 'hooks'
+    );
 
     type OptionsMetaArray = (OptionMetadata<T, any> & {
       optionKey: keyof T;
     })[];
 
-    const optionsMeta = Object.keys(options).map(optionKey => {
+    const optionsMeta = properties.map(optionKey => {
       if (
         !Reflect.hasMetadata(
           METADATA_OPTIONS,

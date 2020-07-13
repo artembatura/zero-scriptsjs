@@ -13,7 +13,7 @@ import { WebpackCssPluginOptions } from './WebpackCssPluginOptions';
 const safePostCssParser = require('postcss-safe-parser');
 const cssModuleRegex = /\.(module|m)\.css$/;
 
-@ReadOptions(WebpackCssPluginOptions, 'extension.webpack-css')
+@ReadOptions(WebpackCssPluginOptions, 'plugin-webpack-css')
 export class WebpackCssPlugin<
   TOptions extends WebpackCssPluginOptions = WebpackCssPluginOptions
 > extends AbstractPlugin<TOptions> {
@@ -24,6 +24,41 @@ export class WebpackCssPlugin<
       webpackConfigBuilder.hooks.build.tap(
         'WebpackCssPlugin',
         (modifications, configOptions) => {
+          const options = this.optionsContainer.build();
+          console.log({
+            styleLoaders: options.styleLoaders
+          });
+
+          options.styleLoaders?.forEach(rule => {
+            console.log({
+              test: new RegExp(rule.test),
+              exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
+              use: getStyleLoaders(
+                MiniCssExtractPlugin.loader,
+                undefined,
+                rule.preprocessor
+                  ? require.resolve(rule.preprocessor)
+                  : undefined,
+                require.resolve(rule.loader)
+              )(configOptions),
+              sideEffects: true
+            });
+
+            modifications.insertModuleRule({
+              test: new RegExp(rule.test),
+              exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
+              use: getStyleLoaders(
+                MiniCssExtractPlugin.loader,
+                undefined,
+                rule.preprocessor
+                  ? require.resolve(rule.preprocessor)
+                  : undefined,
+                require.resolve(rule.loader)
+              )(configOptions),
+              sideEffects: true
+            });
+          });
+
           modifications.insertModuleRule({
             test: /\.css$/,
             exclude: cssModuleRegex,
