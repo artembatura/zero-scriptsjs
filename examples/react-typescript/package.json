@@ -11,15 +11,15 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@types/react": "16.9.35",
+    "@types/react": "16.9.43",
     "@types/react-dom": "16.9.8",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "@zero-scripts/plugin-webpack-css": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
-    "fork-ts-checker-webpack-plugin": "4.1.5",
-    "typescript": "3.9.3"
+    "fork-ts-checker-webpack-plugin": "5.0.7",
+    "typescript": "3.9.6"
   },
   "zero-scripts": {
     "workspace": [

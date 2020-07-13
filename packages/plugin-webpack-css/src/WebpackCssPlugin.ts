@@ -25,25 +25,8 @@ export class WebpackCssPlugin<
         'WebpackCssPlugin',
         (modifications, configOptions) => {
           const options = this.optionsContainer.build();
-          console.log({
-            styleLoaders: options.styleLoaders
-          });
 
           options.styleLoaders?.forEach(rule => {
-            console.log({
-              test: new RegExp(rule.test),
-              exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
-              use: getStyleLoaders(
-                MiniCssExtractPlugin.loader,
-                undefined,
-                rule.preprocessor
-                  ? require.resolve(rule.preprocessor)
-                  : undefined,
-                require.resolve(rule.loader)
-              )(configOptions),
-              sideEffects: true
-            });
-
             modifications.insertModuleRule({
               test: new RegExp(rule.test),
               exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
