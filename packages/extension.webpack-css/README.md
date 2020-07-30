@@ -1,16 +1,16 @@
 # @zero-scripts/extension.webpack-css
 
-Extract, minify and add vendor prefixes.
+Extract, minify and add vendor prefixes for CSS files.
 
 ## Installation
 
-##### yarn
+### yarn
 
 ```
 yarn add -D @zero-scripts/extension.webpack-css
 ```
 
-##### npm
+### npm
 
 ```
 npm i -D @zero-scripts/extension.webpack-css
@@ -18,18 +18,30 @@ npm i -D @zero-scripts/extension.webpack-css
 
 ## Options
 
-| Option       | Type                                                                                | Default | Description              |
-| ------------ | ----------------------------------------------------------------------------------- | ------- | ------------------------ |
-| styleLoaders | _Array<{ test: string; loader: string; exclude?: string; preprocessor?: string; }>_ | `[]`    | Additional style loaders |
+|       Option       |                                        Type                                         | Default |
+| :----------------: | :---------------------------------------------------------------------------------: | :-----: |
+| **`styleLoaders`** | `Array<{ test: string; loader: string; exclude?: string; preprocessor?: string; }>` |  `[]`   |
 
-## Usage
+## Passing options
 
-```
+#### `package.json`
+
+```diff
 {
   "devDependencies": {
-    // <- preset, which uses @zero-scripts/config.webpack
-
     "@zero-scripts/extension.webpack-css": "latest"
-  }
+  },
++  "zero-scripts": {
++    "extension.webpack-css": {
++      "styleLoaders": [
++       {
++         "test": "\\.astro.css",
++         "loader": "astroturf/css-loader"
++       }
++      ]
++    }
++  }
 }
 ```
+
+## [Main documentation](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x)

@@ -1,37 +1,44 @@
 # @zero-scripts/extension.webpack-babel.react
 
-## Description
-
-Adds React/JSX support. Inherited from [`@zero-scripts/extension.webpack-babel`](../extension.webpack-babel)
+JavaScript code transpilation using Babel with React/JSX support.
 
 ## Installation
 
-##### yarn
+### yarn
 
 ```
 yarn add -D @zero-scripts/extension.webpack-babel.react
 ```
 
-##### npm
+### npm
 
 ```
 npm i -D @zero-scripts/extension.webpack-babel.react
 ```
 
-## [Options](../extension.webpack-babel)
+## Options
 
-| Option    | Type      | Default | Description                     |
-| --------- | --------- | ------- | ------------------------------- |
-| propTypes | _boolean_ | `false` | Strip PropTypes in `production` |
+|     Option      |   Type    | Default |          Description          |
+| :-------------: | :-------: | :-----: | :---------------------------: |
+| **`propTypes`** | `boolean` | `false` | Strip PropTypes in production |
 
-## Usage
+The rest of options is inherit from [@zero-scripts/extension.webpack-babel](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x/packages/extension.webpack-babel).
 
-```
+## Passing options
+
+#### `package.json`
+
+```diff
 {
   "devDependencies": {
-    // <- preset, which uses @zero-scripts/config.webpack
-
-    "@zero-scripts/extension.webpack-babel.react": "latest"
-  }
+    "@zero-scripts/extension.webpack-babel.react": "latest",
+  },
++  "zero-scripts": {
++    "extension.webpack-babel.react": {
++      "propTypes": true
++    }
++  }
 }
 ```
+
+## [Main documentation](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x)

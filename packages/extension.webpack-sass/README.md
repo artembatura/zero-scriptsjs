@@ -1,31 +1,19 @@
 # @zero-scripts/extension.webpack-sass
 
-## Description
-
-Same as [`@zero-scripts/extension.webpack-css`](../extension.webpack-css), but for Sass and SCSS
+Extract, minify and add vendor prefixes for SASS/SCSS files.
 
 ## Installation
 
-##### yarn
+### yarn
 
 ```
 yarn add -D @zero-scripts/extension.webpack-sass
 ```
 
-##### npm
+### npm
 
 ```
 npm i -D @zero-scripts/extension.webpack-sass
 ```
 
-## Usage
-
-```
-{
-  "devDependencies": {
-    // <- preset, which uses @zero-scripts/config.webpack
-
-    "@zero-scripts/extension.webpack-sass": "latest"
-  }
-}
-```
+## [Main documentation](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x)

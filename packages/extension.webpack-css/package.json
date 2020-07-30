@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-css",
   "version": "0.5.0",
-  "description": "Adds processing CSS files: extracting, minify and add vendor prefixes",
+  "description": "Extract, minify and add vendor prefixes for CSS files.",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

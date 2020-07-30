@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-babel.react",
   "version": "0.5.0",
-  "description": "Adds processing JavaScript code with Babel. With support for React/JSX",
+  "description": "JavaScript code transpilation using Babel with React/JSX support",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"

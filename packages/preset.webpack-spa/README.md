@@ -1,48 +1,33 @@
 # @zero-scripts/preset.webpack-spa
 
-## Description
-
-For development Single Page Applications
-
-## Scripts
-
-- ### `start`
-
-  Runs the app in development mode
-
-- ### `build`
-
-  Builds the app for production to the `build` folder
+Basically this way intended to use without any framework. However, you can extend preset with extensions.
 
 ## Installation
 
-##### yarn
+### yarn
 
 ```
-yarn add -D @zero-scripts/preset.webpack-spa
+yarn add @zero-scripts/preset.webpack-spa
 ```
 
-##### npm
+### npm
 
 ```
-npm i -D @zero-scripts/preset.webpack-spa
+npm i @zero-scripts/preset.webpack-spa
 ```
 
 ## Usage
 
-```
-{
-  "scripts": {
-    "development": "webpack-spa start",
-    "production": "webpack-spa build"
-  },
-  "devDependencies": {
-    "@zero-scripts/preset.webpack-spa": "latest"
-  }
-}
-```
+### `webpack-spa start`
 
-## Examples
+Runs the app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- #### [React](../../examples/react)
-- #### [React TypeScript](../../examples/react-typescript)
+The page will automatically reload if you make changes to the code.<br>
+
+### `webpack-spa build`
+
+Builds the app for production to the `build` folder.<br>
+It optimizes the build for the best performance.
+
+## [Main documentation](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x)

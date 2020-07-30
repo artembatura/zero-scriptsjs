@@ -1,18 +1,16 @@
 # @zero-scripts/extension.webpack-babel
 
-## Description
-
-Adds processing JavaScript code with Babel
+JavaScript code transpilation using Babel
 
 ## Installation
 
-##### yarn
+### yarn
 
 ```
 yarn add -D @zero-scripts/extension.webpack-babel
 ```
 
-##### npm
+### npm
 
 ```
 npm i -D @zero-scripts/extension.webpack-babel
@@ -20,31 +18,34 @@ npm i -D @zero-scripts/extension.webpack-babel
 
 ## Options
 
-| Option    | Type                                         | Default | Description                |
-| --------- | -------------------------------------------- | ------- | -------------------------- |
-| plugins   | _string[]_                                   | `[]`    | Additional Babel plugins   |
-| presets   | _string[]_                                   | `[]`    | Additional Babel presets   |
-| flow      | _boolean_                                    | `false` | Enable Flow support        |
-| jsLoaders | _Array<{ loader: string; options: object }>_ | `[]`    | Additional Webpack loaders |
+|     Option      |                     Type                     | Default |        Description         |
+| :-------------: | :------------------------------------------: | :-----: | :------------------------: |
+|  **`plugins`**  |                  `string[]`                  |  `[]`   |  Additional Babel plugins  |
+|  **`presets`**  |                  `string[]`                  |  `[]`   |  Additional Babel presets  |
+|   **`flow`**    |                  `boolean`                   | `false` |    Enable Flow support     |
+| **`jsLoaders`** | `Array<{ loader: string; options: object }>` |  `[]`   | Additional Webpack loaders |
 
-#### Notes
+**Note:** If you want to enable checking types for your TypeScript files,
+you need to install `fork-ts-checker-webpack-plugin`
 
-- If you want to enable checking types for your TypeScript files,
-  you need install `fork-ts-checker-webpack-plugin` in your project
+## Passing options
 
-## Usage
+#### `package.json`
 
-```
+```diff
 {
   "devDependencies": {
-    // <- preset, which uses @zero-scripts/config.webpack
-
+    // preset...
     "@zero-scripts/extension.webpack-babel": "latest"
   },
-  "zero-scripts": {
-    "@zero-scripts/extension.webpack-babel": {
-      "presets": ["@babel/preset-*"]
-    }
-  }
++  "zero-scripts": {
++    "extension.webpack-babel": {
++      "presets": ["linaria/babel"],
++      "plugins": ["@babel/plugin-proposal-optional-chaining"],
++      "flow": true
++    }
++  }
 }
 ```
+
+## [Main documentation](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x)
