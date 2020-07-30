@@ -1,61 +1,56 @@
 # @zero-scripts/config.webpack
 
-## Description
-
-Configuration for Webpack
+**Note**: You don't need to install this package manually. This package exists to be used inside extensions or presets.
 
 ## Options
 
-| Option               | Type      | Default                                        |
-| -------------------- | --------- | ---------------------------------------------- |
-| useSourceMap         | _Boolean_ | `true`                                         |
-| useTypescript        | _boolean_ | `true` if `tsconfig.json` exists, else `false` |
-| additionalEntry      | _Array_   | `[]`                                           |
-| moduleFileExtensions | _Array_   | `[]`                                           |
-| jsFileExtensions     | _Array_   | `[]`                                           |
-| paths                | _Object_  |                                                |
-| paths.root           | _String_  | ``                                             |
-| paths.src            | _String_  | `src`                                          |
-| paths.build          | _String_  | `build`                                        |
-| paths.indexJs        | _String_  | `src/index`                                    |
-| paths.indexHtml      | _String_  | `public/index.html`                            |
-| paths.public         | _String_  | `public`                                       |
+|           Option           |   Type    |                    Default                     |
+| :------------------------: | :-------: | :--------------------------------------------: |
+|     **`useSourceMap`**     | `boolean` |                     `true`                     |
+|    **`useTypescript`**     | `boolean` | `true` if `tsconfig.json` exists, else `false` |
+|   **`additionalEntry`**    |  `array`  |                      `[]`                      |
+| **`moduleFileExtensions`** |  `array`  |                      `[]`                      |
+|   **`jsFileExtensions`**   |  `array`  |                      `[]`                      |
+|        **`paths`**         | `object`  |                                                |
+|      **`paths.root`**      | `string`  |                                                |
+|      **`paths.src`**       | `string`  |                     `src`                      |
+|     **`paths.build`**      | `string`  |                    `build`                     |
+|    **`paths.indexJs`**     | `string`  |                  `src/index`                   |
+|   **`paths.indexHtml`**    | `string`  |              `public/index.html`               |
+|     **`paths.public`**     | `string`  |                    `public`                    |
 
 ## Passing options
 
-### Example
-
-Turn off source maps
+#### Turn off source maps
 
 #### `package.json`
 
 ```
 {
-  ...
-  "zero-scripts": {
-    "@zero-scripts/config.webpack": {
-      "sourceMap": false
-    }
-  }
++  "zero-scripts": {
++    "config.webpack": {
++      "sourceMap": false
++    }
++  }
 }
 ```
 
-### Example
-
-Sources are in root directory
+#### Handle source files which placed in the root directory
 
 #### `package.json`
 
-```
+```diff
 {
   ...
-  "zero-scripts": {
-    "@zero-scripts/config.webpack": {
-      "paths": {
-         "src": "",
-         "indexJs": "index"
-      }
-    }
-  }
++  "zero-scripts": {
++    "config.webpack": {
++      "paths": {
++         "src": "",
++         "indexJs": "index"
++      }
++    }
++  }
 }
 ```
+
+## [Main documentation](https://github.com/artemirq/zero-scriptsjs/tree/0.5.x)

@@ -38,12 +38,14 @@
   },
   "keywords": [
     "zero-scripts",
+    "config",
     "webpack",
     "preset",
-    "@zero-scripts/preset.webpack-spa.react",
     "babel",
     "eslint",
     "pwa",
-    "css"
+    "css",
+    "development",
+    "production"
   ]
 }

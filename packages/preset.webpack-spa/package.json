@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/preset.webpack-spa",
   "version": "0.5.0",
-  "description": "For development Single Page Applications",
+  "description": "Development Single Page Applications",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -47,6 +47,8 @@
     "zero-scripts",
     "preset",
     "spa",
+    "development",
+    "production",
     "@zero-scripts/config.webpack"
   ]
 }

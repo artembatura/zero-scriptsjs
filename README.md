@@ -13,19 +13,19 @@
   - [Process of loading extensions](#process-of-loading-extensions)
   - [Passing options](#passing-options)
 - [Getting started](#getting-started)
-  - **[Getting started with React](#getting-started-with-react)**
-  - **[Getting started with SPA](#getting-started-with-spa)**
-    - [Adding Babel](#adding-babel)
-    - [Adding Babel (React)](#adding-babel-react)
-    - [Adding ESLint](#adding-eslint)
-    - [Adding ESLint (React)](#adding-eslint-react)
-    - [Adding CSS](#adding-css)
-    - [Adding Sass](#adding-sass)
-    - [Adding PWA capabilities](#adding-pwa-capabilities)
+- **[Getting started with React](#getting-started-with-react)**
+- **[Getting started with SPA](#getting-started-with-spa)**
+  - [Adding Babel](#adding-babel)
+  - [Adding Babel (React)](#adding-babel-react)
+  - [Adding ESLint](#adding-eslint)
+  - [Adding ESLint (React)](#adding-eslint-react)
+  - [Adding CSS](#adding-css)
+  - [Adding Sass](#adding-sass)
+  - [Adding PWA capabilities](#adding-pwa-capabilities)
 - Examples
-  - [React](examples/react)
-  - [React w/ TypeScript](examples/react-typescript)
-  - [React w/ Astroturf](examples/react-astroturf)
+  - **[React](examples/react)**
+  - **[React w/ TypeScript](examples/react-typescript)**
+  - **[React w/ Astroturf](examples/react-astroturf)**
 - [Comparison with alternatives](#comparison-with-alternatives)
 - [License](#license)
 
@@ -133,13 +133,11 @@ Adding support for [Astroturf](https://github.com/4Catalyzer/astroturf)
 
 At start, you need to choose basic preset, which contain necessary scripts. Then you can install extensions, which adds extra features for your project.
 
-## Getting started with React
-
-This preset includes all required features for the most React projects.<br>
+# Getting started with React
 
 This is the fastest way to get started with React, but you can go with more [flexible way](#getting-started-with-spa) and choose the necessary functions yourself.
 
-#### [`More info`](./packages/preset.webpack-spa.react)
+## Installation
 
 ### yarn
 
@@ -153,28 +151,25 @@ yarn add @zero-scripts/preset.webpack-spa.react
 npm i @zero-scripts/preset.webpack-spa.react
 ```
 
-### `npm run start` or `yarn start`
+## Usage
+
+### `webpack-react start`
 
 Runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will automatically reload if you make changes to the code.<br>
-You will see the build errors and lint warnings in the console.
 
-### `npm run build` or `yarn build`
+### `webpack-react build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-
-Your app is ready to be deployed.
-
-## Getting started with SPA
+# Getting started with SPA
 
 Basically this way intended to use without any framework. However, you can extend preset with extensions.
 
-#### [`More info`](./packages/preset.webpack-spa)
+## Installation
 
 ### yarn
 
@@ -188,134 +183,131 @@ yarn add @zero-scripts/preset.webpack-spa
 npm i @zero-scripts/preset.webpack-spa
 ```
 
-### `npm run start` or `yarn start`
+## Usage
+
+### `webpack-spa start`
 
 Runs the app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will automatically reload if you make changes to the code.<br>
-You will see the build errors and lint warnings in the console.
 
-### `npm run build` or `yarn build`
+### `webpack-spa build`
 
 Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+It optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
+## Adding Babel
 
-Your app is ready to be deployed.
+#### [`@zero-scripts/extension.webpack-babel`](./packages/extension.webpack-babel)
 
-### Adding Babel
-
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-babel
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-babel
 ```
 
-#### [`More info`](./packages/extension.webpack-babel)
+## Adding Babel (React)
 
-### Adding Babel (React)
+#### [`@zero-scripts/extension.webpack-babel.react`](./packages/extension.webpack-babel.react)
 
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-babel.react
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-babel.react
 ```
 
-#### [`More info`](./packages/extension.webpack-babel.react)
+## Adding ESLint
 
-### Adding ESLint
+#### [`@zero-scripts/extension.webpack-eslint`](./packages/extension.webpack-eslint)
 
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-eslint
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-eslint
 ```
 
-#### [`More info`](./packages/extension.webpack-eslint)
+## Adding ESLint (React)
 
-### Adding ESLint (React)
+#### [`@zero-scripts/extension.webpack-eslint.react`](./packages/extension.webpack-eslint.react)
 
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-eslint.react
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-eslint.react
 ```
 
-#### [`More info`](./packages/extension.webpack-eslint.react)
+## Adding CSS
 
-### Adding CSS
+#### [`@zero-scripts/extension.webpack-css`](./packages/extension.webpack-css)
 
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-css
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-css
 ```
 
-#### [`More info`](./packages/extension.webpack-css)
+## Adding Sass
 
-### Adding Sass
+#### [`@zero-scripts/extension.webpack-sass`](./packages/extension.webpack-sass)
 
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-sass
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-sass
 ```
 
-#### [`More info`](./packages/extension.webpack-sass)
+## Adding PWA capabilities
 
-### Adding PWA capabilities
+#### [`@zero-scripts/extension.webpack-pwa`](./packages/extension.webpack-pwa)
 
-#### yarn
+### yarn
 
 ```
 yarn add @zero-scripts/extension.webpack-pwa
 ```
 
-#### npm
+### npm
 
 ```
 npm i @zero-scripts/extension.webpack-pwa
 ```
-
-#### [`More info`](./packages/extension.webpack-pwa)
 
 # Comparison with alternatives
 
@@ -335,4 +327,4 @@ npm i @zero-scripts/extension.webpack-pwa
 
 # License
 
-Zero Scripts has [MIT license](./LICENSE)
+Zero Scripts has a [MIT license](./LICENSE)

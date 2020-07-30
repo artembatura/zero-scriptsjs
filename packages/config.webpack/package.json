@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/config.webpack",
   "version": "0.5.0",
-  "description": "Base configuration for Webpack",
+  "description": "Configuration facilities",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
