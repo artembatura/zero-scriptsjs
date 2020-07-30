@@ -1,3 +1,7 @@
+## 0.5.2 (2020-07-30)
+
+Nothing new, just re-compiled packages
+
 ## 0.5.1 (2020-07-30)
 
 #### :memo: Documentation
