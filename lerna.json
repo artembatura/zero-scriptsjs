@@ -13,7 +13,8 @@
       "tag: enhancement": ":nail_care: Enhancement",
       "tag: documentation": ":memo: Documentation",
       "tag: internal": ":house: Internal",
-      "tag: new package": ":new: New Package"
+      "tag: new package": ":new: New Package",
+      "tag: security": ":warning: Security"
     }
   }
 }

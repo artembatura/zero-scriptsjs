@@ -1,3 +1,19 @@
+## 0.5.1 (2020-07-30)
+
+#### :memo: Documentation
+
+- `config.webpack`, `core`, `extension.webpack-babel.react`, `extension.webpack-babel`, `extension.webpack-css`, `extension.webpack-eslint.react`, `extension.webpack-eslint`, `extension.webpack-pwa`, `exten sion.webpack-sass`, `extension.webpack-spa`, `preset.webpack-spa.react`, `preset.webpack-spa`
+  - [#590](https://github.com/artemirq/zero-scriptsjs/pull/590) Docs improvements and fixes ([@artemirq](https://github.com/artemirq))
+
+#### :warning: Security
+
+- [#589](https://github.com/artemirq/zero-scriptsjs/pull/589) Bump elliptic from 6.5.0 to 6.5.3 ([@dependabot[bot]](https://github.com/apps/dependabot))
+- [#588](https://github.com/artemirq/zero-scriptsjs/pull/588) Bump lodash from 4.17.14 to 4.17.19 ([@dependabot[bot]](https://github.com/apps/dependabot))
+
+#### Committers: 1
+
+- Artem Batura ([@artemirq](https://github.com/artemirq))
+
 ## 0.5.0 (2020-07-12)
 
 #### :bug: Bug Fix
