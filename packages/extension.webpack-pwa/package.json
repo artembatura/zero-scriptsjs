@@ -1,7 +1,7 @@
 {
   "name": "@zero-scripts/extension.webpack-pwa",
   "description": "PWA capabilities",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -20,13 +20,13 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.5.1",
-    "@zero-scripts/core": "^0.5.1",
+    "@zero-scripts/config.webpack": "^0.5.2",
+    "@zero-scripts/core": "^0.5.2",
     "workbox-webpack-plugin": "4.3.1"
   },
   "devDependencies": {
     "@types/workbox-webpack-plugin": "4.1.0",
-    "@zero-scripts/ts-config": "^0.5.0"
+    "@zero-scripts/ts-config": "^0.5.2"
   },
   "publishConfig": {
     "access": "public"

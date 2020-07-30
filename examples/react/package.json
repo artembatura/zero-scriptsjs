@@ -1,6 +1,6 @@
 {
   "name": "example.react",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "scripts": {
     "start": "webpack-react start",
@@ -11,6 +11,6 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@zero-scripts/preset.webpack-spa.react": "^0.5.1"
+    "@zero-scripts/preset.webpack-spa.react": "^0.5.2"
   }
 }

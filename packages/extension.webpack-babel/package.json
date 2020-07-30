@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-babel",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "JavaScript code transpilation using Babel",
   "author": {
     "name": "Artem Batura",
@@ -29,13 +29,13 @@
     "@babel/preset-env": "7.6.3",
     "@babel/preset-typescript": "7.6.0",
     "@babel/runtime": "7.6.3",
-    "@zero-scripts/config.webpack": "^0.5.1",
-    "@zero-scripts/core": "^0.5.1",
+    "@zero-scripts/config.webpack": "^0.5.2",
+    "@zero-scripts/core": "^0.5.2",
     "babel-loader": "8.0.6",
     "core-js": "3.3.3"
   },
   "devDependencies": {
-    "@zero-scripts/ts-config": "^0.5.0"
+    "@zero-scripts/ts-config": "^0.5.2"
   },
   "optionalDependencies": {
     "fork-ts-checker-webpack-plugin": "~1.5.0"
