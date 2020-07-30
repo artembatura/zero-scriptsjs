@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-eslint.react",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Lint JavaScript code using ESLint",
   "author": {
     "name": "Artem Batura",
@@ -20,8 +20,8 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "^0.5.0",
-    "@zero-scripts/extension.webpack-eslint": "^0.5.0",
+    "@zero-scripts/core": "^0.5.1",
+    "@zero-scripts/extension.webpack-eslint": "^0.5.1",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-flowtype": "4.3.0",
     "eslint-plugin-jsx-a11y": "6.2.3",

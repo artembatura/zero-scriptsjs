@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/extension.webpack-sass",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Extract, minify and add vendor prefixes for SASS/SCSS files",
   "author": {
     "name": "Artem Batura",
@@ -21,9 +21,9 @@
   ],
   "dependencies": {
     "@types/optimize-css-assets-webpack-plugin": "5.0.1",
-    "@zero-scripts/config.webpack": "^0.5.0",
-    "@zero-scripts/core": "^0.5.0",
-    "@zero-scripts/utils.webpack-styles": "^0.5.0",
+    "@zero-scripts/config.webpack": "^0.5.1",
+    "@zero-scripts/core": "^0.5.1",
+    "@zero-scripts/utils.webpack-styles": "^0.5.1",
     "mini-css-extract-plugin": "0.8.0",
     "node-sass": "4.14.1",
     "optimize-css-assets-webpack-plugin": "5.0.3",

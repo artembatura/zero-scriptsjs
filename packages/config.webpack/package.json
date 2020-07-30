@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/config.webpack",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Configuration facilities",
   "author": {
     "name": "Artem Batura",
@@ -20,7 +20,7 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "^0.5.0",
+    "@zero-scripts/core": "^0.5.1",
     "file-loader": "4.2.0",
     "hot-accept-webpack-plugin": "1.1.1",
     "terser-webpack-plugin": "2.2.1",

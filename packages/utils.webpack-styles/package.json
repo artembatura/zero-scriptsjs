@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/utils.webpack-styles",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -19,7 +19,7 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/config.webpack": "^0.5.0",
+    "@zero-scripts/config.webpack": "^0.5.1",
     "css-loader": "3.2.0",
     "loader-utils": "1.2.3",
     "postcss-flexbugs-fixes": "4.1.0",
