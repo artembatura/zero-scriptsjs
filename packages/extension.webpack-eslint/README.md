@@ -31,7 +31,7 @@ npm i -D @zero-scripts/extension.webpack-eslint
 
 #### `package.json`
 
-```
+```diff
 {
   "devDependencies": {
     "@zero-scripts/extension.webpack-eslint": "latest"

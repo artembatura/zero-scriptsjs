@@ -25,8 +25,9 @@
 
 #### `package.json`
 
-```
+```diff
 {
+   ...
 +  "zero-scripts": {
 +    "config.webpack": {
 +      "sourceMap": false
