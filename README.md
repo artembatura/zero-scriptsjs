@@ -37,13 +37,13 @@ We provide an ecosystem of ready packages for development modern JavaScript proj
 
 # Highlights
 
-- ### ⏱ Zero Configuration
+- ### :clock1: Zero Configuration
 
 Make things faster without worrying about configuration. We ship a reasonably good configuration and modern features at default.
 
 ---
 
-- ### ⚡ Extensible & Modular
+- ### :zap: Extensible & Modular
 
 Extensions is a ["pluggable"](#process-of-loading-extensions) packages. To add a feature you need only add package to `devDependencies`.
 
@@ -51,7 +51,7 @@ _Big part of unused packages will not be installed, because you choose what you 
 
 ---
 
-- ### ⚙ Customizable
+- ### :gear: Customizable
 
 Extensions and configurations have own [set of options](#passing-options). It's allow modifying everything for your requirements.
 
@@ -142,13 +142,13 @@ This is the fastest way to get started with React, but you can go with more [fle
 ### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-spa.react
+yarn add -D @zero-scripts/preset.webpack-spa.react
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/preset.webpack-spa.react
+npm i -D @zero-scripts/preset.webpack-spa.react
 ```
 
 ## Usage
@@ -174,13 +174,13 @@ Basically this way intended to use without any framework. However, you can exten
 ### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-spa
+yarn add -D @zero-scripts/preset.webpack-spa
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/preset.webpack-spa
+npm i -D @zero-scripts/preset.webpack-spa
 ```
 
 ## Usage
@@ -204,13 +204,13 @@ It optimizes the build for the best performance.
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-babel
+yarn add -D @zero-scripts/extension.webpack-babel
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-babel
+npm i -D @zero-scripts/extension.webpack-babel
 ```
 
 ## Adding Babel (React)
@@ -220,13 +220,13 @@ npm i @zero-scripts/extension.webpack-babel
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-babel.react
+yarn add -D @zero-scripts/extension.webpack-babel.react
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-babel.react
+npm i -D @zero-scripts/extension.webpack-babel.react
 ```
 
 ## Adding ESLint
@@ -236,13 +236,13 @@ npm i @zero-scripts/extension.webpack-babel.react
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-eslint
+yarn add -D @zero-scripts/extension.webpack-eslint
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-eslint
+npm i -D @zero-scripts/extension.webpack-eslint
 ```
 
 ## Adding ESLint (React)
@@ -252,13 +252,13 @@ npm i @zero-scripts/extension.webpack-eslint
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-eslint.react
+yarn add -D @zero-scripts/extension.webpack-eslint.react
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-eslint.react
+npm i -D @zero-scripts/extension.webpack-eslint.react
 ```
 
 ## Adding CSS
@@ -268,13 +268,13 @@ npm i @zero-scripts/extension.webpack-eslint.react
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-css
+yarn add -D @zero-scripts/extension.webpack-css
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-css
+npm i -D @zero-scripts/extension.webpack-css
 ```
 
 ## Adding Sass
@@ -284,13 +284,13 @@ npm i @zero-scripts/extension.webpack-css
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-sass
+yarn add -D @zero-scripts/extension.webpack-sass
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-sass
+npm i -D @zero-scripts/extension.webpack-sass
 ```
 
 ## Adding PWA capabilities
@@ -300,13 +300,13 @@ npm i @zero-scripts/extension.webpack-sass
 ### yarn
 
 ```
-yarn add @zero-scripts/extension.webpack-pwa
+yarn add -D @zero-scripts/extension.webpack-pwa
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/extension.webpack-pwa
+npm i -D @zero-scripts/extension.webpack-pwa
 ```
 
 # Comparison with alternatives

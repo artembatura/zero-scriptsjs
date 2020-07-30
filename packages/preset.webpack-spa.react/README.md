@@ -7,13 +7,13 @@ This is the fastest way to get started with React, but you can go with more [fle
 ### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-spa.react
+yarn add -D @zero-scripts/preset.webpack-spa.react
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/preset.webpack-spa.react
+npm i -D @zero-scripts/preset.webpack-spa.react
 ```
 
 ## Usage

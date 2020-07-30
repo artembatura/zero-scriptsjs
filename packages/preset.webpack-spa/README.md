@@ -7,13 +7,13 @@ Basically this way intended to use without any framework. However, you can exten
 ### yarn
 
 ```
-yarn add @zero-scripts/preset.webpack-spa
+yarn add -D @zero-scripts/preset.webpack-spa
 ```
 
 ### npm
 
 ```
-npm i @zero-scripts/preset.webpack-spa
+npm i -D @zero-scripts/preset.webpack-spa
 ```
 
 ## Usage
