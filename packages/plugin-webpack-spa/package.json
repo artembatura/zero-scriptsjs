@@ -35,8 +35,7 @@
     "@types/express": "4.17.7",
     "@types/webpack": "4.41.21",
     "@types/webpack-dev-middleware": "3.7.1",
-    "@types/webpack-hot-middleware": "2.25.3",
-    "@zero-scripts/ts-config": "workspace:*"
+    "@types/webpack-hot-middleware": "2.25.3"
   },
   "publishConfig": {
     "access": "public"

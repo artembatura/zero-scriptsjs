@@ -24,8 +24,7 @@
     "workbox-webpack-plugin": "5.1.3"
   },
   "devDependencies": {
-    "@types/workbox-webpack-plugin": "5.1.1",
-    "@zero-scripts/ts-config": "workspace:*"
+    "@types/workbox-webpack-plugin": "5.1.1"
   },
   "optionalDependencies": {
     "webpack": "^4.43.0"

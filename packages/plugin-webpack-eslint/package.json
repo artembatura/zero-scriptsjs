@@ -30,9 +30,6 @@
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.22.0"
   },
-  "devDependencies": {
-    "@zero-scripts/ts-config": "workspace:*"
-  },
   "peerDependencies": {
     "webpack": "4.x"
   },

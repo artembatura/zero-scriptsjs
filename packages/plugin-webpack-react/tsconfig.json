@@ -1,5 +1,5 @@
 {
-  "extends": "@zero-scripts/ts-config",
+  "extends": "../../tsconfig.json",
   "exclude": ["node_modules", "build", "**/__tests__/*.test.ts"],
   "compilerOptions": {
     "rootDir": "src",
