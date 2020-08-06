@@ -28,9 +28,7 @@ type StartTaskOptions = {
 };
 
 @ReadOptions(WebpackSpaPluginOptions, 'plugin-webpack-spa')
-export class WebpackSpaPlugin<
-  TOptions extends WebpackSpaPluginOptions = WebpackSpaPluginOptions
-> extends AbstractPlugin<TOptions> {
+export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackSpaPlugin', api => {
       const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);

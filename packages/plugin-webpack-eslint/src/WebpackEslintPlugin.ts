@@ -12,9 +12,9 @@ import { WebpackEslintPluginOptions } from './WebpackEslintPluginOptions';
 const rr = require.resolve;
 
 @ReadOptions(WebpackEslintPluginOptions, 'plugin-webpack-eslint')
-export class WebpackEslintPlugin<
-  TOptions extends WebpackEslintPluginOptions = WebpackEslintPluginOptions
-> extends AbstractPlugin<TOptions> {
+export class WebpackEslintPlugin extends AbstractPlugin<
+  WebpackEslintPluginOptions
+> {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackEslintPlugin', api => {
       const config = api.getConfigBuilder(WebpackConfig);

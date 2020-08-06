@@ -4,7 +4,9 @@ import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
 import { resolvePaths } from './resolvePaths';
 
-export class WebpackConfigOptions extends AbstractOptionsContainer {
+export class WebpackConfigOptions extends AbstractOptionsContainer<
+  WebpackConfigOptions
+> {
   @Option<WebpackConfigOptions, 'paths'>(
     ({ defaultValue, externalValue }) => ({
       ...defaultValue,
@@ -59,9 +61,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer {
 
   @Option<WebpackConfigOptions, 'useTypescript', 'paths'>(
     ({ externalValue, dependencies: { paths } }) =>
-      typeof externalValue === 'boolean'
-        ? externalValue
-        : existsSync(paths.tsConfig),
+      externalValue ? externalValue : existsSync(paths.tsConfig),
     ['paths']
   )
   public useTypescript: boolean = false;

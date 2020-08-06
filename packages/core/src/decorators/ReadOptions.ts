@@ -18,7 +18,9 @@ import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
  * }
  */
 export function ReadOptions<TOptionsContainer extends AbstractOptionsContainer>(
-  OptionsContainer: { new (externalOptions: object): TOptionsContainer },
+  OptionsContainer: {
+    new (externalOptions: Record<string, unknown>): TOptionsContainer;
+  },
   optionsKey: string
 ) {
   return <T extends { new (...args: any[]): any }>(DecoratedClass: T) =>

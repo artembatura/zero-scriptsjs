@@ -8,10 +8,8 @@ import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
 const rr = require.resolve;
 
 @ReadOptions(WebpackReactPluginOptions, 'plugin-webpack-react')
-export class WebpackReactPlugin<
-  TParentOptions extends WebpackReactPluginOptions | undefined = undefined
-> extends AbstractPlugin<
-  TParentOptions extends undefined ? WebpackReactPluginOptions : TParentOptions
+export class WebpackReactPlugin extends AbstractPlugin<
+  WebpackReactPluginOptions
 > {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackReactPlugin', wsApi => {

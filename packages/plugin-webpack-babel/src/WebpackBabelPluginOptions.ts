@@ -1,6 +1,8 @@
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-export class WebpackBabelPluginOptions extends AbstractOptionsContainer {
+export class WebpackBabelPluginOptions extends AbstractOptionsContainer<
+  WebpackBabelPluginOptions
+> {
   @Option<WebpackBabelPluginOptions, 'flow'>()
   public flow: boolean = false;
 
@@ -26,5 +28,7 @@ export class WebpackBabelPluginOptions extends AbstractOptionsContainer {
       ...(externalValue ? externalValue : [])
     ]
   )
-  public jsLoaders: Array<{ loader: string; options: object } | string> = [];
+  public jsLoaders: Array<
+    { loader: string; options: Record<string, unknown> } | string
+  > = [];
 }

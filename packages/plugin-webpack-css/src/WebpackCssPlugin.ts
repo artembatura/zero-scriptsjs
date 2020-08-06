@@ -14,9 +14,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const cssModuleRegex = /\.(module|m)\.css$/;
 
 @ReadOptions(WebpackCssPluginOptions, 'plugin-webpack-css')
-export class WebpackCssPlugin<
-  TOptions extends WebpackCssPluginOptions = WebpackCssPluginOptions
-> extends AbstractPlugin<TOptions> {
+export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackCssPlugin', api => {
       const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);
