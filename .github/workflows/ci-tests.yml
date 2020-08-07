@@ -1,0 +1,17 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          curl -L https://unpkg.com/@pnpm/self-installer | sudo node
+          pnpm i
+      - run: pnpm compile
+      - run: pnpm test
+        env:
+          CI: true
