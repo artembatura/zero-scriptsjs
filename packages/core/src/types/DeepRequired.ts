@@ -8,6 +8,6 @@ export type DeepRequired<T> = T extends (...args: any[]) => any
   ? T
   : T extends any[]
   ? T
-  : T extends object
+  : T extends Record<string, any>
   ? _DeepRequiredObject<T>
   : T;
