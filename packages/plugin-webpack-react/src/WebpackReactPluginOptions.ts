@@ -5,4 +5,7 @@ export class WebpackReactPluginOptions extends AbstractOptionsContainer<
 > {
   @Option<WebpackReactPluginOptions, 'propTypes'>()
   public propTypes: boolean = false;
+
+  @Option<WebpackReactPluginOptions, 'fastRefresh'>()
+  public fastRefresh: boolean = false;
 }

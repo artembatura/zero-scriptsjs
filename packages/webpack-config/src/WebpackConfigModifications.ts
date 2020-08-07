@@ -72,6 +72,27 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
+  public addResolveAlias(
+    alias: string,
+    path: string,
+    modificationId?: string
+  ): this {
+    this.modifications.push(
+      new ConfigModification(
+        c => c.resolve.alias,
+        prevValue => {
+          return {
+            ...prevValue,
+            [alias]: path
+          };
+        },
+        modificationId
+      )
+    );
+
+    return this;
+  }
+
   protected getOneOfModification(): OneOfModification {
     const foundModification = this.modifications.find(
       modification => modification.id === OneOfModification.id

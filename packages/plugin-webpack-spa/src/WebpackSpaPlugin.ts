@@ -53,7 +53,9 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
 
           devServer.use(
             webpackHotMiddleware(compiler, {
-              log: false
+              log: false,
+              path: '/__webpack_hmr',
+              heartbeat: 10 * 1000
             })
           );
 
