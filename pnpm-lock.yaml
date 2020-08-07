@@ -88,6 +88,26 @@ importers:
       astroturf: 0.10.4
       react: 16.13.1
       react-dom: 16.13.1
+  examples/react-fast-refresh:
+    dependencies:
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+    devDependencies:
+      '@zero-scripts/core': 'link:../../packages/core'
+      '@zero-scripts/plugin-webpack-babel': 'link:../../packages/plugin-webpack-babel'
+      '@zero-scripts/plugin-webpack-css': 'link:../../packages/plugin-webpack-css'
+      '@zero-scripts/plugin-webpack-eslint': 'link:../../packages/plugin-webpack-eslint'
+      '@zero-scripts/plugin-webpack-react': 'link:../../packages/plugin-webpack-react'
+      '@zero-scripts/plugin-webpack-spa': 'link:../../packages/plugin-webpack-spa'
+    specifiers:
+      '@zero-scripts/core': 'workspace:*'
+      '@zero-scripts/plugin-webpack-babel': 'workspace:*'
+      '@zero-scripts/plugin-webpack-css': 'workspace:*'
+      '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
+      '@zero-scripts/plugin-webpack-react': 'workspace:*'
+      '@zero-scripts/plugin-webpack-spa': 'workspace:*'
+      react: 16.13.1
+      react-dom: 16.13.1
   examples/react-typescript:
     dependencies:
       react: 16.13.1
