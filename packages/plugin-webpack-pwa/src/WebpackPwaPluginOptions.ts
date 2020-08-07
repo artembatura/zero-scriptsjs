@@ -1,3 +1,5 @@
 import { AbstractOptionsContainer } from '@zero-scripts/core';
 
-export class WebpackPwaPluginOptions extends AbstractOptionsContainer {}
+export class WebpackPwaPluginOptions extends AbstractOptionsContainer<
+  WebpackPwaPluginOptions
+> {}

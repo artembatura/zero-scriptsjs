@@ -1,13 +1,15 @@
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-export class WebpackEslintPluginOptions extends AbstractOptionsContainer {
+export class WebpackEslintPluginOptions extends AbstractOptionsContainer<
+  WebpackEslintPluginOptions
+> {
   @Option<WebpackEslintPluginOptions, 'plugins'>(
     ({ externalValue, defaultValue }) => [
       ...defaultValue,
       ...(externalValue ? externalValue : [])
     ]
   )
-  public plugins: (string | [string, object])[] = [];
+  public plugins: (string | [string, Record<string, unknown>])[] = [];
 
   @Option<WebpackEslintPluginOptions, 'extends'>(
     ({ externalValue, defaultValue }) => [
@@ -15,7 +17,7 @@ export class WebpackEslintPluginOptions extends AbstractOptionsContainer {
       ...(externalValue ? externalValue : [])
     ]
   )
-  public extends: (string | [string, object])[] = [];
+  public extends: (string | [string, Record<string, unknown>])[] = [];
 
   @Option<WebpackEslintPluginOptions, 'rules'>(
     ({ defaultValue, externalValue }) => ({
@@ -39,7 +41,7 @@ export class WebpackEslintPluginOptions extends AbstractOptionsContainer {
       ...externalValue
     })
   )
-  public parserOptions: Record<string, any> = {};
+  public parserOptions: Record<string, unknown> = {};
 
   @Option<WebpackEslintPluginOptions, 'settings'>(
     ({ defaultValue, externalValue }) => ({
@@ -47,5 +49,5 @@ export class WebpackEslintPluginOptions extends AbstractOptionsContainer {
       ...externalValue
     })
   )
-  public settings: Record<string, any> = {};
+  public settings: Record<string, unknown> = {};
 }

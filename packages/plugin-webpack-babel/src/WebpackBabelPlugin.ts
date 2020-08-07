@@ -11,9 +11,9 @@ import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 const rr = require.resolve;
 
 @ReadOptions(WebpackBabelPluginOptions, 'plugin-webpack-babel')
-export class WebpackBabelPlugin<
-  TParentOptions extends WebpackBabelPluginOptions = WebpackBabelPluginOptions
-> extends AbstractPlugin<TParentOptions> {
+export class WebpackBabelPlugin extends AbstractPlugin<
+  WebpackBabelPluginOptions
+> {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackBabelPlugin', api => {
       const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);

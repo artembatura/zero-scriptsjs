@@ -18,7 +18,7 @@ export abstract class AbstractOptionsContainer<
     beforeBuild: new SyncHook<[TArgHook]>(['optionsContainer'])
   };
 
-  public constructor(externalOptions: object) {
+  public constructor(externalOptions: Record<string, unknown>) {
     Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         METADATA_OPTIONS,

@@ -32,9 +32,6 @@
     "eslint-plugin-react": "7.20.3",
     "eslint-plugin-react-hooks": "4.0.7"
   },
-  "devDependencies": {
-    "@zero-scripts/ts-config": "workspace:*"
-  },
   "peerDependencies": {
     "@babel/core": "7.x",
     "@typescript-eslint/eslint-plugin": "2.x",

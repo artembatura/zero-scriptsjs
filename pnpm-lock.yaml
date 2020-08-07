@@ -3,7 +3,7 @@ importers:
     devDependencies:
       '@nearform/multistream': 5.0.0-2
       '@types/jest': 26.0.4
-      '@types/node': 14.0.22
+      '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.6.0_1c51ade106368f8db1c65fa08c9a96ed
       '@typescript-eslint/parser': 3.6.0_eslint@7.4.0+typescript@3.9.6
       eslint: 7.4.0
@@ -26,7 +26,7 @@ importers:
     specifiers:
       '@nearform/multistream': 5.0.0-2
       '@types/jest': 26.0.4
-      '@types/node': 14.0.22
+      '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.6.0
       '@typescript-eslint/parser': 3.6.0
       eslint: 7.4.0
@@ -117,7 +117,7 @@ importers:
   packages/core:
     dependencies:
       get-value: 3.0.1
-      mri: 1.1.5
+      mri: 1.1.6
       normalize-package-data: 2.5.0
       reflect-metadata: 0.1.13
       set-value: 3.0.2
@@ -125,20 +125,18 @@ importers:
     devDependencies:
       '@types/get-value': 3.0.1
       '@types/mri': 1.1.0
-      '@types/node': 14.0.22
+      '@types/node': 14.0.27
       '@types/normalize-package-data': 2.4.0
       '@types/set-value': 2.0.0
-      '@zero-scripts/ts-config': 'link:../ts-config'
       utility-types: 3.10.0
     specifiers:
       '@types/get-value': 3.0.1
       '@types/mri': 1.1.0
-      '@types/node': 14.0.22
+      '@types/node': 14.0.27
       '@types/normalize-package-data': 2.4.0
       '@types/set-value': 2.0.0
-      '@zero-scripts/ts-config': 'workspace:*'
       get-value: 3.0.1
-      mri: 1.1.5
+      mri: 1.1.6
       normalize-package-data: 2.5.0
       reflect-metadata: 0.1.13
       set-value: 3.0.2
@@ -159,8 +157,6 @@ importers:
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       babel-loader: 8.1.0_0cfd9791b7d0e032fda143e7498c778b
       core-js: 3.6.5
-    devDependencies:
-      '@zero-scripts/ts-config': 'link:../ts-config'
     optionalDependencies:
       fork-ts-checker-webpack-plugin: 5.0.7
       webpack: 4.43.0_webpack@4.43.0
@@ -175,7 +171,6 @@ importers:
       '@babel/preset-typescript': 7.10.4
       '@babel/runtime': 7.10.4
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-loader: 8.1.0
       core-js: 3.6.5
@@ -192,14 +187,12 @@ importers:
     devDependencies:
       '@types/mini-css-extract-plugin': 0.9.1
       '@types/optimize-css-assets-webpack-plugin': 5.0.1
-      '@zero-scripts/ts-config': 'link:../ts-config'
     optionalDependencies:
       webpack: 4.43.0_webpack@4.43.0
     specifiers:
       '@types/mini-css-extract-plugin': 0.9.1
       '@types/optimize-css-assets-webpack-plugin': 5.0.1
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/utils-webpack-styles': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       mini-css-extract-plugin: 0.9.0
@@ -217,13 +210,10 @@ importers:
       eslint-formatter-pretty: 4.0.0
       eslint-loader: 4.0.2_eslint@7.4.0
       eslint-plugin-import: 2.22.0_eslint@7.4.0
-    devDependencies:
-      '@zero-scripts/ts-config': 'link:../ts-config'
     specifiers:
       '@typescript-eslint/eslint-plugin': 3.6.0
       '@typescript-eslint/parser': 3.6.0
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-eslint: 10.1.0
       eslint: 7.4.0
@@ -237,13 +227,11 @@ importers:
       workbox-webpack-plugin: 5.1.3_webpack@4.43.0
     devDependencies:
       '@types/workbox-webpack-plugin': 5.1.1
-      '@zero-scripts/ts-config': 'link:../ts-config'
     optionalDependencies:
       webpack: 4.43.0_webpack@4.43.0
     specifiers:
       '@types/workbox-webpack-plugin': 5.1.1
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       webpack: ^4.43.0
       workbox-webpack-plugin: 5.1.3
@@ -260,14 +248,11 @@ importers:
       eslint-plugin-jsx-a11y: 6.3.1
       eslint-plugin-react: 7.20.3
       eslint-plugin-react-hooks: 4.0.7
-    devDependencies:
-      '@zero-scripts/ts-config': 'link:../ts-config'
     specifiers:
       '@babel/preset-react': 7.10.4
       '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/plugin-webpack-babel': 'workspace:*'
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-plugin-transform-react-remove-prop-types: 0.4.24
       eslint-config-react-app: 5.2.1
@@ -288,14 +273,12 @@ importers:
     devDependencies:
       '@types/mini-css-extract-plugin': 0.9.1
       '@types/optimize-css-assets-webpack-plugin': 5.0.1
-      '@zero-scripts/ts-config': 'link:../ts-config'
     optionalDependencies:
       webpack: 4.43.0_webpack@4.43.0
     specifiers:
       '@types/mini-css-extract-plugin': 0.9.1
       '@types/optimize-css-assets-webpack-plugin': 5.0.1
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/utils-webpack-styles': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       mini-css-extract-plugin: 0.9.0
@@ -322,7 +305,6 @@ importers:
       '@types/webpack': 4.41.21
       '@types/webpack-dev-middleware': 3.7.1
       '@types/webpack-hot-middleware': 2.25.3
-      '@zero-scripts/ts-config': 'link:../ts-config'
     specifiers:
       '@artemir/friendly-errors-webpack-plugin': 1.8.0
       '@types/copy-webpack-plugin': 6.0.0
@@ -331,7 +313,6 @@ importers:
       '@types/webpack-dev-middleware': 3.7.1
       '@types/webpack-hot-middleware': 2.25.3
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       clean-webpack-plugin: 3.0.0
       copy-webpack-plugin: 6.0.3
@@ -340,8 +321,6 @@ importers:
       webpack: 4.43.0
       webpack-dev-middleware: 4.0.0-rc.2
       webpack-hot-middleware: 2.25.0
-  packages/ts-config:
-    specifiers: {}
   packages/utils-webpack-styles:
     dependencies:
       '@zero-scripts/webpack-config': 'link:../webpack-config'
@@ -354,11 +333,9 @@ importers:
     devDependencies:
       '@types/loader-utils': 2.0.1
       '@types/webpack': 4.41.21
-      '@zero-scripts/ts-config': 'link:../ts-config'
     specifiers:
       '@types/loader-utils': 2.0.1
       '@types/webpack': 4.41.21
-      '@zero-scripts/ts-config': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       css-loader: 3.6.0
       loader-utils: 2.0.0
@@ -378,13 +355,11 @@ importers:
       '@types/terser-webpack-plugin': 3.0.0
       '@types/webpack': 4.41.21
       '@types/webpack-assets-manifest': 3.0.1
-      '@zero-scripts/ts-config': 'link:../ts-config'
     specifiers:
       '@types/terser-webpack-plugin': 3.0.0
       '@types/webpack': 4.41.21
       '@types/webpack-assets-manifest': 3.0.1
       '@zero-scripts/core': 'workspace:*'
-      '@zero-scripts/ts-config': 'workspace:*'
       file-loader: 6.0.0
       hot-accept-webpack-plugin: 1.1.2
       terser-webpack-plugin: 3.0.6
@@ -2909,6 +2884,10 @@ packages:
   /@types/node/14.0.22:
     resolution:
       integrity: sha512-emeGcJvdiZ4Z3ohbmw93E/64jRzUHAItSHt8nF7M4TGgQTiWqFVGB8KNpLGFmUHmHLvjvBgFwVlqNcq+VuGv9g==
+  /@types/node/14.0.27:
+    dev: true
+    resolution:
+      integrity: sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
   /@types/normalize-package-data/2.4.0:
     dev: true
     resolution:
@@ -9414,12 +9393,12 @@ packages:
       run-queue: 1.0.3
     resolution:
       integrity: sha1-viwAX9oy4LKa8fBdfEszIUxwH5I=
-  /mri/1.1.5:
+  /mri/1.1.6:
     dev: false
     engines:
       node: '>=4'
     resolution:
-      integrity: sha512-d2RKzMD4JNyHMbnbWnznPaa8vbdlq/4pNZ3IgdaGrVbBhebBsGUUE/6qorTMYNS6TwuH3ilfOlD2bf4Igh8CKg==
+      integrity: sha512-oi1b3MfbyGa7FJMP9GmLTttni5JoICpYBRlq+x5V16fZbLsnL9N3wFqqIm/nIG43FjUFkFh9Epzp/kzUGUnJxQ==
   /ms/2.0.0:
     resolution:
       integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=

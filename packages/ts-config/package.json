@@ -1,8 +1,0 @@
-{
-  "name": "@zero-scripts/ts-config",
-  "private": true,
-  "version": "0.4.0",
-  "description": "TypeScript config for @zero-scripts packages",
-  "main": "tsconfig.json",
-  "license": "MIT"
-}

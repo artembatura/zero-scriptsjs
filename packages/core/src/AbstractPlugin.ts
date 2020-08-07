@@ -2,7 +2,7 @@ import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 import { PluginAPI } from './api';
 
 export abstract class AbstractPlugin<
-  TOptionsContainer extends AbstractOptionsContainer<TOptionsContainer> = any
+  TOptionsContainer extends AbstractOptionsContainer = any
 > {
   public constructor(public readonly optionsContainer: TOptionsContainer) {}
 

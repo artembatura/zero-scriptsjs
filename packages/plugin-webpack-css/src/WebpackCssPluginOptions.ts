@@ -1,6 +1,8 @@
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-export class WebpackCssPluginOptions extends AbstractOptionsContainer {
+export class WebpackCssPluginOptions extends AbstractOptionsContainer<
+  WebpackCssPluginOptions
+> {
   @Option<WebpackCssPluginOptions, 'styleLoaders'>(
     ({ externalValue, defaultValue }) => [
       ...(externalValue ? externalValue : []),
