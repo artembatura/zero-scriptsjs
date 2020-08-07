@@ -238,6 +238,7 @@ importers:
   packages/plugin-webpack-react:
     dependencies:
       '@babel/preset-react': 7.10.4
+      '@pmmmwh/react-refresh-webpack-plugin': 0.4.1_react-refresh@0.8.3
       '@zero-scripts/core': 'link:../core'
       '@zero-scripts/plugin-webpack-babel': 'link:../plugin-webpack-babel'
       '@zero-scripts/plugin-webpack-eslint': 'link:../plugin-webpack-eslint'
@@ -248,8 +249,10 @@ importers:
       eslint-plugin-jsx-a11y: 6.3.1
       eslint-plugin-react: 7.20.3
       eslint-plugin-react-hooks: 4.0.7
+      react-refresh: 0.8.3
     specifiers:
       '@babel/preset-react': 7.10.4
+      '@pmmmwh/react-refresh-webpack-plugin': 0.4.1
       '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/plugin-webpack-babel': 'workspace:*'
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
@@ -260,6 +263,7 @@ importers:
       eslint-plugin-jsx-a11y: 6.3.1
       eslint-plugin-react: 7.20.3
       eslint-plugin-react-hooks: 4.0.7
+      react-refresh: 0.8.3
   packages/plugin-webpack-sass:
     dependencies:
       '@zero-scripts/core': 'link:../core'
@@ -2657,6 +2661,42 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GorvORVwp244fGKEt3cgt/P+M0MGy4xEDbckw+K5ojEezxyMDgCaYPKVct+/eWQfZXOT7uq0xRpmrl/+hliabA==
+  /@pmmmwh/react-refresh-webpack-plugin/0.4.1_react-refresh@0.8.3:
+    dependencies:
+      ansi-html: 0.0.7
+      error-stack-parser: 2.0.6
+      html-entities: 1.3.1
+      native-url: 0.2.6
+      react-refresh: 0.8.3
+      schema-utils: 2.7.0
+      source-map: 0.7.3
+    dev: false
+    engines:
+      node: '>= 10.x'
+    peerDependencies:
+      '@types/webpack': 4.x
+      react-refresh: ^0.8.3
+      sockjs-client: ^1.4.0
+      type-fest: ^0.13.1
+      webpack: '>=4.43.0 <6.0.0'
+      webpack-dev-server: 3.x
+      webpack-hot-middleware: 2.x
+      webpack-plugin-serve: 0.x || 1.x
+    peerDependenciesMeta:
+      '@types/webpack':
+        optional: true
+      sockjs-client:
+        optional: true
+      type-fest:
+        optional: true
+      webpack-dev-server:
+        optional: true
+      webpack-hot-middleware:
+        optional: true
+      webpack-plugin-serve:
+        optional: true
+    resolution:
+      integrity: sha512-MzM87WdX2r2KRFfhEho7oGyK1XRE/J9WwjB3v6oLQHN0dzBypBZxSWjnoYx+RWneRCsg8Sin1myf+EjX1fqIbQ==
   /@rollup/plugin-node-resolve/7.1.3_rollup@1.32.1:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@1.32.1
@@ -9457,6 +9497,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==
+  /native-url/0.2.6:
+    dependencies:
+      querystring: 0.2.0
+    dev: false
+    resolution:
+      integrity: sha512-k4bDC87WtgrdD362gZz6zoiXQrl40kYlBmpfmSjwRO1VU0V5ccwJTlxuE72F6m3V0vc1xOf6n3UCP9QyerRqmA==
   /natural-compare/1.4.0:
     resolution:
       integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
@@ -11392,6 +11438,12 @@ packages:
   /react-is/16.13.1:
     resolution:
       integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+  /react-refresh/0.8.3:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
   /react/16.13.1:
     dependencies:
       loose-envify: 1.4.0

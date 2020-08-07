@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "@babel/preset-react": "7.10.4",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.4.1",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "@zero-scripts/plugin-webpack-eslint": "workspace:*",
@@ -30,7 +31,8 @@
     "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-react": "7.20.3",
-    "eslint-plugin-react-hooks": "4.0.7"
+    "eslint-plugin-react-hooks": "4.0.7",
+    "react-refresh": "0.8.3"
   },
   "peerDependencies": {
     "@babel/core": "7.x",

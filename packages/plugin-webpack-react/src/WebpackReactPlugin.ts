@@ -1,3 +1,5 @@
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+
 import { AbstractPlugin, ReadOptions, PluginAPI } from '@zero-scripts/core';
 import { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
@@ -18,13 +20,8 @@ export class WebpackReactPlugin extends AbstractPlugin<
       config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
         const pluginOptions = this.optionsContainer.build();
 
-        const babelPlugin = wsApi.findPlugin(WebpackBabelPlugin) as
-          | WebpackBabelPlugin
-          | undefined;
-
-        const eslintPlugin = wsApi.findPlugin(WebpackEslintPlugin) as
-          | WebpackEslintPlugin
-          | undefined;
+        const babelPlugin = wsApi.findPlugin(WebpackBabelPlugin);
+        const eslintPlugin = wsApi.findPlugin(WebpackEslintPlugin);
 
         if (babelPlugin) {
           babelPlugin.optionsContainer.hooks.beforeBuild.tap(
@@ -66,6 +63,32 @@ export class WebpackReactPlugin extends AbstractPlugin<
               };
             }
           );
+        }
+
+        if (pluginOptions.fastRefresh && configOptions.isDev) {
+          if (babelPlugin) {
+            babelPlugin.optionsContainer.hooks.beforeBuild.tap(
+              'WebpackReactPlugin.addFastRefreshLoader',
+              optionsContainer => {
+                optionsContainer.plugins.push(rr('react-refresh/babel'));
+              }
+            );
+
+            config.hooks.build.tap('WebpackReactPlugin', modifications => {
+              modifications.insertPlugin(
+                new ReactRefreshWebpackPlugin({
+                  overlay: {
+                    sockIntegration: 'whm'
+                  }
+                })
+              );
+
+              modifications.addResolveAlias(
+                'react-refresh/runtime',
+                require.resolve('react-refresh/runtime')
+              );
+            });
+          }
         }
       });
     });

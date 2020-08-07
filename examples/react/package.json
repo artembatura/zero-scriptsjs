@@ -23,6 +23,9 @@
       "@zero-scripts/plugin-webpack-react",
       "@zero-scripts/plugin-webpack-babel",
       "@zero-scripts/plugin-webpack-css"
-    ]
+    ],
+    "plugin-webpack-react": {
+      "fastRefresh": true
+    }
   }
 }
