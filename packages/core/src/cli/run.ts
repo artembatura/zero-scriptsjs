@@ -1,4 +1,5 @@
 import mri from 'mri';
+import { Optional } from 'utility-types';
 
 import { AbstractPlugin } from '../AbstractPlugin';
 import { PluginAPI, WorkspaceBeforeRunAPI } from '../api';
@@ -23,7 +24,7 @@ function getPluginPackageList(
   configuration: Configuration,
   meta: ConfigurationMeta,
   workSpaceName: string | undefined
-): string[] {
+): string[] | undefined {
   if (meta.workspaceType === WorkspaceConfigurationType.ARRAY) {
     return configuration.workspace as Workspace;
   }
@@ -44,7 +45,7 @@ function getPluginPackageList(
   }
 
   if (meta.workspaceType === WorkspaceConfigurationType.MAPPED_ARRAYS) {
-    return (configuration.workspace as MappedWorkspace)[
+    return (configuration.workspace as Optional<MappedWorkspace>)[
       workSpaceName || 'default'
     ];
   }
@@ -111,10 +112,22 @@ export async function run(argv: string[]): Promise<void> {
     workSpaceName
   );
 
-  if (pluginPackageNames.length === 0 && !workSpaceName) {
-    throw new Error(
-      'Error: You should provide --workspace option with name of workspace, which should be loaded.'
-    );
+  if (!pluginPackageNames) {
+    if (workSpaceName) {
+      const availableOptions = Object.keys(configuration.workspace || {});
+      const availableOptionsString =
+        availableOptions.length > 0
+          ? `Available options: [${availableOptions.join(', ')}].`
+          : 'No available options is defined.';
+
+      throw new Error(
+        `Error: Workspace with key "${workSpaceName}" is not exists in your workspace object. ${availableOptionsString}`
+      );
+    } else {
+      throw new Error(
+        'Error: You should provide --workspace option with name of workspace, which should be loaded.'
+      );
+    }
   }
 
   const workSpaceInstance = new WorkSpace('default');

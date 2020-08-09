@@ -18,6 +18,7 @@
     "@zero-scripts/plugin-webpack-eslint": "workspace:*"
   },
   "zero-scripts": {
+    "workspace": [],
     "plugin-webpack-react": {
       "fastRefresh": true
     }
