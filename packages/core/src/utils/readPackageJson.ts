@@ -12,11 +12,14 @@ export type Options = {
 
 export function readPackageJson<
   TPackage extends Package & { 'zero-scripts': Record<string, any> },
-  TSelectedValue
+  TSelectedValue = null,
+  TReturnValue extends TPackage | TSelectedValue = TSelectedValue extends null
+    ? TPackage
+    : TSelectedValue
 >(
   selector?: Selector<TPackage, TSelectedValue>,
   options?: Options
-): TSelectedValue | TPackage {
+): TReturnValue {
   const { normalize, path }: Required<Options> = {
     path: process.cwd(),
     normalize: true,
@@ -33,5 +36,5 @@ export function readPackageJson<
     require('normalize-package-data')(packageJson);
   }
 
-  return selector ? selector(packageJson) : packageJson;
+  return selector ? selector(packageJson) : (packageJson as any);
 }
