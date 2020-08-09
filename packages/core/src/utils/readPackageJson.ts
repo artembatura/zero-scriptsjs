@@ -36,5 +36,9 @@ export function readPackageJson<
     require('normalize-package-data')(packageJson);
   }
 
-  return selector ? selector(packageJson) : (packageJson as any);
+  if (selector) {
+    return selector(packageJson) as TReturnValue;
+  }
+
+  return packageJson as TReturnValue;
 }

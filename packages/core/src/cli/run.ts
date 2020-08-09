@@ -35,9 +35,10 @@ function getPluginPackageList(
     );
 
     console.log(
-      'Workspace option is not set, loading official plugins from devDependencies...'
+      `Workspace option is not set, load plugins from devDependencies: ${devDependencies.join(
+        ', '
+      )}`
     );
-    console.log(devDependencies);
 
     return devDependencies.filter(pkgName =>
       /^@?[a-z-]*\/?plugin-[a-z-]*$/.test(pkgName)
