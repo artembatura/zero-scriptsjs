@@ -1,11 +1,14 @@
 import mri from 'mri';
+import { Optional } from 'utility-types';
 
 import { AbstractPlugin } from '../AbstractPlugin';
 import { PluginAPI, WorkspaceBeforeRunAPI } from '../api';
+import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 import { WorkSpace } from '../WorkSpace';
 import { getCLIMeta } from './getCLIMeta';
 import { getConfigurationMeta } from './getConfigurationMeta';
+import { pluginRegexp } from './pluginRegexp';
 import {
   CLIMeta,
   Configuration,
@@ -18,17 +21,45 @@ import {
   WorkspaceConfigurationType
 } from './types';
 
+function getPluginPackageList(
+  configuration: Configuration,
+  meta: ConfigurationMeta,
+  workSpaceName: string | undefined
+): string[] | undefined {
+  if (meta.workspaceType === WorkspaceConfigurationType.ARRAY) {
+    return configuration.workspace as Workspace;
+  }
+
+  if (meta.workspaceType === WorkspaceConfigurationType.UNSET) {
+    const devDependencies = readPackageJson(pkg =>
+      Object.keys(pkg?.devDependencies || {})
+    );
+
+    console.log(
+      `Workspace option is not set, load plugins from devDependencies: ${devDependencies.join(
+        ', '
+      )}`
+    );
+
+    return devDependencies.filter(pkgName => pluginRegexp.test(pkgName));
+  }
+
+  if (meta.workspaceType === WorkspaceConfigurationType.MAPPED_ARRAYS) {
+    return (configuration.workspace as Optional<MappedWorkspace>)[
+      workSpaceName || 'default'
+    ];
+  }
+
+  throw new Error(
+    `Error: Unsupported [configuration.workspace] type "${typeof configuration.workspace}".`
+  );
+}
+
 export async function run(argv: string[]): Promise<void> {
   const cliMeta: CLIMeta = getCLIMeta(argv);
 
   const configuration: Configuration = readZeroScriptsOptions();
   const configMeta: ConfigurationMeta = getConfigurationMeta(configuration);
-
-  if (configMeta.workspaceType === WorkspaceConfigurationType.WRONG) {
-    throw new Error(
-      `Error: Unsupported [configuration.workspace] type "${typeof configuration.workspace}".`
-    );
-  }
 
   if (configMeta.workflowType === WorkflowConfigurationType.WRONG) {
     throw new Error(
@@ -55,12 +86,6 @@ export async function run(argv: string[]): Promise<void> {
         ]
       : (configuration.workflow as Workflow | undefined);
 
-  if (!configMeta.isWorkspaceDefined) {
-    throw new Error(
-      'Error: Option "workspace" is not set. It\'s should be array or object and contains package names of plugins.'
-    );
-  }
-
   const workSpaceName: string | undefined =
     workFlow && 'workspace' in workFlow
       ? workFlow.workspace
@@ -81,16 +106,28 @@ export async function run(argv: string[]): Promise<void> {
     );
   }
 
-  const pluginPackageNames =
-    configMeta.workspaceType === WorkspaceConfigurationType.ARRAY
-      ? (configuration.workspace as Workspace)
-      : ((configuration as Required<Configuration>)
-          .workspace as MappedWorkspace)[workSpaceName || 'default'];
+  const pluginPackageNames = getPluginPackageList(
+    configuration,
+    configMeta,
+    workSpaceName
+  );
 
-  if (!pluginPackageNames && !workSpaceName) {
-    throw new Error(
-      'Error: You should provide --workspace option with name of workspace, which should be loaded.'
-    );
+  if (!pluginPackageNames) {
+    if (workSpaceName) {
+      const availableOptions = Object.keys(configuration.workspace || {});
+      const availableOptionsString =
+        availableOptions.length > 0
+          ? `Available options: [${availableOptions.join(', ')}].`
+          : 'No available options is defined.';
+
+      throw new Error(
+        `Error: Workspace with key "${workSpaceName}" is not exists in your workspace object. ${availableOptionsString}`
+      );
+    } else {
+      throw new Error(
+        'Error: You should provide --workspace option with name of workspace, which should be loaded.'
+      );
+    }
   }
 
   const workSpaceInstance = new WorkSpace('default');

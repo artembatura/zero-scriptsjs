@@ -18,6 +18,8 @@ export function getConfigurationMeta(
     workspaceType = WorkspaceConfigurationType.ARRAY;
   } else if (typeof workspaceConfig === 'object') {
     workspaceType = WorkspaceConfigurationType.MAPPED_ARRAYS;
+  } else if (typeof workspaceConfig === 'undefined') {
+    workspaceType = WorkspaceConfigurationType.UNSET;
   }
 
   let workflowType: WorkflowConfigurationType = WorkflowConfigurationType.WRONG;

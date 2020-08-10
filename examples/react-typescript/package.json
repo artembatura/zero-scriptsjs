@@ -20,12 +20,5 @@
     "fork-ts-checker-webpack-plugin": "5.0.7",
     "typescript": "3.9.6"
   },
-  "zero-scripts": {
-    "workspace": [
-      "@zero-scripts/plugin-webpack-spa",
-      "@zero-scripts/plugin-webpack-react",
-      "@zero-scripts/plugin-webpack-babel",
-      "@zero-scripts/plugin-webpack-css"
-    ]
-  }
+  "zero-scripts": {}
 }

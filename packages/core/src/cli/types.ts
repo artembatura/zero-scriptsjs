@@ -33,6 +33,7 @@ export enum WorkflowConfigurationType {
 export enum WorkspaceConfigurationType {
   ARRAY,
   MAPPED_ARRAYS,
+  UNSET,
   WRONG
 }
 
