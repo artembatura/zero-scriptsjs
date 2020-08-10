@@ -8,6 +8,7 @@ import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 import { WorkSpace } from '../WorkSpace';
 import { getCLIMeta } from './getCLIMeta';
 import { getConfigurationMeta } from './getConfigurationMeta';
+import { pluginRegexp } from './pluginRegexp';
 import {
   CLIMeta,
   Configuration,
@@ -40,9 +41,7 @@ function getPluginPackageList(
       )}`
     );
 
-    return devDependencies.filter(pkgName =>
-      /^@?[a-z-]*\/?plugin-[a-z-]*$/.test(pkgName)
-    );
+    return devDependencies.filter(pkgName => pluginRegexp.test(pkgName));
   }
 
   if (meta.workspaceType === WorkspaceConfigurationType.MAPPED_ARRAYS) {
