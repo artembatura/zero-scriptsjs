@@ -320,6 +320,7 @@ importers:
       copy-webpack-plugin: 6.0.3_webpack@4.43.0
       express: 4.17.1
       html-webpack-plugin: 4.3.0_webpack@4.43.0
+      open: 7.1.0
       webpack: 4.43.0_webpack@4.43.0
       webpack-dev-middleware: 4.0.0-rc.2_webpack@4.43.0
       webpack-hot-middleware: 2.25.0
@@ -342,6 +343,7 @@ importers:
       copy-webpack-plugin: 6.0.3
       express: 4.17.1
       html-webpack-plugin: 4.3.0
+      open: ^7.1.0
       webpack: 4.43.0
       webpack-dev-middleware: 4.0.0-rc.2
       webpack-hot-middleware: 2.25.0
@@ -7710,13 +7712,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-YTObbyR1/Hcv2cnYP1yFddwVSuE=
-  /is-docker/2.0.0:
-    dev: true
+  /is-docker/2.1.1:
     engines:
       node: '>=8'
-    optional: true
+    hasBin: true
     resolution:
-      integrity: sha512-pJEdRugimx4fBMra5z2/5iRdZ63OhYV0vr0Dwm5+xtW4D1FvRkB8hamMIhnWfyJeDdyr/aa7BDyNbtG38VxgoQ==
+      integrity: sha512-ZOoqiXfEwtGknTiuDEy8pN2CfE3TxMHprvNer1mXiqwkOT77Rw3YVrUQ52EqAOU3QAWDQ+bQdx7HJzrv7LS2Hw==
   /is-extendable/0.1.1:
     engines:
       node: '>=0.10.0'
@@ -7932,11 +7933,9 @@ packages:
       integrity: sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
   /is-wsl/2.2.0:
     dependencies:
-      is-docker: 2.0.0
-    dev: true
+      is-docker: 2.1.1
     engines:
       node: '>=8'
-    optional: true
     resolution:
       integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==
   /isarray/1.0.0:
@@ -9977,6 +9976,15 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-5NcSkPHhwTVFIQN+TUqXoS5+dlElHXdpAWu9I0HP20YOtIi+aZ0Ct82jdlILDxjLEAWwvm+qj1m6aEtsDVmm6Q==
+  /open/7.1.0:
+    dependencies:
+      is-docker: 2.1.1
+      is-wsl: 2.2.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-lLPI5KgOwEYCDKXf4np7y1PBEkj7HYIyP2DY8mVDRnx0VIIu6bNrRB0R66TuO7Mack6EnTNLm4uvcl1UoklTpA==
   /opencollective-postinstall/2.0.3:
     dev: true
     hasBin: true
