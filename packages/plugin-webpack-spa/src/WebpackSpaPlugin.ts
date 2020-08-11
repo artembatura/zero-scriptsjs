@@ -1,94 +1,35 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import express from 'express';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import {
   PluginAPI,
   AbstractPlugin,
   InsertPos,
-  ReadOptions,
-  Task
+  ReadOptions
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
+import { TaskStart, TaskBuild } from './tasks';
 import { WebpackSpaPluginOptions } from './WebpackSpaPluginOptions';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 
-type StartTaskOptions = {
-  smokeTest: boolean;
-  port: string;
-  smokePort: string;
-};
-
 @ReadOptions(WebpackSpaPluginOptions, 'plugin-webpack-spa')
 export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
   public apply(ws: PluginAPI): void {
     ws.hooks.beforeRun.tap('WebpackSpaPlugin', api => {
-      const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);
+      const webpackConfig = api.getConfigBuilder(WebpackConfig);
 
-      api.addTask(
-        new Task('start').handle((async (
-          args: string[],
-          options: StartTaskOptions
-        ) => {
-          process.env.NODE_ENV = 'development';
+      [new TaskStart('start'), new TaskBuild('build')].forEach(task => {
+        task.bind(webpackConfig, this.optionsContainer);
 
-          const config = webpackConfigBuilder
-            .setIsDev(true)
-            .addEntry(require.resolve('webpack-hot-middleware/client'))
-            .build();
+        api.addTask(task);
+      });
 
-          const compiler = webpack(config);
-
-          const devServer = express();
-
-          devServer.use(webpackDevMiddleware(compiler));
-
-          devServer.use(
-            webpackHotMiddleware(compiler, {
-              log: false,
-              path: '/__webpack_hmr',
-              heartbeat: 10 * 1000
-            })
-          );
-
-          // for e2e tests
-          if (options.smokeTest) {
-            compiler.hooks.invalid.tap('smokeTest', () => {
-              process.exit(1);
-            });
-
-            devServer.get('/terminate-dev-server', () => {
-              process.exit(1);
-            });
-          }
-
-          devServer.listen(parseInt(options.port) || 8080);
-        }) as any)
-      );
-
-      api.addTask(
-        new Task('build').handle(() => {
-          process.env.NODE_ENV = 'production';
-
-          const config = webpackConfigBuilder.setIsDev(false).build();
-
-          const compiler = webpack(config);
-
-          compiler.run(err => {
-            if (err) throw err;
-          });
-        })
-      );
-
-      webpackConfigBuilder.hooks.build.tap(
+      webpackConfig.hooks.build.tap(
         'WebpackSpaPlugin',
         (modifications, { isDev, paths }) => {
           if (!isDev) {

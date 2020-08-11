@@ -6,6 +6,7 @@ import { PluginAPI, WorkspaceBeforeRunAPI } from '../api';
 import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 import { WorkSpace } from '../WorkSpace';
+import { setCurrentTaskMeta } from './currentTask';
 import { getCLIMeta } from './getCLIMeta';
 import { getConfigurationMeta } from './getConfigurationMeta';
 import { pluginRegexp } from './pluginRegexp';
@@ -180,6 +181,12 @@ export async function run(argv: string[]): Promise<void> {
 
     const finalArgs = useCommonArgsAndOptions ? cliMeta.args : restArgs;
     const finalOptions = useCommonArgsAndOptions ? cliMeta.options : options;
+
+    setCurrentTaskMeta({
+      args: finalArgs,
+      options: finalOptions,
+      instance: task
+    });
 
     await task.run(finalArgs, finalOptions);
   }
