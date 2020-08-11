@@ -1,9 +1,12 @@
-// type ExtractValue<T extends Rule<string>[]> = {
-//   [K in keyof T]: T[K] extends Rule<infer V> ? V : never
-// };
+import { AbstractConfigBuilder } from './AbstractConfigBuilder';
+import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 
-export class Task<TOptions extends {}, _TArgs extends string[]> {
-  protected _handler?: (args: string[], options: TOptions) => void;
+export abstract class Task<
+  TConfigBuilder extends AbstractConfigBuilder<any, any>,
+  TOptionsContainer extends AbstractOptionsContainer
+> {
+  protected configBuilder?: TConfigBuilder;
+  protected pluginOptionsContainer?: TOptionsContainer;
   // public readonly argumentsRules: Rule<string>[] = [];
   // public readonly optionsRules: Record<string, Rule<string | boolean>> = {};
 
@@ -27,18 +30,33 @@ export class Task<TOptions extends {}, _TArgs extends string[]> {
   //   return this as any;
   // }
 
-  public handle(
-    handler: (args: string[], options: TOptions) => void | Promise<void>
+  public abstract run<
+    TArgs extends string[],
+    TOptions extends Record<string, unknown>
+  >(args: TArgs, options: TOptions): void | Promise<void>;
+
+  public bind(
+    configBuilder: TConfigBuilder,
+    optionsContainer: TOptionsContainer
   ): this {
-    this._handler = handler;
+    this.configBuilder = configBuilder;
+    this.pluginOptionsContainer = optionsContainer;
+
     return this;
   }
 
-  public run(args: _TArgs, options: TOptions): void | Promise<void> {
-    if (!this._handler) {
-      throw new Error(`Handler for task ${this.name} is not found`);
-    }
+  public isBound(): this is {
+    configBuilder: TConfigBuilder;
+    pluginOptionsContainer: TOptionsContainer;
+  } {
+    return Boolean(this.configBuilder) || Boolean(this.pluginOptionsContainer);
+  }
 
-    return this._handler(args, options);
+  public printIfNotBound(): void {
+    if (!this.isBound()) {
+      console.log(
+        'You forgot to bound context for task ' + this.constructor.name
+      );
+    }
   }
 }
