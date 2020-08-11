@@ -1,4 +1,5 @@
 import express from 'express';
+import open from 'open';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -20,6 +21,9 @@ export class TaskStart extends Task<WebpackConfig, WebpackSpaPluginOptions> {
     }
 
     process.env.NODE_ENV = 'development';
+
+    const pluginOptions = this.pluginOptionsContainer.build();
+    const devServerOptions = pluginOptions.devServer;
 
     const config = this.configBuilder
       .setIsDev(true)
@@ -51,6 +55,14 @@ export class TaskStart extends Task<WebpackConfig, WebpackSpaPluginOptions> {
       });
     }
 
-    devServer.listen(options.port || 8080);
+    const port = options.port || devServerOptions.port;
+
+    if (pluginOptions.devServer.openInBrowser) {
+      compiler.hooks.done.tap('WebpackSpaPlugin.openDevServer', async () => {
+        await open(`http://localhost:${port}`);
+      });
+    }
+
+    devServer.listen(port);
   }
 }

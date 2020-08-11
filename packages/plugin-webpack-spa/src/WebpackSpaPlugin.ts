@@ -33,6 +33,9 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
       webpackConfig.hooks.build.tap(
         'WebpackSpaPlugin',
         (modifications, { isDev, paths }) => {
+          const pluginOptions = this.optionsContainer.build();
+          const devServerOptions = pluginOptions.devServer;
+
           if (!isDev) {
             modifications.insertPlugin(new CleanWebpackPlugin());
 
@@ -56,7 +59,8 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
               ? new FriendlyErrorsPlugin({
                   compilationSuccessInfo: {
                     messages: [
-                      'Your application is available at http://localhost:8080'
+                      'Your application is available at http://localhost:' +
+                        devServerOptions.port
                     ],
                     notes: [
                       'The development build is not optimized',
