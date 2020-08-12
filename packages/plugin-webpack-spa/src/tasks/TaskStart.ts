@@ -58,8 +58,14 @@ export class TaskStart extends Task<WebpackConfig, WebpackSpaPluginOptions> {
     const port = options.port || devServerOptions.port;
 
     if (pluginOptions.devServer.openInBrowser) {
+      let devServerIsOpen = false;
+
       compiler.hooks.done.tap('WebpackSpaPlugin.openDevServer', async () => {
-        await open(`http://localhost:${port}`);
+        if (!devServerIsOpen) {
+          await open(`http://localhost:${port}`);
+
+          devServerIsOpen = true;
+        }
       });
     }
 
