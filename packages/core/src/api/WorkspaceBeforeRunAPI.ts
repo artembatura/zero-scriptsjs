@@ -1,7 +1,6 @@
 import { AbstractConfigBuilder } from '../AbstractConfigBuilder';
 import { AbstractPlugin } from '../AbstractPlugin';
 import { Task } from '../Task';
-import { PluginConstructor } from '../types';
 import { AbstractConfigBuilderConstructor } from '../types/AbstractConfigBuilderConstructor';
 import { WorkSpace } from '../WorkSpace';
 
@@ -28,11 +27,9 @@ export class WorkspaceBeforeRunAPI {
     return this.ws.configBuilderInstances.get(className);
   }
 
-  public findPlugin<T extends AbstractPlugin>(
-    Class: PluginConstructor<T>
-  ): T | undefined {
-    return this.ws.plugins.find(
-      plugin => plugin.constructor.name === Class.name
-    ) as T | undefined;
+  public findPlugin<T extends AbstractPlugin>(name: string): T | undefined {
+    return this.ws.plugins.find(plugin => plugin.constructor.name === name) as
+      | T
+      | undefined;
   }
 }
