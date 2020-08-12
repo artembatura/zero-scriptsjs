@@ -8,7 +8,7 @@ import { terminateDevServer } from '../../e2e-helpers/terminateDevServer';
 
 const workPath = path.resolve(path.join(__dirname, '..'), 'react-sass');
 
-describe('example:react-typescript', () => {
+describe('example:react-sass', () => {
   beforeAll(() => jest.setTimeout(1000 * 120));
 
   it('run start', async () => {

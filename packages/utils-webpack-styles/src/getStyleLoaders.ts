@@ -14,7 +14,7 @@ export function getStyleLoaders(
   customStyleLoader?: string
 ) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
-    const loaders = [
+    const loaders: any[] = [
       isDev
         ? rr('style-loader')
         : {
