@@ -4,12 +4,17 @@ const rr = require.resolve;
 
 export function getStyleLoaders(
   devLoader: string,
-  cssOptions?: any,
-  preprocessor?: string,
+  cssOptions?: Record<string, unknown>,
+  preprocessor?:
+    | string
+    | {
+        loader: string;
+        options: Record<string, unknown>;
+      },
   customStyleLoader?: string
 ) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
-    const loaders = [
+    const loaders: any[] = [
       isDev
         ? rr('style-loader')
         : {
@@ -42,12 +47,18 @@ export function getStyleLoaders(
     ];
 
     if (preprocessor) {
-      loaders.push({
-        loader: rr(preprocessor),
+      const preprocessorObj = {
+        loader:
+          typeof preprocessor === 'object'
+            ? preprocessor.loader
+            : rr(preprocessor),
         options: {
-          sourceMap: !isDev && useSourceMap
+          sourceMap: !isDev && useSourceMap,
+          ...(typeof preprocessor === 'object' ? preprocessor.options : {})
         }
-      });
+      };
+
+      loaders.push(preprocessorObj);
     }
 
     return loaders;

@@ -24,13 +24,20 @@ export class WebpackSassPlugin extends AbstractPlugin<
       webpackConfigBuilder.hooks.build.tap(
         'WebpackSassPlugin',
         (modifications, configOptions) => {
+          const sassLoader = {
+            loader: require.resolve('sass-loader'),
+            options: {
+              implementation: require('sass')
+            }
+          };
+
           modifications.insertModuleRule({
             test: /\.(scss|sass)$/,
             exclude: sassModuleRegex,
             use: getStyleLoaders(
               MiniCssExtractPlugin.loader,
               undefined,
-              require.resolve('sass-loader')
+              sassLoader
             )(configOptions),
             sideEffects: true
           });
@@ -44,7 +51,7 @@ export class WebpackSassPlugin extends AbstractPlugin<
                   getLocalIdent
                 }
               },
-              require.resolve('sass-loader')
+              sassLoader
             )(configOptions)
           });
 
