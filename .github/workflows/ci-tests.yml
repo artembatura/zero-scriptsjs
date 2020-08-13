@@ -7,10 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: |
-          curl -L https://unpkg.com/@pnpm/self-installer | sudo node
-          pnpm i
+      - uses: pnpm/action-setup@v1.2.0
+        with:
+          version: latest
+      - name: Retrieve content-addressable store from cache
+        uses: actions/cache@v2
+        with:
+          path: /home/runner/.pnpm-store/v3
+          key: ${{ runner.os }}-node-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: pnpm i
       - run: pnpm compile
       - run: pnpm test
         env:
