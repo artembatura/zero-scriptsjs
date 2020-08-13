@@ -1,8 +1,8 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 import { AbstractPlugin, ReadOptions, PluginAPI } from '@zero-scripts/core';
-import { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
-import { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
+import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
+import type { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
@@ -20,8 +20,12 @@ export class WebpackReactPlugin extends AbstractPlugin<
       config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
         const pluginOptions = this.optionsContainer.build();
 
-        const babelPlugin = wsApi.findPlugin(WebpackBabelPlugin);
-        const eslintPlugin = wsApi.findPlugin(WebpackEslintPlugin);
+        const babelPlugin = wsApi.findPlugin<WebpackBabelPlugin>(
+          'WebpackBabelPlugin'
+        );
+        const eslintPlugin = wsApi.findPlugin<WebpackEslintPlugin>(
+          'WebpackEslintPlugin'
+        );
 
         if (babelPlugin) {
           babelPlugin.optionsContainer.hooks.beforeBuild.tap(

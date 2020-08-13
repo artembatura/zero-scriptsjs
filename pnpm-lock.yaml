@@ -280,8 +280,6 @@ importers:
       '@babel/preset-react': 7.10.4
       '@pmmmwh/react-refresh-webpack-plugin': 0.4.1_react-refresh@0.8.3
       '@zero-scripts/core': 'link:../core'
-      '@zero-scripts/plugin-webpack-babel': 'link:../plugin-webpack-babel'
-      '@zero-scripts/plugin-webpack-eslint': 'link:../plugin-webpack-eslint'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       babel-plugin-transform-react-remove-prop-types: 0.4.24
       eslint-config-react-app: 5.2.1_d441eb8275c3d85bb26e96d96a7de135
@@ -290,6 +288,9 @@ importers:
       eslint-plugin-react: 7.20.3
       eslint-plugin-react-hooks: 4.0.7
       react-refresh: 0.8.3
+    optionalDependencies:
+      '@zero-scripts/plugin-webpack-babel': 'link:../plugin-webpack-babel'
+      '@zero-scripts/plugin-webpack-eslint': 'link:../plugin-webpack-eslint'
     specifiers:
       '@babel/preset-react': 7.10.4
       '@pmmmwh/react-refresh-webpack-plugin': 0.4.1

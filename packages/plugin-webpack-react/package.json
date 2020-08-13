@@ -23,8 +23,6 @@
     "@babel/preset-react": "7.10.4",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.1",
     "@zero-scripts/core": "workspace:*",
-    "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "eslint-config-react-app": "5.2.1",
@@ -42,6 +40,10 @@
     "eslint": "6.x",
     "eslint-plugin-import": "2.x",
     "webpack": "4.x"
+  },
+  "optionalDependencies": {
+    "@zero-scripts/plugin-webpack-babel": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
