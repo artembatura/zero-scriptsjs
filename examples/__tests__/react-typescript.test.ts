@@ -38,7 +38,10 @@ describe('example:react-typescript', () => {
       })
     ]);
 
-    expect(output).toContain('Your application is available at');
+    expect(output).toContain(
+      'Your application is available at http://localhost:' +
+        devServerPort.toString()
+    );
     expect(httpRes.status).toBe(200);
   });
 
@@ -48,7 +51,7 @@ describe('example:react-typescript', () => {
     const output = await readProcessOutput(process);
 
     expect(output).toContain(
-      'Your application successfully built and available at'
+      'Your application successfully built and available at build folder'
     );
   });
 });
