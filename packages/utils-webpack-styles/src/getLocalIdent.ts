@@ -6,8 +6,8 @@ export function getLocalIdent(
   context: loader.LoaderContext,
   localIdentName: string,
   localName: string,
-  options: any
-) {
+  options: Record<string, unknown>
+): string {
   const fileNameOrFolder = context.resourcePath.match(
     /index\.module\.(css|scss|sass)$/
   )

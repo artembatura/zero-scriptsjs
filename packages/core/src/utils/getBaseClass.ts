@@ -1,6 +1,9 @@
 import { Constructor } from '../types';
 
-export function getBaseClass(targetClass: Constructor, position: number = 0) {
+export function getBaseClass(
+  targetClass: Constructor,
+  position: number = 0
+): Constructor | undefined {
   const baseClasses: any[] = [targetClass];
 
   for (

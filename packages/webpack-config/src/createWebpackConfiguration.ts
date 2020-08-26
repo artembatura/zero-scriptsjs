@@ -81,7 +81,6 @@ export function createWebpackConfiguration({
       fs: 'empty',
       net: 'empty',
       tls: 'empty',
-      // eslint-disable-next-line @typescript-eslint/camelcase
       child_process: 'empty'
     },
     stats: 'errors-only',

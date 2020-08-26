@@ -23,7 +23,7 @@ export function ReadOptions<TOptionsContainer extends AbstractOptionsContainer>(
   },
   optionsKey: string
 ) {
-  return <T extends { new (...args: any[]): any }>(DecoratedClass: T) =>
+  return <T extends { new (...args: any[]): any }>(DecoratedClass: T): T =>
     ({
       [DecoratedClass.name]: class extends DecoratedClass {
         constructor(...args: any[]) {

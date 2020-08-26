@@ -12,7 +12,10 @@ export abstract class AbstractModificationsContainer<
     any
   >[] = [];
 
-  public applyAll(config: TConfig, options: ExtractOptions<TOptionsContainer>) {
+  public applyAll(
+    config: TConfig,
+    options: ExtractOptions<TOptionsContainer>
+  ): void {
     const appliedModifications: ConfigModification<TConfig, any, any>[] = [];
 
     this.modifications.forEach(modifier => {

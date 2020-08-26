@@ -3,6 +3,8 @@ import { ChildProcessWithoutNullStreams } from 'child_process';
 
 import { readStream } from './readStream';
 
-export function readProcessOutput(process: ChildProcessWithoutNullStreams) {
+export function readProcessOutput(
+  process: ChildProcessWithoutNullStreams
+): Promise<string> {
   return readStream(new MultiStream([process.stderr, process.stdout]));
 }

@@ -4,7 +4,7 @@ import { Selector } from '../types';
 
 const _cache: Record<string, any> = {};
 
-export function readJson<T extends Record<string, any>, TSelectedValue>(
+export function readJson<T extends Record<string, unknown>, TSelectedValue>(
   _path: string,
   selector?: Selector<T, TSelectedValue>
 ): TSelectedValue | T {
