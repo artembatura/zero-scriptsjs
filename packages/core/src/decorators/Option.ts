@@ -26,7 +26,7 @@ export function Option<
     options: { [K in keyof T]: T[K] }
   ) => T[TOption]
 ) {
-  return (target: (...args: any[]) => any, propertyName: string): void => {
+  return (target: T, propertyName: string): void => {
     const values = new Map();
 
     Object.defineProperty(target, propertyName, {

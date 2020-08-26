@@ -19,7 +19,7 @@ import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
  */
 export function ReadOptions<TOptionsContainer extends AbstractOptionsContainer>(
   OptionsContainer: {
-    new (externalOptions: Record<string, unknown>): TOptionsContainer;
+    new (externalOptions?: Record<string, unknown>): TOptionsContainer;
   },
   optionsKey: string
 ) {
@@ -27,7 +27,9 @@ export function ReadOptions<TOptionsContainer extends AbstractOptionsContainer>(
     ({
       [DecoratedClass.name]: class extends DecoratedClass {
         constructor(...args: any[]) {
-          const externalOptions = readZeroScriptsOptions(optionsKey);
+          const externalOptions = readZeroScriptsOptions<
+            Record<string, unknown> | undefined
+          >(optionsKey);
 
           const [optionsContainerInstance, ...restArgs] =
             args[0] instanceof AbstractOptionsContainer
