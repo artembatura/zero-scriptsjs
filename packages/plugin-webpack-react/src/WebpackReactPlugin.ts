@@ -1,6 +1,6 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-import { AbstractPlugin, ReadOptions, PluginAPI } from '@zero-scripts/core';
+import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
 import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import type { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
@@ -13,17 +13,17 @@ const rr = require.resolve;
 export class WebpackReactPlugin extends AbstractPlugin<
   WebpackReactPluginOptions
 > {
-  public apply(ws: PluginAPI): void {
-    ws.hooks.beforeRun.tap('WebpackReactPlugin', wsApi => {
-      const config = wsApi.getConfigBuilder(WebpackConfig);
+  public apply(applyContext: ApplyContext): void {
+    applyContext.hooks.beforeRun.tap('WebpackReactPlugin', beforeRunContext => {
+      const config = beforeRunContext.getConfigBuilder(WebpackConfig);
 
       config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
         const pluginOptions = this.optionsContainer.build();
 
-        const babelPlugin = wsApi.findPlugin<WebpackBabelPlugin>(
+        const babelPlugin = beforeRunContext.findPlugin<WebpackBabelPlugin>(
           'WebpackBabelPlugin'
         );
-        const eslintPlugin = wsApi.findPlugin<WebpackEslintPlugin>(
+        const eslintPlugin = beforeRunContext.findPlugin<WebpackEslintPlugin>(
           'WebpackEslintPlugin'
         );
 

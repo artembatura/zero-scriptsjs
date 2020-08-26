@@ -4,7 +4,7 @@ import {
   AbstractPlugin,
   InsertPos,
   ReadOptions,
-  PluginAPI
+  ApplyContext
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
@@ -12,9 +12,11 @@ import { WebpackPwaPluginOptions } from './WebpackPwaPluginOptions';
 
 @ReadOptions(WebpackPwaPluginOptions, 'plugin-webpack-pwa')
 export class WebpackPwaPlugin extends AbstractPlugin<WebpackPwaPluginOptions> {
-  public apply(ws: PluginAPI): void {
-    ws.hooks.beforeRun.tap('WebpackPwaPlugin', api => {
-      const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);
+  public apply(applyContext: ApplyContext): void {
+    applyContext.hooks.beforeRun.tap('WebpackPwaPlugin', beforeRunContext => {
+      const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
+        WebpackConfig
+      );
 
       webpackConfigBuilder.hooks.build.tap(
         'WebpackPwaPlugin',

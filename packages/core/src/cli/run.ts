@@ -2,7 +2,7 @@ import mri from 'mri';
 import { Optional } from 'utility-types';
 
 import { AbstractPlugin } from '../AbstractPlugin';
-import { PluginAPI, WorkspaceBeforeRunAPI } from '../api';
+import { ApplyContext, BeforeRunContext } from '../context';
 import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 import { WorkSpace } from '../WorkSpace';
@@ -145,14 +145,14 @@ export async function run(argv: string[]): Promise<void> {
     return plugin;
   });
 
-  const pluginAPI = new PluginAPI(workSpaceInstance);
+  const pluginAPI = new ApplyContext(workSpaceInstance);
 
   plugins.forEach(plugin => {
     plugin.apply(pluginAPI);
   });
 
   workSpaceInstance.hooks.beforeRun.call(
-    new WorkspaceBeforeRunAPI(workSpaceInstance)
+    new BeforeRunContext(workSpaceInstance)
   );
 
   const taskQueue = workFlow
