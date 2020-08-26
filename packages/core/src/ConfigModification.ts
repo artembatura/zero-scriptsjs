@@ -37,7 +37,10 @@ export class ConfigModification<
     creator: (options: any) => TSelectedValue[0] | undefined,
     position: InsertPos
   ) {
-    return (array: TSelectedValue, options: any): TSelectedValue => {
+    return (
+      array: TSelectedValue,
+      options: Record<string, unknown>
+    ): TSelectedValue => {
       const element = creator(options);
 
       if (!element) {

@@ -3,7 +3,7 @@ import { readJson } from '../readJson';
 type PackageJson = {
   name: string;
   version: string;
-  dependencies: object;
+  dependencies: Record<string, string>;
 };
 
 describe('core/utils/readJson', () => {

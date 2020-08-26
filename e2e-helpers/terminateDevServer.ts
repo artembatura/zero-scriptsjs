@@ -1,6 +1,6 @@
 import { request } from 'http';
 
-export function terminateDevServer(devServerPort: number) {
+export function terminateDevServer(devServerPort: number): void {
   const res = request(
     `http://localhost:${devServerPort}/terminate-dev-server`,
     {
