@@ -20,7 +20,7 @@ export function retryRequestWhile(
     forceResolveIf
   }: FuncParams
 ): Promise<{ status?: number }> {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     let attemptsCount = 0;
 
     function main(retryFn: () => void) {
@@ -43,8 +43,10 @@ export function retryRequestWhile(
 
     const retry = () => {
       if (attemptsCount * interval >= timeout) {
-        throw new Error(
-          'Timeout Http exception. Please, check that command is running correctly'
+        reject(
+          new Error(
+            'Timeout Http exception. Please, check that command is running correctly'
+          )
         );
       }
 
