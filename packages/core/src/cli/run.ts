@@ -36,6 +36,7 @@ function getPluginPackageList(
       Object.keys(pkg?.devDependencies || {})
     );
 
+    // eslint-disable-next-line no-console
     console.log(
       `Workspace option is not set, load plugins from devDependencies: ${devDependencies.join(
         ', '
@@ -74,6 +75,7 @@ export async function run(argv: string[]): Promise<void> {
     (configMeta.workflowType === WorkflowConfigurationType.ARRAY ||
       configMeta.workflowType == WorkflowConfigurationType.OBJECT)
   ) {
+    // eslint-disable-next-line no-console
     console.log(
       `Warning: Option "--workflow ${cliMeta.optionWorkflowName}" is ignored, because [configuration.workflow] is Array.`
     );
@@ -102,6 +104,7 @@ export async function run(argv: string[]): Promise<void> {
     configMeta.workspaceType === WorkspaceConfigurationType.ARRAY &&
     cliMeta.isWorkspaceNamePassed
   ) {
+    // eslint-disable-next-line no-console
     console.log(
       `Warning: Passed option "--workspace ${workSpaceName}" is ignored, because [configuration.workspace] is already array.`
     );
@@ -145,10 +148,10 @@ export async function run(argv: string[]): Promise<void> {
     return plugin;
   });
 
-  const pluginAPI = new ApplyContext(workSpaceInstance);
+  const applyContext = new ApplyContext(workSpaceInstance);
 
   plugins.forEach(plugin => {
-    plugin.apply(pluginAPI);
+    plugin.apply(applyContext);
   });
 
   workSpaceInstance.hooks.beforeRun.call(

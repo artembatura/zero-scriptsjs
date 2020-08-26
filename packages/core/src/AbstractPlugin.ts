@@ -6,5 +6,5 @@ export abstract class AbstractPlugin<
 > {
   public constructor(public readonly optionsContainer: TOptionsContainer) {}
 
-  public abstract apply(api: ApplyContext): void;
+  public abstract apply(applyContext: ApplyContext): void;
 }
