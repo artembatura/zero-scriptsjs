@@ -20,12 +20,12 @@
     "build"
   ],
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "3.6.0",
-    "@typescript-eslint/parser": "3.6.0",
+    "@typescript-eslint/eslint-plugin": "3.10.1",
+    "@typescript-eslint/parser": "3.10.1",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-eslint": "10.1.0",
-    "eslint": "7.4.0",
+    "eslint": "7.7.0",
     "eslint-formatter-pretty": "4.0.0",
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.22.0"
