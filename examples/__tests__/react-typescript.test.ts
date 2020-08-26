@@ -32,10 +32,15 @@ describe('example:react-typescript', () => {
         port: devServerPort,
         doWhile: res => res.statusCode !== 200,
         forceResolveIf: () => outputStreamIsFinished
-      }).then(r => {
-        terminateDevServer(devServerPort);
-        return r;
       })
+        .then(r => {
+          terminateDevServer(devServerPort);
+          return r;
+        })
+        .catch(err => {
+          terminateDevServer(devServerPort);
+          throw err;
+        })
     ]);
 
     expect(output).toContain(
