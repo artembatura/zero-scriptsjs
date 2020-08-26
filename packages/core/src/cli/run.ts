@@ -36,14 +36,18 @@ function getPluginPackageList(
       Object.keys(pkg?.devDependencies || {})
     );
 
+    const filteredDevDependencies = devDependencies.filter(pkgName =>
+      pluginRegexp.test(pkgName)
+    );
+
     // eslint-disable-next-line no-console
     console.log(
-      `Workspace option is not set, load plugins from devDependencies: ${devDependencies.join(
+      `Workspace option is not set, load plugins from devDependencies: ${filteredDevDependencies.join(
         ', '
       )}`
     );
 
-    return devDependencies.filter(pkgName => pluginRegexp.test(pkgName));
+    return filteredDevDependencies;
   }
 
   if (meta.workspaceType === WorkspaceConfigurationType.MAPPED_ARRAYS) {
