@@ -1,6 +1,6 @@
 import {
   AbstractPlugin,
-  PluginAPI,
+  ApplyContext,
   extensionsRegex,
   ReadOptions
 } from '@zero-scripts/core';
@@ -14,9 +14,11 @@ const rr = require.resolve;
 export class WebpackBabelPlugin extends AbstractPlugin<
   WebpackBabelPluginOptions
 > {
-  public apply(ws: PluginAPI): void {
-    ws.hooks.beforeRun.tap('WebpackBabelPlugin', api => {
-      const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);
+  public apply(applyContext: ApplyContext): void {
+    applyContext.hooks.beforeRun.tap('WebpackBabelPlugin', beforeRunContext => {
+      const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
+        WebpackConfig
+      );
 
       webpackConfigBuilder.hooks.build.tap(
         'WebpackBabelPlugin',

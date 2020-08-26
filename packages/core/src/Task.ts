@@ -1,12 +1,4 @@
-import { AbstractConfigBuilder } from './AbstractConfigBuilder';
-import { AbstractOptionsContainer } from './AbstractOptionsContainer';
-
-export abstract class Task<
-  TConfigBuilder extends AbstractConfigBuilder<any, any>,
-  TOptionsContainer extends AbstractOptionsContainer
-> {
-  protected configBuilder?: TConfigBuilder;
-  protected pluginOptionsContainer?: TOptionsContainer;
+export abstract class Task {
   // public readonly argumentsRules: Rule<string>[] = [];
   // public readonly optionsRules: Record<string, Rule<string | boolean>> = {};
 
@@ -34,29 +26,4 @@ export abstract class Task<
     TArgs extends string[],
     TOptions extends Record<string, unknown>
   >(args: TArgs, options: TOptions): void | Promise<void>;
-
-  public bind(
-    configBuilder: TConfigBuilder,
-    optionsContainer: TOptionsContainer
-  ): this {
-    this.configBuilder = configBuilder;
-    this.pluginOptionsContainer = optionsContainer;
-
-    return this;
-  }
-
-  public isBound(): this is {
-    configBuilder: TConfigBuilder;
-    pluginOptionsContainer: TOptionsContainer;
-  } {
-    return Boolean(this.configBuilder) || Boolean(this.pluginOptionsContainer);
-  }
-
-  public printIfNotBound(): void {
-    if (!this.isBound()) {
-      console.log(
-        'You forgot to bound context for task ' + this.constructor.name
-      );
-    }
-  }
 }

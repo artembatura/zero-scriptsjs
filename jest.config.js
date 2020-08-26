@@ -1,6 +1,4 @@
-require('dotenv').config({
-  path: '.env.test'
-});
+process.env.TS_JEST_DISABLE_VER_CHECKER = 'true';
 
 module.exports = {
   testEnvironment: 'node',

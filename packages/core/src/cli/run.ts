@@ -2,7 +2,7 @@ import mri from 'mri';
 import { Optional } from 'utility-types';
 
 import { AbstractPlugin } from '../AbstractPlugin';
-import { PluginAPI, WorkspaceBeforeRunAPI } from '../api';
+import { ApplyContext, BeforeRunContext } from '../context';
 import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
 import { WorkSpace } from '../WorkSpace';
@@ -36,13 +36,18 @@ function getPluginPackageList(
       Object.keys(pkg?.devDependencies || {})
     );
 
+    const filteredDevDependencies = devDependencies.filter(pkgName =>
+      pluginRegexp.test(pkgName)
+    );
+
+    // eslint-disable-next-line no-console
     console.log(
-      `Workspace option is not set, load plugins from devDependencies: ${devDependencies.join(
+      `Workspace option is not set, load plugins from devDependencies: ${filteredDevDependencies.join(
         ', '
       )}`
     );
 
-    return devDependencies.filter(pkgName => pluginRegexp.test(pkgName));
+    return filteredDevDependencies;
   }
 
   if (meta.workspaceType === WorkspaceConfigurationType.MAPPED_ARRAYS) {
@@ -74,6 +79,7 @@ export async function run(argv: string[]): Promise<void> {
     (configMeta.workflowType === WorkflowConfigurationType.ARRAY ||
       configMeta.workflowType == WorkflowConfigurationType.OBJECT)
   ) {
+    // eslint-disable-next-line no-console
     console.log(
       `Warning: Option "--workflow ${cliMeta.optionWorkflowName}" is ignored, because [configuration.workflow] is Array.`
     );
@@ -102,6 +108,7 @@ export async function run(argv: string[]): Promise<void> {
     configMeta.workspaceType === WorkspaceConfigurationType.ARRAY &&
     cliMeta.isWorkspaceNamePassed
   ) {
+    // eslint-disable-next-line no-console
     console.log(
       `Warning: Passed option "--workspace ${workSpaceName}" is ignored, because [configuration.workspace] is already array.`
     );
@@ -145,14 +152,14 @@ export async function run(argv: string[]): Promise<void> {
     return plugin;
   });
 
-  const pluginAPI = new PluginAPI(workSpaceInstance);
+  const applyContext = new ApplyContext(workSpaceInstance);
 
   plugins.forEach(plugin => {
-    plugin.apply(pluginAPI);
+    plugin.apply(applyContext);
   });
 
   workSpaceInstance.hooks.beforeRun.call(
-    new WorkspaceBeforeRunAPI(workSpaceInstance)
+    new BeforeRunContext(workSpaceInstance)
   );
 
   const taskQueue = workFlow

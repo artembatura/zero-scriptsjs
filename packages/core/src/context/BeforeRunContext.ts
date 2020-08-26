@@ -4,10 +4,10 @@ import { Task } from '../Task';
 import { AbstractConfigBuilderConstructor } from '../types/AbstractConfigBuilderConstructor';
 import { WorkSpace } from '../WorkSpace';
 
-export class WorkspaceBeforeRunAPI {
+export class BeforeRunContext {
   public constructor(private readonly ws: WorkSpace) {}
 
-  public addTask(task: Task<any, any>) {
+  public addTask(task: Task): void {
     if (this.ws.tasks.has(task.name)) {
       throw new Error(`Task ${task.name} is already defined`);
     }

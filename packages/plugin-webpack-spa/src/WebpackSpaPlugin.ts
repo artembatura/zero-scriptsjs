@@ -4,7 +4,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
 import {
-  PluginAPI,
+  ApplyContext,
   AbstractPlugin,
   InsertPos,
   ReadOptions
@@ -19,15 +19,14 @@ const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 
 @ReadOptions(WebpackSpaPluginOptions, 'plugin-webpack-spa')
 export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
-  public apply(ws: PluginAPI): void {
-    ws.hooks.beforeRun.tap('WebpackSpaPlugin', api => {
-      const webpackConfig = api.getConfigBuilder(WebpackConfig);
+  public apply(applyContext: ApplyContext): void {
+    applyContext.hooks.beforeRun.tap('WebpackSpaPlugin', beforeRunContext => {
+      const webpackConfig = beforeRunContext.getConfigBuilder(WebpackConfig);
 
-      [new TaskStart('start'), new TaskBuild('build')].forEach(task => {
-        task.bind(webpackConfig, this.optionsContainer);
-
-        api.addTask(task);
-      });
+      [
+        new TaskStart(webpackConfig, this.optionsContainer),
+        new TaskBuild(webpackConfig, this.optionsContainer)
+      ].forEach(beforeRunContext.addTask.bind(beforeRunContext));
 
       webpackConfig.hooks.build.tap(
         'WebpackSpaPlugin',

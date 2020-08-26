@@ -1,7 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
-import { AbstractPlugin, PluginAPI, ReadOptions } from '@zero-scripts/core';
+import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
 import {
   getLocalIdent,
   getStyleLoaders
@@ -15,9 +15,11 @@ const cssModuleRegex = /\.(module|m)\.css$/;
 
 @ReadOptions(WebpackCssPluginOptions, 'plugin-webpack-css')
 export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
-  public apply(ws: PluginAPI): void {
-    ws.hooks.beforeRun.tap('WebpackCssPlugin', api => {
-      const webpackConfigBuilder = api.getConfigBuilder(WebpackConfig);
+  public apply(applyContext: ApplyContext): void {
+    applyContext.hooks.beforeRun.tap('WebpackCssPlugin', beforeRunContext => {
+      const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
+        WebpackConfig
+      );
 
       webpackConfigBuilder.hooks.build.tap(
         'WebpackCssPlugin',

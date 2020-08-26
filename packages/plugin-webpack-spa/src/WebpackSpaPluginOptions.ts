@@ -28,14 +28,19 @@ export class WebpackSpaPluginOptions extends AbstractOptionsContainer<
         ...externalValue
       };
 
-      const isCI = Boolean(detectCI());
       const taskMeta = getCurrentTaskMeta<TaskStart>();
+
+      const isCI = Boolean(detectCI());
+      const isSmokeTest =
+        taskMeta &&
+        taskMeta.instance.name === 'start' &&
+        taskMeta.options.smokeTest;
       const taskPort =
         taskMeta && taskMeta.instance.name === 'start' && taskMeta.options.port;
 
       return {
         ...options,
-        openInBrowser: !isCI,
+        openInBrowser: !isSmokeTest && !isCI && options.openInBrowser,
         port: taskPort || options.port
       };
     }
