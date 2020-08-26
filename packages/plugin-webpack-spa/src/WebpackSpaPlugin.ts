@@ -23,11 +23,10 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
     ws.hooks.beforeRun.tap('WebpackSpaPlugin', api => {
       const webpackConfig = api.getConfigBuilder(WebpackConfig);
 
-      [new TaskStart('start'), new TaskBuild('build')].forEach(task => {
-        task.bind(webpackConfig, this.optionsContainer);
-
-        api.addTask(task);
-      });
+      [
+        new TaskStart(webpackConfig, this.optionsContainer),
+        new TaskBuild(webpackConfig, this.optionsContainer)
+      ].forEach(api.addTask);
 
       webpackConfig.hooks.build.tap(
         'WebpackSpaPlugin',

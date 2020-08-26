@@ -14,12 +14,15 @@ type StartTaskOptions = {
   smokeTest?: boolean;
 };
 
-export class TaskStart extends Task<WebpackConfig, WebpackSpaPluginOptions> {
-  public run(args: string[], options: StartTaskOptions): void | Promise<void> {
-    if (!this.isBound()) {
-      return this.printIfNotBound();
-    }
+export class TaskStart extends Task {
+  constructor(
+    protected readonly configBuilder: WebpackConfig,
+    protected readonly pluginOptionsContainer: WebpackSpaPluginOptions
+  ) {
+    super('start');
+  }
 
+  public run(args: string[], options: StartTaskOptions): void | Promise<void> {
     process.env.NODE_ENV = 'development';
 
     const pluginOptions = this.pluginOptionsContainer.build();

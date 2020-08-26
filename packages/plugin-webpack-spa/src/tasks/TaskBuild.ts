@@ -5,12 +5,15 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackSpaPluginOptions } from '../WebpackSpaPluginOptions';
 
-export class TaskBuild extends Task<WebpackConfig, WebpackSpaPluginOptions> {
-  public run(args: string[], options: any): void | Promise<void> {
-    if (!this.isBound()) {
-      return this.printIfNotBound();
-    }
+export class TaskBuild extends Task {
+  constructor(
+    protected readonly configBuilder: WebpackConfig,
+    protected readonly pluginOptionsContainer: WebpackSpaPluginOptions
+  ) {
+    super('build');
+  }
 
+  public run(): void | Promise<void> {
     process.env.NODE_ENV = 'production';
 
     const config = this.configBuilder.setIsDev(false).build();

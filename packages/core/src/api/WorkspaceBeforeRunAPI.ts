@@ -7,7 +7,7 @@ import { WorkSpace } from '../WorkSpace';
 export class WorkspaceBeforeRunAPI {
   public constructor(private readonly ws: WorkSpace) {}
 
-  public addTask(task: Task<any, any>) {
+  public addTask(task: Task) {
     if (this.ws.tasks.has(task.name)) {
       throw new Error(`Task ${task.name} is already defined`);
     }
