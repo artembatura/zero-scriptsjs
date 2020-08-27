@@ -1,0 +1,49 @@
+{
+  "name": "@zero-scripts/plugin-webpack-less",
+  "version": "0.4.0",
+  "description": "Adds processing Less files: extracting, minify and add vendor prefixes",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/utils-webpack-styles": "workspace:*",
+    "@zero-scripts/webpack-config": "workspace:*",
+    "mini-css-extract-plugin": "0.9.0",
+    "optimize-css-assets-webpack-plugin": "5.0.3",
+    "postcss-safe-parser": "4.0.2",
+    "less-loader": "7.0.0"
+  },
+  "devDependencies": {
+    "@types/mini-css-extract-plugin": "0.9.1",
+    "@types/optimize-css-assets-webpack-plugin": "5.0.1"
+  },
+  "optionalDependencies": {
+    "webpack": "^4.43.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "extension",
+    "sass",
+    "scss"
+  ]
+}
