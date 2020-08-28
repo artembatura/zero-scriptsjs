@@ -41,7 +41,7 @@
     "webpack",
     "config",
     "zero-scripts",
-    "extension",
+    "plugin",
     "eslint"
   ]
 }

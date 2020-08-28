@@ -43,8 +43,12 @@
     "webpack",
     "config",
     "zero-scripts",
-    "extension",
+    "plugin",
     "sass",
-    "scss"
+    "scss",
+    "css",
+    "styles",
+    "css-modules",
+    "postcss"
   ]
 }

@@ -52,7 +52,7 @@
     "webpack",
     "config",
     "zero-scripts",
-    "extension",
+    "plugin",
     "babel",
     "react"
   ]
