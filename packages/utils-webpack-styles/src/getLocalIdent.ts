@@ -9,7 +9,7 @@ export function getLocalIdent(
   options: Record<string, unknown>
 ): string {
   const fileNameOrFolder = context.resourcePath.match(
-    /index\.module\.(css|scss|sass)$/
+    /index\.(module|m)\.(css|scss|sass)$/
   )
     ? '[folder]'
     : '[name]';
@@ -27,5 +27,5 @@ export function getLocalIdent(
     options
   );
 
-  return className.replace('.module_', '_');
+  return className.replace(/.(module|m)_/, '_');
 }
