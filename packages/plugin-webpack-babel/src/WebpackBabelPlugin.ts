@@ -1,3 +1,5 @@
+import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+
 import {
   AbstractPlugin,
   ApplyContext,
@@ -107,25 +109,20 @@ export class WebpackBabelPlugin extends AbstractPlugin<
 
           if (useTypescript) {
             try {
-              const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
+              const ForkTsCheckerPlugin: typeof ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
               modifications.insertPlugin(
                 new ForkTsCheckerPlugin({
-                  typescript: rr('typescript'),
                   async: isDev,
-                  checkSyntacticErrors: true,
-                  useTypescriptIncrementalApi: true,
-                  tsconfig: paths.tsConfig,
-                  reportFiles: [
-                    '**',
-                    '!**/*.json',
-                    '!**/__tests__/**',
-                    '!**/?(*.)(spec|test).*',
-                    '!**/src/setupProxy.*',
-                    '!**/src/setupTests.*'
-                  ],
-                  watch: paths.src,
-                  silent: false
+                  typescript: {
+                    enabled: true,
+                    configFile: paths.tsConfig,
+                    mode: 'write-references',
+                    context: paths.root,
+                    diagnosticOptions: {
+                      syntactic: true
+                    }
+                  }
                 })
               );
             } catch (e) {
