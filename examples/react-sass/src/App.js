@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 
-import classes from './App.module.sass';
+import classes from './App.m.sass';
 
 export function App() {
   return (

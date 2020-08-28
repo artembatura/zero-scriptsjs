@@ -1,5 +1,5 @@
 {
-  "name": "example.react-typescript",
+  "name": "example-react-typescript",
   "private": true,
   "scripts": {
     "start": "run start",

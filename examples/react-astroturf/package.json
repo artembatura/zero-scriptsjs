@@ -1,5 +1,5 @@
 {
-  "name": "example.react-astroturf",
+  "name": "example-react-astroturf",
   "private": true,
   "scripts": {
     "start": "run start",
