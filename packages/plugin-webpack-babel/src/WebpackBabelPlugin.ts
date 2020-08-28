@@ -125,12 +125,17 @@ export class WebpackBabelPlugin extends AbstractPlugin<
                   }
                 })
               );
-            } catch (e) {
-              // eslint-disable-next-line no-console
-              console.log(
-                'Warning: If you want to check types on your Typescript files' +
-                  ' , you need to manually install fork-ts-checker-webpack-plugin'
-              );
+            } catch (err) {
+              if (err instanceof Error && err.name === 'MODULE_NOT_FOUND') {
+                // eslint-disable-next-line no-console
+                console.log(
+                  'Warning: If you want to check types on your Typescript files' +
+                    ' , you need to manually install fork-ts-checker-webpack-plugin'
+                );
+              } else {
+                // eslint-disable-next-line no-console
+                console.log(err.stack || err.stackTrace);
+              }
             }
           }
         }
