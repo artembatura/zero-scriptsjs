@@ -42,7 +42,10 @@
     "webpack",
     "config",
     "zero-scripts",
-    "extension",
-    "css"
+    "plugin",
+    "css",
+    "styles",
+    "css-modules",
+    "postcss"
   ]
 }

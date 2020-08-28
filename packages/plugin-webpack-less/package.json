@@ -1,7 +1,7 @@
 {
-  "name": "@zero-scripts/plugin-webpack-sass",
+  "name": "@zero-scripts/plugin-webpack-less",
   "version": "0.4.0",
-  "description": "Adds processing Sass and SCSS files: extracting, minify and add vendor prefixes",
+  "description": "Adds processing Less files: extracting, minify and add vendor prefixes",
   "author": {
     "name": "Artem Batura",
     "email": "artemir.q@gmail.com"
@@ -26,8 +26,7 @@
     "mini-css-extract-plugin": "0.9.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss-safe-parser": "4.0.2",
-    "sass": "1.26.10",
-    "sass-loader": "9.0.2"
+    "less-loader": "7.0.0"
   },
   "devDependencies": {
     "@types/mini-css-extract-plugin": "0.9.1",
@@ -44,8 +43,7 @@
     "config",
     "zero-scripts",
     "plugin",
-    "sass",
-    "scss",
+    "less",
     "css",
     "styles",
     "css-modules",
