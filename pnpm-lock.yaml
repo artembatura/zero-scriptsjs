@@ -1,7 +1,6 @@
 importers:
   .:
     devDependencies:
-      '@nearform/multistream': 5.0.0-2
       '@types/jest': 26.0.4
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.10.1_4b08f58ef8a3bb8fcbaebc4f1e3f8004
@@ -24,7 +23,6 @@ importers:
       ts-jest: 26.2.0_jest@26.4.2+typescript@4.0.2
       typescript: 4.0.2
     specifiers:
-      '@nearform/multistream': 5.0.0-2
       '@types/jest': 26.0.4
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.10.1
@@ -2616,13 +2614,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-bPHp6Ji8b41szTOcaP63VlnbbO5Ny6dwAATtY6JTjh5N2OLrb5Qk/Th5cRkRQhkWCt+EJsYrNB0MiL+Gpn6e3g==
-  /@nearform/multistream/5.0.0-2:
-    dependencies:
-      once: 1.4.0
-      readable-stream: 3.6.0
-    dev: true
-    resolution:
-      integrity: sha512-fgLnMSNxxx+DPZtX+P8cak6JxESJ3NvNoi5Y8c4WOePcvW7Ip3wqMB8kxR6fm6oadnPGJn66SWO/omkoKjjDJA==
   /@nodelib/fs.scandir/2.1.3:
     dependencies:
       '@nodelib/fs.stat': 2.0.3

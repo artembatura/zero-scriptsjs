@@ -48,6 +48,8 @@ describe('example:react-typescript', () => {
         devServerPort.toString()
     );
     expect(httpRes.status).toBe(200);
+    // verify that fork-ts-checker-webpack-plugin works correctly
+    expect(output).toContain('No issues found.');
   });
 
   it('run build', async () => {
