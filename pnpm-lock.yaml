@@ -234,7 +234,7 @@ importers:
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-loader: 8.1.0
       core-js: 3.6.5
-      fork-ts-checker-webpack-plugin: 5.1.0
+      fork-ts-checker-webpack-plugin: ^5.1.0
       webpack: ^4.43.0
   packages/plugin-webpack-css:
     dependencies:
