@@ -1,7 +1,6 @@
 importers:
   .:
     devDependencies:
-      '@nearform/multistream': 5.0.0-2
       '@types/jest': 26.0.4
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.10.1_4b08f58ef8a3bb8fcbaebc4f1e3f8004
@@ -24,7 +23,6 @@ importers:
       ts-jest: 26.2.0_jest@26.4.2+typescript@4.0.2
       typescript: 4.0.2
     specifiers:
-      '@nearform/multistream': 5.0.0-2
       '@types/jest': 26.0.4
       '@types/node': 14.0.27
       '@typescript-eslint/eslint-plugin': 3.10.1
@@ -162,7 +160,7 @@ importers:
       '@zero-scripts/plugin-webpack-css': 'link:../../packages/plugin-webpack-css'
       '@zero-scripts/plugin-webpack-react': 'link:../../packages/plugin-webpack-react'
       '@zero-scripts/plugin-webpack-spa': 'link:../../packages/plugin-webpack-spa'
-      fork-ts-checker-webpack-plugin: 5.0.7
+      fork-ts-checker-webpack-plugin: 5.1.0
       typescript: 4.0.2
     specifiers:
       '@types/react': 16.9.43
@@ -172,7 +170,7 @@ importers:
       '@zero-scripts/plugin-webpack-css': 'workspace:*'
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
-      fork-ts-checker-webpack-plugin: 5.0.7
+      fork-ts-checker-webpack-plugin: 5.1.0
       react: 16.13.1
       react-dom: 16.13.1
       typescript: 4.0.2
@@ -220,7 +218,7 @@ importers:
       babel-loader: 8.1.0_0cfd9791b7d0e032fda143e7498c778b
       core-js: 3.6.5
     optionalDependencies:
-      fork-ts-checker-webpack-plugin: 5.0.7
+      fork-ts-checker-webpack-plugin: 5.1.0
       webpack: 4.43.0_webpack@4.43.0
     specifiers:
       '@babel/core': 7.10.4
@@ -236,7 +234,7 @@ importers:
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-loader: 8.1.0
       core-js: 3.6.5
-      fork-ts-checker-webpack-plugin: ~5.0.7
+      fork-ts-checker-webpack-plugin: ^5.1.0
       webpack: ^4.43.0
   packages/plugin-webpack-css:
     dependencies:
@@ -2616,13 +2614,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-bPHp6Ji8b41szTOcaP63VlnbbO5Ny6dwAATtY6JTjh5N2OLrb5Qk/Th5cRkRQhkWCt+EJsYrNB0MiL+Gpn6e3g==
-  /@nearform/multistream/5.0.0-2:
-    dependencies:
-      once: 1.4.0
-      readable-stream: 3.6.0
-    dev: true
-    resolution:
-      integrity: sha512-fgLnMSNxxx+DPZtX+P8cak6JxESJ3NvNoi5Y8c4WOePcvW7Ip3wqMB8kxR6fm6oadnPGJn66SWO/omkoKjjDJA==
   /@nodelib/fs.scandir/2.1.3:
     dependencies:
       '@nodelib/fs.stat': 2.0.3
@@ -3603,6 +3594,7 @@ packages:
   /ajv-errors/1.0.1_ajv@6.12.3:
     dependencies:
       ajv: 6.12.3
+    dev: false
     peerDependencies:
       ajv: '>=5.0.0'
     resolution:
@@ -6732,23 +6724,24 @@ packages:
     dev: true
     resolution:
       integrity: sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
-  /fork-ts-checker-webpack-plugin/5.0.7:
+  /fork-ts-checker-webpack-plugin/5.1.0:
     dependencies:
       '@babel/code-frame': 7.10.4
-      chalk: 2.4.2
+      '@types/json-schema': 7.0.5
+      chalk: 4.1.0
       cosmiconfig: 6.0.0
       deepmerge: 4.2.2
       fs-extra: 9.0.1
       memfs: 3.2.0
       minimatch: 3.0.4
-      schema-utils: 1.0.0
-      semver: 5.7.1
+      schema-utils: 2.7.0
+      semver: 7.3.2
       tapable: 1.1.3
     engines:
       node: '>=10'
       yarn: '>=1.0.0'
     resolution:
-      integrity: sha512-X7zHKTx4is5YSKa9bDiXGzv8v5K3bsUrZlZgr3F8DeCVsb3oik/+0Mo+K138Sdjh4mpzoHcuUgsrIgZeLIXovw==
+      integrity: sha512-vuKyEjSLGbhQbEr5bifXXOkr9iV73L6n72mHoHIv7okvrf7O7z6RKeplM6C6ATPsukoQivij+Ba1vcptL60Z2g==
   /form-data/2.3.3:
     dependencies:
       asynckit: 0.4.0
@@ -12222,6 +12215,7 @@ packages:
       ajv: 6.12.3
       ajv-errors: 1.0.1_ajv@6.12.3
       ajv-keywords: 3.5.1_ajv@6.12.3
+    dev: false
     engines:
       node: '>= 4'
     resolution:
@@ -12231,7 +12225,6 @@ packages:
       '@types/json-schema': 7.0.5
       ajv: 6.12.3
       ajv-keywords: 3.5.1_ajv@6.12.3
-    dev: false
     engines:
       node: '>= 8.9.0'
     resolution:

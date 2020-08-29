@@ -35,7 +35,7 @@
     "core-js": "3.6.5"
   },
   "optionalDependencies": {
-    "fork-ts-checker-webpack-plugin": "~5.0.7",
+    "fork-ts-checker-webpack-plugin": "^5.1.0",
     "webpack": "^4.43.0"
   },
   "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
