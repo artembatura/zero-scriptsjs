@@ -20,7 +20,7 @@ export abstract class AbstractConfigBuilder<
   };
 
   protected constructor(
-    protected readonly optionsContainer: TOptionsContainer,
+    public readonly optionsContainer: TOptionsContainer,
     protected readonly modificationsContainer: TModificationsContainer
   ) {}
 

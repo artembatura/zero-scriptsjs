@@ -41,7 +41,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
               new CopyWebpackPlugin({
                 patterns: [
                   {
-                    from: paths.publicPath,
+                    from: paths.public,
                     to: paths.build,
                     globOptions: {
                       ignore: [paths.indexHtml]

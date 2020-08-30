@@ -25,6 +25,8 @@ export class TaskStart extends Task {
   public run(args: string[], options: StartTaskOptions): void | Promise<void> {
     process.env.NODE_ENV = 'development';
 
+    const configOptions = this.configBuilder.optionsContainer.build();
+
     const pluginOptions = this.pluginOptionsContainer.build();
     const devServerOptions = pluginOptions.devServer;
 
@@ -71,6 +73,8 @@ export class TaskStart extends Task {
         }
       });
     }
+
+    devServer.use(express.static(configOptions.paths.public));
 
     devServer.listen(port);
   }

@@ -7,13 +7,14 @@ import { resolvePaths } from './resolvePaths';
 export class WebpackConfigOptions extends AbstractOptionsContainer<
   WebpackConfigOptions
 > {
-  @Option<WebpackConfigOptions, 'paths'>(
+  @Option<WebpackConfigOptions, 'paths', 'isDev'>(
     ({ defaultValue, externalValue }) => ({
       ...defaultValue,
       ...externalValue
     }),
     [],
-    (value, { jsFileExtensions }) => resolvePaths(value, jsFileExtensions)
+    (value, { jsFileExtensions, isDev }) =>
+      resolvePaths(value, jsFileExtensions, isDev)
   )
   public paths = {
     root: '',
@@ -21,7 +22,8 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
     build: 'build',
     indexJs: 'src/index',
     indexHtml: 'public/index.html',
-    publicPath: 'public',
+    public: 'public',
+    publicPath: '',
     tsConfig: 'tsconfig.json'
   };
 
