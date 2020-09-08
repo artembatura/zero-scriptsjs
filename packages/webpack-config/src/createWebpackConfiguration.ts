@@ -1,9 +1,8 @@
 import InterpolateHtmlPlugin from '@k88/interpolate-html-plugin';
-import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import type { Configuration } from 'webpack';
-import { DefinePlugin, HotModuleReplacementPlugin } from 'webpack';
+import { DefinePlugin } from 'webpack';
 import ManifestPlugin from 'webpack-assets-manifest';
 
 import { ExtractOptions } from '@zero-scripts/core';
@@ -22,7 +21,7 @@ export function createWebpackConfiguration({
     entry: [paths.indexJs, ...additionalEntry],
     devtool: isDev ? 'eval-source-map' : useSourceMap && 'source-map',
     output: {
-      path: !isDev ? paths.build : undefined,
+      path: paths.build,
       filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
       publicPath: paths.publicPath,
       chunkFilename: isDev
@@ -72,16 +71,7 @@ export function createWebpackConfiguration({
           ? paths.publicPath.slice(0, -1)
           : paths.publicPath
       })
-    ].concat(
-      isDev
-        ? [
-            new HotModuleReplacementPlugin(),
-            new HotAcceptPlugin({
-              test: path.basename(paths.indexJs)
-            })
-          ]
-        : []
-    ),
+    ],
     node: {
       module: 'empty',
       dgram: 'empty',

@@ -388,7 +388,8 @@ importers:
       clean-webpack-plugin: 3.0.0_webpack@4.43.0
       copy-webpack-plugin: 6.0.3_webpack@4.43.0
       express: 4.17.1
-      html-webpack-plugin: 4.3.0_webpack@4.43.0
+      hot-accept-webpack-plugin: 1.1.2_webpack@4.43.0
+      html-webpack-plugin: 4.4.1_webpack@4.43.0
       open: 7.1.0
       webpack: 4.43.0_webpack@4.43.0
       webpack-dev-middleware: 4.0.0-rc.2_webpack@4.43.0
@@ -412,7 +413,8 @@ importers:
       clean-webpack-plugin: 3.0.0
       copy-webpack-plugin: 6.0.3
       express: 4.17.1
-      html-webpack-plugin: 4.3.0
+      hot-accept-webpack-plugin: 1.1.2
+      html-webpack-plugin: 4.4.1
       open: 7.1.0
       webpack: 4.43.0
       webpack-dev-middleware: 4.0.0-rc.2
@@ -444,7 +446,6 @@ importers:
       '@k88/interpolate-html-plugin': 1.0.5
       '@zero-scripts/core': 'link:../core'
       file-loader: 6.0.0_webpack@4.43.0
-      hot-accept-webpack-plugin: 1.1.2_webpack@4.43.0
       terser-webpack-plugin: 3.0.6_webpack@4.43.0
       webpack: 4.43.0_webpack@4.43.0
       webpack-assets-manifest: 3.1.1_webpack@4.43.0
@@ -459,7 +460,6 @@ importers:
       '@types/webpack-assets-manifest': 3.0.1
       '@zero-scripts/core': 'workspace:*'
       file-loader: 6.0.0
-      hot-accept-webpack-plugin: 1.1.2
       terser-webpack-plugin: 3.0.6
       webpack: 4.43.0
       webpack-assets-manifest: 3.1.1
@@ -3234,7 +3234,6 @@ packages:
       node: ^10.12.0 || >=12.0.0
     peerDependencies:
       eslint: '*'
-      typescript: '*'
     resolution:
       integrity: sha512-DewqIgscDzmAfd5nOGe4zm6Bl7PKtMG2Ad0KG8CUZAHlXfAKTF9Ol5PXhiMh39yRL2ChRH1cuuUGOcVyyrhQIw==
   /@typescript-eslint/experimental-utils/3.10.1_eslint@7.7.0+typescript@4.0.2:
@@ -7323,7 +7322,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-ZPr5MNObqnV/T9akshPKbVgyOqLmy+Bxo7juKCfTfnjNniTAMdy4hz21YQqoofMBJD2kdREaqPPdThoR78Tgxg==
-  /html-webpack-plugin/4.3.0_webpack@4.43.0:
+  /html-webpack-plugin/4.4.1_webpack@4.43.0:
     dependencies:
       '@types/html-minifier-terser': 5.1.0
       '@types/tapable': 1.0.6
@@ -7341,7 +7340,7 @@ packages:
     peerDependencies:
       webpack: '>=4.0.0 < 6.0.0'
     resolution:
-      integrity: sha512-C0fzKN8yQoVLTelcJxZfJCE+aAvQiY2VUf3UuKrR4a9k5UMWYOtpDLsaXwATbcVCnI05hUS7L9ULQHWLZhyi3w==
+      integrity: sha512-nEtdEIsIGXdXGG7MjTTZlmhqhpHU9pJFc1OYxcP36c5/ZKP6b0BJMww2QTvJGQYA9aMxUnjDujpZdYcVOXiBCQ==
   /htmlparser2/3.10.1:
     dependencies:
       domelementtype: 1.3.1

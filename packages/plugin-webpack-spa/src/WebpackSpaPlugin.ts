@@ -1,17 +1,20 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import { HotModuleReplacementPlugin } from 'webpack';
 
 import {
   ApplyContext,
   AbstractPlugin,
   InsertPos,
-  ReadOptions
+  ReadOptions,
+  getCurrentTaskMeta
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
-import { TaskStart, TaskBuild } from './tasks';
+import { TaskStart, TaskBuild, TaskWatch } from './tasks';
 import { WebpackSpaPluginOptions } from './WebpackSpaPluginOptions';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -25,8 +28,11 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
 
       [
         new TaskStart(webpackConfig, this.optionsContainer),
-        new TaskBuild(webpackConfig, this.optionsContainer)
-      ].forEach(beforeRunContext.addTask.bind(beforeRunContext));
+        new TaskBuild(webpackConfig, this.optionsContainer),
+        new TaskWatch(webpackConfig, this.optionsContainer)
+      ].forEach(task => {
+        beforeRunContext.addTask(task);
+      });
 
       webpackConfig.hooks.build.tap(
         'WebpackSpaPlugin',
@@ -34,9 +40,15 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
           const pluginOptions = this.optionsContainer.build();
           const devServerOptions = pluginOptions.devServer;
 
-          if (!isDev) {
-            modifications.insertPlugin(new CleanWebpackPlugin());
+          const taskMeta = getCurrentTaskMeta<
+            TaskStart | TaskBuild | TaskWatch
+          >();
 
+          const isBuildTask = taskMeta?.instance instanceof TaskBuild;
+          const isWatchTask = taskMeta?.instance instanceof TaskWatch;
+          const isStartTask = taskMeta?.instance instanceof TaskStart;
+
+          if (isBuildTask || isWatchTask) {
             modifications.insertPlugin(
               new CopyWebpackPlugin({
                 patterns: [
@@ -52,34 +64,65 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
             );
           }
 
-          modifications.insertPlugin(
-            isDev
-              ? new FriendlyErrorsPlugin({
-                  compilationSuccessInfo: {
-                    messages: [
-                      'Your application is available at http://localhost:' +
-                        devServerOptions.port
-                    ],
-                    notes: [
-                      'The development build is not optimized',
-                      'To create a production build, run `build` script'
-                    ]
-                  }
-                })
-              : new FriendlyErrorsPlugin({
-                  compilationSuccessInfo: {
-                    messages: [
-                      `Your application successfully built and available at ${paths.build
-                        .split(path.sep)
-                        .pop()} folder`
-                    ]
-                  }
-                })
-          );
+          if (isStartTask) {
+            modifications.insertPlugin(
+              new FriendlyErrorsPlugin({
+                compilationSuccessInfo: {
+                  messages: [
+                    'Your application is available at http://localhost:' +
+                      devServerOptions.port
+                  ],
+                  notes: [
+                    'The development build is not optimized',
+                    'To create a production build, run `build` script'
+                  ]
+                }
+              })
+            );
+
+            modifications.insertPlugin(new HotModuleReplacementPlugin());
+
+            modifications.insertPlugin(
+              new HotAcceptPlugin({
+                test: path.basename(paths.indexJs)
+              })
+            );
+          }
+
+          if (isBuildTask) {
+            modifications.insertPlugin(new CleanWebpackPlugin());
+
+            modifications.insertPlugin(
+              new FriendlyErrorsPlugin({
+                compilationSuccessInfo: {
+                  messages: [
+                    `Your application successfully built and available at ${paths.build
+                      .split(path.sep)
+                      .pop()} folder`
+                  ]
+                }
+              })
+            );
+          }
+
+          if (isWatchTask) {
+            modifications.insertPlugin(
+              new FriendlyErrorsPlugin({
+                compilationSuccessInfo: {
+                  messages: [
+                    `Your application successfully built and available at ${paths.build
+                      .split(path.sep)
+                      .pop()} folder`
+                  ]
+                }
+              })
+            );
+          }
 
           modifications.insertPlugin(
             new HtmlWebpackPlugin({
               inject: true,
+              cache: !isWatchTask,
               template: paths.indexHtml,
               minify: !isDev
                 ? {
