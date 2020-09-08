@@ -7,7 +7,7 @@ import { resolvePaths } from './resolvePaths';
 export class WebpackConfigOptions extends AbstractOptionsContainer<
   WebpackConfigOptions
 > {
-  @Option<WebpackConfigOptions, 'paths', 'isDev'>(
+  @Option<WebpackConfigOptions, 'paths'>(
     ({ defaultValue, externalValue }) => ({
       ...defaultValue,
       ...externalValue

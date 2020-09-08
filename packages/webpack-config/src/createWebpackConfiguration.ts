@@ -68,10 +68,9 @@ export function createWebpackConfiguration({
         output: 'asset-manifest.json'
       }),
       new InterpolateHtmlPlugin({
-        PUBLIC_PATH:
-          paths.publicPath.indexOf('/') === 0
-            ? paths.publicPath.slice(1)
-            : paths.publicPath
+        PUBLIC_PATH: paths.publicPath.endsWith('/')
+          ? paths.publicPath.slice(0, -1)
+          : paths.publicPath
       })
     ].concat(
       isDev

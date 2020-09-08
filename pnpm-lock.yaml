@@ -196,7 +196,7 @@ importers:
       '@types/node': 14.0.27
       '@types/normalize-package-data': 2.4.0
       '@types/set-value': 2.0.0
-      dotenv: ^8.2.0
+      dotenv: 8.2.0
       get-value: 3.0.1
       mri: 1.1.6
       normalize-package-data: 2.5.0
