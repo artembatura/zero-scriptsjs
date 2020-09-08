@@ -1,4 +1,6 @@
-import { resolveModule, resolvePath } from './utils';
+import { resolvePath } from '@zero-scripts/core';
+
+import { resolveModule } from './utils/resolveModule';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
 export function resolvePaths(

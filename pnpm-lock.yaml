@@ -176,6 +176,7 @@ importers:
       typescript: 4.0.2
   packages/core:
     dependencies:
+      dotenv: 8.2.0
       get-value: 3.0.1
       mri: 1.1.6
       normalize-package-data: 2.5.0
@@ -195,6 +196,7 @@ importers:
       '@types/node': 14.0.27
       '@types/normalize-package-data': 2.4.0
       '@types/set-value': 2.0.0
+      dotenv: ^8.2.0
       get-value: 3.0.1
       mri: 1.1.6
       normalize-package-data: 2.5.0
@@ -5827,6 +5829,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-uEUyaDKoSQ1M4Oq8l45hSE26SnTxL6snNnqvK/VWx5wJhmff5z0FUVJDKDanor/6w3kzE3i7XZOk+7wC0EXr1A==
+  /dotenv/8.2.0:
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
   /duplexer/0.1.1:
     dev: true
     resolution:

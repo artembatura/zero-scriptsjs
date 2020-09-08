@@ -10,3 +10,5 @@ export * from './WorkSpace';
 export * from './Task';
 export * from './AbstractModificationsContainer';
 export * from './context';
+export * from './utils/getRootDir';
+export * from './utils/resolvePath';

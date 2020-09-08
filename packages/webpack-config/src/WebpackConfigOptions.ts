@@ -23,7 +23,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
     indexJs: 'src/index',
     indexHtml: 'public/index.html',
     public: 'public',
-    publicPath: '',
+    publicPath: process.env.PUBLIC_PATH || '',
     tsConfig: 'tsconfig.json'
   };
 

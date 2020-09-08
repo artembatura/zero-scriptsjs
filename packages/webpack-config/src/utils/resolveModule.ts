@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { resolvePath } from './resolvePath';
+import { resolvePath } from '@zero-scripts/core';
 
 export function resolveModule(
   extensions: string[],
