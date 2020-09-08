@@ -1,3 +1,4 @@
+import dotEnv from 'dotenv';
 import mri from 'mri';
 import { Optional } from 'utility-types';
 
@@ -5,6 +6,7 @@ import { AbstractPlugin } from '../AbstractPlugin';
 import { ApplyContext, BeforeRunContext } from '../context';
 import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
+import { resolvePath } from '../utils/resolvePath';
 import { WorkSpace } from '../WorkSpace';
 import { setCurrentTaskMeta } from './currentTask';
 import { getCLIMeta } from './getCLIMeta';
@@ -150,6 +152,10 @@ export async function run(argv: string[]): Promise<void> {
     workSpaceInstance.plugins.push(plugin);
 
     return plugin;
+  });
+
+  dotEnv.config({
+    path: resolvePath('.env')
   });
 
   const applyContext = new ApplyContext(workSpaceInstance);

@@ -13,7 +13,8 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
       ...externalValue
     }),
     [],
-    (value, { jsFileExtensions }) => resolvePaths(value, jsFileExtensions)
+    (value, { jsFileExtensions, isDev }) =>
+      resolvePaths(value, jsFileExtensions, isDev)
   )
   public paths = {
     root: '',
@@ -21,7 +22,8 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
     build: 'build',
     indexJs: 'src/index',
     indexHtml: 'public/index.html',
-    publicPath: 'public',
+    public: 'public',
+    publicPath: process.env.PUBLIC_PATH || '',
     tsConfig: 'tsconfig.json'
   };
 

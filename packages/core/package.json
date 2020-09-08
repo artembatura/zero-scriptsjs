@@ -24,6 +24,7 @@
     "cli"
   ],
   "dependencies": {
+    "dotenv": "8.2.0",
     "get-value": "3.0.1",
     "mri": "1.1.6",
     "normalize-package-data": "2.5.0",

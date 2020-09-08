@@ -1,3 +1,4 @@
+import InterpolateHtmlPlugin from '@k88/interpolate-html-plugin';
 import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -23,6 +24,7 @@ export function createWebpackConfiguration({
     output: {
       path: !isDev ? paths.build : undefined,
       filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
+      publicPath: paths.publicPath,
       chunkFilename: isDev
         ? 'js/[name].chunk.js'
         : 'js/[name].[contenthash:8].chunk.js',
@@ -64,6 +66,11 @@ export function createWebpackConfiguration({
       }),
       new ManifestPlugin({
         output: 'asset-manifest.json'
+      }),
+      new InterpolateHtmlPlugin({
+        PUBLIC_PATH: paths.publicPath.endsWith('/')
+          ? paths.publicPath.slice(0, -1)
+          : paths.publicPath
       })
     ].concat(
       isDev
