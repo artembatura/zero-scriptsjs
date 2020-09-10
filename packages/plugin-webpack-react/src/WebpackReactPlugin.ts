@@ -1,6 +1,11 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
+import {
+  AbstractPlugin,
+  ReadOptions,
+  ApplyContext,
+  getCurrentTaskMeta
+} from '@zero-scripts/core';
 import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import type { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
@@ -69,7 +74,12 @@ export class WebpackReactPlugin extends AbstractPlugin<
           );
         }
 
-        if (pluginOptions.fastRefresh && configOptions.isDev) {
+        const currentTask = getCurrentTaskMeta();
+
+        if (
+          pluginOptions.fastRefresh &&
+          currentTask?.instance?.name === 'start'
+        ) {
           if (babelPlugin) {
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
               'WebpackReactPlugin.addFastRefreshLoader',
