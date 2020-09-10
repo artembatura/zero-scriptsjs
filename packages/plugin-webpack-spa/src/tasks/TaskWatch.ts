@@ -5,6 +5,10 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackSpaPluginOptions } from '../WebpackSpaPluginOptions';
 
+type WatchTaskOptions = {
+  smokeTest?: boolean;
+};
+
 export class TaskWatch extends Task {
   constructor(
     protected readonly configBuilder: WebpackConfig,
@@ -13,12 +17,22 @@ export class TaskWatch extends Task {
     super('watch');
   }
 
-  public run(): void | Promise<void> {
+  public run(args: string[], options: WatchTaskOptions): void | Promise<void> {
     process.env.NODE_ENV = 'development';
 
     const config = this.configBuilder.setIsDev(true).build();
 
     const compiler = webpack(config);
+
+    if (options.smokeTest) {
+      compiler.hooks.invalid.tap('WebpackSpaPlugin.smokeTest', () => {
+        process.exit(1);
+      });
+
+      compiler.hooks.done.tap('WebpackSpaPlugin.smokeTest', () => {
+        process.exit(1);
+      });
+    }
 
     compiler.watch(
       {
