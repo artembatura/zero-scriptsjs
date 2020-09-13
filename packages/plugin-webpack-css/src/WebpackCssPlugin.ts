@@ -80,7 +80,9 @@ export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
                     }
                   : false
               }
-            })
+            }),
+            undefined,
+            'optimize-css-assets-plugin'
           );
         }
       );
