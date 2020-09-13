@@ -139,6 +139,7 @@ importers:
       '@zero-scripts/plugin-webpack-react': 'link:../../packages/plugin-webpack-react'
       '@zero-scripts/plugin-webpack-sass': 'link:../../packages/plugin-webpack-sass'
       '@zero-scripts/plugin-webpack-spa': 'link:../../packages/plugin-webpack-spa'
+      sass: 1.26.10
     specifiers:
       '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/plugin-webpack-babel': 'workspace:*'
@@ -148,6 +149,7 @@ importers:
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
       react: 16.13.1
       react-dom: 16.13.1
+      sass: 1.26.10
   examples/react-typescript:
     dependencies:
       react: 16.13.1
@@ -360,8 +362,7 @@ importers:
       mini-css-extract-plugin: 0.9.0_webpack@4.43.0
       optimize-css-assets-webpack-plugin: 5.0.3_webpack@4.43.0
       postcss-safe-parser: 4.0.2
-      sass: 1.26.10
-      sass-loader: 9.0.2_sass@1.26.10+webpack@4.43.0
+      sass-loader: 9.0.2_webpack@4.43.0
     devDependencies:
       '@types/mini-css-extract-plugin': 0.9.1
       '@types/optimize-css-assets-webpack-plugin': 5.0.1
@@ -376,7 +377,6 @@ importers:
       mini-css-extract-plugin: 0.9.0
       optimize-css-assets-webpack-plugin: 5.0.3
       postcss-safe-parser: 4.0.2
-      sass: 1.26.10
       sass-loader: 9.0.2
       webpack: ^4.43.0
   packages/plugin-webpack-spa:
@@ -4160,7 +4160,6 @@ packages:
     resolution:
       integrity: sha512-Un7MIEDdUC5gNpcGDV97op1Ywk748MpHcFTHoYs6qnj1Z3j7I53VG3nwZhKzoBZmbdRNnb6WRdFlwl7tSDuZGw==
   /binary-extensions/2.1.0:
-    dev: false
     engines:
       node: '>=8'
     resolution:
@@ -4646,7 +4645,6 @@ packages:
       is-glob: 4.0.1
       normalize-path: 3.0.0
       readdirp: 3.4.0
-    dev: false
     engines:
       node: '>= 8.10.0'
     optionalDependencies:
@@ -7734,7 +7732,6 @@ packages:
   /is-binary-path/2.1.0:
     dependencies:
       binary-extensions: 2.1.0
-    dev: false
     engines:
       node: '>=8'
     resolution:
@@ -11762,7 +11759,6 @@ packages:
   /readdirp/3.4.0:
     dependencies:
       picomatch: 2.2.2
-    dev: false
     engines:
       node: '>=8.10.0'
     resolution:
@@ -12179,12 +12175,11 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-hhbzAgTIX8O7SHfp2c8/kREfEn4qO/9q8C9beyY6+tvZ87EpoZ3i1RIEvp27YBswnNbY9mWd6paKVmKbAgLfZA==
-  /sass-loader/9.0.2_sass@1.26.10+webpack@4.43.0:
+  /sass-loader/9.0.2_webpack@4.43.0:
     dependencies:
       klona: 1.1.2
       loader-utils: 2.0.0
       neo-async: 2.6.2
-      sass: 1.26.10
       schema-utils: 2.7.0
       semver: 7.3.2
       webpack: 4.43.0_webpack@4.43.0
@@ -12208,7 +12203,7 @@ packages:
   /sass/1.26.10:
     dependencies:
       chokidar: 3.4.2
-    dev: false
+    dev: true
     engines:
       node: '>=8.9.0'
     hasBin: true

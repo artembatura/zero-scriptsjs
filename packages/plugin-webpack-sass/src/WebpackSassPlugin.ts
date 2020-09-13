@@ -26,12 +26,7 @@ export class WebpackSassPlugin extends AbstractPlugin<
       webpackConfigBuilder.hooks.build.tap(
         'WebpackSassPlugin',
         (modifications, configOptions) => {
-          const sassLoader = {
-            loader: require.resolve('sass-loader'),
-            options: {
-              implementation: require('sass')
-            }
-          };
+          const sassLoader = require.resolve('sass-loader');
 
           modifications.insertModuleRule({
             test: /\.(scss|sass)$/,

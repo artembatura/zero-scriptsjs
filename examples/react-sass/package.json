@@ -13,10 +13,11 @@
   "devDependencies": {
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-sass": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
+    "@zero-scripts/plugin-webpack-sass": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*"
+    "sass": "1.26.10"
   },
   "zero-scripts": {}
 }
