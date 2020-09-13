@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "run start",
-    "build": "run build"
+    "build": "run build",
+    "watch": "run watch"
   },
   "dependencies": {
     "astroturf": "0.10.4",

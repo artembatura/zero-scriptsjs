@@ -59,4 +59,14 @@ describe('example:react-astroturf', () => {
       'Your application successfully built and available at build folder'
     );
   });
+
+  it('run watch', async () => {
+    const process = run(workPath, ['watch', '--', '--smokeTest']);
+
+    const output = await readProcessOutput(process);
+
+    expect(output).toContain(
+      'Your application successfully built and available at build folder'
+    );
+  });
 });
