@@ -74,7 +74,9 @@ export class WebpackLessPlugin extends AbstractPlugin<
                     }
                   : false
               }
-            })
+            }),
+            undefined,
+            'optimize-css-assets-plugin'
           );
         }
       );
