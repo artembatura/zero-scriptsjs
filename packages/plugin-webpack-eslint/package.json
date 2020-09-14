@@ -2,18 +2,25 @@
   "name": "@zero-scripts/plugin-webpack-eslint",
   "version": "0.4.0",
   "description": "Adds processing JavaScript code with ESLint",
-  "author": {
-    "name": "Artem Batura",
-    "email": "artemir.q@gmail.com"
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "plugin",
+    "eslint"
+  ],
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/artemirq/zero-scripts"
   },
-  "bugs": {
-    "url": "https://github.com/artemirq/zero-scripts/issues"
-  },
   "license": "MIT",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
@@ -33,15 +40,8 @@
   "peerDependencies": {
     "webpack": "4.x"
   },
-  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "webpack",
-    "config",
-    "zero-scripts",
-    "plugin",
-    "eslint"
-  ]
+  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3"
 }

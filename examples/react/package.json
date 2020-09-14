@@ -2,8 +2,8 @@
   "name": "example-react",
   "private": true,
   "scripts": {
-    "start": "run start",
     "build": "run build",
+    "start": "run start",
     "watch": "run watch"
   },
   "dependencies": {
@@ -14,9 +14,9 @@
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "@zero-scripts/plugin-webpack-css": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
-    "@zero-scripts/plugin-webpack-spa": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*"
+    "@zero-scripts/plugin-webpack-spa": "workspace:*"
   },
   "zero-scripts": {}
 }

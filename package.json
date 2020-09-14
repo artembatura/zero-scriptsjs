@@ -1,17 +1,30 @@
 {
-  "private": true,
   "name": "@zero-scriptsjs/monorepo",
+  "private": true,
   "workspaces": [
     "packages/*",
     "examples/*"
   ],
   "scripts": {
-    "watch": "tsc -b packages --watch",
-    "compile": "tsc -b packages",
     "clean": "tsc -b packages --clean",
-    "prepublishOnly": "run-s clean compile",
+    "compile": "tsc -b packages",
     "lint-staged": "lint-staged",
-    "test": "jest"
+    "prepublishOnly": "run-s clean compile",
+    "test": "jest",
+    "watch": "tsc -b packages --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint-staged"
+    }
+  },
+  "lint-staged": {
+    "!(pnpm-lock.yaml)": [
+      "prettier --write"
+    ],
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --format=pretty --fix"
+    ]
   },
   "devDependencies": {
     "@types/jest": "26.0.4",
@@ -33,20 +46,8 @@
     "lint-staged": "10.2.11",
     "npm-run-all": "4.1.5",
     "prettier": "2.1.0",
+    "prettier-plugin-packagejson": "2.2.5",
     "ts-jest": "26.2.0",
     "typescript": "4.0.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pnpm lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts}": [
-      "eslint --format=pretty --fix"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
   }
 }
