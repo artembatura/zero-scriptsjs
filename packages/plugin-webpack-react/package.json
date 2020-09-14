@@ -2,18 +2,26 @@
   "name": "@zero-scripts/plugin-webpack-react",
   "version": "0.4.0",
   "description": "Ready for development React projects. With ESLint, Babel, CSS Modules and other",
-  "author": {
-    "name": "Artem Batura",
-    "email": "artemir.q@gmail.com"
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "plugin",
+    "babel",
+    "react"
+  ],
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/artemirq/zero-scripts"
   },
-  "bugs": {
-    "url": "https://github.com/artemirq/zero-scripts/issues"
-  },
   "license": "MIT",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
@@ -47,13 +55,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "keywords": [
-    "webpack",
-    "config",
-    "zero-scripts",
-    "plugin",
-    "babel",
-    "react"
-  ]
+  }
 }

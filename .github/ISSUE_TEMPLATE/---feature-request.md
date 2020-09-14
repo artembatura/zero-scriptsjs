@@ -4,7 +4,6 @@ about: "I have a suggestion (and may want to implement it \U0001F642)"
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 **Is your feature request related to a problem? Please describe.**

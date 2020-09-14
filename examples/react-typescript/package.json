@@ -2,8 +2,8 @@
   "name": "example-react-typescript",
   "private": true,
   "scripts": {
-    "start": "run start",
     "build": "run build",
+    "start": "run start",
     "watch": "run watch"
   },
   "dependencies": {

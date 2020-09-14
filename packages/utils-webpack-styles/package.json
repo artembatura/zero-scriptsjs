@@ -1,18 +1,23 @@
 {
   "name": "@zero-scripts/utils-webpack-styles",
   "version": "0.4.0",
-  "author": {
-    "name": "Artem Batura",
-    "email": "artemir.q@gmail.com"
+  "keywords": [
+    "zero-scripts",
+    "utilities",
+    "css"
+  ],
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/artemirq/zero-scripts"
   },
-  "bugs": {
-    "url": "https://github.com/artemirq/zero-scripts/issues"
-  },
   "license": "MIT",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
@@ -36,10 +41,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "keywords": [
-    "zero-scripts",
-    "utilities",
-    "css"
-  ]
+  }
 }

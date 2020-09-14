@@ -2,8 +2,8 @@
   "name": "example-react-less",
   "private": true,
   "scripts": {
-    "start": "run start",
     "build": "run build",
+    "start": "run start",
     "watch": "run watch"
   },
   "dependencies": {
@@ -13,10 +13,10 @@
   "devDependencies": {
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "@zero-scripts/plugin-webpack-less": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "less": "3.12.2"
   },
   "zero-scripts": {}

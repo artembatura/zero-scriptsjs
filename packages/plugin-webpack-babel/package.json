@@ -2,18 +2,25 @@
   "name": "@zero-scripts/plugin-webpack-babel",
   "version": "0.4.0",
   "description": "Adds processing JavaScript code with Babel",
-  "author": {
-    "name": "Artem Batura",
-    "email": "artemir.q@gmail.com"
+  "keywords": [
+    "webpack",
+    "config",
+    "zero-scripts",
+    "plugin",
+    "babel"
+  ],
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/artemirq/zero-scripts"
   },
-  "bugs": {
-    "url": "https://github.com/artemirq/zero-scripts/issues"
-  },
   "license": "MIT",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
   "main": "build/index.js",
   "typings": "build/index.d.ts",
   "files": [
@@ -38,15 +45,8 @@
     "fork-ts-checker-webpack-plugin": "^5.1.0",
     "webpack": "^4.43.0"
   },
-  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3",
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [
-    "webpack",
-    "config",
-    "zero-scripts",
-    "plugin",
-    "babel"
-  ]
+  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3"
 }
