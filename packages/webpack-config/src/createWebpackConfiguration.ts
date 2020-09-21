@@ -80,9 +80,9 @@ export function createWebpackConfiguration({
       tls: 'empty',
       child_process: 'empty'
     },
-    stats: 'errors-only',
+    stats: 'none',
     infrastructureLogging: {
-      level: 'error'
+      level: 'none'
     }
   } as Configuration;
 }
