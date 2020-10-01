@@ -5,11 +5,13 @@
     "strict": true,
     "esModuleInterop": true,
     "declaration": true,
-    "declarationMap": true,
+    "declarationMap": false,
     "sourceMap": true,
     "composite": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "incremental": true
+    "incremental": true,
+    "pretty": true,
+    "noUnusedLocals": true
   }
 }
