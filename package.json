@@ -6,16 +6,15 @@
     "examples/*"
   ],
   "scripts": {
-    "clean": "tsc -b packages --clean",
-    "compile": "tsc -b packages",
-    "lint-staged": "lint-staged",
-    "prepublishOnly": "run-s clean compile",
+    "build": "tsc -b packages",
+    "prepublishOnly": "run-s remove-build build",
+    "remove-build": "rimraf packages/*/build packages/*/*.tsbuildinfo",
     "test": "jest",
     "watch": "tsc -b packages --watch"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pnpm lint-staged"
+      "pre-commit": "pnpx lint-staged"
     }
   },
   "lint-staged": {
@@ -46,6 +45,7 @@
     "npm-run-all": "4.1.5",
     "prettier": "2.1.0",
     "prettier-plugin-packagejson": "2.2.5",
+    "rimraf": "^3.0.2",
     "ts-jest": "26.2.0",
     "typescript": "4.0.2"
   }
