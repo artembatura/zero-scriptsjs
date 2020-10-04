@@ -1,3 +1,4 @@
+import { output } from '@artemir/friendly-errors-webpack-plugin';
 import webpack from 'webpack';
 
 import { Task } from '@zero-scripts/core';
@@ -19,6 +20,9 @@ export class TaskBuild extends Task {
     const config = this.configBuilder.setIsDev(false).build();
 
     const compiler = webpack(config);
+
+    output.clearConsole();
+    output.title('info', 'WAIT', 'Compiling...');
 
     compiler.run(err => {
       if (err) throw err;
