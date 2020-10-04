@@ -6,7 +6,6 @@ import { AbstractPlugin } from '../AbstractPlugin';
 import { ApplyContext, BeforeRunContext } from '../context';
 import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
-import { resolvePath } from '../utils/resolvePath';
 import { WorkSpace } from '../WorkSpace';
 import { setCurrentTaskMeta } from './currentTask';
 import { getCLIMeta } from './getCLIMeta';
@@ -143,9 +142,7 @@ export async function run(argv: string[]): Promise<void> {
     return plugin;
   });
 
-  dotEnv.config({
-    path: resolvePath('.env')
-  });
+  dotEnv.config();
 
   const applyContext = new ApplyContext(workSpaceInstance);
 
