@@ -6,7 +6,6 @@ import { AbstractPlugin } from '../AbstractPlugin';
 import { ApplyContext, BeforeRunContext } from '../context';
 import { readPackageJson } from '../utils/readPackageJson';
 import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
-import { resolvePath } from '../utils/resolvePath';
 import { WorkSpace } from '../WorkSpace';
 import { setCurrentTaskMeta } from './currentTask';
 import { getCLIMeta } from './getCLIMeta';
@@ -38,18 +37,7 @@ function getPluginPackageList(
       Object.keys(pkg?.devDependencies || {})
     );
 
-    const filteredDevDependencies = devDependencies.filter(pkgName =>
-      pluginRegexp.test(pkgName)
-    );
-
-    // eslint-disable-next-line no-console
-    console.log(
-      `Workspace option is not set, load plugins from devDependencies: ${filteredDevDependencies.join(
-        ', '
-      )}`
-    );
-
-    return filteredDevDependencies;
+    return devDependencies.filter(pkgName => pluginRegexp.test(pkgName));
   }
 
   if (meta.workspaceType === WorkspaceConfigurationType.MAPPED_ARRAYS) {
@@ -154,9 +142,7 @@ export async function run(argv: string[]): Promise<void> {
     return plugin;
   });
 
-  dotEnv.config({
-    path: resolvePath('.env')
-  });
+  dotEnv.config();
 
   const applyContext = new ApplyContext(workSpaceInstance);
 

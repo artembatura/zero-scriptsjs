@@ -1,3 +1,4 @@
+import { output } from '@artemir/friendly-errors-webpack-plugin';
 import webpack from 'webpack';
 
 import { Task } from '@zero-scripts/core';
@@ -33,6 +34,9 @@ export class TaskWatch extends Task {
         process.exit(1);
       });
     }
+
+    output.clearConsole();
+    output.title('info', 'WAIT', 'Compiling...');
 
     compiler.watch(
       {

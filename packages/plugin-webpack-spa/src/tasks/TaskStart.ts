@@ -1,3 +1,4 @@
+import { output } from '@artemir/friendly-errors-webpack-plugin';
 import express from 'express';
 import open from 'open';
 import webpack from 'webpack';
@@ -75,6 +76,9 @@ export class TaskStart extends Task {
     }
 
     devServer.use(express.static(configOptions.paths.public));
+
+    output.clearConsole();
+    output.title('info', 'WAIT', 'Starting the development server...');
 
     devServer.listen(port);
   }

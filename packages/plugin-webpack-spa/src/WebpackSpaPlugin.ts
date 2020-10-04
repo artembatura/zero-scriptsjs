@@ -1,3 +1,4 @@
+import { FriendlyErrorsWebpackPlugin } from '@artemir/friendly-errors-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
@@ -16,9 +17,6 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { TaskStart, TaskBuild, TaskWatch } from './tasks';
 import { WebpackSpaPluginOptions } from './WebpackSpaPluginOptions';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const FriendlyErrorsPlugin = require('@artemir/friendly-errors-webpack-plugin');
 
 @ReadOptions(WebpackSpaPluginOptions, 'plugin-webpack-spa')
 export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
@@ -64,7 +62,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
 
           if (isStartTask) {
             modifications.insertPlugin(
-              new FriendlyErrorsPlugin({
+              new FriendlyErrorsWebpackPlugin({
                 compilationSuccessInfo: {
                   messages: [
                     'Your application is available at http://localhost:' +
@@ -91,7 +89,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
             modifications.insertPlugin(new CleanWebpackPlugin());
 
             modifications.insertPlugin(
-              new FriendlyErrorsPlugin({
+              new FriendlyErrorsWebpackPlugin({
                 compilationSuccessInfo: {
                   messages: [
                     `Your application successfully built and available at ${paths.build
@@ -105,7 +103,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
 
           if (isWatchTask) {
             modifications.insertPlugin(
-              new FriendlyErrorsPlugin({
+              new FriendlyErrorsWebpackPlugin({
                 compilationSuccessInfo: {
                   messages: [
                     `Your application successfully built and available at ${paths.build

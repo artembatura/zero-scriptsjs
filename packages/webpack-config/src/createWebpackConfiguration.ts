@@ -9,13 +9,20 @@ import { ExtractOptions } from '@zero-scripts/core';
 
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
+type ConfigurationWithLog = Configuration & {
+  infrastructureLogging?: {
+    level?: 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose';
+    debug?: boolean;
+  };
+};
+
 export function createWebpackConfiguration({
   isDev,
   paths,
   additionalEntry,
   useSourceMap,
   moduleFileExtensions
-}: ExtractOptions<WebpackConfigOptions>): Configuration {
+}: ExtractOptions<WebpackConfigOptions>): ConfigurationWithLog {
   return {
     mode: isDev ? 'development' : 'production',
     entry: [paths.indexJs, ...additionalEntry],
@@ -23,7 +30,7 @@ export function createWebpackConfiguration({
     output: {
       path: paths.build,
       filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
-      publicPath: paths.publicPath,
+      publicPath: paths.publicUrlOrPath,
       chunkFilename: isDev
         ? 'js/[name].chunk.js'
         : 'js/[name].[contenthash:8].chunk.js',
@@ -67,9 +74,9 @@ export function createWebpackConfiguration({
         output: 'asset-manifest.json'
       }),
       new InterpolateHtmlPlugin({
-        PUBLIC_PATH: paths.publicPath.endsWith('/')
-          ? paths.publicPath.slice(0, -1)
-          : paths.publicPath
+        PUBLIC_URL: paths.publicUrlOrPath.endsWith('/')
+          ? paths.publicUrlOrPath.slice(0, -1)
+          : paths.publicUrlOrPath
       })
     ],
     node: {
@@ -80,9 +87,9 @@ export function createWebpackConfiguration({
       tls: 'empty',
       child_process: 'empty'
     },
-    stats: 'errors-only',
+    stats: 'none',
     infrastructureLogging: {
-      level: 'error'
+      level: 'none'
     }
-  } as Configuration;
+  };
 }
