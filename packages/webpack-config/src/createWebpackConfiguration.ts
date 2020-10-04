@@ -9,13 +9,20 @@ import { ExtractOptions } from '@zero-scripts/core';
 
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
+type ConfigurationWithLog = Configuration & {
+  infrastructureLogging?: {
+    level?: 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose';
+    debug?: boolean;
+  };
+};
+
 export function createWebpackConfiguration({
   isDev,
   paths,
   additionalEntry,
   useSourceMap,
   moduleFileExtensions
-}: ExtractOptions<WebpackConfigOptions>): Configuration {
+}: ExtractOptions<WebpackConfigOptions>): ConfigurationWithLog {
   return {
     mode: isDev ? 'development' : 'production',
     entry: [paths.indexJs, ...additionalEntry],
@@ -84,5 +91,5 @@ export function createWebpackConfiguration({
     infrastructureLogging: {
       level: 'none'
     }
-  } as Configuration;
+  };
 }
