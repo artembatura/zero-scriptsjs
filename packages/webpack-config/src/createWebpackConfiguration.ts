@@ -30,7 +30,7 @@ export function createWebpackConfiguration({
     output: {
       path: paths.build,
       filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
-      publicPath: paths.publicPath,
+      publicPath: paths.publicUrlOrPath,
       chunkFilename: isDev
         ? 'js/[name].chunk.js'
         : 'js/[name].[contenthash:8].chunk.js',
@@ -74,9 +74,9 @@ export function createWebpackConfiguration({
         output: 'asset-manifest.json'
       }),
       new InterpolateHtmlPlugin({
-        PUBLIC_PATH: paths.publicPath.endsWith('/')
-          ? paths.publicPath.slice(0, -1)
-          : paths.publicPath
+        PUBLIC_URL: paths.publicUrlOrPath.endsWith('/')
+          ? paths.publicUrlOrPath.slice(0, -1)
+          : paths.publicUrlOrPath
       })
     ],
     node: {

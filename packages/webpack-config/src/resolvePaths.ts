@@ -11,7 +11,7 @@ export function resolvePaths(
   return {
     src: resolvePath(paths.src),
     root: resolvePath(paths.root),
-    publicPath: isDevelopment ? '/' : paths.publicPath,
+    publicUrlOrPath: isDevelopment ? '/' : paths.publicUrlOrPath,
     public: resolvePath(paths.public),
     build: resolvePath(paths.build),
     indexHtml: resolvePath(paths.indexHtml),
