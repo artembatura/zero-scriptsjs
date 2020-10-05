@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/core",
-  "version": "1.0.0-alfa.1",
+  "version": "1.0.0-alfa.2",
   "description": "Framework for creating presets, configurations and extensions",
   "keywords": [
     "framework",
