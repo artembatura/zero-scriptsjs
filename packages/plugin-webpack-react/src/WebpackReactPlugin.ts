@@ -4,7 +4,8 @@ import {
   AbstractPlugin,
   ReadOptions,
   ApplyContext,
-  getCurrentTaskMeta
+  getCurrentTaskMeta,
+  readPackageJson
 } from '@zero-scripts/core';
 import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import type { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
@@ -52,7 +53,11 @@ export class WebpackReactPlugin extends AbstractPlugin<
             optionsContainer => {
               optionsContainer.presets.push([
                 rr('@babel/preset-react'),
-                { development: configOptions.isDev, useBuiltIns: true }
+                {
+                  development: configOptions.isDev,
+                  useBuiltIns: true,
+                  runtime: 'automatic'
+                }
               ]);
 
               if (configOptions.isDev && pluginOptions.propTypes) {
@@ -70,6 +75,16 @@ export class WebpackReactPlugin extends AbstractPlugin<
             'WebpackReactPlugin',
             optionsContainer => {
               optionsContainer.extends.push(rr('eslint-config-react-app'));
+
+              const reactVersion = readPackageJson(o => o.dependencies?.react);
+
+              if (reactVersion && parseInt(reactVersion) > 16) {
+                optionsContainer.rules = {
+                  ...optionsContainer.rules,
+                  'react/jsx-uses-react': 'off',
+                  'react/react-in-jsx-scope': 'off'
+                };
+              }
 
               optionsContainer.parserOptions = {
                 ...optionsContainer.parserOptions,
