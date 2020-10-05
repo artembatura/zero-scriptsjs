@@ -37,6 +37,9 @@ export class WebpackReactPlugin extends AbstractPlugin<
         }
       );
 
+      const reactVersion = readPackageJson(o => o.dependencies?.react);
+      const useNewJsxTransform = reactVersion && parseInt(reactVersion) > 16;
+
       config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
         const pluginOptions = this.optionsContainer.build();
 
@@ -56,7 +59,7 @@ export class WebpackReactPlugin extends AbstractPlugin<
                 {
                   development: configOptions.isDev,
                   useBuiltIns: true,
-                  runtime: 'automatic'
+                  runtime: useNewJsxTransform ? 'automatic' : 'classic'
                 }
               ]);
 
@@ -76,9 +79,7 @@ export class WebpackReactPlugin extends AbstractPlugin<
             optionsContainer => {
               optionsContainer.extends.push(rr('eslint-config-react-app'));
 
-              const reactVersion = readPackageJson(o => o.dependencies?.react);
-
-              if (reactVersion && parseInt(reactVersion) > 16) {
+              if (useNewJsxTransform) {
                 optionsContainer.rules = {
                   ...optionsContainer.rules,
                   'react/jsx-uses-react': 'off',
