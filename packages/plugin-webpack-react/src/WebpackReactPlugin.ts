@@ -21,6 +21,20 @@ export class WebpackReactPlugin extends AbstractPlugin<
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackReactPlugin', beforeRunContext => {
       const config = beforeRunContext.getConfigBuilder(WebpackConfig);
+      const prebuiltConfigOptions = config.optionsContainer.build();
+
+      config.hooks.beforeBuild.tap(
+        'WebpackReactPlugin::addExtensions',
+        configOptions => {
+          configOptions.jsFileExtensions.push('jsx');
+          configOptions.moduleFileExtensions.push('.jsx');
+
+          if (prebuiltConfigOptions.useTypescript) {
+            configOptions.jsFileExtensions.push('tsx');
+            configOptions.moduleFileExtensions.push('.tsx');
+          }
+        }
+      );
 
       config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
         const pluginOptions = this.optionsContainer.build();
@@ -82,26 +96,29 @@ export class WebpackReactPlugin extends AbstractPlugin<
         ) {
           if (babelPlugin) {
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
-              'WebpackReactPlugin.addFastRefreshLoader',
+              'WebpackReactPlugin::addFastRefreshLoader',
               optionsContainer => {
                 optionsContainer.plugins.push(rr('react-refresh/babel'));
               }
             );
 
-            config.hooks.build.tap('WebpackReactPlugin', modifications => {
-              modifications.insertPlugin(
-                new ReactRefreshWebpackPlugin({
-                  overlay: {
-                    sockIntegration: 'whm'
-                  }
-                })
-              );
+            config.hooks.build.tap(
+              'WebpackReactPlugin::addReactRefresh',
+              modifications => {
+                modifications.insertPlugin(
+                  new ReactRefreshWebpackPlugin({
+                    overlay: {
+                      sockIntegration: 'whm'
+                    }
+                  })
+                );
 
-              modifications.addResolveAlias(
-                'react-refresh/runtime',
-                require.resolve('react-refresh/runtime')
-              );
-            });
+                modifications.addResolveAlias(
+                  'react-refresh/runtime',
+                  require.resolve('react-refresh/runtime')
+                );
+              }
+            );
           }
         }
       });
