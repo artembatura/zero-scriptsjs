@@ -41,7 +41,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
   @Option<WebpackConfigOptions, 'moduleFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies }) => [
       ...defaultValue,
-      ...(dependencies.useTypescript ? ['.ts', '.tsx'] : []),
+      ...(dependencies.useTypescript ? ['.ts'] : []),
       ...(externalValue ? externalValue : [])
     ],
     ['useTypescript']
@@ -51,7 +51,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
   @Option<WebpackConfigOptions, 'jsFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies }) => [
       ...defaultValue,
-      ...(dependencies.useTypescript ? ['ts', 'tsx'] : []),
+      ...(dependencies.useTypescript ? ['ts'] : []),
       ...(externalValue ? externalValue : [])
     ],
     ['useTypescript']
