@@ -18,7 +18,7 @@
     }
   },
   "lint-staged": {
-    "!(pnpm-lock.yaml)": [
+    "!(pnpm-lock.yaml|*.ico|*.svg)": [
       "prettier --write"
     ],
     "*.{js,ts,jsx,tsx}": [
