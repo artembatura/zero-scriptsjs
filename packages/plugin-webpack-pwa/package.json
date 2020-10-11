@@ -1,5 +1,5 @@
 {
-  "name": "@zero-scripts/extension.webpack-pwa",
+  "name": "@zero-scripts/plugin-webpack-pwa",
   "version": "1.0.0-alfa.4",
   "keywords": [
     "webpack",
