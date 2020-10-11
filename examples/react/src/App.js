@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import { ReactComponent as Logo } from './logo.svg';
 
 import classes from './App.module.css';
 
@@ -7,7 +7,7 @@ export function App() {
   return (
     <div className={classes.App}>
       <header className={classes.AppHeader}>
-        <img src={logo} className={classes.AppLogo} alt="logo" />
+        <Logo className={classes.AppLogo} alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
