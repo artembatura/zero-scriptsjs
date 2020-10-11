@@ -30,8 +30,10 @@
   "dependencies": {
     "@babel/preset-react": "7.10.4",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.1",
+    "@svgr/webpack": "5.4.0",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
+    "babel-plugin-named-asset-import": "0.3.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "eslint-config-react-app": "5.2.1",
     "eslint-plugin-flowtype": "5.2.0",
