@@ -7,7 +7,7 @@ export function App() {
   return (
     <div className={classes.App}>
       <header className={classes.AppHeader}>
-        <Logo className={classes.AppLogo} alt="logo" />
+        <Logo className={classes.AppLogo} />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
