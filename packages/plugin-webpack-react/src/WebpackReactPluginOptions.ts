@@ -8,4 +8,7 @@ export class WebpackReactPluginOptions extends AbstractOptionsContainer<
 
   @Option<WebpackReactPluginOptions, 'fastRefresh'>()
   public fastRefresh: boolean = false;
+
+  @Option<WebpackReactPluginOptions, 'svgReactComponent'>()
+  public svgReactComponent: boolean = false;
 }

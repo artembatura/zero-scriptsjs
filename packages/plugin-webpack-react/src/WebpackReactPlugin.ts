@@ -69,6 +69,20 @@ export class WebpackReactPlugin extends AbstractPlugin<
                   { removeImport: true }
                 ]);
               }
+
+              if (pluginOptions.svgReactComponent) {
+                optionsContainer.plugins.push([
+                  rr('babel-plugin-named-asset-import'),
+                  {
+                    loaderMap: {
+                      svg: {
+                        ReactComponent:
+                          rr('@svgr/webpack') + '?-svgo,+titleProp,+ref![path]'
+                      }
+                    }
+                  }
+                ]);
+              }
             }
           );
         }
