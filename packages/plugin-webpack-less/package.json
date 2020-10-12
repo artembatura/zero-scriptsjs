@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-less",
-  "version": "1.0.0-alfa.4",
+  "version": "1.0.0-alfa.5",
   "description": "Adds processing Less files: extracting, minify and add vendor prefixes",
   "keywords": [
     "webpack",

@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-spa",
-  "version": "1.0.0-alfa.4",
+  "version": "1.0.0-alfa.5",
   "keywords": [
     "webpack",
     "config",
