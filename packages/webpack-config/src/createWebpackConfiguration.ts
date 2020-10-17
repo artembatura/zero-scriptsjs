@@ -58,7 +58,7 @@ export function createWebpackConfiguration({
     },
     resolve: {
       modules: ['node_modules'],
-      extensions: moduleFileExtensions
+      extensions: moduleFileExtensions.map(ext => '.' + ext)
     },
     module: {
       strictExportPresence: true,

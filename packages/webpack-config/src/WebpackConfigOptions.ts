@@ -46,7 +46,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<
     ],
     ['useTypescript']
   )
-  public readonly moduleFileExtensions: string[] = ['.json', '.js', '.mjs'];
+  public readonly moduleFileExtensions: string[] = ['json', 'js', 'mjs'];
 
   @Option<WebpackConfigOptions, 'jsFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies }) => [

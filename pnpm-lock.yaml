@@ -220,6 +220,19 @@ importers:
       react: 16.13.1
       react-dom: 16.13.1
       typescript: 4.0.2
+  examples/spa-import-json:
+    devDependencies:
+      '@zero-scripts/core': 'link:../../packages/core'
+      '@zero-scripts/plugin-webpack-babel': 'link:../../packages/plugin-webpack-babel'
+      '@zero-scripts/plugin-webpack-css': 'link:../../packages/plugin-webpack-css'
+      '@zero-scripts/plugin-webpack-eslint': 'link:../../packages/plugin-webpack-eslint'
+      '@zero-scripts/plugin-webpack-spa': 'link:../../packages/plugin-webpack-spa'
+    specifiers:
+      '@zero-scripts/core': 'workspace:*'
+      '@zero-scripts/plugin-webpack-babel': 'workspace:*'
+      '@zero-scripts/plugin-webpack-css': 'workspace:*'
+      '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
+      '@zero-scripts/plugin-webpack-spa': 'workspace:*'
   packages/core:
     dependencies:
       dotenv: 8.2.0
