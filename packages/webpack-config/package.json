@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/webpack-config",
-  "version": "1.0.0-alfa.5",
+  "version": "1.0.0-alfa.6",
   "description": "Base configuration for Webpack",
   "keywords": [
     "webpack",
