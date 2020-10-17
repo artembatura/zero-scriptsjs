@@ -28,11 +28,11 @@ export class WebpackReactPlugin extends AbstractPlugin<
         'WebpackReactPlugin::addExtensions',
         configOptions => {
           configOptions.jsFileExtensions.push('jsx');
-          configOptions.moduleFileExtensions.push('.jsx');
+          configOptions.moduleFileExtensions.push('jsx');
 
           if (prebuiltConfigOptions.useTypescript) {
             configOptions.jsFileExtensions.push('tsx');
-            configOptions.moduleFileExtensions.push('.tsx');
+            configOptions.moduleFileExtensions.push('tsx');
           }
         }
       );

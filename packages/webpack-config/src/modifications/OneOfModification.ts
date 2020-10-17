@@ -1,9 +1,9 @@
 import { Configuration, RuleSetRule } from 'webpack';
 
 import {
-  InsertPos,
+  ConfigModification,
   extensionsRegex,
-  ConfigModification
+  InsertPos
 } from '@zero-scripts/core';
 
 import { WebpackConfigOptions } from '../WebpackConfigOptions';
