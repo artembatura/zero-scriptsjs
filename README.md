@@ -29,6 +29,10 @@
 - [Comparison with alternatives](#comparison-with-alternatives)
 - [License](#license)
 
+# Important
+
+Before all, this branch for version 0.5.x, but I currently working on [1.0](https://github.com/artemirq/zero-scriptsjs/tree/1.0-dev) version, which first of all has a different plugin system and a lot changes. There is no documentation and changelog for it yet, but you can learn by [examples](https://github.com/artemirq/zero-scriptsjs/tree/1.0-dev/examples).
+
 # About
 
 This project is attempt to combine task manager, configuration management facilities and extension system into one solution to simplify configuring development processes on building applications.
