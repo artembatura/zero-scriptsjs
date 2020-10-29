@@ -98,7 +98,17 @@ export class WebpackBabelPlugin extends AbstractPlugin<
                   babelrc: false,
                   configFile: false,
                   compact: false,
-                  presets: [[rr('@babel/preset-env'), { loose: true }]],
+                  presets: [
+                    [
+                      rr('@babel/preset-env'),
+                      {
+                        useBuiltIns: 'entry',
+                        corejs: 3,
+                        exclude: ['transform-typeof-symbol'],
+                        loose: true
+                      }
+                    ]
+                  ],
                   cacheDirectory: true,
                   cacheCompression: !isDev,
                   sourceMaps: false
