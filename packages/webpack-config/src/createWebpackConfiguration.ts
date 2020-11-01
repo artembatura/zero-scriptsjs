@@ -57,7 +57,7 @@ export function createWebpackConfiguration({
       runtimeChunk: true
     },
     resolve: {
-      modules: ['node_modules'],
+      modules: ['node_modules', paths.src],
       extensions: moduleFileExtensions.map(ext => '.' + ext)
     },
     module: {

@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-babel",
-  "version": "1.0.0-alfa.7",
+  "version": "1.0.0-alfa.9",
   "description": "Adds processing JavaScript code with Babel",
   "keywords": [
     "webpack",

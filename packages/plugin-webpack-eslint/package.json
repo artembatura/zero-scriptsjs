@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-eslint",
-  "version": "1.0.0-alfa.6",
+  "version": "1.0.0-alfa.9",
   "description": "Adds processing JavaScript code with ESLint",
   "keywords": [
     "webpack",
