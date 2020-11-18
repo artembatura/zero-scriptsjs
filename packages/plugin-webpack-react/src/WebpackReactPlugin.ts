@@ -4,13 +4,13 @@ import {
   AbstractPlugin,
   ReadOptions,
   ApplyContext,
-  getCurrentTaskMeta,
-  readPackageJson
+  getCurrentTaskMeta
 } from '@zero-scripts/core';
 import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import type { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
+import { hasJsxRuntime } from './hasJsxRuntime';
 import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
 
 const rr = require.resolve;
@@ -37,9 +37,6 @@ export class WebpackReactPlugin extends AbstractPlugin<
         }
       );
 
-      const reactVersion = readPackageJson(o => o.dependencies?.react);
-      const useNewJsxTransform = reactVersion && parseInt(reactVersion) > 16;
-
       config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
         const pluginOptions = this.optionsContainer.build();
 
@@ -49,6 +46,10 @@ export class WebpackReactPlugin extends AbstractPlugin<
         const eslintPlugin = beforeRunContext.findPlugin<WebpackEslintPlugin>(
           'WebpackEslintPlugin'
         );
+
+        const useNewJsxTransform = pluginOptions.disableNewJsxTransform
+          ? false
+          : hasJsxRuntime(prebuiltConfigOptions.paths);
 
         if (babelPlugin) {
           babelPlugin.optionsContainer.hooks.beforeBuild.tap(
