@@ -66,6 +66,26 @@ importers:
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
       react: 17.0.1
       react-dom: 17.0.1
+  examples/react-16:
+    dependencies:
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+    devDependencies:
+      '@zero-scripts/core': 'link:../../packages/core'
+      '@zero-scripts/plugin-webpack-babel': 'link:../../packages/plugin-webpack-babel'
+      '@zero-scripts/plugin-webpack-css': 'link:../../packages/plugin-webpack-css'
+      '@zero-scripts/plugin-webpack-eslint': 'link:../../packages/plugin-webpack-eslint'
+      '@zero-scripts/plugin-webpack-react': 'link:../../packages/plugin-webpack-react'
+      '@zero-scripts/plugin-webpack-spa': 'link:../../packages/plugin-webpack-spa'
+    specifiers:
+      '@zero-scripts/core': 'workspace:*'
+      '@zero-scripts/plugin-webpack-babel': 'workspace:*'
+      '@zero-scripts/plugin-webpack-css': 'workspace:*'
+      '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
+      '@zero-scripts/plugin-webpack-react': 'workspace:*'
+      '@zero-scripts/plugin-webpack-spa': 'workspace:*'
+      react: 16.13.1
+      react-dom: 16.13.1
   examples/react-astroturf:
     dependencies:
       astroturf: 0.10.5
@@ -9881,6 +9901,18 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-4Oz8DUIwdvoa5qMJelxipzi/iJIi40O5cGV1wNYp5hvZP8ZN0T+jiNkL0QepXs+EsQ9XJ8ipEDoiH70ySUJP3Q==
+  /react-dom/16.13.1_react@16.13.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      prop-types: 15.7.2
+      react: 16.13.1
+      scheduler: 0.19.1
+    dev: false
+    peerDependencies:
+      react: ^16.13.1
+    resolution:
+      integrity: sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
   /react-dom/17.0.1_react@17.0.1:
     dependencies:
       loose-envify: 1.4.0
@@ -9901,6 +9933,16 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+  /react/16.13.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+      prop-types: 15.7.2
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==
   /react/17.0.1:
     dependencies:
       loose-envify: 1.4.0
@@ -10392,6 +10434,13 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
+  /scheduler/0.19.1:
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
+    dev: false
+    resolution:
+      integrity: sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
   /scheduler/0.20.1:
     dependencies:
       loose-envify: 1.4.0
