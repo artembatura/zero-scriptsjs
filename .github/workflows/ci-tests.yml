@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v1.2.0
+      - uses: pnpm/action-setup@v1.2.1
         with:
-          version: 5.9.3
+          version: 5.13.1
       - name: Retrieve content-addressable store from cache
         uses: actions/cache@v2
         with:
