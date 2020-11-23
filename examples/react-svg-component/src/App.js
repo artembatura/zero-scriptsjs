@@ -1,4 +1,3 @@
-import React from 'react';
 import { ReactComponent as Logo } from './logo.svg';
 
 import classes from './App.module.css';

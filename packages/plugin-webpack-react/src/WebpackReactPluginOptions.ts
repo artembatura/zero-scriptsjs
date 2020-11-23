@@ -11,4 +11,7 @@ export class WebpackReactPluginOptions extends AbstractOptionsContainer<
 
   @Option<WebpackReactPluginOptions, 'svgReactComponent'>()
   public svgReactComponent: boolean = false;
+
+  @Option<WebpackReactPluginOptions, 'disableNewJsxTransform'>()
+  public disableNewJsxTransform: boolean = false;
 }

@@ -6,9 +6,9 @@ import { retryRequestWhile } from '../../e2e-helpers/retryRequestWhile';
 import { run } from '../../e2e-helpers/run';
 import { terminateDevServer } from '../../e2e-helpers/terminateDevServer';
 
-const workPath = path.resolve(path.join(__dirname, '..'), 'react-17');
+const workPath = path.resolve(path.join(__dirname, '..'), 'react-16');
 
-describe('example:react-17', () => {
+describe('example:react-16', () => {
   beforeAll(() => jest.setTimeout(1000 * 120));
 
   it('run start', async () => {

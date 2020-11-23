@@ -7,8 +7,8 @@
     "watch": "run watch"
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   },
   "devDependencies": {
     "@zero-scripts/core": "workspace:*",
@@ -17,7 +17,7 @@
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-sass": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
-    "sass": "1.26.10"
+    "sass": "1.29.0"
   },
   "zero-scripts": {}
 }
