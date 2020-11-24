@@ -54,11 +54,13 @@ export class TaskBuild extends Task {
         try {
           writeFileSync(options.json, JSONStats);
 
+          // eslint-disable-next-line no-console
           console.log();
           output.info(
             `Stats are successfully stored as json to ${options.json}`
           );
         } catch (error) {
+          // eslint-disable-next-line no-console
           console.log(error);
 
           process.exit(2);

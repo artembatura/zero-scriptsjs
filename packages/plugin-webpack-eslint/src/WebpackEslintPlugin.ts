@@ -10,9 +10,7 @@ import { WebpackEslintPluginOptions } from './WebpackEslintPluginOptions';
 const rr = require.resolve;
 
 @ReadOptions(WebpackEslintPluginOptions, 'plugin-webpack-eslint')
-export class WebpackEslintPlugin extends AbstractPlugin<
-  WebpackEslintPluginOptions
-> {
+export class WebpackEslintPlugin extends AbstractPlugin<WebpackEslintPluginOptions> {
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap(
       'WebpackEslintPlugin',
@@ -56,7 +54,7 @@ export class WebpackEslintPlugin extends AbstractPlugin<
                   },
                   rules: {
                     'no-unused-vars': 'warn',
-                    'no-console': 'error',
+                    'no-console': 'warn',
                     ...pluginOptions.rules
                   },
                   overrides: [

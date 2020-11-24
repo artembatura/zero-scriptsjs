@@ -1,8 +1,6 @@
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-export class WebpackBabelPluginOptions extends AbstractOptionsContainer<
-  WebpackBabelPluginOptions
-> {
+export class WebpackBabelPluginOptions extends AbstractOptionsContainer<WebpackBabelPluginOptions> {
   @Option<WebpackBabelPluginOptions, 'flow'>()
   public flow: boolean = false;
 

@@ -18,9 +18,7 @@ const defaultDevServerOptions: DevServerOptions = {
   port: 8080
 };
 
-export class WebpackSpaPluginOptions extends AbstractOptionsContainer<
-  WebpackSpaPluginOptions
-> {
+export class WebpackSpaPluginOptions extends AbstractOptionsContainer<WebpackSpaPluginOptions> {
   @Option<WebpackSpaPluginOptions, 'devServer'>(
     ({ defaultValue, externalValue }) => {
       const options = {
