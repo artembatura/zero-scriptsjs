@@ -16,9 +16,7 @@ import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
 const rr = require.resolve;
 
 @ReadOptions(WebpackReactPluginOptions, 'plugin-webpack-react')
-export class WebpackReactPlugin extends AbstractPlugin<
-  WebpackReactPluginOptions
-> {
+export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions> {
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackReactPlugin', beforeRunContext => {
       const config = beforeRunContext.getConfigBuilder(WebpackConfig);

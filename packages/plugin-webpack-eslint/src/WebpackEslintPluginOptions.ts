@@ -1,8 +1,6 @@
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-export class WebpackEslintPluginOptions extends AbstractOptionsContainer<
-  WebpackEslintPluginOptions
-> {
+export class WebpackEslintPluginOptions extends AbstractOptionsContainer<WebpackEslintPluginOptions> {
   @Option<WebpackEslintPluginOptions, 'plugins'>(
     ({ externalValue, defaultValue }) => [
       ...defaultValue,

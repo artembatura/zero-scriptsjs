@@ -14,9 +14,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const lessModuleRegex = /\.(module|m)\.less$/;
 
 @ReadOptions(WebpackLessPluginOptions, 'plugin-webpack-less')
-export class WebpackLessPlugin extends AbstractPlugin<
-  WebpackLessPluginOptions
-> {
+export class WebpackLessPlugin extends AbstractPlugin<WebpackLessPluginOptions> {
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackLessPlugin', beforeRunContext => {
       const webpackConfigBuilder = beforeRunContext.getConfigBuilder(

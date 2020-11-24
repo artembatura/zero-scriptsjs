@@ -14,9 +14,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 
 @ReadOptions(WebpackSassPluginOptions, 'plugin-webpack-sass')
-export class WebpackSassPlugin extends AbstractPlugin<
-  WebpackSassPluginOptions
-> {
+export class WebpackSassPlugin extends AbstractPlugin<WebpackSassPluginOptions> {
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackSassPlugin', beforeRunContext => {
       const webpackConfigBuilder = beforeRunContext.getConfigBuilder(

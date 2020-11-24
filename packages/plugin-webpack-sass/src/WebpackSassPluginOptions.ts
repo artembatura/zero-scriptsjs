@@ -1,5 +1,3 @@
 import { AbstractOptionsContainer } from '@zero-scripts/core';
 
-export class WebpackSassPluginOptions extends AbstractOptionsContainer<
-  WebpackSassPluginOptions
-> {}
+export class WebpackSassPluginOptions extends AbstractOptionsContainer<WebpackSassPluginOptions> {}

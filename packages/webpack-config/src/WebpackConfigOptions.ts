@@ -4,9 +4,7 @@ import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
 import { resolvePaths } from './resolvePaths';
 
-export class WebpackConfigOptions extends AbstractOptionsContainer<
-  WebpackConfigOptions
-> {
+export class WebpackConfigOptions extends AbstractOptionsContainer<WebpackConfigOptions> {
   @Option<WebpackConfigOptions, 'paths'>(
     ({ defaultValue, externalValue }) => ({
       ...defaultValue,
