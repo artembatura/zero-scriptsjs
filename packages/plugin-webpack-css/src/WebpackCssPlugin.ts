@@ -30,10 +30,10 @@ export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
               exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
               use: getStyleLoaders(
                 undefined,
-                require.resolve(rule.loader),
                 rule.preprocessor
                   ? require.resolve(rule.preprocessor)
-                  : undefined
+                  : undefined,
+                require.resolve(rule.loader)
               )(configOptions),
               sideEffects: true
             });
