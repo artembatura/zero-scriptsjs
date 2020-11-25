@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-react",
-  "version": "1.0.0-alfa.10",
+  "version": "1.0.0-alfa.11",
   "description": "Ready for development React projects. With ESLint, Babel, CSS Modules and other",
   "keywords": [
     "webpack",
