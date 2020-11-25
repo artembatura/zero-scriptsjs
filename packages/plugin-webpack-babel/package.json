@@ -41,9 +41,11 @@
     "babel-loader": "8.1.0",
     "core-js": "3.6.5"
   },
+  "devDependencies": {
+    "webpack": "4.x"
+  },
   "optionalDependencies": {
-    "fork-ts-checker-webpack-plugin": "^5.1.0",
-    "webpack": "^4.43.0"
+    "fork-ts-checker-webpack-plugin": "^5.1.0"
   },
   "publishConfig": {
     "access": "public"

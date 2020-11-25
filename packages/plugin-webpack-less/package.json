@@ -36,8 +36,9 @@
     "@zero-scripts/webpack-config": "workspace:*",
     "less-loader": "^7.1.0"
   },
-  "optionalDependencies": {
-    "webpack": "^4.43.0"
+  "devDependencies": {
+    "less": "3.x",
+    "webpack": "4.x"
   },
   "publishConfig": {
     "access": "public"

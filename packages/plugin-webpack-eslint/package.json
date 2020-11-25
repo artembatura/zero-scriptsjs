@@ -37,7 +37,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-webpack-plugin": "^2.4.0"
   },
-  "optionalDependencies": {
+  "devDependencies": {
     "webpack": "4.x"
   },
   "publishConfig": {

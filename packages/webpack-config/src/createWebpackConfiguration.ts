@@ -1,4 +1,3 @@
-import InterpolateHtmlPlugin from '@k88/interpolate-html-plugin';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import type { Configuration } from 'webpack';
@@ -72,11 +71,6 @@ export function createWebpackConfiguration({
       }),
       new ManifestPlugin({
         output: 'asset-manifest.json'
-      }),
-      new InterpolateHtmlPlugin({
-        PUBLIC_URL: paths.publicUrlOrPath.endsWith('/')
-          ? paths.publicUrlOrPath.slice(0, -1)
-          : paths.publicUrlOrPath
       })
     ],
     node: {

@@ -34,8 +34,8 @@
     "@zero-scripts/utils-webpack-styles": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*"
   },
-  "optionalDependencies": {
-    "webpack": "^4.43.0"
+  "devDependencies": {
+    "webpack": "4.x"
   },
   "publishConfig": {
     "access": "public"

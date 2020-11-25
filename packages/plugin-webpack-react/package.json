@@ -41,13 +41,8 @@
     "eslint-plugin-react-hooks": "4.0.7",
     "react-refresh": "0.8.3"
   },
-  "peerDependencies": {
+  "devDependencies": {
     "@babel/core": "7.x",
-    "@typescript-eslint/eslint-plugin": "2.x",
-    "@typescript-eslint/parser": "2.x",
-    "babel-eslint": "10.x",
-    "eslint": "6.x",
-    "eslint-plugin-import": "2.x",
     "webpack": "4.x"
   },
   "optionalDependencies": {

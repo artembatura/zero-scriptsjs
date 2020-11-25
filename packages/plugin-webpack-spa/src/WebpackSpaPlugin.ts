@@ -1,4 +1,5 @@
 import { FriendlyErrorsWebpackPlugin } from '@artemir/friendly-errors-webpack-plugin';
+import InterpolateHtmlPlugin from '@k88/interpolate-html-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
@@ -114,6 +115,14 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
               })
             );
           }
+
+          modifications.insertPlugin(
+            new InterpolateHtmlPlugin({
+              PUBLIC_URL: paths.publicUrlOrPath.endsWith('/')
+                ? paths.publicUrlOrPath.slice(0, -1)
+                : paths.publicUrlOrPath
+            })
+          );
 
           modifications.insertPlugin(
             new HtmlWebpackPlugin({
