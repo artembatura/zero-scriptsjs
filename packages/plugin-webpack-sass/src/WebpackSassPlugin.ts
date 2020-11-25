@@ -33,14 +33,13 @@ export class WebpackSassPlugin extends AbstractPlugin<WebpackSassPluginOptions> 
 
           modifications.insertModuleRule({
             test: sassModuleRegex,
-            use: getStyleLoaders(
-              {
+            use: getStyleLoaders(sassLoader, {
+              options: {
                 modules: {
                   getLocalIdent
                 }
-              },
-              sassLoader
-            )(configOptions)
+              }
+            })(configOptions)
           });
 
           if (!configOptions.isDev) {

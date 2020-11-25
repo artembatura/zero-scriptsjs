@@ -33,4 +33,4 @@ export const styles = css`
       transform: rotate(360deg);
     }
   }
-`;
+`.default;

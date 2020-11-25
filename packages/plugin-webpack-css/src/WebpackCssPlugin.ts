@@ -29,11 +29,8 @@ export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
               test: new RegExp(rule.test),
               exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
               use: getStyleLoaders(
-                undefined,
-                rule.preprocessor
-                  ? require.resolve(rule.preprocessor)
-                  : undefined,
-                require.resolve(rule.loader)
+                rule.preprocessor,
+                rule.loader
               )(configOptions),
               sideEffects: true
             });
@@ -48,9 +45,11 @@ export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
 
           modifications.insertModuleRule({
             test: cssModuleRegex,
-            use: getStyleLoaders({
-              modules: {
-                getLocalIdent
+            use: getStyleLoaders(undefined, {
+              options: {
+                modules: {
+                  getLocalIdent
+                }
               }
             })(configOptions)
           });

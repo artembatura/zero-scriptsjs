@@ -33,14 +33,13 @@ export class WebpackLessPlugin extends AbstractPlugin<WebpackLessPluginOptions> 
 
           modifications.insertModuleRule({
             test: lessModuleRegex,
-            use: getStyleLoaders(
-              {
+            use: getStyleLoaders(lessLoader, {
+              options: {
                 modules: {
                   getLocalIdent
                 }
-              },
-              lessLoader
-            )(configOptions)
+              }
+            })(configOptions)
           });
 
           if (!configOptions.isDev) {

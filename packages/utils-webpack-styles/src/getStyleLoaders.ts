@@ -5,16 +5,27 @@ import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 const rr = require.resolve;
 
 export function getStyleLoaders(
-  cssOptions?: Record<string, unknown>,
   preprocessor?:
     | string
     | {
         loader: string;
         options: Record<string, unknown>;
       },
-  customStyleLoader?: string
+  customCssLoader?:
+    | string
+    | {
+        loader?: string;
+        options?: Record<string, unknown>;
+      }
 ) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
+    const cssLoader =
+      typeof customCssLoader === 'object'
+        ? customCssLoader.loader
+        : customCssLoader;
+    const cssLoaderOptions =
+      typeof customCssLoader === 'object' ? customCssLoader.options : {};
+
     const loaders: any[] = [
       isDev
         ? rr('style-loader')
@@ -22,11 +33,11 @@ export function getStyleLoaders(
             loader: MiniCssExtractPlugin.loader
           },
       {
-        loader: rr(customStyleLoader || 'css-loader'),
+        loader: rr(cssLoader || 'css-loader'),
         options: {
           sourceMap: !isDev && useSourceMap,
           importLoaders: preprocessor ? 2 : 1,
-          ...(cssOptions ? cssOptions : {})
+          ...(cssLoaderOptions || {})
         }
       },
       {
@@ -55,7 +66,7 @@ export function getStyleLoaders(
       const preprocessorObj = {
         loader:
           typeof preprocessor === 'object'
-            ? preprocessor.loader
+            ? rr(preprocessor.loader)
             : rr(preprocessor),
         options: {
           sourceMap: !isDev && useSourceMap,
