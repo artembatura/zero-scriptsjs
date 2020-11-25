@@ -32,15 +32,20 @@ export function getStyleLoaders(
       {
         loader: rr('postcss-loader'),
         options: {
-          plugins: () => [
-            require('postcss-flexbugs-fixes'),
-            require('postcss-preset-env')({
-              autoprefixer: {
-                flexbox: 'no-2009'
-              },
-              stage: 3
-            })
-          ],
+          postcssOptions: {
+            plugins: [
+              rr('postcss-flexbugs-fixes'),
+              [
+                rr('postcss-preset-env'),
+                {
+                  autoprefixer: {
+                    flexbox: 'no-2009'
+                  },
+                  stage: 3
+                }
+              ]
+            ]
+          },
           sourceMap: !isDev && useSourceMap
         }
       }
