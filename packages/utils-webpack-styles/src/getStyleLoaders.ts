@@ -11,7 +11,7 @@ export function getStyleLoaders(
         loader: string;
         options: Record<string, unknown>;
       },
-  customCssLoader?:
+  cssLoader?:
     | string
     | {
         loader?: string;
@@ -19,12 +19,11 @@ export function getStyleLoaders(
       }
 ) {
   return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
-    const cssLoader =
-      typeof customCssLoader === 'object'
-        ? customCssLoader.loader
-        : customCssLoader;
+    const customCssLoader =
+      typeof cssLoader === 'object' ? cssLoader.loader : cssLoader;
+
     const cssLoaderOptions =
-      typeof customCssLoader === 'object' ? customCssLoader.options : {};
+      typeof cssLoader === 'object' ? cssLoader.options : {};
 
     const loaders: any[] = [
       isDev
@@ -33,7 +32,7 @@ export function getStyleLoaders(
             loader: MiniCssExtractPlugin.loader
           },
       {
-        loader: rr(cssLoader || 'css-loader'),
+        loader: rr(customCssLoader || 'css-loader'),
         options: {
           sourceMap: !isDev && useSourceMap,
           importLoaders: preprocessor ? 2 : 1,
@@ -63,7 +62,7 @@ export function getStyleLoaders(
     ];
 
     if (preprocessor) {
-      const preprocessorObj = {
+      const preprocessorLoader = {
         loader:
           typeof preprocessor === 'object'
             ? rr(preprocessor.loader)
@@ -74,7 +73,7 @@ export function getStyleLoaders(
         }
       };
 
-      loaders.push(preprocessorObj);
+      loaders.push(preprocessorLoader);
     }
 
     return loaders;

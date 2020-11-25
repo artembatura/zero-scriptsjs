@@ -12,10 +12,15 @@ export class WebpackCssPluginOptions extends AbstractOptionsContainer<WebpackCss
     loader:
       | string
       | {
+          loader?: string;
+          options?: Record<string, unknown>;
+        };
+    exclude?: string;
+    preprocessor?:
+      | string
+      | {
           loader: string;
           options: Record<string, unknown>;
         };
-    exclude?: string;
-    preprocessor?: string;
   }> = [];
 }

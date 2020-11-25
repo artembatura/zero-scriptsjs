@@ -27,7 +27,7 @@ export class WebpackSassPlugin extends AbstractPlugin<WebpackSassPluginOptions> 
           modifications.insertModuleRule({
             test: /\.(scss|sass)$/,
             exclude: sassModuleRegex,
-            use: getStyleLoaders(undefined, sassLoader)(configOptions),
+            use: getStyleLoaders(sassLoader)(configOptions),
             sideEffects: true
           });
 

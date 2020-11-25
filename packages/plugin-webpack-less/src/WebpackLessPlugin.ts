@@ -27,7 +27,7 @@ export class WebpackLessPlugin extends AbstractPlugin<WebpackLessPluginOptions> 
           modifications.insertModuleRule({
             test: /\.less$/,
             exclude: lessModuleRegex,
-            use: getStyleLoaders(undefined, lessLoader)(configOptions),
+            use: getStyleLoaders(lessLoader)(configOptions),
             sideEffects: true
           });
 
