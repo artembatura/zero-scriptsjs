@@ -418,45 +418,45 @@ importers:
   packages/plugin-webpack-spa:
     dependencies:
       '@artemir/friendly-errors-webpack-plugin': 2.0.4_webpack@4.44.2
-      '@k88/interpolate-html-plugin': 1.0.5_html-webpack-plugin@4.4.1
+      '@k88/interpolate-html-plugin': 1.0.5_html-webpack-plugin@4.5.0
       '@npmcli/ci-detect': 1.3.0
       '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       clean-webpack-plugin: 3.0.0_webpack@4.44.2
-      copy-webpack-plugin: 6.0.3_webpack@4.44.2
+      copy-webpack-plugin: 6.3.2_webpack@4.44.2
       express: 4.17.1
       hot-accept-webpack-plugin: 1.1.2_webpack@4.44.2
-      html-webpack-plugin: 4.4.1_webpack@4.44.2
-      open: 7.1.0
+      html-webpack-plugin: 4.5.0_webpack@4.44.2
+      open: 7.3.0
       webpack: 4.44.2
-      webpack-dev-middleware: 4.0.0-rc.2_webpack@4.44.2
+      webpack-dev-middleware: 4.0.2_webpack@4.44.2
       webpack-hot-middleware: 2.25.0
     devDependencies:
-      '@types/copy-webpack-plugin': 6.0.0
-      '@types/express': 4.17.7
+      '@types/copy-webpack-plugin': 6.3.0
+      '@types/express': 4.17.9
       '@types/webpack': 4.41.25
-      '@types/webpack-dev-middleware': 3.7.1
+      '@types/webpack-dev-middleware': 3.7.2
       '@types/webpack-hot-middleware': 2.25.3
     specifiers:
-      '@artemir/friendly-errors-webpack-plugin': 2.0.4
-      '@k88/interpolate-html-plugin': 1.0.5
-      '@npmcli/ci-detect': 1.3.0
-      '@types/copy-webpack-plugin': 6.0.0
-      '@types/express': 4.17.7
+      '@artemir/friendly-errors-webpack-plugin': ^2.0.4
+      '@k88/interpolate-html-plugin': ^1.0.5
+      '@npmcli/ci-detect': ^1.3.0
+      '@types/copy-webpack-plugin': ^6.3.0
+      '@types/express': ^4.17.9
       '@types/webpack': ^4.41.25
-      '@types/webpack-dev-middleware': 3.7.1
-      '@types/webpack-hot-middleware': 2.25.3
+      '@types/webpack-dev-middleware': ^3.7.2
+      '@types/webpack-hot-middleware': ^2.25.3
       '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
-      clean-webpack-plugin: 3.0.0
-      copy-webpack-plugin: 6.0.3
-      express: 4.17.1
-      hot-accept-webpack-plugin: 1.1.2
-      html-webpack-plugin: 4.4.1
-      open: 7.1.0
+      clean-webpack-plugin: ^3.0.0
+      copy-webpack-plugin: ^6.3.2
+      express: ^4.17.1
+      hot-accept-webpack-plugin: ^1.1.2
+      html-webpack-plugin: ^4.5.0
+      open: ^7.3.0
       webpack: 4.44.2
-      webpack-dev-middleware: 4.0.0-rc.2
-      webpack-hot-middleware: 2.25.0
+      webpack-dev-middleware: ^4.0.2
+      webpack-hot-middleware: ^2.25.0
   packages/utils-webpack-styles:
     dependencies:
       '@zero-scripts/webpack-config': 'link:../webpack-config'
@@ -1822,10 +1822,10 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==
-  /@k88/interpolate-html-plugin/1.0.5_html-webpack-plugin@4.4.1:
+  /@k88/interpolate-html-plugin/1.0.5_html-webpack-plugin@4.5.0:
     dependencies:
       escape-string-regexp: 4.0.0
-      html-webpack-plugin: 4.4.1_webpack@4.44.2
+      html-webpack-plugin: 4.5.0_webpack@4.44.2
     dev: false
     peerDependencies:
       html-webpack-plugin: ^4.3.0
@@ -2120,13 +2120,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-2+FrkXY4zllzTNfJth7jOqEHC+enpLeGslEhpnTAkg21GkRrWV4SsAtqchtT4YS9/nODBU2/ZfsBY2X4J/dX7A==
-  /@types/copy-webpack-plugin/6.0.0:
+  /@types/copy-webpack-plugin/6.3.0:
     dependencies:
-      '@types/node': 14.14.9
       '@types/webpack': 4.41.25
     dev: true
     resolution:
-      integrity: sha512-Ousy+sNap1j44eG+C9FZvTUybpp9lFmKjBRF7L0NDs/+SDA9OXKo2OpsHJfD/LMWflz+uvfTCBXH1CgdL6AW/g==
+      integrity: sha512-b5FXqKbP3e3tKtC6520w9q7nkxBw+5TxQotiFx0M+VMpLlJNfgWINjHPPJSZEhMzb/iIGrkTDBhqotmzV9f5uQ==
   /@types/eslint/7.2.5:
     dependencies:
       '@types/estree': 0.0.45
@@ -2150,7 +2149,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-uFTLwu94TfUFMToXNgRZikwPuZdOtDgs3syBtAIr/OXorL1kJqUJT9qCLnRZ5KBOWfZQikQ2xKgR2tnDj1OgDA==
-  /@types/express/4.17.7:
+  /@types/express/4.17.9:
     dependencies:
       '@types/body-parser': 1.19.0
       '@types/express-serve-static-core': 4.17.14
@@ -2158,7 +2157,7 @@ packages:
       '@types/serve-static': 1.13.8
     dev: true
     resolution:
-      integrity: sha512-dCOT5lcmV/uC2J9k0rPafATeeyz+99xTt54ReX11/LObZgfzJqZNcW27zGhYyX+9iSEGXGt5qLPwRSvBZcLvtQ==
+      integrity: sha512-SDzEIZInC4sivGIFY4Sz1GG6J9UObPwCInYJjko2jzOf/Imx/dlpume6Xxwj1ORL82tBbmN4cPDIDkLbWHk9hw==
   /@types/get-value/3.0.1:
     dev: true
     resolution:
@@ -2332,7 +2331,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-yNvIA1a+IyiPmWaJVnS4OjJwiCoJX+1UQKsvG46PEnvnAqL/JvdBhhjpDFLkdA8I+sOxaQRjGHOSUYt6bru5iQ==
-  /@types/webpack-dev-middleware/3.7.1:
+  /@types/webpack-dev-middleware/3.7.2:
     dependencies:
       '@types/connect': 3.4.33
       '@types/memory-fs': 0.3.2
@@ -2340,7 +2339,7 @@ packages:
       loglevel: 1.7.0
     dev: true
     resolution:
-      integrity: sha512-+U6zP6/jlQ9Mw4zBOiuKOe/delLS4f0kvzAJCVK9wsW00hi4TD9u6TIaE5x5xy6xrkCiXMSf56bsAosORjP3/Q==
+      integrity: sha512-PvETiS//pjVZBK48aJfbxzT7+9LIxanbnk9eXXYUfefGyPdsCkNrMDxRlOVrBvxukXUhD5B6N/pkPMdWrtuFkA==
   /@types/webpack-hot-middleware/2.25.3:
     dependencies:
       '@types/connect': 3.4.33
@@ -3956,7 +3955,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
-  /copy-webpack-plugin/6.0.3_webpack@4.44.2:
+  /copy-webpack-plugin/6.3.2_webpack@4.44.2:
     dependencies:
       cacache: 15.0.5
       fast-glob: 3.2.4
@@ -3966,8 +3965,8 @@ packages:
       loader-utils: 2.0.0
       normalize-path: 3.0.0
       p-limit: 3.0.2
-      schema-utils: 2.7.1
-      serialize-javascript: 4.0.0
+      schema-utils: 3.0.0
+      serialize-javascript: 5.0.1
       webpack: 4.44.2
       webpack-sources: 1.4.3
     dev: false
@@ -3976,7 +3975,7 @@ packages:
     peerDependencies:
       webpack: ^4.37.0 || ^5.0.0
     resolution:
-      integrity: sha512-q5m6Vz4elsuyVEIUXr7wJdIdePWTubsqVbEMvf1WQnHGv0Q+9yPRu7MtYFPt+GBOXRav9lvIINifTQ1vSCs+eA==
+      integrity: sha512-MgJ1uouLIbDg4ST1GzqrGQyKoXY5iPqi6fghFqarijam7FQcBa/r6Rg0VkoIuzx75Xq8iAMghyOueMkWUQ5OaA==
   /core-js-compat/3.7.0:
     dependencies:
       browserslist: 4.14.7
@@ -5985,7 +5984,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-ZPr5MNObqnV/T9akshPKbVgyOqLmy+Bxo7juKCfTfnjNniTAMdy4hz21YQqoofMBJD2kdREaqPPdThoR78Tgxg==
-  /html-webpack-plugin/4.4.1_webpack@4.44.2:
+  /html-webpack-plugin/4.5.0_webpack@4.44.2:
     dependencies:
       '@types/html-minifier-terser': 5.1.1
       '@types/tapable': 1.0.6
@@ -6001,9 +6000,9 @@ packages:
     engines:
       node: '>=6.9'
     peerDependencies:
-      webpack: '>=4.0.0 < 6.0.0'
+      webpack: ^4.0.0 || ^5.0.0
     resolution:
-      integrity: sha512-nEtdEIsIGXdXGG7MjTTZlmhqhpHU9pJFc1OYxcP36c5/ZKP6b0BJMww2QTvJGQYA9aMxUnjDujpZdYcVOXiBCQ==
+      integrity: sha512-MouoXEYSjTzCrjIxWwg8gxL5fE2X2WZJLmBYXlaJhQUH5K/b5OrqmV7T4dB7iu0xkmJ6JlUuV6fFVtnqbPopZw==
   /htmlparser2/3.10.1:
     dependencies:
       domelementtype: 1.3.1
@@ -7632,15 +7631,15 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
-  /mem/6.1.1:
+  /mem/8.0.0:
     dependencies:
       map-age-cleaner: 0.1.3
       mimic-fn: 3.1.0
     dev: false
     engines:
-      node: '>=8'
+      node: '>=10'
     resolution:
-      integrity: sha512-Ci6bIfq/UgcxPTYa8dQQ5FY3BzKkT894bwXWXxC/zqs0XgMO2cT20CGkOqda7gZNkmK5VP4x89IGZ6K7hfbn3Q==
+      integrity: sha512-qrcJOe6uD+EW8Wrci1Vdiua/15Xw3n/QnaNXE7varnB6InxSk7nu3/i5jfy3S6kWxr8WYJ6R1o0afMUtvorTsA==
   /memfs/3.2.0:
     dependencies:
       fs-monkey: 1.0.1
@@ -8231,7 +8230,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
-  /open/7.1.0:
+  /open/7.3.0:
     dependencies:
       is-docker: 2.1.1
       is-wsl: 2.2.0
@@ -8239,7 +8238,7 @@ packages:
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-lLPI5KgOwEYCDKXf4np7y1PBEkj7HYIyP2DY8mVDRnx0VIIu6bNrRB0R66TuO7Mack6EnTNLm4uvcl1UoklTpA==
+      integrity: sha512-mgLwQIx2F/ye9SmbrUkurZCnkoXyXyu9EbHtJZrICjVAJfyMArdHp3KkixGdZx1ZHFPNIwl0DDM1dFFqXbTLZw==
   /opencollective-postinstall/2.0.3:
     dev: true
     hasBin: true
@@ -10265,6 +10264,12 @@ packages:
       randombytes: 2.1.0
     resolution:
       integrity: sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==
+  /serialize-javascript/5.0.1:
+    dependencies:
+      randombytes: 2.1.0
+    dev: false
+    resolution:
+      integrity: sha512-SaaNal9imEO737H2c05Og0/8LUXG7EnsZyMa8MzkmuHoELfT6txuj0cMqRj6zfPKnmQ1yasR4PCJc8x+M4JSPA==
   /serve-static/1.14.1:
     dependencies:
       encodeurl: 1.0.2
@@ -11553,21 +11558,21 @@ packages:
       webpack: '>=4.4.0'
     resolution:
       integrity: sha512-JV9V2QKc5wEWQptdIjvXDUL1ucbPLH2f27toAY3SNdGZp+xSaStAgpoMcvMZmqtFrBc9a5pTS1058vxyMPOzRQ==
-  /webpack-dev-middleware/4.0.0-rc.2_webpack@4.44.2:
+  /webpack-dev-middleware/4.0.2_webpack@4.44.2:
     dependencies:
-      mem: 6.1.1
+      mem: 8.0.0
       memfs: 3.2.0
       mime-types: 2.1.27
       range-parser: 1.2.1
-      schema-utils: 2.7.1
+      schema-utils: 3.0.0
       webpack: 4.44.2
     dev: false
     engines:
-      node: '>= 10.13'
+      node: '>= 10.13.0'
     peerDependencies:
-      webpack: ^4.0.0
+      webpack: ^4.0.0 || ^5.0.0
     resolution:
-      integrity: sha512-yP04dRrpAVNq1yvRvtkXIP6UCw+hAbWFOgv6dF2rHNYsRYhQuDRVTc09YwbYzyOlmdJzyXxHfNJZ070HVd9cjA==
+      integrity: sha512-xyAICqIugWtT1RRH5aMMmZlPhDhEqPTDL0TWhmMZsuZ+cFlAvRxv4thCbuxdk9MW+OYK4c9BkfmgdQ1/7imkJA==
   /webpack-hot-middleware/2.25.0:
     dependencies:
       ansi-html: 0.0.7
