@@ -238,31 +238,31 @@ importers:
       dotenv: 8.2.0
       get-value: 3.0.1
       mri: 1.1.6
-      normalize-package-data: 2.5.0
+      normalize-package-data: 3.0.0
       reflect-metadata: 0.1.13
       set-value: 3.0.2
-      tapable: 2.0.0-beta.11
+      tapable: 2.1.1
     devDependencies:
       '@types/get-value': 3.0.1
       '@types/mri': 1.1.0
-      '@types/node': 14.0.27
+      '@types/node': 14.14.9
       '@types/normalize-package-data': 2.4.0
       '@types/set-value': 2.0.0
       utility-types: 3.10.0
     specifiers:
-      '@types/get-value': 3.0.1
-      '@types/mri': 1.1.0
-      '@types/node': 14.0.27
-      '@types/normalize-package-data': 2.4.0
-      '@types/set-value': 2.0.0
-      dotenv: 8.2.0
-      get-value: 3.0.1
-      mri: 1.1.6
-      normalize-package-data: 2.5.0
+      '@types/get-value': ^3.0.1
+      '@types/mri': ^1.1.0
+      '@types/node': ^14.14.9
+      '@types/normalize-package-data': ^2.4.0
+      '@types/set-value': ^2.0.0
+      dotenv: ^8.2.0
+      get-value: ^3.0.1
+      mri: ^1.1.6
+      normalize-package-data: ^3.0.0
       reflect-metadata: 0.1.13
-      set-value: 3.0.2
-      tapable: 2.0.0-beta.11
-      utility-types: 3.10.0
+      set-value: ^3.0.2
+      tapable: ^2.1.1
+      utility-types: ^3.10.0
   packages/plugin-webpack-babel:
     dependencies:
       '@babel/core': 7.10.4
@@ -6177,6 +6177,14 @@ packages:
   /hosted-git-info/2.8.8:
     resolution:
       integrity: sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==
+  /hosted-git-info/3.0.7:
+    dependencies:
+      lru-cache: 6.0.0
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-fWqc0IcuXs+BmE9orLDyVykAG9GJtGLGuZAAqgcckPgv5xad4AcXGIv8galtQvlwutxSlaMcdw7BUtq2EIvqCQ==
   /hot-accept-webpack-plugin/1.1.2_webpack@4.43.0:
     dependencies:
       modify-source-webpack-plugin: 1.0.1_webpack@4.43.0
@@ -8384,6 +8392,17 @@ packages:
       validate-npm-package-license: 3.0.4
     resolution:
       integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==
+  /normalize-package-data/3.0.0:
+    dependencies:
+      hosted-git-info: 3.0.7
+      resolve: 1.19.0
+      semver: 7.3.2
+      validate-npm-package-license: 3.0.4
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-6lUjEI0d3v6kFrtgA/lOx4zHCWULXsFNIjHolnZCKCTLA6m/G625cdn3O7eNmT0iD3jfo6HZ9cdImGZwf21prw==
   /normalize-path/2.1.1:
     dependencies:
       remove-trailing-separator: 1.1.0
@@ -11286,12 +11305,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
-  /tapable/2.0.0-beta.11:
+  /tapable/2.1.1:
     dev: false
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-cAhRzCvMdyJsxmdrSXG8/SUlJG4WJUxD/csuYAybUFjKVt74Y6pTyZ/I1ZK+enmCkWZN0JWxh14G69temaGSiA==
+      integrity: sha512-Wib1S8m2wdpLbmQz0RBEVosIyvb/ykfKXf3ZIDqvWoMg/zTNm6G/tDSuUM61J1kNCDXWJrLHGSFeMhAG+gAGpQ==
   /tar/6.0.2:
     dependencies:
       chownr: 2.0.0
