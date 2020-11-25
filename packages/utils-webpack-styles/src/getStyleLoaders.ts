@@ -1,9 +1,10 @@
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 const rr = require.resolve;
 
 export function getStyleLoaders(
-  devLoader: string,
   cssOptions?: Record<string, unknown>,
   preprocessor?:
     | string
@@ -18,7 +19,7 @@ export function getStyleLoaders(
       isDev
         ? rr('style-loader')
         : {
-            loader: devLoader
+            loader: MiniCssExtractPlugin.loader
           },
       {
         loader: rr(customStyleLoader || 'css-loader'),
@@ -31,7 +32,6 @@ export function getStyleLoaders(
       {
         loader: rr('postcss-loader'),
         options: {
-          ident: 'postcss',
           plugins: () => [
             require('postcss-flexbugs-fixes'),
             require('postcss-preset-env')({

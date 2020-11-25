@@ -34,11 +34,10 @@
   },
   "devDependencies": {
     "@types/terser-webpack-plugin": "3.0.0",
-    "@types/webpack": "4.41.21",
+    "@types/webpack": "^4.41.25",
     "@types/webpack-assets-manifest": "3.0.1"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3"
+  }
 }

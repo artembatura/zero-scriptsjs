@@ -1,16 +1,14 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-
 import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
 import {
   getLocalIdent,
-  getStyleLoaders
+  getStyleLoaders,
+  getOptimizeCSSAssetsPlugin,
+  getMiniCssExtractPlugin
 } from '@zero-scripts/utils-webpack-styles';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackLessPluginOptions } from './WebpackLessPluginOptions';
 
-const safePostCssParser = require('postcss-safe-parser');
 const lessModuleRegex = /\.(module|m)\.less$/;
 
 @ReadOptions(WebpackLessPluginOptions, 'plugin-webpack-less')
@@ -29,18 +27,13 @@ export class WebpackLessPlugin extends AbstractPlugin<WebpackLessPluginOptions> 
           modifications.insertModuleRule({
             test: /\.less$/,
             exclude: lessModuleRegex,
-            use: getStyleLoaders(
-              MiniCssExtractPlugin.loader,
-              undefined,
-              lessLoader
-            )(configOptions),
+            use: getStyleLoaders(undefined, lessLoader)(configOptions),
             sideEffects: true
           });
 
           modifications.insertModuleRule({
             test: lessModuleRegex,
             use: getStyleLoaders(
-              MiniCssExtractPlugin.loader,
               {
                 modules: {
                   getLocalIdent
@@ -52,27 +45,14 @@ export class WebpackLessPlugin extends AbstractPlugin<WebpackLessPluginOptions> 
 
           if (!configOptions.isDev) {
             modifications.insertPlugin(
-              new MiniCssExtractPlugin({
-                filename: 'css/[name].[contenthash:8].css',
-                chunkFilename: 'css/[name].[contenthash:8].chunk.css'
-              }),
+              getMiniCssExtractPlugin(),
               undefined,
               'mini-css-extract-plugin'
             );
           }
 
           modifications.insertMinimizer(
-            new OptimizeCSSAssetsPlugin({
-              cssProcessorOptions: {
-                parser: safePostCssParser,
-                map: configOptions.useSourceMap
-                  ? {
-                      inline: false,
-                      annotation: true
-                    }
-                  : false
-              }
-            }),
+            getOptimizeCSSAssetsPlugin(configOptions),
             undefined,
             'optimize-css-assets-plugin'
           );
