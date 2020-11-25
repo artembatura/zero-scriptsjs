@@ -64,8 +64,8 @@ importers:
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
   examples/react-16:
     dependencies:
       react: 16.13.1
@@ -106,8 +106,8 @@ importers:
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
       astroturf: 0.10.5
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
   examples/react-fast-refresh:
     dependencies:
       react: 17.0.1
@@ -126,8 +126,8 @@ importers:
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
   examples/react-less:
     dependencies:
       react: 17.0.1
@@ -148,8 +148,8 @@ importers:
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
       less: 3.12.2
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
   examples/react-sass:
     dependencies:
       react: 17.0.1
@@ -169,8 +169,8 @@ importers:
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-sass': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
       sass: 1.29.0
   examples/react-svg-component:
     dependencies:
@@ -192,8 +192,8 @@ importers:
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
   examples/react-typescript:
     dependencies:
       react: 17.0.1
@@ -217,8 +217,8 @@ importers:
       '@zero-scripts/plugin-webpack-react': 'workspace:*'
       '@zero-scripts/plugin-webpack-spa': 'workspace:*'
       fork-ts-checker-webpack-plugin: 5.1.0
-      react: 17.0.1
-      react-dom: 17.0.1
+      react: 17.x
+      react-dom: 17.x
       typescript: 4.1.2
   examples/spa-import-json:
     devDependencies:
