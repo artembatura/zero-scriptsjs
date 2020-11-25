@@ -366,18 +366,18 @@ importers:
       workbox-webpack-plugin: 5.1.3
   packages/plugin-webpack-react:
     dependencies:
-      '@babel/preset-react': 7.10.4_@babel+core@7.12.9
-      '@pmmmwh/react-refresh-webpack-plugin': 0.4.1_637fe0af5eea2230ffdb56306b9d64e4
+      '@babel/preset-react': 7.12.7_@babel+core@7.12.9
+      '@pmmmwh/react-refresh-webpack-plugin': 0.4.3_4cdde81366f95b2cf3e86ea2c5edd6c5
       '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
-      babel-plugin-named-asset-import: 0.3.6_@babel+core@7.12.9
+      babel-plugin-named-asset-import: 0.3.7_@babel+core@7.12.9
       babel-plugin-transform-react-remove-prop-types: 0.4.24
-      eslint-config-react-app: 5.2.1_d441eb8275c3d85bb26e96d96a7de135
+      eslint-config-react-app: 6.0.0_31a33327ad1a2f6cb8e7011bbcea71c5
       eslint-plugin-flowtype: 5.2.0
-      eslint-plugin-jsx-a11y: 6.3.1
-      eslint-plugin-react: 7.20.3
-      eslint-plugin-react-hooks: 4.0.7
-      react-refresh: 0.8.3
+      eslint-plugin-jsx-a11y: 6.4.1
+      eslint-plugin-react: 7.21.5
+      eslint-plugin-react-hooks: 4.2.0
+      react-refresh: 0.9.0
     devDependencies:
       '@babel/core': 7.12.9
       webpack: 4.44.2
@@ -386,20 +386,20 @@ importers:
       '@zero-scripts/plugin-webpack-eslint': 'link:../plugin-webpack-eslint'
     specifiers:
       '@babel/core': 7.x
-      '@babel/preset-react': 7.10.4
-      '@pmmmwh/react-refresh-webpack-plugin': 0.4.1
+      '@babel/preset-react': ^7.12.7
+      '@pmmmwh/react-refresh-webpack-plugin': ^0.4.3
       '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/plugin-webpack-babel': 'workspace:*'
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
-      babel-plugin-named-asset-import: 0.3.6
-      babel-plugin-transform-react-remove-prop-types: 0.4.24
-      eslint-config-react-app: 5.2.1
-      eslint-plugin-flowtype: 5.2.0
-      eslint-plugin-jsx-a11y: 6.3.1
-      eslint-plugin-react: 7.20.3
-      eslint-plugin-react-hooks: 4.0.7
-      react-refresh: 0.8.3
+      babel-plugin-named-asset-import: ^0.3.7
+      babel-plugin-transform-react-remove-prop-types: ^0.4.24
+      eslint-config-react-app: ^6.0.0
+      eslint-plugin-flowtype: ^5.2.0
+      eslint-plugin-jsx-a11y: ^6.4.1
+      eslint-plugin-react: ^7.21.5
+      eslint-plugin-react-hooks: ^4.2.0
+      react-refresh: ^0.9.0
       webpack: 4.x
   packages/plugin-webpack-sass:
     dependencies:
@@ -2151,21 +2151,6 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-J36NhwnfdzpmH41M1DrnkkgAqhZaqr/NBdPfQ677mLzlaXo+oDiv1deyCDtgAhz8p328otdob0Du7+xgHGZbKg==
-  /@babel/preset-react/7.10.4_@babel+core@7.12.9:
-    dependencies:
-      '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
-      '@babel/plugin-transform-react-display-name': 7.12.1_@babel+core@7.12.9
-      '@babel/plugin-transform-react-jsx': 7.12.7_@babel+core@7.12.9
-      '@babel/plugin-transform-react-jsx-development': 7.12.7_@babel+core@7.12.9
-      '@babel/plugin-transform-react-jsx-self': 7.12.1_@babel+core@7.12.9
-      '@babel/plugin-transform-react-jsx-source': 7.12.1_@babel+core@7.12.9
-      '@babel/plugin-transform-react-pure-annotations': 7.12.1_@babel+core@7.12.9
-    dev: false
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    resolution:
-      integrity: sha512-BrHp4TgOIy4M19JAfO1LhycVXOPWdDbTRep7eVyatf174Hff+6Uk53sDyajqZPu8W1qXRBiYOfIamek6jA7YVw==
   /@babel/preset-react/7.12.7_@babel+core@7.12.9:
     dependencies:
       '@babel/core': 7.12.9
@@ -2176,7 +2161,6 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.12.1_@babel+core@7.12.9
       '@babel/plugin-transform-react-jsx-source': 7.12.1_@babel+core@7.12.9
       '@babel/plugin-transform-react-pure-annotations': 7.12.1_@babel+core@7.12.9
-    dev: true
     peerDependencies:
       '@babel/core': ^7.0.0-0
     resolution:
@@ -2546,13 +2530,13 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-Uv6h1sT+0DrblvIrolFtbvM1FgWm+/sy4B3pvLp67Zys+thcukzS5ekn7HsZFGpWP4Q3fYJCljbWQE/XivMRLw==
-  /@pmmmwh/react-refresh-webpack-plugin/0.4.1_637fe0af5eea2230ffdb56306b9d64e4:
+  /@pmmmwh/react-refresh-webpack-plugin/0.4.3_4cdde81366f95b2cf3e86ea2c5edd6c5:
     dependencies:
       ansi-html: 0.0.7
       error-stack-parser: 2.0.6
       html-entities: 1.3.1
       native-url: 0.2.6
-      react-refresh: 0.8.3
+      react-refresh: 0.9.0
       schema-utils: 2.7.1
       source-map: 0.7.3
       webpack: 4.44.2
@@ -2561,7 +2545,7 @@ packages:
       node: '>= 10.x'
     peerDependencies:
       '@types/webpack': 4.x
-      react-refresh: ^0.8.3
+      react-refresh: '>=0.8.3 <0.10.0'
       sockjs-client: ^1.4.0
       type-fest: ^0.13.1
       webpack: '>=4.43.0 <6.0.0'
@@ -2582,7 +2566,7 @@ packages:
       webpack-plugin-serve:
         optional: true
     resolution:
-      integrity: sha512-MzM87WdX2r2KRFfhEho7oGyK1XRE/J9WwjB3v6oLQHN0dzBypBZxSWjnoYx+RWneRCsg8Sin1myf+EjX1fqIbQ==
+      integrity: sha512-br5Qwvh8D2OQqSXpd1g/xqXKnK0r+Jz6qVKBbWmpUcrbGOxUrf39V5oZ1876084CGn18uMdR5uvPqBv9UqtBjQ==
   /@rollup/plugin-node-resolve/7.1.3_rollup@1.32.1:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@1.32.1
@@ -3748,12 +3732,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
-  /axe-core/3.5.5:
+  /axe-core/4.1.1:
     dev: false
     engines:
       node: '>=4'
     resolution:
-      integrity: sha512-5P0QZ6J5xGikH780pghEdbEKijCTrruK9KxtPZCFWUpef0f6GipO+xEZ5GKCb020mmqgbiNO6TcA55CriL784Q==
+      integrity: sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ==
   /axobject-query/2.2.0:
     dev: false
     resolution:
@@ -3845,14 +3829,14 @@ packages:
       node: '>= 10.14.2'
     resolution:
       integrity: sha512-PO9t0697lNTmcEHH69mdtYiOIkkOlj9fySqfO3K1eCcdISevLAE0xY59VLLUj0SoiPiTX/JU2CYFpILydUa5Lw==
-  /babel-plugin-named-asset-import/0.3.6_@babel+core@7.12.9:
+  /babel-plugin-named-asset-import/0.3.7_@babel+core@7.12.9:
     dependencies:
       '@babel/core': 7.12.9
     dev: false
     peerDependencies:
       '@babel/core': ^7.1.0
     resolution:
-      integrity: sha512-1aGDUfL1qOOIoqk9QKGIo2lANk+C7ko/fqH0uIyC71x3PEGz0uVP8ISgfEsFuG+FKmjHTvFK/nNM8dowpmUxLA==
+      integrity: sha512-squySRkf+6JGnvjoUtDEjSREJEBirnXi9NqP6rjSYsylxQxqBTz+pkmf395i9E2zsvmYUaI40BHo6SqZUdydlw==
   /babel-plugin-syntax-object-rest-spread/6.13.0:
     dev: false
     resolution:
@@ -5520,26 +5504,35 @@ packages:
       eslint: '>=3.14.1'
     resolution:
       integrity: sha512-a1+kOYLR8wMGustcgAjdydMsQ2A/2ipRPwRKUmfYaSxc9ZPcrku080Ctl6zrZzZNs/U82MjSv+qKREkoq3bJaw==
-  /eslint-config-react-app/5.2.1_d441eb8275c3d85bb26e96d96a7de135:
+  /eslint-config-react-app/6.0.0_31a33327ad1a2f6cb8e7011bbcea71c5:
     dependencies:
       confusing-browser-globals: 1.0.10
       eslint-plugin-flowtype: 5.2.0
-      eslint-plugin-jsx-a11y: 6.3.1
-      eslint-plugin-react: 7.20.3
-      eslint-plugin-react-hooks: 4.0.7
+      eslint-plugin-jsx-a11y: 6.4.1
+      eslint-plugin-react: 7.21.5
+      eslint-plugin-react-hooks: 4.2.0
     dev: false
+    engines:
+      node: ^10.12.0 || >=12.0.0
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': 2.x
-      '@typescript-eslint/parser': 2.x
-      babel-eslint: 10.x
-      eslint: 6.x
-      eslint-plugin-flowtype: 3.x || 4.x
-      eslint-plugin-import: 2.x
-      eslint-plugin-jsx-a11y: 6.x
-      eslint-plugin-react: 7.x
-      eslint-plugin-react-hooks: 1.x || 2.x
+      '@typescript-eslint/eslint-plugin': ^4.0.0
+      '@typescript-eslint/parser': ^4.0.0
+      babel-eslint: ^10.0.0
+      eslint: ^7.5.0
+      eslint-plugin-flowtype: ^5.2.0
+      eslint-plugin-import: ^2.22.0
+      eslint-plugin-jest: ^24.0.0
+      eslint-plugin-jsx-a11y: ^6.3.1
+      eslint-plugin-react: ^7.20.3
+      eslint-plugin-react-hooks: ^4.0.8
+      eslint-plugin-testing-library: ^3.9.0
+    peerDependenciesMeta:
+      eslint-plugin-jest:
+        optional: true
+      eslint-plugin-testing-library:
+        optional: true
     resolution:
-      integrity: sha512-pGIZ8t0mFLcV+6ZirRgYK6RVqUIKRIi9MmgzUEmrIknsn3AdO0I32asO86dJgloHq+9ZPl8UIg8mYrvgP5u2wQ==
+      integrity: sha512-bpoAAC+YRfzq0dsTk+6v9aHm/uqnDwayNAXleMypGl6CpxI9oXXscVHo4fk3eJPIn+rsbtNetB4r/ZIidFIE8A==
   /eslint-formatter-pretty/4.0.0:
     dependencies:
       ansi-escapes: 4.3.1
@@ -5608,18 +5601,18 @@ packages:
       eslint: ^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0
     resolution:
       integrity: sha512-8K7JjINHOpH64ozkAhpT3sd+FswIZTfMZTjdx052pnWrgRCVfp8op9tbjpAk3DdUeI/Ba4C8OjdC0r90erHEOw==
-  /eslint-plugin-jsx-a11y/6.3.1:
+  /eslint-plugin-jsx-a11y/6.4.1:
     dependencies:
       '@babel/runtime': 7.12.5
       aria-query: 4.2.2
       array-includes: 3.1.2
       ast-types-flow: 0.0.7
-      axe-core: 3.5.5
+      axe-core: 4.1.1
       axobject-query: 2.2.0
       damerau-levenshtein: 1.0.6
       emoji-regex: 9.2.0
       has: 1.0.3
-      jsx-ast-utils: 2.4.1
+      jsx-ast-utils: 3.1.0
       language-tags: 1.0.5
     dev: false
     engines:
@@ -5627,7 +5620,7 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7
     resolution:
-      integrity: sha512-i1S+P+c3HOlBJzMFORRbC58tHa65Kbo8b52/TwCwSKLohwvpfT5rm2GjGWzOHTEuq4xxf2aRlHHTtmExDQOP+g==
+      integrity: sha512-0rGPJBbwHoGNPU73/QCLP/vveMlM1b1Z9PponxO87jfr6tuH5ligXbDT6nHSSzBC8ovX2Z+BQu7Bk5D/Xgq9zg==
   /eslint-plugin-prettier/3.1.4_eslint@7.14.0+prettier@2.2.0:
     dependencies:
       eslint: 7.14.0
@@ -5641,15 +5634,15 @@ packages:
       prettier: '>=1.13.0'
     resolution:
       integrity: sha512-jZDa8z76klRqo+TdGDTFJSavwbnWK2ZpqGKNZ+VvweMW516pDUMmQ2koXvxEE4JhzNvTv+radye/bWGBmA6jmg==
-  /eslint-plugin-react-hooks/4.0.7:
+  /eslint-plugin-react-hooks/4.2.0:
     dev: false
     engines:
       node: '>=10'
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
     resolution:
-      integrity: sha512-5PuW2OMHQyMLr/+MqTluYN3/NeJJ1RuvmEp5TR9Xl2gXKxvcusUZuMz8XBUtbELNaiRYWs693LQs0cljKuuHRQ==
-  /eslint-plugin-react/7.20.3:
+      integrity: sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
+  /eslint-plugin-react/7.21.5:
     dependencies:
       array-includes: 3.1.2
       array.prototype.flatmap: 1.2.4
@@ -5668,7 +5661,7 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7
     resolution:
-      integrity: sha512-txbo090buDeyV0ugF3YMWrzLIUqpYTsWSDZV9xLSmExE1P/Kmgg9++PD931r+KEWS66O1c9R4srLVVHmeHpoAg==
+      integrity: sha512-8MaEggC2et0wSF6bUeywF7qQ46ER81irOdWS4QWxnnlAEsnzeBevk1sWh7fhpCghPpXb+8Ks7hvaft6L/xsR6g==
   /eslint-rule-docs/1.1.215:
     resolution:
       integrity: sha512-lADlvFuceJvlU/NhD9gpnCt2lfdfpkz2BizeJNy7bkTr0VQA4w+vW3Nh4G569w6a8SPQczKL4PDB83s6j5i++A==
@@ -7888,6 +7881,15 @@ packages:
       node: '>=4.0'
     resolution:
       integrity: sha512-z1xSldJ6imESSzOjd3NNkieVJKRlKYSOtMG8SFyCj2FIrvSaSuli/WjpBkEzCBoR9bYYYFgqJw61Xhu7Lcgk+w==
+  /jsx-ast-utils/3.1.0:
+    dependencies:
+      array-includes: 3.1.2
+      object.assign: 4.1.2
+    dev: false
+    engines:
+      node: '>=4.0'
+    resolution:
+      integrity: sha512-d4/UOjg+mxAWxCiF0c5UTSwyqbchkbqCvK87aBovhnh8GtysTjWmgC63tY0cJx/HzGgm9qnA147jVBdpOiQ2RA==
   /kind-of/3.2.2:
     dependencies:
       is-buffer: 1.1.6
@@ -10336,12 +10338,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
-  /react-refresh/0.8.3:
+  /react-refresh/0.9.0:
     dev: false
     engines:
       node: '>=0.10.0'
     resolution:
-      integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
+      integrity: sha512-Gvzk7OZpiqKSkxsQvO/mbTN1poglhmAV7gR/DdIrRrSMXraRQQlfikRJOr3Nb9GTMPC5kof948Zy6jJZIFtDvQ==
   /react/16.13.1:
     dependencies:
       loose-envify: 1.4.0
