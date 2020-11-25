@@ -1,16 +1,14 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-
 import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
 import {
   getLocalIdent,
-  getStyleLoaders
+  getStyleLoaders,
+  getOptimizeCSSAssetsPlugin,
+  getMiniCssExtractPlugin
 } from '@zero-scripts/utils-webpack-styles';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackCssPluginOptions } from './WebpackCssPluginOptions';
 
-const safePostCssParser = require('postcss-safe-parser');
 const cssModuleRegex = /\.(module|m)\.css$/;
 
 @ReadOptions(WebpackCssPluginOptions, 'plugin-webpack-css')
@@ -31,12 +29,8 @@ export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
               test: new RegExp(rule.test),
               exclude: rule.exclude ? new RegExp(rule.exclude) : undefined,
               use: getStyleLoaders(
-                MiniCssExtractPlugin.loader,
-                undefined,
-                rule.preprocessor
-                  ? require.resolve(rule.preprocessor)
-                  : undefined,
-                require.resolve(rule.loader)
+                rule.preprocessor,
+                rule.loader
               )(configOptions),
               sideEffects: true
             });
@@ -46,41 +40,30 @@ export class WebpackCssPlugin extends AbstractPlugin<WebpackCssPluginOptions> {
             test: /\.css$/,
             exclude: cssModuleRegex,
             sideEffects: true,
-            use: getStyleLoaders(MiniCssExtractPlugin.loader)(configOptions)
+            use: getStyleLoaders()(configOptions)
           });
 
           modifications.insertModuleRule({
             test: cssModuleRegex,
-            use: getStyleLoaders(MiniCssExtractPlugin.loader, {
-              modules: {
-                getLocalIdent
+            use: getStyleLoaders(undefined, {
+              options: {
+                modules: {
+                  getLocalIdent
+                }
               }
             })(configOptions)
           });
 
           if (!configOptions.isDev) {
             modifications.insertPlugin(
-              new MiniCssExtractPlugin({
-                filename: 'css/[name].[contenthash:8].css',
-                chunkFilename: 'css/[name].[contenthash:8].chunk.css'
-              }),
+              getMiniCssExtractPlugin(),
               undefined,
               'mini-css-extract-plugin'
             );
           }
 
           modifications.insertMinimizer(
-            new OptimizeCSSAssetsPlugin({
-              cssProcessorOptions: {
-                parser: safePostCssParser,
-                map: configOptions.useSourceMap
-                  ? {
-                      inline: false,
-                      annotation: true
-                    }
-                  : false
-              }
-            }),
+            getOptimizeCSSAssetsPlugin(configOptions),
             undefined,
             'optimize-css-assets-plugin'
           );

@@ -37,11 +37,10 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-webpack-plugin": "^2.4.0"
   },
-  "optionalDependencies": {
+  "devDependencies": {
     "webpack": "4.x"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "a944e18e4fbf7fd535242d479307fcdefa4acda3"
+  }
 }

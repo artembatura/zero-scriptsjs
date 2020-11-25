@@ -9,8 +9,18 @@ export class WebpackCssPluginOptions extends AbstractOptionsContainer<WebpackCss
   )
   public styleLoaders: Array<{
     test: string;
-    loader: string;
+    loader:
+      | string
+      | {
+          loader?: string;
+          options?: Record<string, unknown>;
+        };
     exclude?: string;
-    preprocessor?: string;
+    preprocessor?:
+      | string
+      | {
+          loader: string;
+          options: Record<string, unknown>;
+        };
   }> = [];
 }
