@@ -496,23 +496,23 @@ importers:
   packages/webpack-config:
     dependencies:
       '@zero-scripts/core': 'link:../core'
-      file-loader: 6.0.0_webpack@4.44.2
-      terser-webpack-plugin: 3.0.6_webpack@4.44.2
+      file-loader: 6.2.0_webpack@4.44.2
+      terser-webpack-plugin: 4.2.3_webpack@4.44.2
       webpack-assets-manifest: 3.1.1_webpack@4.44.2
     devDependencies:
-      '@types/terser-webpack-plugin': 3.0.0
+      '@types/terser-webpack-plugin': 4.2.0
       '@types/webpack': 4.41.25
       '@types/webpack-assets-manifest': 3.0.1
       webpack: 4.44.2
     specifiers:
-      '@types/terser-webpack-plugin': 3.0.0
+      '@types/terser-webpack-plugin': ^4.2.0
       '@types/webpack': ^4.41.25
-      '@types/webpack-assets-manifest': 3.0.1
+      '@types/webpack-assets-manifest': ^3.0.1
       '@zero-scripts/core': 'workspace:*'
-      file-loader: 6.0.0
-      terser-webpack-plugin: 3.0.6
+      file-loader: ^6.2.0
+      terser-webpack-plugin: ^4.2.3
       webpack: 4.x
-      webpack-assets-manifest: 3.1.1
+      webpack-assets-manifest: ^3.1.1
 lockfileVersion: 5.2
 packages:
   /@artemir/friendly-errors-webpack-plugin/2.0.4_webpack@4.44.2:
@@ -2312,13 +2312,13 @@ packages:
   /@types/tapable/1.0.6:
     resolution:
       integrity: sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
-  /@types/terser-webpack-plugin/3.0.0:
+  /@types/terser-webpack-plugin/4.2.0:
     dependencies:
       '@types/webpack': 4.41.25
       terser: 4.8.0
     dev: true
     resolution:
-      integrity: sha512-K5C7izOT8rR4qiE2vfXcQNEJN4lT9cq/2qJgpMUWR2HsjDW/KVrHx2CaHuaXvaqDNsRmdELPLaxeJHiI4GjVrA==
+      integrity: sha512-oGfGZzjwKY7s8gAYLZJuVuu9GXuc/ACo7bL/DQg7ROFkEMFQULB1W7qZjQrTXf2SkTfQx7/zcerfuLkUCVFGhg==
   /@types/uglify-js/3.11.1:
     dependencies:
       source-map: 0.6.1
@@ -5361,10 +5361,10 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-bCg29ictuBaKUwwArK4ouCaqDgLZcysCFLmM/Yn/FDoqndh/9vNuQfXRDvTuXKLxfD/JtZQGKFT8MGcJBK644g==
-  /file-loader/6.0.0_webpack@4.44.2:
+  /file-loader/6.2.0_webpack@4.44.2:
     dependencies:
       loader-utils: 2.0.0
-      schema-utils: 2.7.1
+      schema-utils: 3.0.0
       webpack: 4.44.2
     dev: false
     engines:
@@ -5372,7 +5372,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     resolution:
-      integrity: sha512-/aMOAYEFXDdjG0wytpTL5YQLfZnnTmLNjn+AIrJ/6HVnTfDqLsVKUUwkDf4I4kgex36BvjuXEn/TX9B/1ESyqQ==
+      integrity: sha512-qo3glqyTa61Ytg4u73GultjHGjdRyig3tG6lPtyX/jOEJvHif9uB0/OCI2Kif6ctF3caQTW2G5gym21oAsI4pw==
   /file-uri-to-path/1.0.0:
     optional: true
     resolution:
@@ -10981,16 +10981,16 @@ packages:
       webpack: ^4.0.0
     resolution:
       integrity: sha512-04Rfe496lN8EYruwi6oPQkG0vo8C+HT49X687FZnpPF0qMAIHONI6HEXYPKDOE8e5HjXTyKfqRd/agHtH0kOtw==
-  /terser-webpack-plugin/3.0.6_webpack@4.44.2:
+  /terser-webpack-plugin/4.2.3_webpack@4.44.2:
     dependencies:
       cacache: 15.0.5
       find-cache-dir: 3.3.1
       jest-worker: 26.6.2
       p-limit: 3.0.2
-      schema-utils: 2.7.1
-      serialize-javascript: 4.0.0
+      schema-utils: 3.0.0
+      serialize-javascript: 5.0.1
       source-map: 0.6.1
-      terser: 4.8.0
+      terser: 5.5.0
       webpack: 4.44.2
       webpack-sources: 1.4.3
     dev: false
@@ -10999,7 +10999,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     resolution:
-      integrity: sha512-z3HLOOPUHkCNGkeEHqqiMAIy1pjpHwS1o+i6Zn0Ws3EAvHJj46737efNNEvJ0Vx9BdDQM83d56qySDJOSORA0A==
+      integrity: sha512-jTgXh40RnvOrLQNgIkwEKnQ8rmHjHK4u+6UBEi+W+FPmvb+uo+chJXntKe7/3lW5mNysgSWD60KyesnhW8D6MQ==
   /terser/4.8.0:
     dependencies:
       commander: 2.20.3
@@ -11010,6 +11010,17 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-EAPipTNeWsb/3wLPeup1tVPaXfIaU68xMnVdPafIL1TV05OhASArYyIfFvnvJCNrR2NIOvDVNNTFRa+Re2MWyw==
+  /terser/5.5.0:
+    dependencies:
+      commander: 2.20.3
+      source-map: 0.7.3
+      source-map-support: 0.5.19
+    dev: false
+    engines:
+      node: '>=10'
+    hasBin: true
+    resolution:
+      integrity: sha512-eopt1Gf7/AQyPhpygdKePTzaet31TvQxXvrf7xYUvD/d8qkCJm4SKPDzu+GHK5ZaYTn8rvttfqaZc3swK21e5g==
   /test-exclude/6.0.0:
     dependencies:
       '@istanbuljs/schema': 0.1.2
