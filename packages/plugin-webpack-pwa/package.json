@@ -29,7 +29,7 @@
     "@zero-scripts/webpack-config": "workspace:*",
     "workbox-webpack-plugin": "5.1.3"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "@types/workbox-webpack-plugin": "5.1.1",
     "webpack": "4.x"
   },

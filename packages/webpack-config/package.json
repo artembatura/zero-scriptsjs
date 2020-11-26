@@ -33,7 +33,9 @@
   "devDependencies": {
     "@types/terser-webpack-plugin": "^4.2.0",
     "@types/webpack": "^4.41.25",
-    "@types/webpack-assets-manifest": "^3.0.1",
+    "@types/webpack-assets-manifest": "^3.0.1"
+  },
+  "peerDependencies": {
     "webpack": "4.x"
   },
   "publishConfig": {

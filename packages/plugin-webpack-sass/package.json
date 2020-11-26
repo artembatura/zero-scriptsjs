@@ -37,7 +37,7 @@
     "@zero-scripts/webpack-config": "workspace:*",
     "sass-loader": "^10.1.0"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "webpack": "4.x"
   },
   "publishConfig": {
