@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-css",
-  "version": "1.0.0-alfa.12",
+  "version": "1.0.0-alfa.13",
   "description": "Adds processing CSS files: extracting, minify and add vendor prefixes",
   "keywords": [
     "webpack",
@@ -38,7 +38,7 @@
     "webpack": "^4.44.2"
   },
   "peerDependencies": {
-    "@zero-scripts/core": "1.x",
+    "@zero-scripts/core": "^1.0.0-alfa.0",
     "webpack": "4.x"
   },
   "publishConfig": {
