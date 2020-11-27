@@ -36,12 +36,12 @@
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-typescript": "^7.12.7",
     "@babel/runtime": "^7.12.5",
-    "@zero-scripts/core": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-loader": "^8.2.1",
     "core-js": "3.7.0"
   },
   "peerDependencies": {
+    "@zero-scripts/core": "1.x",
     "webpack": "4.x"
   },
   "optionalDependencies": {

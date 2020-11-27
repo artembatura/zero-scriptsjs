@@ -31,7 +31,6 @@
     "@babel/core": "^7.12.9",
     "@babel/preset-react": "^7.12.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@zero-scripts/core": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
@@ -43,6 +42,7 @@
     "react-refresh": "^0.9.0"
   },
   "peerDependencies": {
+    "@zero-scripts/core": "1.x",
     "webpack": "4.x"
   },
   "optionalDependencies": {

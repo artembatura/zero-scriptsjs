@@ -292,7 +292,6 @@ importers:
       '@babel/preset-env': 7.12.7_@babel+core@7.12.9
       '@babel/preset-typescript': 7.12.7_@babel+core@7.12.9
       '@babel/runtime': 7.12.5
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       babel-loader: 8.2.1_@babel+core@7.12.9
       core-js: 3.7.0
@@ -308,25 +307,21 @@ importers:
       '@babel/preset-env': ^7.12.7
       '@babel/preset-typescript': ^7.12.7
       '@babel/runtime': ^7.12.5
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-loader: ^8.2.1
       core-js: 3.7.0
       fork-ts-checker-webpack-plugin: ^5.1.0
   packages/plugin-webpack-css:
     dependencies:
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/utils-webpack-styles': 'link:../utils-webpack-styles'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
     specifiers:
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/utils-webpack-styles': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
   packages/plugin-webpack-eslint:
     dependencies:
       '@typescript-eslint/eslint-plugin': 4.8.2_80823f43c02287886b08ee2c928c8de0
       '@typescript-eslint/parser': 4.8.2_eslint@7.14.0
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       babel-eslint: 10.1.0_eslint@7.14.0
       eslint: 7.14.0
@@ -336,7 +331,6 @@ importers:
     specifiers:
       '@typescript-eslint/eslint-plugin': ^4.8.2
       '@typescript-eslint/parser': ^4.8.2
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       babel-eslint: ^10.1.0
       eslint: ^7.14.0
@@ -345,22 +339,18 @@ importers:
       eslint-webpack-plugin: ^2.4.0
   packages/plugin-webpack-less:
     dependencies:
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/utils-webpack-styles': 'link:../utils-webpack-styles'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       less-loader: 7.1.0
     specifiers:
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/utils-webpack-styles': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       less-loader: ^7.1.0
   packages/plugin-webpack-pwa:
     dependencies:
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       workbox-webpack-plugin: 5.1.3
     specifiers:
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       workbox-webpack-plugin: 5.1.3
   packages/plugin-webpack-react:
@@ -368,7 +358,6 @@ importers:
       '@babel/core': 7.12.9
       '@babel/preset-react': 7.12.7_@babel+core@7.12.9
       '@pmmmwh/react-refresh-webpack-plugin': 0.4.3_react-refresh@0.9.0
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       babel-plugin-named-asset-import: 0.3.7_@babel+core@7.12.9
       babel-plugin-transform-react-remove-prop-types: 0.4.24
@@ -385,7 +374,6 @@ importers:
       '@babel/core': ^7.12.9
       '@babel/preset-react': ^7.12.7
       '@pmmmwh/react-refresh-webpack-plugin': ^0.4.3
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/plugin-webpack-babel': 'workspace:*'
       '@zero-scripts/plugin-webpack-eslint': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
@@ -399,12 +387,10 @@ importers:
       react-refresh: ^0.9.0
   packages/plugin-webpack-sass:
     dependencies:
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/utils-webpack-styles': 'link:../utils-webpack-styles'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       sass-loader: 10.1.0
     specifiers:
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/utils-webpack-styles': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       sass-loader: ^10.1.0
@@ -413,7 +399,6 @@ importers:
       '@artemir/friendly-errors-webpack-plugin': 2.0.4
       '@k88/interpolate-html-plugin': 1.0.5_html-webpack-plugin@4.5.0
       '@npmcli/ci-detect': 1.3.0
-      '@zero-scripts/core': 'link:../core'
       '@zero-scripts/webpack-config': 'link:../webpack-config'
       clean-webpack-plugin: 3.0.0
       copy-webpack-plugin: 6.3.2
@@ -438,7 +423,6 @@ importers:
       '@types/webpack': ^4.41.25
       '@types/webpack-dev-middleware': ^3.7.2
       '@types/webpack-hot-middleware': ^2.25.3
-      '@zero-scripts/core': 'workspace:*'
       '@zero-scripts/webpack-config': 'workspace:*'
       clean-webpack-plugin: ^3.0.0
       copy-webpack-plugin: ^6.3.2
@@ -484,7 +468,6 @@ importers:
       style-loader: ^2.0.0
   packages/webpack-config:
     dependencies:
-      '@zero-scripts/core': 'link:../core'
       file-loader: 6.2.0
       terser-webpack-plugin: 4.2.3
       webpack-assets-manifest: 3.1.1
@@ -496,7 +479,6 @@ importers:
       '@types/terser-webpack-plugin': ^4.2.0
       '@types/webpack': ^4.41.25
       '@types/webpack-assets-manifest': ^3.0.1
-      '@zero-scripts/core': 'workspace:*'
       file-loader: ^6.2.0
       terser-webpack-plugin: ^4.2.3
       webpack-assets-manifest: ^3.1.1

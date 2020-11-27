@@ -32,12 +32,12 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "workspace:*",
     "@zero-scripts/utils-webpack-styles": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "sass-loader": "^10.1.0"
   },
   "peerDependencies": {
+    "@zero-scripts/core": "1.x",
     "webpack": "4.x"
   },
   "publishConfig": {

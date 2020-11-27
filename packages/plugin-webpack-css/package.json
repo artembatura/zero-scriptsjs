@@ -30,11 +30,11 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "workspace:*",
     "@zero-scripts/utils-webpack-styles": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*"
   },
   "peerDependencies": {
+    "@zero-scripts/core": "1.x",
     "webpack": "4.x"
   },
   "publishConfig": {

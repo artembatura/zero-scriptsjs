@@ -25,7 +25,6 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "workspace:*",
     "file-loader": "^6.2.0",
     "terser-webpack-plugin": "^4.2.3",
     "webpack-assets-manifest": "^3.1.1"
@@ -36,6 +35,7 @@
     "@types/webpack-assets-manifest": "^3.0.1"
   },
   "peerDependencies": {
+    "@zero-scripts/core": "1.x",
     "webpack": "4.x"
   },
   "publishConfig": {

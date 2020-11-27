@@ -29,7 +29,6 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
-    "@zero-scripts/core": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.14.0",
@@ -38,6 +37,7 @@
     "eslint-webpack-plugin": "^2.4.0"
   },
   "peerDependencies": {
+    "@zero-scripts/core": "1.x",
     "webpack": "4.x"
   },
   "publishConfig": {
