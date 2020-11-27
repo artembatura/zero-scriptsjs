@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-eslint",
-  "version": "1.0.0-alfa.11",
+  "version": "1.0.0-alfa.13",
   "description": "Adds processing JavaScript code with ESLint",
   "keywords": [
     "webpack",
@@ -29,7 +29,6 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
-    "@zero-scripts/core": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.14.0",
@@ -38,6 +37,11 @@
     "eslint-webpack-plugin": "^2.4.0"
   },
   "devDependencies": {
+    "@zero-scripts/core": "workspace:*",
+    "webpack": "^4.44.2"
+  },
+  "peerDependencies": {
+    "@zero-scripts/core": "^1.0.0-alfa.0",
     "webpack": "4.x"
   },
   "publishConfig": {

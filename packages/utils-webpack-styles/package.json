@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/utils-webpack-styles",
-  "version": "1.0.0-alfa.11",
+  "version": "1.0.0-alfa.13",
   "keywords": [
     "zero-scripts",
     "utilities",
@@ -41,6 +41,9 @@
     "@types/mini-css-extract-plugin": "^1.2.1",
     "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
     "@types/webpack": "^4.41.25",
+    "webpack": "^4.44.2"
+  },
+  "peerDependencies": {
     "webpack": "4.x"
   },
   "publishConfig": {

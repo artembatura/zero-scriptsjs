@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/webpack-config",
-  "version": "1.0.0-alfa.11",
+  "version": "1.0.0-alfa.13",
   "description": "Base configuration for Webpack",
   "keywords": [
     "webpack",
@@ -25,7 +25,6 @@
     "build"
   ],
   "dependencies": {
-    "@zero-scripts/core": "workspace:*",
     "file-loader": "^6.2.0",
     "terser-webpack-plugin": "^4.2.3",
     "webpack-assets-manifest": "^3.1.1"
@@ -34,6 +33,11 @@
     "@types/terser-webpack-plugin": "^4.2.0",
     "@types/webpack": "^4.41.25",
     "@types/webpack-assets-manifest": "^3.0.1",
+    "@zero-scripts/core": "workspace:*",
+    "webpack": "^4.44.2"
+  },
+  "peerDependencies": {
+    "@zero-scripts/core": "^1.0.0-alfa.0",
     "webpack": "4.x"
   },
   "publishConfig": {
