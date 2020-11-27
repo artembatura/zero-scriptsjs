@@ -48,7 +48,7 @@
     "@types/webpack-dev-middleware": "^3.7.2",
     "@types/webpack-hot-middleware": "^2.25.3",
     "@zero-scripts/core": "workspace:*",
-    "webpack": "^4.44.2"
+    "webpack": "^5.8.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",

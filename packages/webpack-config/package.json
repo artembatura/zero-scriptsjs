@@ -34,7 +34,7 @@
     "@types/webpack": "^4.41.25",
     "@types/webpack-assets-manifest": "^3.0.1",
     "@zero-scripts/core": "workspace:*",
-    "webpack": "^4.44.2"
+    "webpack": "^5.8.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
