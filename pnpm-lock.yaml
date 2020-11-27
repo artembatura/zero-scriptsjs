@@ -450,7 +450,6 @@ importers:
     devDependencies:
       '@types/copy-webpack-plugin': 6.3.0
       '@types/express': 4.17.9
-      '@types/webpack': 4.41.25
       '@types/webpack-dev-middleware': 3.7.2
       '@types/webpack-hot-middleware': 2.25.3
       '@zero-scripts/core': 'link:../core'
@@ -461,7 +460,6 @@ importers:
       '@npmcli/ci-detect': ^1.3.0
       '@types/copy-webpack-plugin': ^6.3.0
       '@types/express': ^4.17.9
-      '@types/webpack': ^4.41.25
       '@types/webpack-dev-middleware': ^3.7.2
       '@types/webpack-hot-middleware': ^2.25.3
       '@zero-scripts/core': 'workspace:*'
@@ -492,13 +490,11 @@ importers:
       '@types/loader-utils': 2.0.1
       '@types/mini-css-extract-plugin': 1.2.1
       '@types/optimize-css-assets-webpack-plugin': 5.0.1
-      '@types/webpack': 4.41.25
       webpack: 5.8.0
     specifiers:
       '@types/loader-utils': ^2.0.1
       '@types/mini-css-extract-plugin': ^1.2.1
       '@types/optimize-css-assets-webpack-plugin': ^5.0.1
-      '@types/webpack': ^4.41.25
       '@zero-scripts/webpack-config': 'workspace:*'
       css-loader: ^5.0.1
       loader-utils: ^2.0.0
@@ -514,23 +510,19 @@ importers:
   packages/webpack-config:
     dependencies:
       file-loader: 6.2.0_webpack@5.8.0
-      terser-webpack-plugin: 4.2.3_webpack@5.8.0
-      webpack-assets-manifest: 3.1.1_webpack@5.8.0
+      terser-webpack-plugin: 5.0.3_webpack@5.8.0
+      webpack-assets-manifest: github.com/webdeveric/webpack-assets-manifest/7e75093acd3515f2941e386487958299b130e2f1_webpack@5.8.0
     devDependencies:
-      '@types/terser-webpack-plugin': 4.2.0
-      '@types/webpack': 4.41.25
-      '@types/webpack-assets-manifest': 3.0.1
+      '@types/terser-webpack-plugin': 5.0.2
       '@zero-scripts/core': 'link:../core'
       webpack: 5.8.0
     specifiers:
-      '@types/terser-webpack-plugin': ^4.2.0
-      '@types/webpack': ^4.41.25
-      '@types/webpack-assets-manifest': ^3.0.1
+      '@types/terser-webpack-plugin': ^5.0.2
       '@zero-scripts/core': 'workspace:*'
       file-loader: ^6.2.0
-      terser-webpack-plugin: ^4.2.3
+      terser-webpack-plugin: ^5.0.3
       webpack: ^5.8.0
-      webpack-assets-manifest: ^3.1.1
+      webpack-assets-manifest: 'github:webdeveric/webpack-assets-manifest#dev'
 lockfileVersion: 5.2
 packages:
   /@artemir/friendly-errors-webpack-plugin/2.0.4_webpack@5.8.0:
@@ -2335,25 +2327,18 @@ packages:
   /@types/tapable/1.0.6:
     resolution:
       integrity: sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
-  /@types/terser-webpack-plugin/4.2.0:
+  /@types/terser-webpack-plugin/5.0.2:
     dependencies:
-      '@types/webpack': 4.41.25
-      terser: 4.8.0
+      terser: 5.5.0
+      webpack: 5.8.0
     dev: true
     resolution:
-      integrity: sha512-oGfGZzjwKY7s8gAYLZJuVuu9GXuc/ACo7bL/DQg7ROFkEMFQULB1W7qZjQrTXf2SkTfQx7/zcerfuLkUCVFGhg==
+      integrity: sha512-YcAT1D4gjho1jqc/gjn1ojHFtQtrGHaHPqz5nDMiN5Jj9BeigjDkS2w010PvUnPkdVY3GerDFbY62TArtDBuDQ==
   /@types/uglify-js/3.11.1:
     dependencies:
       source-map: 0.6.1
     resolution:
       integrity: sha512-7npvPKV+jINLu1SpSYVWG8KvyJBhBa8tmzMMdDoVc2pWUYHN8KIXlPJhjJ4LT97c4dXJA2SHL/q6ADbDriZN+Q==
-  /@types/webpack-assets-manifest/3.0.1:
-    dependencies:
-      '@types/tapable': 1.0.6
-      '@types/webpack': 4.41.25
-    dev: true
-    resolution:
-      integrity: sha512-yNvIA1a+IyiPmWaJVnS4OjJwiCoJX+1UQKsvG46PEnvnAqL/JvdBhhjpDFLkdA8I+sOxaQRjGHOSUYt6bru5iQ==
   /@types/webpack-dev-middleware/3.7.2:
     dependencies:
       '@types/connect': 3.4.33
@@ -7216,10 +7201,20 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
+  /lockfile/1.0.4:
+    dependencies:
+      signal-exit: 3.0.3
+    dev: false
+    resolution:
+      integrity: sha512-cvbTwETRfsFh4nHsL1eGWapU1XFi5Ot9E85sWAwia7Y7EgB7vfqcZhTKZ+l7hCGxSPoushMv5GKhT5PdLv03WA==
   /lodash._reinterpolate/3.0.0:
     dev: false
     resolution:
       integrity: sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+  /lodash.escaperegexp/4.1.2:
+    dev: false
+    resolution:
+      integrity: sha1-ZHYsSGGAglGKw99Mz11YhtriA0c=
   /lodash.get/4.4.2:
     dev: false
     resolution:
@@ -9969,7 +9964,6 @@ packages:
     resolution:
       integrity: sha512-A6+ByhlLkksFoUepsGxfj5x1gTSrs+OydsRptUxeNCabQpCFUvcwIczgOigI8vhY/OJCnPnyE9rGiwgvr9cS1g==
   /signal-exit/3.0.3:
-    dev: true
     resolution:
       integrity: sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
   /simple-swizzle/0.2.2:
@@ -10549,25 +10543,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-un0FmiRUQNr5PJqy9kP7c40F5BOfpGlYTrxonDChEZB7pzZxRNp/bt+ymiy9/npwXya9KH99nJ/GXFIiUkYGFQ==
-  /terser-webpack-plugin/4.2.3_webpack@5.8.0:
-    dependencies:
-      cacache: 15.0.5
-      find-cache-dir: 3.3.1
-      jest-worker: 26.6.2
-      p-limit: 3.0.2
-      schema-utils: 3.0.0
-      serialize-javascript: 5.0.1
-      source-map: 0.6.1
-      terser: 5.5.0
-      webpack: 5.8.0
-      webpack-sources: 1.4.3
-    dev: false
-    engines:
-      node: '>= 10.13.0'
-    peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    resolution:
-      integrity: sha512-jTgXh40RnvOrLQNgIkwEKnQ8rmHjHK4u+6UBEi+W+FPmvb+uo+chJXntKe7/3lW5mNysgSWD60KyesnhW8D6MQ==
   /terser-webpack-plugin/5.0.3_webpack@5.8.0:
     dependencies:
       jest-worker: 26.6.2
@@ -10577,7 +10552,6 @@ packages:
       source-map: 0.6.1
       terser: 5.5.0
       webpack: 5.8.0
-    dev: true
     engines:
       node: '>= 10.13.0'
     peerDependencies:
@@ -10589,6 +10563,7 @@ packages:
       commander: 2.20.3
       source-map: 0.6.1
       source-map-support: 0.5.19
+    dev: false
     engines:
       node: '>=6.0.0'
     hasBin: true
@@ -11096,23 +11071,6 @@ packages:
       node: '>=10.4'
     resolution:
       integrity: sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==
-  /webpack-assets-manifest/3.1.1_webpack@5.8.0:
-    dependencies:
-      chalk: 2.4.2
-      lodash.get: 4.4.2
-      lodash.has: 4.5.2
-      mkdirp: 0.5.5
-      schema-utils: 1.0.0
-      tapable: 1.1.3
-      webpack: 5.8.0
-      webpack-sources: 1.4.3
-    dev: false
-    engines:
-      node: '>=6.11.5'
-    peerDependencies:
-      webpack: '>=4.4.0'
-    resolution:
-      integrity: sha512-JV9V2QKc5wEWQptdIjvXDUL1ucbPLH2f27toAY3SNdGZp+xSaStAgpoMcvMZmqtFrBc9a5pTS1058vxyMPOzRQ==
   /webpack-dev-middleware/4.0.2_webpack@5.8.0:
     dependencies:
       mem: 8.0.0
@@ -11514,3 +11472,24 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
+  github.com/webdeveric/webpack-assets-manifest/7e75093acd3515f2941e386487958299b130e2f1_webpack@5.8.0:
+    dependencies:
+      chalk: 4.1.0
+      deepmerge: 4.2.2
+      lockfile: 1.0.4
+      lodash.escaperegexp: 4.1.2
+      lodash.get: 4.4.2
+      lodash.has: 4.5.2
+      schema-utils: 3.0.0
+      tapable: 2.1.1
+      webpack: 5.8.0
+    dev: false
+    engines:
+      node: '>=10.13.0'
+    id: github.com/webdeveric/webpack-assets-manifest/7e75093acd3515f2941e386487958299b130e2f1
+    name: webpack-assets-manifest
+    peerDependencies:
+      webpack: '>=5.0.0'
+    resolution:
+      tarball: 'https://codeload.github.com/webdeveric/webpack-assets-manifest/tar.gz/7e75093acd3515f2941e386487958299b130e2f1'
+    version: 3.1.1

@@ -1,19 +1,12 @@
-import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import type { Configuration } from 'webpack';
 import { DefinePlugin } from 'webpack';
-import ManifestPlugin from 'webpack-assets-manifest';
 
 import { ExtractOptions } from '@zero-scripts/core';
 
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
-type ConfigurationWithLog = Configuration & {
-  infrastructureLogging?: {
-    level?: 'none' | 'error' | 'warn' | 'info' | 'log' | 'verbose';
-    debug?: boolean;
-  };
-};
+const ManifestPlugin = require('webpack-assets-manifest');
 
 export function createWebpackConfiguration({
   isDev,
@@ -21,7 +14,7 @@ export function createWebpackConfiguration({
   additionalEntry,
   useSourceMap,
   moduleFileExtensions
-}: ExtractOptions<WebpackConfigOptions>): ConfigurationWithLog {
+}: ExtractOptions<WebpackConfigOptions>): Configuration {
   return {
     mode: isDev ? 'development' : 'production',
     entry: [paths.indexJs, ...additionalEntry],
@@ -32,22 +25,14 @@ export function createWebpackConfiguration({
       publicPath: paths.publicUrlOrPath,
       chunkFilename: isDev
         ? 'js/[name].chunk.js'
-        : 'js/[name].[contenthash:8].chunk.js',
-      devtoolModuleFilenameTemplate: !isDev
-        ? info =>
-            path
-              .relative(paths.src, info.absoluteResourcePath)
-              .replace(/\\/g, '/')
-        : info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
+        : 'js/[name:7].[contenthash:8].chunk.js'
     },
     bail: !isDev,
     optimization: {
       minimize: !isDev,
       minimizer: [
         new TerserPlugin({
-          parallel: true,
-          cache: true,
-          sourceMap: useSourceMap
+          parallel: true
         })
       ],
       splitChunks: {
@@ -73,14 +58,7 @@ export function createWebpackConfiguration({
         output: 'asset-manifest.json'
       })
     ],
-    node: {
-      module: 'empty',
-      dgram: 'empty',
-      fs: 'empty',
-      net: 'empty',
-      tls: 'empty',
-      child_process: 'empty'
-    },
+    node: false,
     stats: 'none',
     infrastructureLogging: {
       level: 'none'

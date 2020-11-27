@@ -22,7 +22,7 @@ export class OneOfModification extends ConfigModification<
 
   public constructor() {
     super(
-      c => c.module.rules,
+      c => c.module.rules as RuleSetRule[],
       (rules, options) => {
         const oneOf: RuleSetRule[] = this.rules
           .sort((left, right) => {

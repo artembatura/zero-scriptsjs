@@ -1,4 +1,4 @@
-import type { Configuration, Plugin, RuleSetRule } from 'webpack';
+import type { Configuration, RuleSetRule, Compiler } from 'webpack';
 
 import {
   AbstractModificationsContainer,
@@ -9,6 +9,10 @@ import {
 import { OneOfModification } from './modifications/OneOfModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
+interface WebpackPlugin {
+  apply: (compiler: Compiler) => void;
+}
+
 /**
  * An API designed for modifying webpack configuration by plugins
  */
@@ -17,7 +21,7 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   WebpackConfigOptions
 > {
   public insertPlugin(
-    plugin: Plugin,
+    plugin: WebpackPlugin,
     position: InsertPos = InsertPos.End,
     modificationId?: string
   ): this {
@@ -57,7 +61,7 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   }
 
   public insertMinimizer(
-    minimizer: Plugin,
+    minimizer: WebpackPlugin,
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
   ): this {
