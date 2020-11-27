@@ -41,6 +41,10 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "react-refresh": "^0.9.0"
   },
+  "devDependencies": {
+    "@zero-scripts/core": "workspace:*",
+    "webpack": "^4.44.2"
+  },
   "peerDependencies": {
     "@zero-scripts/core": "1.x",
     "webpack": "4.x"

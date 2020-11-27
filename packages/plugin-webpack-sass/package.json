@@ -36,6 +36,10 @@
     "@zero-scripts/webpack-config": "workspace:*",
     "sass-loader": "^10.1.0"
   },
+  "devDependencies": {
+    "@zero-scripts/core": "workspace:*",
+    "webpack": "^4.44.2"
+  },
   "peerDependencies": {
     "@zero-scripts/core": "1.x",
     "webpack": "4.x"

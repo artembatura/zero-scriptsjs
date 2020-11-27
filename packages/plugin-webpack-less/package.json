@@ -35,6 +35,11 @@
     "@zero-scripts/webpack-config": "workspace:*",
     "less-loader": "^7.1.0"
   },
+  "devDependencies": {
+    "@zero-scripts/core": "workspace:*",
+    "less": "^3.12.2",
+    "webpack": "^4.44.2"
+  },
   "peerDependencies": {
     "@zero-scripts/core": "1.x",
     "less": "3.x",

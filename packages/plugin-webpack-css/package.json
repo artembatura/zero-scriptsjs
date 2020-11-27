@@ -33,6 +33,10 @@
     "@zero-scripts/utils-webpack-styles": "workspace:*",
     "@zero-scripts/webpack-config": "workspace:*"
   },
+  "devDependencies": {
+    "@zero-scripts/core": "workspace:*",
+    "webpack": "^4.44.2"
+  },
   "peerDependencies": {
     "@zero-scripts/core": "1.x",
     "webpack": "4.x"
