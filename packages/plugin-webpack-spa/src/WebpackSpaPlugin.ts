@@ -41,9 +41,9 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
             TaskStart | TaskBuild | TaskWatch
           >();
 
-          const isBuildTask = taskMeta?.instance instanceof TaskBuild;
-          const isWatchTask = taskMeta?.instance instanceof TaskWatch;
-          const isStartTask = taskMeta?.instance instanceof TaskStart;
+          const isBuildTask = taskMeta?.name === 'build';
+          const isWatchTask = taskMeta?.name === 'watch';
+          const isStartTask = taskMeta?.name === 'start';
 
           if (isBuildTask || isWatchTask) {
             modifications.insertPlugin(

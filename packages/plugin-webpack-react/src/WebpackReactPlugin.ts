@@ -119,10 +119,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
 
         const currentTask = getCurrentTaskMeta();
 
-        if (
-          pluginOptions.fastRefresh &&
-          currentTask?.instance?.name === 'start'
-        ) {
+        if (pluginOptions.fastRefresh && currentTask?.name === 'start') {
           if (babelPlugin) {
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
               'WebpackReactPlugin::addFastRefreshLoader',

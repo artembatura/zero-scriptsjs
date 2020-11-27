@@ -11,7 +11,7 @@ type BuildTaskOptions = {
   json?: boolean | string;
 };
 
-export class TaskBuild extends Task {
+export class TaskBuild extends Task<'build'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions

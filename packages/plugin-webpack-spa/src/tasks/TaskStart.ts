@@ -15,7 +15,7 @@ type StartTaskOptions = {
   smokeTest?: boolean;
 };
 
-export class TaskStart extends Task {
+export class TaskStart extends Task<'start'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions

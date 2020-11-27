@@ -4,8 +4,7 @@ import { Optional } from 'utility-types';
 
 import { AbstractPlugin } from '../AbstractPlugin';
 import { ApplyContext, BeforeRunContext } from '../context';
-import { readPackageJson } from '../utils/readPackageJson';
-import { readZeroScriptsOptions } from '../utils/readZeroScriptsOptions';
+import { readPackageJson, readZeroScriptsOptions } from '../utils';
 import { WorkSpace } from '../WorkSpace';
 import { setCurrentTaskMeta } from './currentTask';
 import { getCLIMeta } from './getCLIMeta';
@@ -184,7 +183,7 @@ export async function run(argv: string[]): Promise<void> {
     setCurrentTaskMeta({
       args: finalArgs,
       options: finalOptions,
-      instance: task
+      name: task.name
     });
 
     await task.run(finalArgs, finalOptions);

@@ -1,22 +1,24 @@
 import { Task } from '../Task';
 
 type TaskMeta<
-  T extends Task,
+  TName extends string = string,
   TArgs extends string[] = string[],
   TOptions extends Record<string, unknown> = Record<string, unknown>
 > = {
   args: TArgs;
   options: TOptions;
-  instance: T;
+  name: TName;
 };
 
+type ExtractName<T extends Task> = T extends Task<infer A> ? A : never;
+
 type ExtractMeta<T extends Task> = TaskMeta<
-  T,
+  ExtractName<T>,
   Parameters<T['run']>[0],
   Parameters<T['run']>[1]
 >;
 
-let taskMeta: TaskMeta<any, any> | undefined;
+let taskMeta: TaskMeta<any> | undefined;
 
 export function getCurrentTaskMeta<T extends Task>():
   | ExtractMeta<T>
@@ -24,6 +26,6 @@ export function getCurrentTaskMeta<T extends Task>():
   return taskMeta;
 }
 
-export function setCurrentTaskMeta(meta: TaskMeta<any>): void {
+export function setCurrentTaskMeta(meta: TaskMeta): void {
   taskMeta = meta;
 }
