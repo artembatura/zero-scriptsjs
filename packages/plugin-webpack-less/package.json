@@ -38,12 +38,12 @@
   "devDependencies": {
     "@zero-scripts/core": "workspace:*",
     "less": "^3.12.2",
-    "webpack": "^5.8.0"
+    "webpack": "^5.10.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
     "less": "3.x",
-    "webpack": "4.x"
+    "webpack": "5.x"
   },
   "publishConfig": {
     "access": "public"

@@ -35,11 +35,11 @@
   },
   "devDependencies": {
     "@zero-scripts/core": "workspace:*",
-    "webpack": "^5.8.0"
+    "webpack": "^5.10.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
-    "webpack": "4.x"
+    "webpack": "5.x"
   },
   "publishConfig": {
     "access": "public"
