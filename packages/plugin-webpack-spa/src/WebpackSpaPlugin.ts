@@ -57,7 +57,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
                     }
                   }
                 ]
-              }) as any
+              })
             );
           }
 

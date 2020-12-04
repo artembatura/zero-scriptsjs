@@ -26,5 +26,5 @@ export function getOptimizeCSSAssetsPlugin(
     });
   }
 
-  return pluginInstance as any;
+  return pluginInstance;
 }

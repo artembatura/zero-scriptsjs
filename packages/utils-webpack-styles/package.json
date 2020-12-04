@@ -38,8 +38,6 @@
   },
   "devDependencies": {
     "@types/loader-utils": "^2.0.1",
-    "@types/mini-css-extract-plugin": "^1.2.1",
-    "@types/optimize-css-assets-webpack-plugin": "^5.0.1",
     "webpack": "^5.8.0"
   },
   "peerDependencies": {

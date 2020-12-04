@@ -40,10 +40,10 @@ export class TaskStart extends Task<'start'> {
 
     const devServer = express();
 
-    devServer.use(webpackDevMiddleware(compiler as any));
+    devServer.use(webpackDevMiddleware(compiler));
 
     devServer.use(
-      webpackHotMiddleware(compiler as any, {
+      webpackHotMiddleware(compiler, {
         log: false,
         path: '/__webpack_hmr',
         heartbeat: 10 * 1000

@@ -15,5 +15,5 @@ export function getMiniCssExtractPlugin(): WebpackPlugin {
     });
   }
 
-  return pluginInstance as any;
+  return pluginInstance;
 }
