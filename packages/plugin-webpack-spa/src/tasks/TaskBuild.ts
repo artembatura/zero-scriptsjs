@@ -5,14 +5,13 @@ import webpack, { Compiler } from 'webpack';
 import { Task } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
-import { getStatsOptions } from '../utils/getStatsOptions';
 import { WebpackSpaPluginOptions } from '../WebpackSpaPluginOptions';
 
 type BuildTaskOptions = {
   json?: boolean | string;
 };
 
-export class TaskBuild extends Task {
+export class TaskBuild extends Task<'build'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions
@@ -38,18 +37,18 @@ export class TaskBuild extends Task {
       if (err) throw err;
 
       const getStatsOptionsFromCompiler = (compiler: Compiler) =>
-        getStatsOptions(compiler.options ? compiler.options.stats : undefined);
+        compiler.options.stats;
 
-      const foundStats = getStatsOptionsFromCompiler(compiler);
+      const statsOptions = getStatsOptionsFromCompiler(compiler);
 
       if (options.json === true) {
         process.stdout.write(
-          JSON.stringify(stats.toJson(foundStats), null, 2) + '\n'
+          JSON.stringify(stats?.toJson(statsOptions), null, 2) + '\n'
         );
       }
 
       if (typeof options.json === 'string') {
-        const JSONStats = JSON.stringify(stats.toJson(foundStats), null, 2);
+        const JSONStats = JSON.stringify(stats?.toJson(statsOptions), null, 2);
 
         try {
           writeFileSync(options.json, JSONStats);

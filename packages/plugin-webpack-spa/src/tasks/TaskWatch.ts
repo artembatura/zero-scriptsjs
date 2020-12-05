@@ -10,7 +10,7 @@ type WatchTaskOptions = {
   smokeTest?: boolean;
 };
 
-export class TaskWatch extends Task {
+export class TaskWatch extends Task<'watch'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions

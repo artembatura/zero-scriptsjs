@@ -18,7 +18,7 @@
     "@zero-scripts/plugin-webpack-sass": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
     "sass": "1.29.0",
-    "webpack": "^4.44.2"
+    "webpack": "^5.10.0"
   },
   "zero-scripts": {}
 }

@@ -30,11 +30,8 @@ export class WebpackSpaPluginOptions extends AbstractOptionsContainer<WebpackSpa
 
       const isCI = Boolean(detectCI());
       const isSmokeTest =
-        taskMeta &&
-        taskMeta.instance.name === 'start' &&
-        taskMeta.options.smokeTest;
-      const taskPort =
-        taskMeta && taskMeta.instance.name === 'start' && taskMeta.options.port;
+        taskMeta?.name === 'start' && taskMeta.options.smokeTest;
+      const taskPort = taskMeta?.name === 'start' && taskMeta.options.port;
 
       return {
         ...options,

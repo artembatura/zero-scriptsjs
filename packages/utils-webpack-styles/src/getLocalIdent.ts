@@ -1,9 +1,8 @@
 import loaderUtils from 'loader-utils';
-// eslint-disable-next-line import/no-unresolved
-import type { loader } from 'webpack';
 
 export function getLocalIdent(
-  context: loader.LoaderContext,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  context: any,
   localIdentName: string,
   localName: string,
   options: Record<string, unknown>

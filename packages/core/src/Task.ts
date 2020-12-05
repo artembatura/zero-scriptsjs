@@ -1,8 +1,8 @@
-export abstract class Task {
+export abstract class Task<TName extends string = string> {
   // public readonly argumentsRules: Rule<string>[] = [];
   // public readonly optionsRules: Record<string, Rule<string | boolean>> = {};
 
-  public constructor(public readonly name: string) {}
+  public constructor(public readonly name: TName) {}
 
   // public expectOption<TKey extends string, TValue extends string | boolean>(
   //   key: TKey,
