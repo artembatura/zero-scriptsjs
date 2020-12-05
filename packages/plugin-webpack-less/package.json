@@ -36,6 +36,7 @@
     "less-loader": "^7.1.0"
   },
   "devDependencies": {
+    "@types/node": "^14.14.9",
     "@zero-scripts/core": "workspace:*",
     "less": "^3.12.2",
     "webpack": "^5.10.0"
@@ -43,7 +44,7 @@
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
     "less": "3.x",
-    "webpack": "5.x"
+    "webpack": "^5.4.0"
   },
   "publishConfig": {
     "access": "public"

@@ -44,12 +44,13 @@
   "devDependencies": {
     "@types/connect": "^3.4.33",
     "@types/express": "^4.17.9",
+    "@types/node": "^14.14.9",
     "@zero-scripts/core": "workspace:*",
     "webpack": "^5.10.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
-    "webpack": "^5.10.0"
+    "webpack": "^5.4.0"
   },
   "publishConfig": {
     "access": "public"

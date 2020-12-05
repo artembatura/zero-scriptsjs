@@ -17,6 +17,7 @@
     "@zero-scripts/plugin-webpack-less": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "eslint": "^7.14.0",
     "less": "3.12.2",
     "webpack": "^5.10.0"
   },
