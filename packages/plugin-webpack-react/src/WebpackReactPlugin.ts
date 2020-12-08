@@ -134,16 +134,28 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                 modifications.insertPlugin(
                   new ReactRefreshWebpackPlugin({
                     overlay: {
-                      sockIntegration: 'whm'
+                      sockIntegration: 'whm',
+                      entry: rr('webpack-hot-middleware/client')
                     }
                   })
                 );
+
+                // we should remove `hot-accept-webpack-plugin`
+                // because react refresh do the same
+                if (modifications.has('hot-accept-plugin')) {
+                  modifications.remove('hot-accept-plugin');
+                  console.log(modifications.has('hot-accept-plugin'));
+                }
 
                 modifications.addResolveAlias(
                   'react-refresh/runtime',
                   require.resolve('react-refresh/runtime')
                 );
               }
+            );
+          } else {
+            console.log(
+              "Warning: You can't use React Refresh without @zero-scripts/plugin-webpack-babel. Please install this plugin or turn off `plugin-webpack-react.fastRefresh` option"
             );
           }
         }

@@ -6,11 +6,25 @@ export abstract class AbstractModificationsContainer<
   TConfig extends Record<string, any>,
   TOptionsContainer extends AbstractOptionsContainer
 > {
-  protected readonly modifications: ConfigModification<
-    TConfig,
-    any,
-    any
-  >[] = [];
+  protected modifications: ConfigModification<TConfig, any, any>[] = [];
+
+  public has(modificationId: string): boolean {
+    return this.modifications.some(
+      modification => modification.id === modificationId
+    );
+  }
+
+  public remove(modificationId: string): boolean {
+    if (this.has(modificationId)) {
+      this.modifications = this.modifications.filter(
+        modification => modification.id !== modificationId
+      );
+
+      return true;
+    }
+
+    return false;
+  }
 
   public applyAll(
     config: TConfig,

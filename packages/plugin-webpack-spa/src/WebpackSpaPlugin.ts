@@ -81,8 +81,10 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
 
             modifications.insertPlugin(
               new HotAcceptPlugin({
-                test: path.basename(paths.indexJs)
-              })
+                test: paths.indexJs
+              }),
+              undefined,
+              'hot-accept-plugin'
             );
           }
 

@@ -2892,6 +2892,7 @@ __metadata:
     eslint-plugin-react-hooks: ^4.2.0
     react-refresh: ^0.9.0
     webpack: ^5.10.0
+    webpack-hot-middleware: ^2.25.0
   peerDependencies:
     "@zero-scripts/core": ^1.0.0-alfa.0
     eslint: ^7.0.0
@@ -2938,7 +2939,7 @@ __metadata:
     clean-webpack-plugin: ^3.0.0
     copy-webpack-plugin: ^6.3.2
     express: ^4.17.1
-    hot-accept-webpack-plugin: ^1.1.2
+    hot-accept-webpack-plugin: 2.0.0-beta.0
     html-webpack-plugin: ^5.0.0-alpha.15
     open: ^7.3.0
     webpack: ^5.10.0
@@ -2979,10 +2980,9 @@ __metadata:
     "@types/terser-webpack-plugin": ^5.0.2
     "@zero-scripts/core": "workspace:*"
     file-loader: ^6.2.0
-    pnp-webpack-plugin: ^1.6.4
     terser-webpack-plugin: ^5.0.3
     webpack: ^5.10.0
-    webpack-assets-manifest: "github:webdeveric/webpack-assets-manifest#v5"
+    webpack-assets-manifest: 5.0.0
   peerDependencies:
     "@zero-scripts/core": ^1.0.0-alfa.0
     webpack: ^5.4.0
@@ -7032,17 +7032,14 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"hot-accept-webpack-plugin@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "hot-accept-webpack-plugin@npm:1.1.2"
+"hot-accept-webpack-plugin@npm:2.0.0-beta.0":
+  version: 2.0.0-beta.0
+  resolution: "hot-accept-webpack-plugin@npm:2.0.0-beta.0"
   dependencies:
-    modify-source-webpack-plugin: 1.0.1
+    modify-source-webpack-plugin: 2.0.0-beta.3
   peerDependencies:
-    webpack: ^4.0.0
-  peerDependenciesMeta:
-    webpack:
-      optional: true
-  checksum: a155105f9d235eedec1599a59af32373045546b9f8413108a442212bcd7b314381a97ad13303eb85b81bad7a32f64d07101bfbab5b20e47b548b9e98a70e9ad1
+    webpack: ^5.0.0
+  checksum: 9b23d3356f8586748acbfb3d7cf528777be10da56a399a832b7f43227d72f87821eed2ae9feefcd81dc1025af31b59a30b6b34058f30a6feaa79cac2b94a4ddf
   languageName: node
   linkType: hard
 
@@ -9420,15 +9417,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"modify-source-webpack-plugin@npm:1.0.1":
-  version: 1.0.1
-  resolution: "modify-source-webpack-plugin@npm:1.0.1"
+"modify-source-webpack-plugin@npm:2.0.0-beta.3":
+  version: 2.0.0-beta.3
+  resolution: "modify-source-webpack-plugin@npm:2.0.0-beta.3"
+  dependencies:
+    loader-utils: ^2.0.0
+    schema-utils: ^3.0.0
   peerDependencies:
-    webpack: ^4.0.0
-  peerDependenciesMeta:
-    webpack:
-      optional: true
-  checksum: 96acd0c23372448cdb2724136aec3ee46a545f69454789f8ee07ab7d8bb0ffe7ad319bcd0a7d15985d16ab5b36c5fd65269ab876a3c749160bf0b402d2bdf523
+    webpack: ^4.37.0 || ^5.0.0
+  checksum: 3cd90588dd881ad5aec7078b0ee13eb0e2172183044fcf82756488e77bfd2468056cf760fc6641e7a7da8bc65ecd46a2f7323bac55720e2f42bf8eac5b2f3b99
   languageName: node
   linkType: hard
 
@@ -10389,15 +10386,6 @@ fsevents@~2.1.2:
   dependencies:
     irregular-plurals: ^3.2.0
   checksum: 22e3ba41be31e5843decf0b68ce555b7750da3b8ba56e34fbe3abc775fa9428ecf263ef401a5d0962cface0290caf0132ddd87617f02fc41789bbb0fa2a010c1
-  languageName: node
-  linkType: hard
-
-"pnp-webpack-plugin@npm:^1.6.4":
-  version: 1.6.4
-  resolution: "pnp-webpack-plugin@npm:1.6.4"
-  dependencies:
-    ts-pnp: ^1.1.6
-  checksum: 39a484182f8fc08cb1420d4a5ccf16457c6498a4546bfbad9e00df7238ba7d98796e9aa6f82a4e803a627860409ffed491a55c5a1384e09bed60cefeb618586d
   languageName: node
   linkType: hard
 
@@ -13433,16 +13421,6 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"ts-pnp@npm:^1.1.6":
-  version: 1.2.0
-  resolution: "ts-pnp@npm:1.2.0"
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 78341a27939de565e2754ff65ebb689743c16e3295528089d143c08d91842cf9029c3d6b3c95a9a20854a114a7904329d02c710d63f7ce4dbf671b8a3e560ac1
-  languageName: node
-  linkType: hard
-
 "tsconfig-paths@npm:^3.9.0":
   version: 3.9.0
   resolution: "tsconfig-paths@npm:3.9.0"
@@ -13909,9 +13887,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"webpack-assets-manifest@github:webdeveric/webpack-assets-manifest#v5":
-  version: 4.0.0
-  resolution: "webpack-assets-manifest@https://github.com/webdeveric/webpack-assets-manifest.git#commit=50592978f44c8f7d8c7bd5dba2c93dff5f29f735"
+"webpack-assets-manifest@npm:5.0.0":
+  version: 5.0.0
+  resolution: "webpack-assets-manifest@npm:5.0.0"
   dependencies:
     chalk: ^4.0
     deepmerge: ^4.0
@@ -13923,7 +13901,7 @@ fsevents@~2.1.2:
     tapable: ^2.0
   peerDependencies:
     webpack: ^5.1.0
-  checksum: 362038f495e18a39c20b1298abad78ecb9f6d015e26dc3f2baa2a1eecd30973cd58f5086c94a5e1764d343a1588ce4a44ec246372deda2bae7d7fd6936f613f9
+  checksum: c93c6719e216bb04b8f1dd3091e4a0581d8ce5109b8b03b7cce5af6ba589f627a3a5fb30f37fb3e61e4646de566407ffd16835583a3b8ee893f91fafadaf060b
   languageName: node
   linkType: hard
 
