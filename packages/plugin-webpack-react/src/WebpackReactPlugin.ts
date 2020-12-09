@@ -62,7 +62,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                 }
               ]);
 
-              if (configOptions.isDev && pluginOptions.propTypes) {
+              if (!configOptions.isDev && pluginOptions.propTypes) {
                 optionsContainer.plugins.push([
                   rr('babel-plugin-transform-react-remove-prop-types'),
                   { removeImport: true }
@@ -150,7 +150,6 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                 // because react refresh do the same
                 if (modifications.has('hot-accept-plugin')) {
                   modifications.remove('hot-accept-plugin');
-                  console.log(modifications.has('hot-accept-plugin'));
                 }
 
                 modifications.addResolveAlias(
@@ -160,6 +159,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
               }
             );
           } else {
+            // eslint-disable-next-line no-console
             console.log(
               "Warning: You can't use React Refresh without @zero-scripts/plugin-webpack-babel. Please install this plugin or turn off `plugin-webpack-react.fastRefresh` option"
             );
