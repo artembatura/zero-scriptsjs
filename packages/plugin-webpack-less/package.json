@@ -36,6 +36,7 @@
     "less-loader": "^7.1.0"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.15",
     "@types/node": "^14.14.9",
     "@zero-scripts/core": "workspace:*",
     "less": "^3.12.2",

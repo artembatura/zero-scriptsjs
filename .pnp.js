@@ -232,6 +232,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@typescript-eslint/parser',
                     'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:4.9.0'
                   ],
+                  ['esbuild', 'npm:0.8.21'],
+                  [
+                    'esbuild-jest',
+                    'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0'
+                  ],
                   ['eslint', 'npm:7.14.0'],
                   [
                     'eslint-config-prettier',
@@ -263,10 +268,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:2.2.8'
                   ],
                   ['rimraf', 'npm:3.0.2'],
-                  [
-                    'ts-jest',
-                    'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4'
-                  ],
                   [
                     'typescript',
                     'patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730'
@@ -6984,6 +6985,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                 packageDependencies: [
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   ['@types/get-value', 'npm:3.0.1'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/mri', 'npm:1.1.0'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/normalize-package-data', 'npm:2.4.0'],
@@ -7077,6 +7079,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:4eb46286264f6728334ba424908c84b9fe6e4ef5af51431ba991b405ccc93ac9eb15ebaa0d64515a57916a87265baf89444eb2c9017b597907caca482f070309#npm:7.12.7'
                   ],
                   ['@babel/runtime', 'npm:7.12.5'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/typescript', null],
                   ['@types/webpack', null],
@@ -7151,6 +7154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:4eb46286264f6728334ba424908c84b9fe6e4ef5af51431ba991b405ccc93ac9eb15ebaa0d64515a57916a87265baf89444eb2c9017b597907caca482f070309#npm:7.12.7'
                   ],
                   ['@babel/runtime', 'npm:7.12.5'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/typescript', null],
                   ['@types/webpack', null],
@@ -7226,6 +7230,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:4eb46286264f6728334ba424908c84b9fe6e4ef5af51431ba991b405ccc93ac9eb15ebaa0d64515a57916a87265baf89444eb2c9017b597907caca482f070309#npm:7.12.7'
                   ],
                   ['@babel/runtime', 'npm:7.12.5'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/typescript', null],
                   ['@types/webpack', null],
@@ -7303,6 +7308,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:4eb46286264f6728334ba424908c84b9fe6e4ef5af51431ba991b405ccc93ac9eb15ebaa0d64515a57916a87265baf89444eb2c9017b597907caca482f070309#npm:7.12.7'
                   ],
                   ['@babel/runtime', 'npm:7.12.5'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -7341,6 +7347,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-css',
                     'virtual:232f234f410b285a9841a36350aa405f7894322b0b0f03131a57f250ece3ce179f75eb8502fb8ad9b9d50ba41e1c52e19c252b891aa7d20e9f95e99485316e8a#workspace:packages/plugin-webpack-css'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7377,6 +7384,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-css',
                     'virtual:28d8f2d5798f9ea81433b6737a24362ae0f67432a3a7b745a6f978bd40a74770748a591059166a0800e3fd5d81837c53b88b0b861c5b82ebac0cf8fdc72883ae#workspace:packages/plugin-webpack-css'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7411,6 +7419,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-css',
                     'workspace:packages/plugin-webpack-css'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -7445,6 +7454,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:28d8f2d5798f9ea81433b6737a24362ae0f67432a3a7b745a6f978bd40a74770748a591059166a0800e3fd5d81837c53b88b0b861c5b82ebac0cf8fdc72883ae#workspace:packages/plugin-webpack-eslint'
                   ],
                   ['@types/eslint', 'npm:7.2.6'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7483,6 +7493,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:334e844f5d0c7e5337cfbb9341cefea6339c0b9722eda3eba7fa0107beccc4b38eac330c81c447613564376c9fd5b0d722b0aabe2d2c0e1ddec5eb478365317d#workspace:packages/plugin-webpack-eslint'
                   ],
                   ['@types/eslint', 'npm:7.2.6'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7521,6 +7532,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'workspace:packages/plugin-webpack-eslint'
                   ],
                   ['@types/eslint', 'npm:7.2.6'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -7556,6 +7568,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-less',
                     'virtual:28d8f2d5798f9ea81433b6737a24362ae0f67432a3a7b745a6f978bd40a74770748a591059166a0800e3fd5d81837c53b88b0b861c5b82ebac0cf8fdc72883ae#workspace:packages/plugin-webpack-less'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/less', null],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
@@ -7598,6 +7611,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-less',
                     'virtual:89a8965439c0eafcdbd3a810d08e33a3ba27231ba12963f46287acb7efbbe4235e134c09220d998cb17caf8da590355ee7b9a9889b8cfda73aaa3a3c4f24fe57#workspace:packages/plugin-webpack-less'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/less', null],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
@@ -7641,6 +7655,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-less',
                     'workspace:packages/plugin-webpack-less'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -7679,6 +7694,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-pwa',
                     'virtual:28d8f2d5798f9ea81433b6737a24362ae0f67432a3a7b745a6f978bd40a74770748a591059166a0800e3fd5d81837c53b88b0b861c5b82ebac0cf8fdc72883ae#workspace:packages/plugin-webpack-pwa'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/workbox-webpack-plugin', 'npm:5.1.5'],
@@ -7714,6 +7730,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-pwa',
                     'workspace:packages/plugin-webpack-pwa'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/workbox-webpack-plugin', 'npm:5.1.5'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
@@ -7757,6 +7774,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@pmmmwh/react-refresh-webpack-plugin',
                     'virtual:334e844f5d0c7e5337cfbb9341cefea6339c0b9722eda3eba7fa0107beccc4b38eac330c81c447613564376c9fd5b0d722b0aabe2d2c0e1ddec5eb478365317d#npm:0.4.3'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7816,6 +7834,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@pmmmwh/react-refresh-webpack-plugin',
                     'virtual:334e844f5d0c7e5337cfbb9341cefea6339c0b9722eda3eba7fa0107beccc4b38eac330c81c447613564376c9fd5b0d722b0aabe2d2c0e1ddec5eb478365317d#npm:0.4.3'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7873,6 +7892,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@pmmmwh/react-refresh-webpack-plugin',
                     'virtual:334e844f5d0c7e5337cfbb9341cefea6339c0b9722eda3eba7fa0107beccc4b38eac330c81c447613564376c9fd5b0d722b0aabe2d2c0e1ddec5eb478365317d#npm:0.4.3'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -7920,6 +7940,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-sass',
                     'virtual:28d8f2d5798f9ea81433b6737a24362ae0f67432a3a7b745a6f978bd40a74770748a591059166a0800e3fd5d81837c53b88b0b861c5b82ebac0cf8fdc72883ae#workspace:packages/plugin-webpack-sass'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7959,6 +7980,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-sass',
                     'virtual:3bfe2093d66e60e99a25b982753b9ad6b0d74df8e6286d461480da5698544f8bfdf48561475d2bd80aebec570c8ea24f4fe592d88f7fbd136f8a9d475c8e9189#workspace:packages/plugin-webpack-sass'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -7998,6 +8020,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/plugin-webpack-sass',
                     'workspace:packages/plugin-webpack-sass'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -8046,6 +8069,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['@npmcli/ci-detect', 'npm:1.3.0'],
                   ['@types/connect', 'npm:3.4.33'],
                   ['@types/express', 'npm:4.17.9'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -8112,6 +8136,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['@npmcli/ci-detect', 'npm:1.3.0'],
                   ['@types/connect', 'npm:3.4.33'],
                   ['@types/express', 'npm:4.17.9'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/webpack', null],
                   ['@types/zero-scripts__core', null],
@@ -8176,6 +8201,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['@npmcli/ci-detect', 'npm:1.3.0'],
                   ['@types/connect', 'npm:3.4.33'],
                   ['@types/express', 'npm:4.17.9'],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
                   [
@@ -8228,6 +8254,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/utils-webpack-styles',
                     'virtual:5c17795c6a1426143f71cb6d19583e2f3c59928216f5cdaa837766f4bf028d51385277479fdc56ba7f8e2116cb78abfbc7a604fb3fd1ad091c499b783a379695#workspace:packages/utils-webpack-styles'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/loader-utils', 'npm:2.0.1'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/zero-scripts__core', null],
@@ -8285,6 +8312,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/utils-webpack-styles',
                     'workspace:packages/utils-webpack-styles'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/loader-utils', 'npm:2.0.1'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
@@ -8343,6 +8371,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/webpack-config',
                     'virtual:4eb46286264f6728334ba424908c84b9fe6e4ef5af51431ba991b405ccc93ac9eb15ebaa0d64515a57916a87265baf89444eb2c9017b597907caca482f070309#workspace:packages/webpack-config'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/terser-webpack-plugin', 'npm:5.0.2'],
                   ['@types/webpack', null],
@@ -8383,6 +8412,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@zero-scripts/webpack-config',
                     'workspace:packages/webpack-config'
                   ],
+                  ['@types/jest', 'npm:26.0.16'],
                   ['@types/node', 'npm:14.14.10'],
                   ['@types/terser-webpack-plugin', 'npm:5.0.2'],
                   ['@zero-scripts/core', 'workspace:packages/core'],
@@ -8427,6 +8457,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     '@typescript-eslint/parser',
                     'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:4.9.0'
                   ],
+                  ['esbuild', 'npm:0.8.21'],
+                  [
+                    'esbuild-jest',
+                    'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0'
+                  ],
                   ['eslint', 'npm:7.14.0'],
                   [
                     'eslint-config-prettier',
@@ -8458,10 +8493,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                     'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:2.2.8'
                   ],
                   ['rimraf', 'npm:3.0.2'],
-                  [
-                    'ts-jest',
-                    'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4'
-                  ],
                   [
                     'typescript',
                     'patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730'
@@ -10056,23 +10087,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['electron-to-chromium', 'npm:1.3.616'],
                   ['escalade', 'npm:3.1.1'],
                   ['node-releases', 'npm:1.1.67']
-                ],
-                linkType: 'HARD'
-              }
-            ]
-          ]
-        ],
-        [
-          'bs-logger',
-          [
-            [
-              'npm:0.2.6',
-              {
-                packageLocation:
-                  './.yarn/cache/bs-logger-npm-0.2.6-7670f88b66-f5f2f1315d.zip/node_modules/bs-logger/',
-                packageDependencies: [
-                  ['bs-logger', 'npm:0.2.6'],
-                  ['fast-json-stable-stringify', 'npm:2.1.0']
                 ],
                 linkType: 'HARD'
               }
@@ -12967,6 +12981,51 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['es6-promisify', 'npm:5.0.0'],
                   ['es6-promise', 'npm:4.2.8']
                 ],
+                linkType: 'HARD'
+              }
+            ]
+          ]
+        ],
+        [
+          'esbuild',
+          [
+            [
+              'npm:0.8.21',
+              {
+                packageLocation:
+                  './.yarn/unplugged/esbuild-npm-0.8.21-02329e4d75/node_modules/esbuild/',
+                packageDependencies: [['esbuild', 'npm:0.8.21']],
+                linkType: 'HARD'
+              }
+            ]
+          ]
+        ],
+        [
+          'esbuild-jest',
+          [
+            [
+              'npm:0.3.0',
+              {
+                packageLocation:
+                  './.yarn/cache/esbuild-jest-npm-0.3.0-aacac988f6-078a9d217e.zip/node_modules/esbuild-jest/',
+                packageDependencies: [['esbuild-jest', 'npm:0.3.0']],
+                linkType: 'SOFT'
+              }
+            ],
+            [
+              'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0',
+              {
+                packageLocation:
+                  './.yarn/$$virtual/esbuild-jest-virtual-c4aa8e9cab/0/cache/esbuild-jest-npm-0.3.0-aacac988f6-078a9d217e.zip/node_modules/esbuild-jest/',
+                packageDependencies: [
+                  [
+                    'esbuild-jest',
+                    'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0'
+                  ],
+                  ['@types/esbuild', null],
+                  ['esbuild', 'npm:0.8.21']
+                ],
+                packagePeers: ['@types/esbuild', 'esbuild'],
                 linkType: 'HARD'
               }
             ]
@@ -19537,20 +19596,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['make-dir', 'npm:3.1.0'],
                   ['semver', 'npm:6.3.0']
                 ],
-                linkType: 'HARD'
-              }
-            ]
-          ]
-        ],
-        [
-          'make-error',
-          [
-            [
-              'npm:1.3.6',
-              {
-                packageLocation:
-                  './.yarn/cache/make-error-npm-1.3.6-ccb85d9458-2c780bab84.zip/node_modules/make-error/',
-                packageDependencies: [['make-error', 'npm:1.3.6']],
                 linkType: 'HARD'
               }
             ]
@@ -27178,57 +27223,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ]
         ],
         [
-          'ts-jest',
-          [
-            [
-              'npm:26.4.4',
-              {
-                packageLocation:
-                  './.yarn/cache/ts-jest-npm-26.4.4-6fd34d9b91-bee46b789c.zip/node_modules/ts-jest/',
-                packageDependencies: [['ts-jest', 'npm:26.4.4']],
-                linkType: 'SOFT'
-              }
-            ],
-            [
-              'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4',
-              {
-                packageLocation:
-                  './.yarn/$$virtual/ts-jest-virtual-dca31cfc7f/0/cache/ts-jest-npm-26.4.4-6fd34d9b91-bee46b789c.zip/node_modules/ts-jest/',
-                packageDependencies: [
-                  [
-                    'ts-jest',
-                    'virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4'
-                  ],
-                  ['@types/jest', 'npm:26.0.16'],
-                  ['@types/typescript', null],
-                  ['bs-logger', 'npm:0.2.6'],
-                  ['buffer-from', 'npm:1.1.1'],
-                  ['fast-json-stable-stringify', 'npm:2.1.0'],
-                  ['jest', 'npm:26.6.3'],
-                  ['jest-util', 'npm:26.6.2'],
-                  ['json5', 'npm:2.1.3'],
-                  ['lodash.memoize', 'npm:4.1.2'],
-                  ['make-error', 'npm:1.3.6'],
-                  ['mkdirp', 'npm:1.0.4'],
-                  ['semver', 'npm:7.3.4'],
-                  [
-                    'typescript',
-                    'patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730'
-                  ],
-                  ['yargs-parser', 'npm:20.2.4']
-                ],
-                packagePeers: [
-                  '@types/jest',
-                  '@types/typescript',
-                  'jest',
-                  'typescript'
-                ],
-                linkType: 'HARD'
-              }
-            ]
-          ]
-        ],
-        [
           'tsconfig-paths',
           [
             [
@@ -29030,15 +29024,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
                   ['camelcase', 'npm:5.3.1'],
                   ['decamelize', 'npm:1.2.0']
                 ],
-                linkType: 'HARD'
-              }
-            ],
-            [
-              'npm:20.2.4',
-              {
-                packageLocation:
-                  './.yarn/cache/yargs-parser-npm-20.2.4-1de20916a6-00dd0f23b6.zip/node_modules/yargs-parser/',
-                packageDependencies: [['yargs-parser', 'npm:20.2.4']],
                 linkType: 'HARD'
               }
             ]
