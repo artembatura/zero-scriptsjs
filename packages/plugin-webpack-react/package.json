@@ -34,10 +34,6 @@
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-plugin-named-asset-import": "^0.3.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "react-refresh": "^0.9.0",
     "webpack-hot-middleware": "^2.25.0"
   },
@@ -48,13 +44,7 @@
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
-    "eslint": "^7.0.0",
     "webpack": "^5.4.0"
-  },
-  "peerDependenciesMeta": {
-    "eslint": {
-      "optional": true
-    }
   },
   "optionalDependencies": {
     "@zero-scripts/plugin-webpack-babel": "workspace:*",

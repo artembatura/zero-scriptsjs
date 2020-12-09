@@ -39,7 +39,11 @@
   "devDependencies": {
     "@types/loader-utils": "^2.0.1",
     "@types/node": "^14.14.9",
+    "@zero-scripts/core": "workspace:*",
     "webpack": "^5.10.0"
+  },
+  "peerDependencies": {
+    "@zero-scripts/core": "^1.0.0-alfa.0"
   },
   "publishConfig": {
     "access": "public"

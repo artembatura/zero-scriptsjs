@@ -90,25 +90,31 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           eslintPlugin.optionsContainer.hooks.beforeBuild.tap(
             'WebpackReactPlugin',
             optionsContainer => {
-              optionsContainer.extends.push(rr('eslint-config-react-app'));
+              const baseConfig = optionsContainer.baseEslintConfig;
+
+              baseConfig.extends = baseConfig.extends || [];
+
+              if (Array.isArray(baseConfig.extends)) {
+                baseConfig.extends.push('eslint-config-react-app');
+              }
 
               if (useNewJsxTransform) {
-                optionsContainer.rules = {
-                  ...optionsContainer.rules,
+                baseConfig.rules = {
+                  ...(baseConfig.rules || {}),
                   'react/jsx-uses-react': 'off',
                   'react/react-in-jsx-scope': 'off'
                 };
               }
 
-              optionsContainer.parserOptions = {
-                ...optionsContainer.parserOptions,
+              baseConfig.parserOptions = {
+                ...(baseConfig.parserOptions || {}),
                 ecmaFeatures: {
                   jsx: true
                 }
               };
 
-              optionsContainer.settings = {
-                ...optionsContainer.settings,
+              baseConfig.settings = {
+                ...(baseConfig.settings || {}),
                 react: {
                   version: 'detect'
                 }

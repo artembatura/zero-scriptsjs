@@ -13,11 +13,9 @@
   "devDependencies": {
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-sass": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
-    "eslint": "^7.14.0",
     "sass": "1.29.0",
     "webpack": "^5.10.0"
   },

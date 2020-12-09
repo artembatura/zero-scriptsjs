@@ -1,6 +1,7 @@
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import type { Compiler } from 'webpack';
 
+import { ExtractOptions } from '@zero-scripts/core';
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 let pluginInstance: OptimizeCSSAssetsPlugin | null = null;
@@ -10,7 +11,7 @@ interface WebpackPlugin {
 }
 
 export function getOptimizeCSSAssetsPlugin(
-  configOptions: WebpackConfigOptions
+  configOptions: ExtractOptions<WebpackConfigOptions>
 ): WebpackPlugin {
   if (!pluginInstance) {
     pluginInstance = new OptimizeCSSAssetsPlugin({

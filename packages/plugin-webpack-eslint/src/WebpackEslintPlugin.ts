@@ -1,13 +1,13 @@
 import ESLintPlugin from 'eslint-webpack-plugin';
-import { Options } from 'eslint-webpack-plugin/declarations/options';
+import fs from 'fs';
+import path from 'path';
 
 import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
+import { getBaseEslintConfig } from './getBaseEslintConfig';
 import { getEslintRcPath } from './getEslintRcPath';
 import { WebpackEslintPluginOptions } from './WebpackEslintPluginOptions';
-
-const rr = require.resolve;
 
 @ReadOptions(WebpackEslintPluginOptions, 'plugin-webpack-eslint')
 export class WebpackEslintPlugin extends AbstractPlugin<WebpackEslintPluginOptions> {
@@ -19,67 +19,46 @@ export class WebpackEslintPlugin extends AbstractPlugin<WebpackEslintPluginOptio
 
         config.hooks.build.tap(
           'WebpackEslintPlugin',
-          (modifications, { jsFileExtensions, paths }) => {
+          (modifications, configOptions) => {
+            const { jsFileExtensions, paths } = configOptions;
             const pluginOptions = this.optionsContainer.build();
 
             const eslintRcConfig = getEslintRcPath(paths.root);
 
+            if (!eslintRcConfig) {
+              const baseEslintConfig = getBaseEslintConfig(
+                pluginOptions.baseEslintConfig,
+                configOptions
+              );
+
+              const eslintConfigPath = path.resolve(
+                paths.root,
+                '.eslintrc.json'
+              );
+
+              fs.writeFileSync(
+                eslintConfigPath,
+                JSON.stringify(baseEslintConfig, null, 2)
+              );
+
+              // TODO: check if packages declared in eslint config
+              // is not installed to node_modules - ask user to install it
+              // if user will decline it, disable eslint to prevent build crash
+
+              // TODO: if option `regenerateIfNotEqual` is true
+              // check eslint config and regenerate it if something is not equal
+              // useful when some plugins added which adds some eslint settings
+              // and this plugin will replace old plugin with new updated
+            }
+
             modifications.insertPlugin(
               new ESLintPlugin({
-                // Plugin options
                 extensions: jsFileExtensions,
-                formatter: rr('eslint-formatter-pretty'),
-                eslintPath: rr('eslint'),
-                overrideConfigFile: eslintRcConfig,
-                useEslintrc: false,
+                formatter: require.resolve('eslint-formatter-pretty'),
                 context: paths.src,
                 cache: true,
-                // ESLint class options
-                cwd: paths.root,
-                resolvePluginsRelativeTo: __dirname,
-                baseConfig: {
-                  parser: rr('babel-eslint'),
-                  extends: ['eslint:recommended', ...pluginOptions.extends],
-                  plugins: ['import', ...pluginOptions.plugins],
-                  parserOptions: {
-                    ecmaVersion: 9,
-                    sourceType: 'module',
-                    ...pluginOptions.parserOptions
-                  },
-                  settings: pluginOptions.settings,
-                  env: {
-                    browser: true,
-                    node: true,
-                    ...pluginOptions.env
-                  },
-                  rules: {
-                    'no-unused-vars': 'warn',
-                    'no-console': 'warn',
-                    ...pluginOptions.rules
-                  },
-                  overrides: [
-                    {
-                      files: ['*.ts', '*.tsx'],
-                      parser: rr('@typescript-eslint/parser'),
-                      plugins: ['@typescript-eslint'],
-                      rules: {
-                        'no-undef': 'off',
-                        'no-unused-vars': 'off',
-                        'no-restricted-globals': 'off',
-                        'no-use-before-define': 'off',
-                        '@typescript-eslint/no-unused-vars': [
-                          'warn',
-                          {
-                            vars: 'all',
-                            args: 'after-used',
-                            ignoreRestSiblings: false
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              } as Options)
+                cwd: paths.root
+              })
             );
           }
         );

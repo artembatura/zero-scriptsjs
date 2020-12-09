@@ -70,7 +70,7 @@ export abstract class AbstractOptionsContainer<
         )
       ) {
         throw new Error(
-          `Must need to use @Option decorator on your ${this.constructor.name} properties`
+          `Must need to use @Option decorator on your ${this.constructor.name}.${optionKey} property`
         );
       }
 

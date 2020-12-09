@@ -1,5 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
+import { ExtractOptions } from '@zero-scripts/core';
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 const rr = require.resolve;
@@ -18,7 +19,10 @@ export function getStyleLoaders(
         options?: Record<string, unknown>;
       }
 ) {
-  return ({ isDev, useSourceMap }: WebpackConfigOptions): Array<any> => {
+  return ({
+    isDev,
+    useSourceMap
+  }: ExtractOptions<WebpackConfigOptions>): Array<any> => {
     const customCssLoader =
       typeof cssLoader === 'object' ? cssLoader.loader : cssLoader;
 
