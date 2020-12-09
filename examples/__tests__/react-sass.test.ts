@@ -16,7 +16,7 @@ describe('example:react-sass', () => {
 
     const process = run(workPath, [
       'start',
-      '--',
+
       '--port',
       devServerPort.toString(),
       '--smokeTest'
@@ -61,7 +61,7 @@ describe('example:react-sass', () => {
   });
 
   it('run watch', async () => {
-    const process = run(workPath, ['watch', '--', '--smokeTest']);
+    const process = run(workPath, ['watch', '--smokeTest']);
 
     const output = await readProcessOutput(process);
 
