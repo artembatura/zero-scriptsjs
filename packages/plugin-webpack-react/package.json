@@ -30,7 +30,6 @@
   "dependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@zero-scripts/webpack-config": "workspace:*",
-    "react-refresh": "^0.9.0",
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
@@ -43,10 +42,14 @@
   "peerDependencies": {
     "@svgr/webpack": "^5.0.1",
     "@zero-scripts/core": "^1.0.0-alfa.0",
+    "react-refresh": "^0.9.0",
     "webpack": "^5.4.0"
   },
   "peerDependenciesMeta": {
     "@svgr/webpack": {
+      "optional": true
+    },
+    "react-refresh": {
       "optional": true
     }
   },

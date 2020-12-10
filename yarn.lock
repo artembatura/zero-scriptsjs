@@ -3046,12 +3046,12 @@ __metadata:
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-eslint": "workspace:*"
     "@zero-scripts/webpack-config": "workspace:*"
-    react-refresh: ^0.9.0
     webpack: ^5.10.0
     webpack-hot-middleware: ^2.25.0
   peerDependencies:
     "@svgr/webpack": ^5.0.1
     "@zero-scripts/core": ^1.0.0-alfa.0
+    react-refresh: ^0.9.0
     webpack: ^5.4.0
   dependenciesMeta:
     "@zero-scripts/plugin-webpack-babel":
@@ -3060,6 +3060,8 @@ __metadata:
       optional: true
   peerDependenciesMeta:
     "@svgr/webpack":
+      optional: true
+    react-refresh:
       optional: true
   languageName: unknown
   linkType: soft
@@ -6154,6 +6156,7 @@ __metadata:
     babel-plugin-named-asset-import: ^0.3.7
     react: 17.x
     react-dom: 17.x
+    react-refresh: ^0.9.0
     webpack: ^5.10.0
   languageName: unknown
   linkType: soft

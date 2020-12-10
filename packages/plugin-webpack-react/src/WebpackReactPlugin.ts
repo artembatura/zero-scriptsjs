@@ -132,7 +132,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
               'WebpackReactPlugin::addFastRefreshLoader',
               optionsContainer => {
-                optionsContainer.baseBabelConfig.plugins?.push(
+                optionsContainer.baseBabelConfig.plugins.push(
                   'react-refresh/babel'
                 );
               }
@@ -155,11 +155,6 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                 if (modifications.has('hot-accept-plugin')) {
                   modifications.remove('hot-accept-plugin');
                 }
-
-                modifications.addResolveAlias(
-                  'react-refresh/runtime',
-                  require.resolve('react-refresh/runtime')
-                );
               }
             );
           } else {

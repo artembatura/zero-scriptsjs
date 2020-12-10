@@ -24,6 +24,7 @@
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
     "babel-plugin-named-asset-import": "^0.3.7",
+    "react-refresh": "^0.9.0",
     "webpack": "^5.10.0"
   },
   "zero-scripts": {
