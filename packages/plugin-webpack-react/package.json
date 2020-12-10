@@ -38,14 +38,21 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.9",
     "@zero-scripts/core": "workspace:*",
     "webpack": "^5.10.0"
   },
   "peerDependencies": {
+    "@svgr/webpack": "^5.0.1",
     "@zero-scripts/core": "^1.0.0-alfa.0",
     "webpack": "^5.4.0"
+  },
+  "peerDependenciesMeta": {
+    "@svgr/webpack": {
+      "optional": true
+    }
   },
   "optionalDependencies": {
     "@zero-scripts/plugin-webpack-babel": "workspace:*",

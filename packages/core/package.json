@@ -52,15 +52,41 @@
     "@types/set-value": "^2.0.0",
     "utility-types": "^3.10.0"
   },
-  "optionalDependencies": {
-    "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-css": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
-    "@zero-scripts/plugin-webpack-less": "workspace:*",
-    "@zero-scripts/plugin-webpack-pwa": "workspace:*",
-    "@zero-scripts/plugin-webpack-react": "workspace:*",
-    "@zero-scripts/plugin-webpack-sass": "workspace:*",
-    "@zero-scripts/plugin-webpack-spa": "workspace:*"
+  "peerDependencies": {
+    "@zero-scripts/plugin-webpack-babel": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-css": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-eslint": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-less": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-pwa": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-react": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-sass": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-spa": "^1.0.0-alfa.0"
+  },
+  "peerDependenciesMeta": {
+    "@zero-scripts/plugin-webpack-babel": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-css": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-eslint": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-less": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-pwa": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-react": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-sass": {
+      "optional": true
+    },
+    "@zero-scripts/plugin-webpack-spa": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

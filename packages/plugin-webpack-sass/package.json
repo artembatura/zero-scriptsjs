@@ -44,7 +44,13 @@
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
+    "sass": "^1.25.0",
     "webpack": "^5.4.0"
+  },
+  "peerDependenciesMeta": {
+    "sass": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

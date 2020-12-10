@@ -19,7 +19,6 @@ describe('example:react-svg-component', () => {
 
     const process = run(workPath, [
       'start',
-
       '--port',
       devServerPort.toString(),
       '--smokeTest'

@@ -16,7 +16,6 @@ describe('example:react-typescript', () => {
 
     const process = run(workPath, [
       'start',
-
       '--port',
       devServerPort.toString(),
       '--smokeTest'

@@ -16,7 +16,6 @@ describe('example:react-fast-refresh', () => {
 
     const process = run(workPath, [
       'start',
-
       '--port',
       devServerPort.toString(),
       '--smokeTest'

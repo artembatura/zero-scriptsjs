@@ -16,7 +16,6 @@ describe('example:spa-import-json', () => {
 
     const process = run(workPath, [
       'start',
-
       '--port',
       devServerPort.toString(),
       '--smokeTest'
