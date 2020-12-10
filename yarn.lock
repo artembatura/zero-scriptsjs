@@ -59,6 +59,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/core@npm:^7.12.0":
+  version: 7.12.10
+  resolution: "@babel/core@npm:7.12.10"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/generator": ^7.12.10
+    "@babel/helper-module-transforms": ^7.12.1
+    "@babel/helpers": ^7.12.5
+    "@babel/parser": ^7.12.10
+    "@babel/template": ^7.12.7
+    "@babel/traverse": ^7.12.10
+    "@babel/types": ^7.12.10
+    convert-source-map: ^1.7.0
+    debug: ^4.1.0
+    gensync: ^1.0.0-beta.1
+    json5: ^2.1.2
+    lodash: ^4.17.19
+    semver: ^5.4.1
+    source-map: ^0.5.0
+  checksum: 4d7b892764009b80ac36b193ee37dd27a04244113dfa7510a937e81999e4b0f8ad3237f809792975abab5e07b44a7f7c36bb21e6f9957cdf54cd91cbf149c411
+  languageName: node
+  linkType: hard
+
 "@babel/eslint-parser@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/eslint-parser@npm:7.12.1"
@@ -70,6 +93,17 @@ __metadata:
     "@babel/core": ">=7.11.0"
     eslint: ">=7.5.0"
   checksum: 4037a62f6a67fbd93a9413312d7365bf9834bd3461f397341bb5460ed57305220093c3023b42e54e7ddfb4d21298b6f29866828173215b41029c12d885ea338e
+  languageName: node
+  linkType: hard
+
+"@babel/generator@npm:^7.12.10":
+  version: 7.12.10
+  resolution: "@babel/generator@npm:7.12.10"
+  dependencies:
+    "@babel/types": ^7.12.10
+    jsesc: ^2.5.1
+    source-map: ^0.5.0
+  checksum: ddd59efc33e328c6b2c042d14d86b6d8e391bf6512195cce62361bfaf1b74ed15f98b69223b9bc33ac4b1e33557c31675bcc1fb8255de640f1506c7a6e88be2a
   languageName: node
   linkType: hard
 
@@ -392,6 +426,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/parser@npm:^7.12.10":
+  version: 7.12.10
+  resolution: "@babel/parser@npm:7.12.10"
+  bin:
+    parser: ./bin/babel-parser.js
+  checksum: b21b51c2c5b6da559b70337a9fa0cf77da52f9ba70755bed5e41d04fa4b7d043a51a58ff6c0cb110ff80f5e204310afec0596dd8f841542ac3c41d6a1cf0bd0d
+  languageName: node
+  linkType: hard
+
 "@babel/plugin-proposal-async-generator-functions@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-proposal-async-generator-functions@npm:7.12.1"
@@ -627,17 +670,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 832e007319bc5040818012d51eb91c3ad4c38a1ea696e9a9805df4d601d8c4f061032cb61494946e7bdaa5db0422a6bb6f39577cd0e5c8323b6bb2c364406dcb
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-syntax-flow@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/plugin-syntax-flow@npm:7.12.1"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.10.4
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: a73ff1564c89e10f90c18300083db59b0367436aa234f2e9de2c77c538db2ea7666ba565b788f969d00d1f234881e4231d9deea5346100dbe970fbb7eb4af7fd
   languageName: node
   linkType: hard
 
@@ -883,18 +915,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-flow-strip-types@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/plugin-transform-flow-strip-types@npm:7.12.1"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.10.4
-    "@babel/plugin-syntax-flow": ^7.12.1
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 0c69d33f8a6b56c8643ed3bd9b0a117176a6b08d40ce0faf21782c57f4f1402e7e53e460dc6d114a9e48a248cbd0e07f8318e44a32f8d6217a5f3517d0f5f417
-  languageName: node
-  linkType: hard
-
 "@babel/plugin-transform-for-of@npm:^7.12.1":
   version: 7.12.1
   resolution: "@babel/plugin-transform-for-of@npm:7.12.1"
@@ -1085,28 +1105,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-react-jsx-self@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/plugin-transform-react-jsx-self@npm:7.12.1"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.10.4
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 89401f14f3ca08e8d4e3fe9ba91f09f6ad10e7f2636e7c569a392876ca04a376289b36e4a2853869d8c62de2ab08961574ee5b9d97542f933fd845ca246f5f85
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-transform-react-jsx-source@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/plugin-transform-react-jsx-source@npm:7.12.1"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.10.4
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: d5fd8818ad8539e1d74541185b038c952fc8a6a3179b0bcac9ee5644f0bba260ab57335d736b11838bb19b5078cbf5c14bdd5c93927b96e359ccb5414f4a9488
-  languageName: node
-  linkType: hard
-
 "@babel/plugin-transform-react-jsx@npm:^7.12.10":
   version: 7.12.10
   resolution: "@babel/plugin-transform-react-jsx@npm:7.12.10"
@@ -1118,20 +1116,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 5db7c48207b82d1702f392354ca9b9435257fd9b066bc2b27c574c835ad7b454315d195e4c534270ca5cb8ca1420d107856d079ad48ad92deae776070caa4e1e
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-transform-react-jsx@npm:^7.12.7":
-  version: 7.12.7
-  resolution: "@babel/plugin-transform-react-jsx@npm:7.12.7"
-  dependencies:
-    "@babel/helper-builder-react-jsx": ^7.10.4
-    "@babel/helper-builder-react-jsx-experimental": ^7.12.4
-    "@babel/helper-plugin-utils": ^7.10.4
-    "@babel/plugin-syntax-jsx": ^7.12.1
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 339913d119315442730a8380a8ee27c7fd2fc88800df4d8d380e2515c68f7f4452888fd37ef817dfdd82192387ddb848a363df2ee0d57b5fbe69c58916af83f6
   languageName: node
   linkType: hard
 
@@ -1170,16 +1154,15 @@ __metadata:
   linkType: hard
 
 "@babel/plugin-transform-runtime@npm:^7.12.1":
-  version: 7.12.1
-  resolution: "@babel/plugin-transform-runtime@npm:7.12.1"
+  version: 7.12.10
+  resolution: "@babel/plugin-transform-runtime@npm:7.12.10"
   dependencies:
-    "@babel/helper-module-imports": ^7.12.1
+    "@babel/helper-module-imports": ^7.12.5
     "@babel/helper-plugin-utils": ^7.10.4
-    resolve: ^1.8.1
     semver: ^5.5.1
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 94d88c1349e1fe66b07a08346e0312788d33f2a266074d1591e32879964c2a3db113c166e698ec77396d616a7787e4501b34be541fa0debd4714718d0dc254a8
+  checksum: 53999e7f123d6f921a6750307d29bb5f3f74a5391c7c5a950a91d34c6784b19e8e808b121dba108246c2b5026510fb5220fc7940fbcbd6c9ff1606ee88995843
   languageName: node
   linkType: hard
 
@@ -1286,7 +1269,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.12.1":
+"@babel/preset-env@npm:^7.12.1, @babel/preset-env@npm:^7.12.7":
   version: 7.12.10
   resolution: "@babel/preset-env@npm:7.12.10"
   dependencies:
@@ -1362,7 +1345,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-env@npm:^7.12.7, @babel/preset-env@npm:^7.8.4":
+"@babel/preset-env@npm:^7.8.4":
   version: 7.12.7
   resolution: "@babel/preset-env@npm:7.12.7"
   dependencies:
@@ -1453,7 +1436,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-react@npm:^7.12.5":
+"@babel/preset-react@npm:^7.12.5, @babel/preset-react@npm:^7.12.7":
   version: 7.12.10
   resolution: "@babel/preset-react@npm:7.12.10"
   dependencies:
@@ -1465,23 +1448,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 3afd3d01911d330d120cab571c04cf78a083407639c506515a7e7c142881822e3e20d934b43d538bf73d38c44f4fba1f92f6a83728b42d491363d2a8896acffc
-  languageName: node
-  linkType: hard
-
-"@babel/preset-react@npm:^7.12.7":
-  version: 7.12.7
-  resolution: "@babel/preset-react@npm:7.12.7"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.10.4
-    "@babel/plugin-transform-react-display-name": ^7.12.1
-    "@babel/plugin-transform-react-jsx": ^7.12.7
-    "@babel/plugin-transform-react-jsx-development": ^7.12.7
-    "@babel/plugin-transform-react-jsx-self": ^7.12.1
-    "@babel/plugin-transform-react-jsx-source": ^7.12.1
-    "@babel/plugin-transform-react-pure-annotations": ^7.12.1
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 78ba8ef31826136eb250a07cc50a81f4f802902484b0591b87adb4cb3f51903782118e5d9d47815afcc8d98d67226d5d18afb591fcca06802cf3b58544fdfb20
   languageName: node
   linkType: hard
 
@@ -1542,6 +1508,23 @@ __metadata:
     globals: ^11.1.0
     lodash: ^4.17.19
   checksum: 6797d3f42d3d27ba596c864c76b81a234a6df3c3079bf03207bdef56bff866e001135a271b114d9869ab78984f4408cb7252940ca0986ca40f2281b1626a5391
+  languageName: node
+  linkType: hard
+
+"@babel/traverse@npm:^7.12.10":
+  version: 7.12.10
+  resolution: "@babel/traverse@npm:7.12.10"
+  dependencies:
+    "@babel/code-frame": ^7.10.4
+    "@babel/generator": ^7.12.10
+    "@babel/helper-function-name": ^7.10.4
+    "@babel/helper-split-export-declaration": ^7.11.0
+    "@babel/parser": ^7.12.10
+    "@babel/types": ^7.12.10
+    debug: ^4.1.0
+    globals: ^11.1.0
+    lodash: ^4.17.19
+  checksum: 63e8500aed71da6fba8058751298c3bc1b54628585fb27047cbf2c0ed66df03f19e6b0fa9a8809bbb5131c27464b4ce950753479ef4333759fe5a400ae954956
   languageName: node
   linkType: hard
 
@@ -2164,7 +2147,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__core@npm:^7.0.0, @types/babel__core@npm:^7.1.7":
+"@types/babel__core@npm:^7.0.0, @types/babel__core@npm:^7.1.12, @types/babel__core@npm:^7.1.7":
   version: 7.1.12
   resolution: "@types/babel__core@npm:7.1.12"
   dependencies:
@@ -2931,15 +2914,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zero-scripts/plugin-webpack-babel@workspace:packages/plugin-webpack-babel"
   dependencies:
-    "@babel/core": ^7.12.9
-    "@babel/plugin-proposal-class-properties": ^7.12.1
-    "@babel/plugin-proposal-decorators": ^7.12.1
-    "@babel/plugin-syntax-dynamic-import": ^7.8.3
-    "@babel/plugin-transform-flow-strip-types": ^7.12.1
-    "@babel/plugin-transform-runtime": ^7.12.1
-    "@babel/preset-env": ^7.12.7
-    "@babel/preset-typescript": ^7.12.7
-    "@babel/runtime": ^7.12.5
+    "@babel/core": ^7.12.0
+    "@types/babel__core": ^7.1.12
     "@types/jest": ^26.0.15
     "@types/node": ^14.14.9
     "@zero-scripts/core": "workspace:*"
@@ -3037,8 +3013,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@zero-scripts/plugin-webpack-react@workspace:packages/plugin-webpack-react"
   dependencies:
-    "@babel/core": ^7.12.9
-    "@babel/preset-react": ^7.12.7
     "@pmmmwh/react-refresh-webpack-plugin": ^0.4.3
     "@svgr/webpack": ^5.5.0
     "@types/jest": ^26.0.15
@@ -3047,8 +3021,6 @@ __metadata:
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-eslint": "workspace:*"
     "@zero-scripts/webpack-config": "workspace:*"
-    babel-plugin-named-asset-import: ^0.3.7
-    babel-plugin-transform-react-remove-prop-types: ^0.4.24
     react-refresh: ^0.9.0
     webpack: ^5.10.0
     webpack-hot-middleware: ^2.25.0
@@ -3815,13 +3787,6 @@ __metadata:
     babel-plugin-syntax-object-rest-spread: ^6.8.0
     babel-runtime: ^6.26.0
   checksum: 1d8ff820576afd78850081dc71e36f77be08484b502a8fe87b959bad4463581bd0731c605b09307cd3ffabeb372c70524c0f8a303dc99c4d15085f84c06f26e3
-  languageName: node
-  linkType: hard
-
-"babel-plugin-transform-react-remove-prop-types@npm:^0.4.24":
-  version: 0.4.24
-  resolution: "babel-plugin-transform-react-remove-prop-types@npm:0.4.24"
-  checksum: 4004ce6c87bd49223f996a4d0b98312083e7bd40d7cfb04711936001b31fd01502b7eea0b94c9116fb384668cdbe114e1866d79c25b72ad0d6cd2f32819c1094
   languageName: node
   linkType: hard
 
@@ -6107,11 +6072,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-16@workspace:examples/react-16"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     react: 16.13.1
     react-dom: 16.13.1
     webpack: ^5.10.0
@@ -6122,12 +6095,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-astroturf@workspace:examples/react-astroturf"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
     astroturf: 0.10.5
+    babel-plugin-named-asset-import: ^0.3.7
     react: 17.x
     react-dom: 17.x
     webpack: ^5.10.0
@@ -6140,12 +6121,19 @@ __metadata:
   dependencies:
     "@babel/core": ^7.12.9
     "@babel/eslint-parser": ^7.12.1
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-eslint": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     eslint: ^7.14.0
     eslint-config-react-app: ^6.0.0
     eslint-plugin-flowtype: ^5.2.0
@@ -6163,11 +6151,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-fast-refresh@workspace:examples/react-fast-refresh"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     react: 17.x
     react-dom: 17.x
     webpack: ^5.10.0
@@ -6178,11 +6174,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-less@workspace:examples/react-less"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-less": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     less: 3.12.2
     react: 17.x
     react-dom: 17.x
@@ -6194,11 +6198,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-sass@workspace:examples/react-sass"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-sass": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     react: 17.x
     react-dom: 17.x
     sass: 1.29.0
@@ -6210,12 +6222,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-svg-component@workspace:examples/react-svg-component"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@svgr/webpack": ^5.4.0
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     react: 17.x
     react-dom: 17.x
     webpack: ^5.10.0
@@ -6226,6 +6246,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react-typescript@workspace:examples/react-typescript"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-proposal-decorators": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/preset-typescript": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
     "@zero-scripts/core": "workspace:*"
@@ -6233,6 +6262,7 @@ __metadata:
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     fork-ts-checker-webpack-plugin: 5.1.0
     react: 17.x
     react-dom: 17.x
@@ -6245,11 +6275,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-react@workspace:examples/react"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/preset-react": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    babel-plugin-named-asset-import: ^0.3.7
     react: 17.x
     react-dom: 17.x
     webpack: ^5.10.0
@@ -6260,6 +6298,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example-spa-import-json@workspace:examples/spa-import-json"
   dependencies:
+    "@babel/core": ^7.12.9
+    "@babel/plugin-proposal-class-properties": ^7.12.1
+    "@babel/plugin-syntax-dynamic-import": ^7.8.3
+    "@babel/plugin-transform-runtime": ^7.12.1
+    "@babel/preset-env": ^7.12.7
+    "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-css": "workspace:*"
@@ -12091,7 +12135,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"resolve@^1.10.0, resolve@^1.11.1, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.3.2, resolve@^1.8.1":
+"resolve@^1.10.0, resolve@^1.11.1, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.18.1, resolve@^1.3.2":
   version: 1.19.0
   resolution: "resolve@npm:1.19.0"
   dependencies:
@@ -12101,7 +12145,7 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.11.1#builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>, resolve@patch:resolve@^1.8.1#builtin<compat/resolve>":
+"resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.11.1#builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#builtin<compat/resolve>":
   version: 1.19.0
   resolution: "resolve@patch:resolve@npm%3A1.19.0#builtin<compat/resolve>::version=1.19.0&hash=3388aa"
   dependencies:

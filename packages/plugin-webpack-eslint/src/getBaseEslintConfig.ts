@@ -4,12 +4,12 @@ import { ExtractOptions } from '@zero-scripts/core';
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 export function getBaseEslintConfig(
-  baseConfig?: Linter.Config,
-  webpackConfigOptions?: ExtractOptions<WebpackConfigOptions>
+  configOptions: ExtractOptions<WebpackConfigOptions>,
+  baseConfig: Linter.Config
 ): Linter.Config {
   const overrides = baseConfig?.overrides || [];
 
-  if (webpackConfigOptions?.useTypescript) {
+  if (configOptions?.useTypescript) {
     overrides.unshift({
       files: ['*.ts', '*.tsx'],
       parser: '@typescript-eslint/parser',
@@ -33,23 +33,23 @@ export function getBaseEslintConfig(
 
   return {
     ...baseConfig,
-    parser: baseConfig?.parser || '@babel/eslint-parser',
-    extends: ['eslint:recommended', ...(baseConfig?.extends || [])],
-    plugins: ['import', ...(baseConfig?.plugins || [])],
+    parser: baseConfig.parser || '@babel/eslint-parser',
+    extends: ['eslint:recommended', ...(baseConfig.extends || [])],
+    plugins: ['import', ...(baseConfig.plugins || [])],
     parserOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
-      ...(baseConfig?.parserOptions || {})
+      ...(baseConfig.parserOptions || {})
     },
     env: {
       browser: true,
       node: true,
-      ...(baseConfig?.env || {})
+      ...(baseConfig.env || {})
     },
     rules: {
       'no-unused-vars': 'warn',
       'no-console': 'warn',
-      ...(baseConfig?.rules || {})
+      ...(baseConfig.rules || {})
     },
     overrides
   };

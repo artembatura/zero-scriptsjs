@@ -6,7 +6,7 @@ import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { getBaseEslintConfig } from './getBaseEslintConfig';
-import { getEslintRcPath } from './getEslintRcPath';
+import { getEslintConfigPath } from './getEslintConfigPath';
 import { WebpackEslintPluginOptions } from './WebpackEslintPluginOptions';
 
 @ReadOptions(WebpackEslintPluginOptions, 'plugin-webpack-eslint')
@@ -23,32 +23,37 @@ export class WebpackEslintPlugin extends AbstractPlugin<WebpackEslintPluginOptio
             const { jsFileExtensions, paths } = configOptions;
             const pluginOptions = this.optionsContainer.build();
 
-            const eslintRcConfig = getEslintRcPath(paths.root);
+            if (pluginOptions.syncConfig.enabled) {
+              const eslintRcConfig = getEslintConfigPath(paths.root);
 
-            if (!eslintRcConfig) {
-              const baseEslintConfig = getBaseEslintConfig(
-                pluginOptions.baseEslintConfig,
-                configOptions
-              );
+              if (!eslintRcConfig) {
+                const baseEslintConfig = getBaseEslintConfig(
+                  configOptions,
+                  pluginOptions.baseEslintConfig
+                );
 
-              const eslintConfigPath = path.resolve(
-                paths.root,
-                '.eslintrc.json'
-              );
+                const eslintConfigPath = path.resolve(
+                  paths.root,
+                  '.eslintrc.json'
+                );
 
-              fs.writeFileSync(
-                eslintConfigPath,
-                JSON.stringify(baseEslintConfig, null, 2)
-              );
+                // eslint-disable-next-line no-console
+                console.log('Create .eslintrc.json...');
 
-              // TODO: check if packages declared in eslint config
-              // is not installed to node_modules - ask user to install it
-              // if user will decline it, disable eslint to prevent build crash
+                fs.writeFileSync(
+                  eslintConfigPath,
+                  JSON.stringify(baseEslintConfig, null, 2)
+                );
 
-              // TODO: if option `regenerateIfNotEqual` is true
-              // check eslint config and regenerate it if something is not equal
-              // useful when some plugins added which adds some eslint settings
-              // and this plugin will replace old plugin with new updated
+                // TODO: check if packages declared in eslint config
+                // is not installed to node_modules - ask user to install it
+                // if user will decline it, disable eslint to prevent build crash
+
+                // TODO: if option `regenerateIfNotEqual` is true
+                // check eslint config and regenerate it if something is not equal
+                // useful when some plugins added which adds some eslint settings
+                // and will replace old config with new updated
+              }
             }
 
             modifications.insertPlugin(

@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-export function getEslintRcPath(rootPath: string): string | null {
-  const basePath = path.resolve(rootPath, '.eslintrc');
+export function getBabelConfigPath(rootPath: string): string | null {
+  const basePath = path.resolve(rootPath, 'babel.config');
 
-  const extensions = ['', '.json', '.js', '.yaml'];
+  const extensions = ['.json', '.js'];
 
   const existsExt = extensions.find(ext => {
     const path = basePath + ext;

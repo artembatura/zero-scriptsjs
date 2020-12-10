@@ -53,8 +53,10 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           babelPlugin.optionsContainer.hooks.beforeBuild.tap(
             'WebpackReactPlugin',
             optionsContainer => {
-              optionsContainer.presets.push([
-                rr('@babel/preset-react'),
+              const baseConfig = optionsContainer.baseBabelConfig;
+
+              baseConfig.presets.push([
+                '@babel/preset-react',
                 {
                   development: configOptions.isDev,
                   useBuiltIns: true,
@@ -63,15 +65,15 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
               ]);
 
               if (!configOptions.isDev && pluginOptions.propTypes) {
-                optionsContainer.plugins.push([
-                  rr('babel-plugin-transform-react-remove-prop-types'),
+                baseConfig.plugins.push([
+                  'babel-plugin-transform-react-remove-prop-types',
                   { removeImport: true }
                 ]);
               }
 
               if (pluginOptions.svgReactComponent) {
-                optionsContainer.plugins.push([
-                  rr('babel-plugin-named-asset-import'),
+                baseConfig.plugins.push([
+                  'babel-plugin-named-asset-import',
                   {
                     loaderMap: {
                       svg: {
@@ -130,7 +132,9 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
               'WebpackReactPlugin::addFastRefreshLoader',
               optionsContainer => {
-                optionsContainer.plugins.push(rr('react-refresh/babel'));
+                optionsContainer.baseBabelConfig.plugins?.push(
+                  'react-refresh/babel'
+                );
               }
             );
 

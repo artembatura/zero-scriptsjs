@@ -11,10 +11,10 @@ export class WebpackEslintPluginOptions extends AbstractOptionsContainer<Webpack
   )
   public baseEslintConfig: Linter.Config = {};
 
-  // public configGenerator: {
-  //   enable?: boolean;
-  //   regenerateIfNotEqual?: boolean;
-  // } = {
-  //   enable: true
-  // };
+  public syncConfig: {
+    enabled?: boolean;
+    // regenerateIfNotEqual?: boolean;
+  } = {
+    enabled: true
+  };
 }
