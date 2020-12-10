@@ -19,14 +19,14 @@ export function getBaseBabelConfig(
     plugins.push('@babel/plugin-proposal-decorators');
 
     overrides.push({
-      test: /\.(ts|tsx)?$/,
+      test: ['**/*.ts', '**/*.tsx'],
       plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]]
     });
   }
 
   if (pluginOptions.flow) {
     overrides.push({
-      exclude: /\.(ts|tsx)?$/,
+      exclude: ['**/*.ts', '**/*.tsx'],
       plugins: ['@babel/plugin-transform-flow-strip-types']
     });
   }
