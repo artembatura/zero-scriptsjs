@@ -11,6 +11,12 @@ export class WebpackEslintPluginOptions extends AbstractOptionsContainer<Webpack
   )
   public baseEslintConfig: Linter.Config = {};
 
+  @Option<WebpackEslintPluginOptions, 'syncConfig'>(
+    ({ defaultValue, externalValue }) => ({
+      ...defaultValue,
+      ...externalValue
+    })
+  )
   public syncConfig: {
     enabled?: boolean;
     // regenerateIfNotEqual?: boolean;

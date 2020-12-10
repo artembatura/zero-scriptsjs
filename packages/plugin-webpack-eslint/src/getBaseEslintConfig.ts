@@ -1,4 +1,5 @@
 import { Linter } from 'eslint';
+import path from 'path';
 
 import { ExtractOptions } from '@zero-scripts/core';
 import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
@@ -39,6 +40,9 @@ export function getBaseEslintConfig(
     parserOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
+      babelOptions: {
+        configFile: path.resolve(configOptions.paths.root, 'babel.config.json')
+      },
       ...(baseConfig.parserOptions || {})
     },
     env: {
