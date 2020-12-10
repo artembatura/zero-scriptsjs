@@ -78,7 +78,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                     loaderMap: {
                       svg: {
                         ReactComponent:
-                          rr('@svgr/webpack') + '?-svgo,+titleProp,+ref![path]'
+                          '@svgr/webpack' + '?-svgo,+titleProp,+ref![path]'
                       }
                     }
                   }

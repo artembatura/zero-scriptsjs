@@ -36,7 +36,7 @@ export function getStyleLoaders(
             loader: MiniCssExtractPlugin.loader
           },
       {
-        loader: rr(customCssLoader || 'css-loader'),
+        loader: customCssLoader || rr('css-loader'),
         options: {
           sourceMap: !isDev && useSourceMap,
           importLoaders: preprocessor ? 2 : 1,
