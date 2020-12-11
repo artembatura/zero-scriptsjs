@@ -35,7 +35,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
         }
       );
 
-      config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
+      config.hooks.beforeBuild.tap('WebpackReactPlugin', () => {
         const pluginOptions = this.optionsContainer.build();
 
         const babelPlugin = beforeRunContext.findPlugin<WebpackBabelPlugin>(
@@ -55,17 +55,28 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             optionsContainer => {
               const baseConfig = optionsContainer.baseBabelConfig;
 
-              baseConfig.presets.push([
+              baseConfig.env.development.presets.push([
                 '@babel/preset-react',
                 {
-                  development: configOptions.isDev,
+                  development: true,
                   useBuiltIns: true,
                   runtime: useNewJsxTransform ? 'automatic' : 'classic'
                 }
               ]);
 
-              if (!configOptions.isDev && pluginOptions.propTypes) {
-                baseConfig.plugins.push([
+              baseConfig.env.production.presets.push([
+                '@babel/preset-react',
+                {
+                  development: false,
+                  useBuiltIns: true,
+                  runtime: useNewJsxTransform ? 'automatic' : 'classic'
+                }
+              ]);
+
+              // TODO: if prop-types package is installed,
+              //  automatically enable this option
+              if (pluginOptions.propTypes) {
+                baseConfig.env.production.plugins.push([
                   'babel-plugin-transform-react-remove-prop-types',
                   { removeImport: true }
                 ]);
@@ -132,9 +143,9 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
               'WebpackReactPlugin::addFastRefreshLoader',
               optionsContainer => {
-                optionsContainer.baseBabelConfig.plugins.push(
-                  'react-refresh/babel'
-                );
+                const baseConfig = optionsContainer.baseBabelConfig;
+
+                baseConfig.env.development.plugins.push('react-refresh/babel');
               }
             );
 

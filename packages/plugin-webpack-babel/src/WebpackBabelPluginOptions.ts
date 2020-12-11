@@ -2,17 +2,18 @@ import type { TransformOptions } from '@babel/core';
 
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-type NonNullableObject<T> = {
-  [P in keyof T]-?: NonNullable<T[P]>;
-};
+interface TransformEnv {
+  [index: string]: TransformOptions | null | undefined;
+  development: Omit<BaseBabelConfig, 'env' | 'overrides'>;
+  production: Omit<BaseBabelConfig, 'env' | 'overrides'>;
+}
 
-type BaseBabelConfig = Omit<
-  TransformOptions,
-  'presets' | 'plugins' | 'overrides'
-> &
-  NonNullableObject<
-    Pick<TransformOptions, 'presets' | 'plugins' | 'overrides'>
-  >;
+interface BaseBabelConfig extends TransformOptions {
+  presets: NonNullable<TransformOptions['presets']>;
+  plugins: NonNullable<TransformOptions['plugins']>;
+  overrides: NonNullable<TransformOptions['overrides']>;
+  env: TransformEnv;
+}
 
 export class WebpackBabelPluginOptions extends AbstractOptionsContainer<WebpackBabelPluginOptions> {
   @Option<WebpackBabelPluginOptions, 'flow'>()
@@ -37,7 +38,17 @@ export class WebpackBabelPluginOptions extends AbstractOptionsContainer<WebpackB
   public baseBabelConfig: BaseBabelConfig = {
     presets: [],
     plugins: [],
-    overrides: []
+    overrides: [],
+    env: {
+      development: {
+        presets: [],
+        plugins: []
+      },
+      production: {
+        presets: [],
+        plugins: []
+      }
+    }
   };
 
   @Option<WebpackBabelPluginOptions, 'syncConfig'>(
