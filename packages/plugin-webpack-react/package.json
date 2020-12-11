@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-react",
-  "version": "1.0.0-alfa.20",
+  "version": "1.0.0-alfa.21",
   "description": "Ready for development React projects. With ESLint, Babel, CSS Modules and other",
   "keywords": [
     "webpack",
@@ -37,6 +37,8 @@
     "@types/jest": "^26.0.15",
     "@types/node": "^14.14.9",
     "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/plugin-webpack-babel": "workspace:*",
+    "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "webpack": "^5.10.0"
   },
   "peerDependencies": {
@@ -52,10 +54,6 @@
     "react-refresh": {
       "optional": true
     }
-  },
-  "optionalDependencies": {
-    "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-eslint": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

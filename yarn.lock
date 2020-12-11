@@ -3053,11 +3053,6 @@ __metadata:
     "@zero-scripts/core": ^1.0.0-alfa.0
     react-refresh: ^0.9.0
     webpack: ^5.4.0
-  dependenciesMeta:
-    "@zero-scripts/plugin-webpack-babel":
-      optional: true
-    "@zero-scripts/plugin-webpack-eslint":
-      optional: true
   peerDependenciesMeta:
     "@svgr/webpack":
       optional: true
