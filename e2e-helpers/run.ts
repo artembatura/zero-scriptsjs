@@ -6,7 +6,10 @@ export function run(
   cwd: string,
   args: string[]
 ): ChildProcessWithoutNullStreams {
-  return spawn(crossPlatformCommand('pnpm'), args, {
-    cwd
+  return spawn(crossPlatformCommand('yarn'), args, {
+    cwd,
+    env: {
+      CI: 'true'
+    }
   });
 }

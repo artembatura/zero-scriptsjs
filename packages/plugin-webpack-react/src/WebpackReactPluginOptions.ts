@@ -8,7 +8,7 @@ export class WebpackReactPluginOptions extends AbstractOptionsContainer<WebpackR
   public fastRefresh: boolean = false;
 
   @Option<WebpackReactPluginOptions, 'svgReactComponent'>()
-  public svgReactComponent: boolean = false;
+  public svgReactComponent: boolean = true;
 
   @Option<WebpackReactPluginOptions, 'disableNewJsxTransform'>()
   public disableNewJsxTransform: boolean = false;

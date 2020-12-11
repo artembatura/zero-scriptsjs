@@ -27,26 +27,27 @@
     "build"
   ],
   "dependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-proposal-decorators": "^7.12.1",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-flow-strip-types": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-typescript": "^7.12.7",
-    "@babel/runtime": "^7.12.5",
     "@zero-scripts/webpack-config": "workspace:*",
     "babel-loader": "^8.2.1",
     "core-js": "3.7.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "@types/babel__core": "^7.1.12",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^14.14.9",
     "@zero-scripts/core": "workspace:*",
     "webpack": "^5.10.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
-    "webpack": "5.x"
+    "typescript": "^4.0.2",
+    "webpack": "^5.4.0"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
   },
   "optionalDependencies": {
     "fork-ts-checker-webpack-plugin": "^5.1.0"

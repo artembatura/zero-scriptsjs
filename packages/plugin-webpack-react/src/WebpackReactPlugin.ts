@@ -35,7 +35,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
         }
       );
 
-      config.hooks.beforeBuild.tap('WebpackReactPlugin', configOptions => {
+      config.hooks.beforeBuild.tap('WebpackReactPlugin', () => {
         const pluginOptions = this.optionsContainer.build();
 
         const babelPlugin = beforeRunContext.findPlugin<WebpackBabelPlugin>(
@@ -53,30 +53,43 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           babelPlugin.optionsContainer.hooks.beforeBuild.tap(
             'WebpackReactPlugin',
             optionsContainer => {
-              optionsContainer.presets.push([
-                rr('@babel/preset-react'),
+              const baseConfig = optionsContainer.baseBabelConfig;
+
+              baseConfig.env.development.presets.push([
+                '@babel/preset-react',
                 {
-                  development: configOptions.isDev,
+                  development: true,
                   useBuiltIns: true,
                   runtime: useNewJsxTransform ? 'automatic' : 'classic'
                 }
               ]);
 
-              if (configOptions.isDev && pluginOptions.propTypes) {
-                optionsContainer.plugins.push([
-                  rr('babel-plugin-transform-react-remove-prop-types'),
+              baseConfig.env.production.presets.push([
+                '@babel/preset-react',
+                {
+                  development: false,
+                  useBuiltIns: true,
+                  runtime: useNewJsxTransform ? 'automatic' : 'classic'
+                }
+              ]);
+
+              // TODO: if prop-types package is installed,
+              //  automatically enable this option
+              if (pluginOptions.propTypes) {
+                baseConfig.env.production.plugins.push([
+                  'babel-plugin-transform-react-remove-prop-types',
                   { removeImport: true }
                 ]);
               }
 
               if (pluginOptions.svgReactComponent) {
-                optionsContainer.plugins.push([
-                  rr('babel-plugin-named-asset-import'),
+                baseConfig.plugins.push([
+                  'babel-plugin-named-asset-import',
                   {
                     loaderMap: {
                       svg: {
                         ReactComponent:
-                          rr('@svgr/webpack') + '?-svgo,+titleProp,+ref![path]'
+                          '@svgr/webpack' + '?-svgo,+titleProp,+ref![path]'
                       }
                     }
                   }
@@ -90,25 +103,31 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           eslintPlugin.optionsContainer.hooks.beforeBuild.tap(
             'WebpackReactPlugin',
             optionsContainer => {
-              optionsContainer.extends.push(rr('eslint-config-react-app'));
+              const baseConfig = optionsContainer.baseEslintConfig;
+
+              baseConfig.extends = baseConfig.extends || [];
+
+              if (Array.isArray(baseConfig.extends)) {
+                baseConfig.extends.push('eslint-config-react-app');
+              }
 
               if (useNewJsxTransform) {
-                optionsContainer.rules = {
-                  ...optionsContainer.rules,
+                baseConfig.rules = {
+                  ...(baseConfig.rules || {}),
                   'react/jsx-uses-react': 'off',
                   'react/react-in-jsx-scope': 'off'
                 };
               }
 
-              optionsContainer.parserOptions = {
-                ...optionsContainer.parserOptions,
+              baseConfig.parserOptions = {
+                ...(baseConfig.parserOptions || {}),
                 ecmaFeatures: {
                   jsx: true
                 }
               };
 
-              optionsContainer.settings = {
-                ...optionsContainer.settings,
+              baseConfig.settings = {
+                ...(baseConfig.settings || {}),
                 react: {
                   version: 'detect'
                 }
@@ -124,7 +143,9 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
               'WebpackReactPlugin::addFastRefreshLoader',
               optionsContainer => {
-                optionsContainer.plugins.push(rr('react-refresh/babel'));
+                const baseConfig = optionsContainer.baseBabelConfig;
+
+                baseConfig.env.development.plugins.push('react-refresh/babel');
               }
             );
 
@@ -134,16 +155,23 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                 modifications.insertPlugin(
                   new ReactRefreshWebpackPlugin({
                     overlay: {
-                      sockIntegration: 'whm'
+                      sockIntegration: 'whm',
+                      entry: rr('webpack-hot-middleware/client')
                     }
                   })
                 );
 
-                modifications.addResolveAlias(
-                  'react-refresh/runtime',
-                  require.resolve('react-refresh/runtime')
-                );
+                // we should remove `hot-accept-webpack-plugin`
+                // because react refresh do the same
+                if (modifications.has('hot-accept-plugin')) {
+                  modifications.remove('hot-accept-plugin');
+                }
               }
+            );
+          } else {
+            // eslint-disable-next-line no-console
+            console.log(
+              "Warning: You can't use React Refresh without @zero-scripts/plugin-webpack-babel. Please install this plugin or turn off `plugin-webpack-react.fastRefresh` option"
             );
           }
         }

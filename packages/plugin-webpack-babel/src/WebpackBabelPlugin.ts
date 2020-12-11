@@ -1,4 +1,6 @@
 import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import fs from 'fs';
+import path from 'path';
 
 import {
   AbstractPlugin,
@@ -8,6 +10,8 @@ import {
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
+import { getBabelConfigPath } from './geBabelConfigPath';
+import { getBaseBabelConfig } from './getBaseBabelConfig';
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
 const rr = require.resolve;
@@ -22,8 +26,40 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
       webpackConfigBuilder.hooks.build.tap(
         'WebpackBabelPlugin',
-        (modifications, { isDev, jsFileExtensions, paths, useTypescript }) => {
+        (modifications, configOptions) => {
+          const {
+            isDev,
+            jsFileExtensions,
+            paths,
+            useTypescript
+          } = configOptions;
+
           const pluginOptions = this.optionsContainer.build();
+
+          if (pluginOptions.syncConfig.enabled) {
+            const babelConfigPath = getBabelConfigPath(paths.root);
+
+            if (!babelConfigPath) {
+              const baseBabelConfig = getBaseBabelConfig(
+                configOptions,
+                pluginOptions,
+                pluginOptions.baseBabelConfig
+              );
+
+              const babelConfigPath = path.resolve(
+                paths.root,
+                'babel.config.json'
+              );
+
+              // eslint-disable-next-line no-console
+              console.log('Create babel.config.json...');
+
+              fs.writeFileSync(
+                babelConfigPath,
+                JSON.stringify(baseBabelConfig, null, 2)
+              );
+            }
+          }
 
           modifications.insertModuleRule({
             test: extensionsRegex(jsFileExtensions),
@@ -34,53 +70,6 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
                   {
                     loader: rr('babel-loader'),
                     options: {
-                      babelrc: false,
-                      configFile: false,
-                      presets: [
-                        [
-                          rr('@babel/preset-env'),
-                          {
-                            modules: false,
-                            targets: { esmodules: true },
-                            useBuiltIns: 'entry',
-                            corejs: 3,
-                            exclude: ['transform-typeof-symbol']
-                          }
-                        ],
-                        useTypescript && rr('@babel/preset-typescript'),
-                        ...pluginOptions.presets
-                      ].filter(Boolean),
-                      plugins: [
-                        [
-                          rr('@babel/plugin-transform-runtime'),
-                          { useESModules: true }
-                        ],
-                        rr('@babel/plugin-syntax-dynamic-import'),
-                        useTypescript &&
-                          rr('@babel/plugin-proposal-decorators'),
-                        [
-                          rr('@babel/plugin-proposal-class-properties'),
-                          { loose: true }
-                        ],
-                        ...pluginOptions.plugins
-                      ].filter(Boolean),
-                      overrides: [
-                        pluginOptions.flow && {
-                          exclude: /\.(ts|tsx)?$/,
-                          plugins: [
-                            rr('@babel/plugin-transform-flow-strip-types')
-                          ]
-                        },
-                        useTypescript && {
-                          test: /\.(ts|tsx)?$/,
-                          plugins: [
-                            [
-                              rr('@babel/plugin-proposal-decorators'),
-                              { legacy: true }
-                            ]
-                          ]
-                        }
-                      ].filter(Boolean),
                       cacheDirectory: true,
                       cacheCompression: !isDev,
                       compact: !isDev
@@ -98,7 +87,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
                   compact: false,
                   presets: [
                     [
-                      rr('@babel/preset-env'),
+                      '@babel/preset-env',
                       {
                         useBuiltIns: 'entry',
                         corejs: 3,

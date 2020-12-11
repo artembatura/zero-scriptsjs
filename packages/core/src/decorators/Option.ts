@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 
+import { AbstractOptionsContainer } from '../AbstractOptionsContainer';
 import { DependencyNode } from '../graph';
 import {
   METADATA_OPTIONS,
@@ -10,7 +11,7 @@ import {
 
 export function Option<
   T,
-  TOption extends keyof T,
+  TOption extends Exclude<keyof T, keyof AbstractOptionsContainer>,
   TDependency extends (keyof T & string) | undefined = undefined
 >(
   getValue?: (data: {

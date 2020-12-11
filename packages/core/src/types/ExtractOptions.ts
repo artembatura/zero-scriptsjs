@@ -1,11 +1,8 @@
-import { SyncHook } from 'tapable';
-
 import { AbstractOptionsContainer } from '../AbstractOptionsContainer';
 
-export type ExtractOptions<T extends AbstractOptionsContainer> = {
-  [K in keyof T]: T[K] extends (...args: any[]) => any
-    ? never
-    : T[K] extends Record<string, SyncHook<any>>
-    ? never
-    : T[K];
-};
+// OmitByValue<T, Record<string, SyncHook<any>> | ((...args: any[]) => any)>
+
+export type ExtractOptions<T extends AbstractOptionsContainer> = Pick<
+  T,
+  Exclude<keyof T, keyof AbstractOptionsContainer>
+>;

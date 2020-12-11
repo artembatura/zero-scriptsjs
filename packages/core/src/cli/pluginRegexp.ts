@@ -1,1 +1,1 @@
-export const pluginRegexp = /^(@[a-z-]+\/)?plugin-[a-z-]+$/;
+export const pluginRegexp = /^(@zero-scripts\/)?plugin-[a-z-]+$/;
