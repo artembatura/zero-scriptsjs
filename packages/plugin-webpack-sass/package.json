@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-sass",
-  "version": "1.0.0-alfa.13",
+  "version": "1.0.0-alfa.20",
   "description": "Adds processing Sass and SCSS files: extracting, minify and add vendor prefixes",
   "keywords": [
     "webpack",
