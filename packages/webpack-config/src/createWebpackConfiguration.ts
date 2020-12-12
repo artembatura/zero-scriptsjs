@@ -1,3 +1,4 @@
+import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import type { Configuration } from 'webpack';
 import { DefinePlugin } from 'webpack';
@@ -18,14 +19,21 @@ export function createWebpackConfiguration({
   return {
     mode: isDev ? 'development' : 'production',
     entry: [paths.indexJs, ...additionalEntry],
-    devtool: isDev ? 'eval-source-map' : useSourceMap && 'source-map',
+    devtool: isDev ? 'cheap-module-source-map' : useSourceMap && 'source-map',
     output: {
       path: paths.build,
       filename: isDev ? 'js/[name].js' : 'js/[name].[contenthash:8].js',
       publicPath: paths.publicUrlOrPath,
       chunkFilename: isDev
         ? 'js/[name].chunk.js'
-        : 'js/[name:7].[contenthash:8].chunk.js'
+        : 'js/[name:7].[contenthash:8].chunk.js',
+      devtoolModuleFilenameTemplate: !isDev
+        ? (info: any) =>
+            path
+              .relative(paths.src, info.absoluteResourcePath)
+              .replace(/\\/g, '/')
+        : (info: any) =>
+            path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
     },
     bail: !isDev,
     optimization: {
