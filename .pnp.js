@@ -146,8 +146,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.14.10"],
             ["@typescript-eslint/eslint-plugin", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:4.9.0"],
             ["@typescript-eslint/parser", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:4.9.0"],
-            ["esbuild", "npm:0.8.21"],
-            ["esbuild-jest", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0"],
             ["eslint", "npm:7.14.0"],
             ["eslint-config-prettier", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:6.15.0"],
             ["eslint-formatter-pretty", "npm:4.0.0"],
@@ -164,6 +162,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-packagejson", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:2.2.8"],
             ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"]
           ],
           "linkType": "SOFT",
@@ -8016,8 +8015,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:14.14.10"],
             ["@typescript-eslint/eslint-plugin", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:4.9.0"],
             ["@typescript-eslint/parser", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:4.9.0"],
-            ["esbuild", "npm:0.8.21"],
-            ["esbuild-jest", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0"],
             ["eslint", "npm:7.14.0"],
             ["eslint-config-prettier", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:6.15.0"],
             ["eslint-formatter-pretty", "npm:4.0.0"],
@@ -8034,6 +8031,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.2.1"],
             ["prettier-plugin-packagejson", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:2.2.8"],
             ["rimraf", "npm:3.0.2"],
+            ["ts-jest", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4"],
             ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"]
           ],
           "linkType": "SOFT",
@@ -9017,6 +9015,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["electron-to-chromium", "npm:1.3.616"],
             ["escalade", "npm:3.1.1"],
             ["node-releases", "npm:1.1.67"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bs-logger", [
+        ["npm:0.2.6", {
+          "packageLocation": "./.yarn/cache/bs-logger-npm-0.2.6-7670f88b66-f5f2f1315d.zip/node_modules/bs-logger/",
+          "packageDependencies": [
+            ["bs-logger", "npm:0.2.6"],
+            ["fast-json-stable-stringify", "npm:2.1.0"]
           ],
           "linkType": "HARD",
         }]
@@ -10909,37 +10917,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["es6-promisify", "npm:5.0.0"],
             ["es6-promise", "npm:4.2.8"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["esbuild", [
-        ["npm:0.8.21", {
-          "packageLocation": "./.yarn/unplugged/esbuild-npm-0.8.21-02329e4d75/node_modules/esbuild/",
-          "packageDependencies": [
-            ["esbuild", "npm:0.8.21"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["esbuild-jest", [
-        ["npm:0.3.0", {
-          "packageLocation": "./.yarn/cache/esbuild-jest-npm-0.3.0-aacac988f6-078a9d217e.zip/node_modules/esbuild-jest/",
-          "packageDependencies": [
-            ["esbuild-jest", "npm:0.3.0"]
-          ],
-          "linkType": "SOFT",
-        }],
-        ["virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0", {
-          "packageLocation": "./.yarn/$$virtual/esbuild-jest-virtual-c4aa8e9cab/0/cache/esbuild-jest-npm-0.3.0-aacac988f6-078a9d217e.zip/node_modules/esbuild-jest/",
-          "packageDependencies": [
-            ["esbuild-jest", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:0.3.0"],
-            ["@types/esbuild", null],
-            ["esbuild", "npm:0.8.21"]
-          ],
-          "packagePeers": [
-            "@types/esbuild",
-            "esbuild"
           ],
           "linkType": "HARD",
         }]
@@ -15166,6 +15143,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["make-dir", "npm:3.1.0"],
             ["semver", "npm:6.3.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["make-error", [
+        ["npm:1.3.6", {
+          "packageLocation": "./.yarn/cache/make-error-npm-1.3.6-ccb85d9458-2c780bab84.zip/node_modules/make-error/",
+          "packageDependencies": [
+            ["make-error", "npm:1.3.6"]
           ],
           "linkType": "HARD",
         }]
@@ -20050,6 +20036,42 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["ts-jest", [
+        ["npm:26.4.4", {
+          "packageLocation": "./.yarn/cache/ts-jest-npm-26.4.4-6fd34d9b91-bee46b789c.zip/node_modules/ts-jest/",
+          "packageDependencies": [
+            ["ts-jest", "npm:26.4.4"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4", {
+          "packageLocation": "./.yarn/$$virtual/ts-jest-virtual-dca31cfc7f/0/cache/ts-jest-npm-26.4.4-6fd34d9b91-bee46b789c.zip/node_modules/ts-jest/",
+          "packageDependencies": [
+            ["ts-jest", "virtual:8e14ed5c2fc533245413d4af83421c2388dbad9b65b1e982b364fa99f385cf46b69235a8dc4e18a30237996b0509a12b38f8070f566e5910f2c6249f944569d6#npm:26.4.4"],
+            ["@types/jest", "npm:26.0.16"],
+            ["@types/typescript", null],
+            ["bs-logger", "npm:0.2.6"],
+            ["buffer-from", "npm:1.1.1"],
+            ["fast-json-stable-stringify", "npm:2.1.0"],
+            ["jest", "npm:26.6.3"],
+            ["jest-util", "npm:26.6.2"],
+            ["json5", "npm:2.1.3"],
+            ["lodash.memoize", "npm:4.1.2"],
+            ["make-error", "npm:1.3.6"],
+            ["mkdirp", "npm:1.0.4"],
+            ["semver", "npm:7.3.4"],
+            ["typescript", "patch:typescript@npm%3A4.1.2#builtin<compat/typescript>::version=4.1.2&hash=cc6730"],
+            ["yargs-parser", "npm:20.2.4"]
+          ],
+          "packagePeers": [
+            "@types/jest",
+            "@types/typescript",
+            "jest",
+            "typescript"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["tsconfig-paths", [
         ["npm:3.9.0", {
           "packageLocation": "./.yarn/cache/tsconfig-paths-npm-3.9.0-92dcbdee37-5383ba626b.zip/node_modules/tsconfig-paths/",
@@ -21225,6 +21247,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["yargs-parser", "npm:18.1.3"],
             ["camelcase", "npm:5.3.1"],
             ["decamelize", "npm:1.2.0"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:20.2.4", {
+          "packageLocation": "./.yarn/cache/yargs-parser-npm-20.2.4-1de20916a6-00dd0f23b6.zip/node_modules/yargs-parser/",
+          "packageDependencies": [
+            ["yargs-parser", "npm:20.2.4"]
           ],
           "linkType": "HARD",
         }]

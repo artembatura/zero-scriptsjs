@@ -5,6 +5,6 @@ module.exports = {
   roots: ['packages/', 'examples/'],
   testMatch: ['**/__tests__/*.test.ts'],
   transform: {
-    '^.+\\.tsx?$': 'esbuild-jest'
+    '^.+\\.tsx?$': 'ts-jest'
   }
 };
