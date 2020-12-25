@@ -3108,7 +3108,7 @@ __metadata:
     clean-webpack-plugin: ^3.0.0
     copy-webpack-plugin: ^6.3.2
     express: ^4.17.1
-    hot-accept-webpack-plugin: 2.0.0-beta.0
+    hot-accept-webpack-plugin: 2.0.0-beta.7
     html-webpack-plugin: ^5.0.0-alpha.15
     open: ^7.3.0
     webpack: ^5.10.0
@@ -7247,14 +7247,14 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"hot-accept-webpack-plugin@npm:2.0.0-beta.0":
-  version: 2.0.0-beta.0
-  resolution: "hot-accept-webpack-plugin@npm:2.0.0-beta.0"
+"hot-accept-webpack-plugin@npm:2.0.0-beta.7":
+  version: 2.0.0-beta.7
+  resolution: "hot-accept-webpack-plugin@npm:2.0.0-beta.7"
   dependencies:
-    modify-source-webpack-plugin: 2.0.0-beta.3
+    modify-source-webpack-plugin: 2.0.0-beta.7
   peerDependencies:
     webpack: ^5.0.0
-  checksum: 9b23d3356f8586748acbfb3d7cf528777be10da56a399a832b7f43227d72f87821eed2ae9feefcd81dc1025af31b59a30b6b34058f30a6feaa79cac2b94a4ddf
+  checksum: 6d2b4b4c96071eed10bc236584545ac949742abb354897fb3abdb429ed605f2dc00a073090bd8a218c76223e08ae906f036b6b6d96cf7bae24d2d0a8176e32a9
   languageName: node
   linkType: hard
 
@@ -9588,15 +9588,15 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"modify-source-webpack-plugin@npm:2.0.0-beta.3":
-  version: 2.0.0-beta.3
-  resolution: "modify-source-webpack-plugin@npm:2.0.0-beta.3"
+"modify-source-webpack-plugin@npm:2.0.0-beta.7":
+  version: 2.0.0-beta.7
+  resolution: "modify-source-webpack-plugin@npm:2.0.0-beta.7"
   dependencies:
     loader-utils: ^2.0.0
     schema-utils: ^3.0.0
   peerDependencies:
-    webpack: ^4.37.0 || ^5.0.0
-  checksum: 3cd90588dd881ad5aec7078b0ee13eb0e2172183044fcf82756488e77bfd2468056cf760fc6641e7a7da8bc65ecd46a2f7323bac55720e2f42bf8eac5b2f3b99
+    webpack: ^5.0.0
+  checksum: 2b53aee73dea15066ba8570d184159cb7b9e653f9bfa6df7b6d575054e4b775dec47a8f361b17b2230815f2e12f93036b499e3a8fec1e427e00ff4e71a255186
   languageName: node
   linkType: hard
 
