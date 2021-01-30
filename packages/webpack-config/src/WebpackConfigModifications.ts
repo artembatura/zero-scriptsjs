@@ -20,6 +20,12 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   Configuration,
   WebpackConfigOptions
 > {
+  constructor() {
+    super();
+
+    this.modifications.push(new OneOfModification());
+  }
+
   public insertPlugin(
     plugin: WebpackPlugin,
     position: InsertPos = InsertPos.End,
@@ -98,16 +104,16 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   }
 
   protected getOneOfModification(): OneOfModification {
-    const foundModification = this.modifications.find(
+    const modification = this.modifications.find(
       modification => modification.id === OneOfModification.id
     );
 
-    if (!foundModification) {
-      const modification = new OneOfModification();
-      this.modifications.push(modification);
-      return modification;
-    } else {
-      return foundModification as OneOfModification;
+    if (!modification) {
+      throw new Error(
+        'Probably you forgot to instantiate OneOfModification in WebpackConfigModifications constructor'
+      );
     }
+
+    return modification as OneOfModification;
   }
 }
