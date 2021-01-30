@@ -34,12 +34,12 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.9",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "@zero-scripts/plugin-webpack-eslint": "workspace:*",
-    "webpack": "^5.10.0"
+    "webpack": "^5.17.0"
   },
   "peerDependencies": {
     "@svgr/webpack": "^5.0.1",
