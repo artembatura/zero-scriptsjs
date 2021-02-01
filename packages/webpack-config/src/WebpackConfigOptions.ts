@@ -1,4 +1,5 @@
 import { existsSync } from 'fs';
+import type { RuleSetUseItem } from 'webpack';
 
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
@@ -65,4 +66,12 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<WebpackConfig
     ['paths']
   )
   public useTypescript: boolean = false;
+
+  @Option<WebpackConfigOptions, 'jsLoaders'>(
+    ({ externalValue, defaultValue }) => [
+      ...defaultValue,
+      ...(externalValue ? externalValue : [])
+    ]
+  )
+  public jsLoaders: RuleSetUseItem[] = [];
 }

@@ -19,16 +19,6 @@ export class WebpackBabelPluginOptions extends AbstractOptionsContainer<WebpackB
   @Option<WebpackBabelPluginOptions, 'flow'>()
   public flow: boolean = false;
 
-  @Option<WebpackBabelPluginOptions, 'jsLoaders'>(
-    ({ externalValue, defaultValue }) => [
-      ...defaultValue,
-      ...(externalValue ? externalValue : [])
-    ]
-  )
-  public jsLoaders: Array<
-    { loader: string; options: Record<string, unknown> } | string
-  > = [];
-
   @Option<WebpackBabelPluginOptions, 'baseBabelConfig'>(
     ({ defaultValue, externalValue }) => ({
       ...defaultValue,

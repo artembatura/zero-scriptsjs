@@ -6,17 +6,20 @@ import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 const rr = require.resolve;
 
 export function getStyleLoaders(
-  preprocessor?:
-    | string
-    | {
-        loader: string;
-        options: Record<string, unknown>;
-      },
+  postcssOptions?: {
+    plugins?: any[];
+  },
   cssLoader?:
     | string
     | {
         loader?: string;
         options?: Record<string, unknown>;
+      },
+  preprocessorLoader?:
+    | string
+    | {
+        loader: string;
+        options: Record<string, unknown>;
       }
 ) {
   return ({
@@ -39,7 +42,7 @@ export function getStyleLoaders(
         loader: customCssLoader || rr('css-loader'),
         options: {
           sourceMap: !isDev && useSourceMap,
-          importLoaders: preprocessor ? 2 : 1,
+          importLoaders: preprocessorLoader ? 2 : 1,
           ...(cssLoaderOptions || {})
         }
       },
@@ -48,6 +51,7 @@ export function getStyleLoaders(
         options: {
           postcssOptions: {
             plugins: [
+              ...(postcssOptions?.plugins || []),
               rr('postcss-flexbugs-fixes'),
               [
                 rr('postcss-preset-env'),
@@ -65,19 +69,19 @@ export function getStyleLoaders(
       }
     ];
 
-    if (preprocessor) {
-      const preprocessorLoader = {
+    if (preprocessorLoader) {
+      loaders.push({
         loader:
-          typeof preprocessor === 'object'
-            ? rr(preprocessor.loader)
-            : rr(preprocessor),
+          typeof preprocessorLoader === 'object'
+            ? rr(preprocessorLoader.loader)
+            : rr(preprocessorLoader),
         options: {
           sourceMap: !isDev && useSourceMap,
-          ...(typeof preprocessor === 'object' ? preprocessor.options : {})
+          ...(typeof preprocessorLoader === 'object'
+            ? preprocessorLoader.options
+            : {})
         }
-      };
-
-      loaders.push(preprocessorLoader);
+      });
     }
 
     return loaders;

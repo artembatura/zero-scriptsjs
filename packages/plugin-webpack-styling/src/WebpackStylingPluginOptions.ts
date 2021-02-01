@@ -1,7 +1,7 @@
 import { AbstractOptionsContainer, Option } from '@zero-scripts/core';
 
-export class WebpackCssPluginOptions extends AbstractOptionsContainer<WebpackCssPluginOptions> {
-  @Option<WebpackCssPluginOptions, 'styleLoaders'>(
+export class WebpackStylingPluginOptions extends AbstractOptionsContainer<WebpackStylingPluginOptions> {
+  @Option<WebpackStylingPluginOptions, 'styleLoaders'>(
     ({ externalValue, defaultValue }) => [
       ...(externalValue ? externalValue : []),
       ...(defaultValue ? defaultValue : [])
@@ -23,4 +23,15 @@ export class WebpackCssPluginOptions extends AbstractOptionsContainer<WebpackCss
           options: Record<string, unknown>;
         };
   }> = [];
+
+  @Option<WebpackStylingPluginOptions, 'postcssOptions'>(
+    ({ externalValue, defaultValue }) => ({
+      ...(externalValue ? externalValue : {}),
+      ...(defaultValue ? defaultValue : {})
+    })
+  )
+  public postcssOptions: {
+    plugins?: any[];
+    [option: string]: any;
+  } = {};
 }

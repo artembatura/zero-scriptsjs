@@ -21,8 +21,8 @@
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
-    "@zero-scripts/plugin-webpack-sass": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "@zero-scripts/plugin-webpack-styling": "workspace:*",
     "babel-plugin-named-asset-import": "^0.3.7",
     "sass": "1.32.5",
     "webpack": "^5.17.0"

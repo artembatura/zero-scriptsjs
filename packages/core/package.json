@@ -54,25 +54,17 @@
   },
   "peerDependencies": {
     "@zero-scripts/plugin-webpack-babel": "^1.0.0-alfa.0",
-    "@zero-scripts/plugin-webpack-css": "^1.0.0-alfa.0",
     "@zero-scripts/plugin-webpack-eslint": "^1.0.0-alfa.0",
-    "@zero-scripts/plugin-webpack-less": "^1.0.0-alfa.0",
     "@zero-scripts/plugin-webpack-pwa": "^1.0.0-alfa.0",
     "@zero-scripts/plugin-webpack-react": "^1.0.0-alfa.0",
-    "@zero-scripts/plugin-webpack-sass": "^1.0.0-alfa.0",
-    "@zero-scripts/plugin-webpack-spa": "^1.0.0-alfa.0"
+    "@zero-scripts/plugin-webpack-spa": "^1.0.0-alfa.0",
+    "@zero-scripts/plugin-webpack-styling": "^1.0.0-alfa.0"
   },
   "peerDependenciesMeta": {
     "@zero-scripts/plugin-webpack-babel": {
       "optional": true
     },
-    "@zero-scripts/plugin-webpack-css": {
-      "optional": true
-    },
     "@zero-scripts/plugin-webpack-eslint": {
-      "optional": true
-    },
-    "@zero-scripts/plugin-webpack-less": {
       "optional": true
     },
     "@zero-scripts/plugin-webpack-pwa": {
@@ -81,10 +73,10 @@
     "@zero-scripts/plugin-webpack-react": {
       "optional": true
     },
-    "@zero-scripts/plugin-webpack-sass": {
+    "@zero-scripts/plugin-webpack-spa": {
       "optional": true
     },
-    "@zero-scripts/plugin-webpack-spa": {
+    "@zero-scripts/plugin-webpack-styling": {
       "optional": true
     }
   },

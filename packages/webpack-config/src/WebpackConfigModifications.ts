@@ -1,4 +1,9 @@
-import type { Configuration, RuleSetRule, Compiler } from 'webpack';
+import type {
+  Configuration,
+  RuleSetRule,
+  Compiler,
+  RuleSetUseItem
+} from 'webpack';
 
 import {
   AbstractModificationsContainer,
@@ -6,7 +11,7 @@ import {
   InsertPos
 } from '@zero-scripts/core';
 
-import { OneOfModification } from './modifications/OneOfModification';
+import { MainRulesModification } from './modifications/MainRulesModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
 interface WebpackPlugin {
@@ -23,7 +28,7 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   constructor() {
     super();
 
-    this.modifications.push(new OneOfModification());
+    this.modifications.push(new MainRulesModification());
   }
 
   public insertPlugin(
@@ -42,15 +47,39 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
-  public insertModuleRule(
+  public insertNonJsRule(
     rule: RuleSetRule,
     position: InsertPos = InsertPos.Middle
   ): this {
-    this.getOneOfModification().rules.push({ rule, position });
+    this.getOneOfModification().nonJsRules.push({ rule, position });
     return this;
   }
 
-  public insertCommonModuleRule(
+  public insertExternalJsRule(
+    rule: RuleSetRule,
+    position: InsertPos = InsertPos.Middle
+  ): this {
+    this.getOneOfModification().externalJsRules.push({ rule, position });
+    return this;
+  }
+
+  // public insertJsRule(
+  //   rule: RuleSetRule,
+  //   position: InsertPos = InsertPos.Middle
+  // ): this {
+  //   this.getOneOfModification().jsRules.push({ rule, position });
+  //   return this;
+  // }
+
+  public insertUseItem(
+    rule: RuleSetUseItem,
+    position: InsertPos = InsertPos.Middle
+  ): this {
+    this.getOneOfModification().jsUseItems.push({ rule, position });
+    return this;
+  }
+
+  public insertRootRule(
     rule: RuleSetRule,
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
@@ -103,9 +132,9 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
-  protected getOneOfModification(): OneOfModification {
+  protected getOneOfModification(): MainRulesModification {
     const modification = this.modifications.find(
-      modification => modification.id === OneOfModification.id
+      modification => modification.id === MainRulesModification.id
     );
 
     if (!modification) {
@@ -114,6 +143,6 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
       );
     }
 
-    return modification as OneOfModification;
+    return modification as MainRulesModification;
   }
 }

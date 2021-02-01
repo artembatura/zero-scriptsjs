@@ -2689,29 +2689,23 @@ __metadata:
     utility-types: ^3.10.0
   peerDependencies:
     "@zero-scripts/plugin-webpack-babel": ^1.0.0-alfa.0
-    "@zero-scripts/plugin-webpack-css": ^1.0.0-alfa.0
     "@zero-scripts/plugin-webpack-eslint": ^1.0.0-alfa.0
-    "@zero-scripts/plugin-webpack-less": ^1.0.0-alfa.0
     "@zero-scripts/plugin-webpack-pwa": ^1.0.0-alfa.0
     "@zero-scripts/plugin-webpack-react": ^1.0.0-alfa.0
-    "@zero-scripts/plugin-webpack-sass": ^1.0.0-alfa.0
     "@zero-scripts/plugin-webpack-spa": ^1.0.0-alfa.0
+    "@zero-scripts/plugin-webpack-styling": ^1.0.0-alfa.0
   peerDependenciesMeta:
     "@zero-scripts/plugin-webpack-babel":
       optional: true
-    "@zero-scripts/plugin-webpack-css":
-      optional: true
     "@zero-scripts/plugin-webpack-eslint":
-      optional: true
-    "@zero-scripts/plugin-webpack-less":
       optional: true
     "@zero-scripts/plugin-webpack-pwa":
       optional: true
     "@zero-scripts/plugin-webpack-react":
       optional: true
-    "@zero-scripts/plugin-webpack-sass":
-      optional: true
     "@zero-scripts/plugin-webpack-spa":
+      optional: true
+    "@zero-scripts/plugin-webpack-styling":
       optional: true
   bin:
     run: ./bin/run.js
@@ -2745,22 +2739,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zero-scripts/plugin-webpack-css@workspace:*, @zero-scripts/plugin-webpack-css@workspace:packages/plugin-webpack-css":
-  version: 0.0.0-use.local
-  resolution: "@zero-scripts/plugin-webpack-css@workspace:packages/plugin-webpack-css"
-  dependencies:
-    "@types/jest": ^26.0.20
-    "@types/node": ^14.14.22
-    "@zero-scripts/core": "workspace:*"
-    "@zero-scripts/utils-webpack-styles": "workspace:*"
-    "@zero-scripts/webpack-config": "workspace:*"
-    webpack: ^5.17.0
-  peerDependencies:
-    "@zero-scripts/core": ^1.0.0-alfa.0
-    webpack: ^5.4.0
-  languageName: unknown
-  linkType: soft
-
 "@zero-scripts/plugin-webpack-eslint@workspace:*, @zero-scripts/plugin-webpack-eslint@workspace:packages/plugin-webpack-eslint":
   version: 0.0.0-use.local
   resolution: "@zero-scripts/plugin-webpack-eslint@workspace:packages/plugin-webpack-eslint"
@@ -2777,25 +2755,6 @@ __metadata:
   peerDependencies:
     "@zero-scripts/core": ^1.0.0-alfa.0
     eslint: ^7.0.0
-    webpack: ^5.4.0
-  languageName: unknown
-  linkType: soft
-
-"@zero-scripts/plugin-webpack-less@workspace:*, @zero-scripts/plugin-webpack-less@workspace:packages/plugin-webpack-less":
-  version: 0.0.0-use.local
-  resolution: "@zero-scripts/plugin-webpack-less@workspace:packages/plugin-webpack-less"
-  dependencies:
-    "@types/jest": ^26.0.20
-    "@types/node": ^14.14.22
-    "@zero-scripts/core": "workspace:*"
-    "@zero-scripts/utils-webpack-styles": "workspace:*"
-    "@zero-scripts/webpack-config": "workspace:*"
-    less: ^4.1.0
-    less-loader: ^7.3.0
-    webpack: ^5.17.0
-  peerDependencies:
-    "@zero-scripts/core": ^1.0.0-alfa.0
-    less: 3.x
     webpack: ^5.4.0
   languageName: unknown
   linkType: soft
@@ -2844,27 +2803,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@zero-scripts/plugin-webpack-sass@workspace:*, @zero-scripts/plugin-webpack-sass@workspace:packages/plugin-webpack-sass":
-  version: 0.0.0-use.local
-  resolution: "@zero-scripts/plugin-webpack-sass@workspace:packages/plugin-webpack-sass"
-  dependencies:
-    "@types/jest": ^26.0.20
-    "@types/node": ^14.14.22
-    "@zero-scripts/core": "workspace:*"
-    "@zero-scripts/utils-webpack-styles": "workspace:*"
-    "@zero-scripts/webpack-config": "workspace:*"
-    sass-loader: ^10.1.1
-    webpack: ^5.17.0
-  peerDependencies:
-    "@zero-scripts/core": ^1.0.0-alfa.0
-    sass: ^1.25.0
-    webpack: ^5.4.0
-  peerDependenciesMeta:
-    sass:
-      optional: true
-  languageName: unknown
-  linkType: soft
-
 "@zero-scripts/plugin-webpack-spa@workspace:*, @zero-scripts/plugin-webpack-spa@workspace:packages/plugin-webpack-spa":
   version: 0.0.0-use.local
   resolution: "@zero-scripts/plugin-webpack-spa@workspace:packages/plugin-webpack-spa"
@@ -2890,6 +2828,31 @@ __metadata:
   peerDependencies:
     "@zero-scripts/core": ^1.0.0-alfa.0
     webpack: ^5.4.0
+  languageName: unknown
+  linkType: soft
+
+"@zero-scripts/plugin-webpack-styling@workspace:*, @zero-scripts/plugin-webpack-styling@workspace:packages/plugin-webpack-styling":
+  version: 0.0.0-use.local
+  resolution: "@zero-scripts/plugin-webpack-styling@workspace:packages/plugin-webpack-styling"
+  dependencies:
+    "@types/jest": ^26.0.20
+    "@types/node": ^14.14.22
+    "@zero-scripts/core": "workspace:*"
+    "@zero-scripts/utils-webpack-styles": "workspace:*"
+    "@zero-scripts/webpack-config": "workspace:*"
+    less-loader: ^7.3.0
+    sass-loader: ^10.1.1
+    webpack: ^5.17.0
+  peerDependencies:
+    "@zero-scripts/core": ^1.0.0-alfa.0
+    less: ^4.0.0
+    sass: ^1.25.0
+    webpack: ^5.4.0
+  peerDependenciesMeta:
+    less:
+      optional: true
+    sass:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -3382,9 +3345,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astroturf@npm:1.0.0-beta.16":
-  version: 1.0.0-beta.16
-  resolution: "astroturf@npm:1.0.0-beta.16"
+"astroturf@npm:1.0.0-beta.17":
+  version: 1.0.0-beta.17
+  resolution: "astroturf@npm:1.0.0-beta.17"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/core": ^7.12.3
@@ -3415,7 +3378,7 @@ __metadata:
     webpack-virtual-modules: ^0.3.2
   peerDependencies:
     webpack: ">=2"
-  checksum: 9cc172f24ba1d5beb52b742ece8797b1cee9f46a9169a57d67cb48e223d1acb55340029579f2ec9d2570bfa767055cfbb2045ca1f77b1f79e1bf42fca18ded85
+  checksum: a4df68e3eea27189255649b22ed666ab8db11aea8e7291b19b83d0d1c401c959617d6bcd868d2adb421d31f11165aa8d7a10f9fd801bdb5ca9441264e4c16189
   languageName: node
   linkType: hard
 
@@ -5823,9 +5786,9 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     react: 16.13.1
     react-dom: 16.13.1
@@ -5846,10 +5809,10 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
-    astroturf: 1.0.0-beta.16
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
+    astroturf: 1.0.0-beta.17
     babel-plugin-named-asset-import: ^0.3.7
     react: ^17.0.1
     react-dom: ^17.0.1
@@ -5871,10 +5834,10 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-eslint": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     eslint: ^7.18.0
     eslint-config-react-app: ^6.0.0
@@ -5902,9 +5865,9 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     react: ^17.0.1
     react-dom: ^17.0.1
@@ -5926,9 +5889,9 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-less": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     less: 4.1.0
     react: ^17.0.1
@@ -5951,8 +5914,8 @@ __metadata:
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
-    "@zero-scripts/plugin-webpack-sass": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     react: ^17.0.1
     react-dom: ^17.0.1
@@ -5975,9 +5938,9 @@ __metadata:
     "@svgr/webpack": ^5.5.0
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     react: ^17.0.1
     react-dom: ^17.0.1
@@ -6002,9 +5965,9 @@ __metadata:
     "@types/react-dom": ^17.0.0
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     fork-ts-checker-webpack-plugin: 6.1.0
     react: ^17.0.1
@@ -6027,9 +5990,9 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-react": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     babel-plugin-named-asset-import: ^0.3.7
     react: ^17.0.1
     react-dom: ^17.0.1
@@ -6049,8 +6012,8 @@ __metadata:
     "@babel/runtime": ^7.12.5
     "@zero-scripts/core": "workspace:*"
     "@zero-scripts/plugin-webpack-babel": "workspace:*"
-    "@zero-scripts/plugin-webpack-css": "workspace:*"
     "@zero-scripts/plugin-webpack-spa": "workspace:*"
+    "@zero-scripts/plugin-webpack-styling": "workspace:*"
     webpack: ^5.17.0
   languageName: unknown
   linkType: soft
@@ -8605,7 +8568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"less@npm:4.1.0, less@npm:^4.1.0":
+"less@npm:4.1.0":
   version: 4.1.0
   resolution: "less@npm:4.1.0"
   dependencies:
@@ -9189,15 +9152,15 @@ __metadata:
   linkType: hard
 
 "mini-css-extract-plugin@npm:^1.3.4":
-  version: 1.3.4
-  resolution: "mini-css-extract-plugin@npm:1.3.4"
+  version: 1.3.5
+  resolution: "mini-css-extract-plugin@npm:1.3.5"
   dependencies:
     loader-utils: ^2.0.0
     schema-utils: ^3.0.0
     webpack-sources: ^1.1.0
   peerDependencies:
     webpack: ^4.4.0 || ^5.0.0
-  checksum: e6061da8b3454bb313e96721f377b663b110bbfae23ebb2f155e25a78dfe1dbc23e3d4b07902c6b12f0969ec951b437d4c88819cf6bdd84bcdfa8fe9df0f965c
+  checksum: b090fc7c19de63a7e7c216565af90ac449e11dbc2dd1efee6276f38b394d69322949e62fcba2129fea8dc868b49b4a2110667897609c9b8598ffca85fa89580e
   languageName: node
   linkType: hard
 

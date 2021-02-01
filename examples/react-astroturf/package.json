@@ -7,7 +7,7 @@
     "watch": "run watch"
   },
   "dependencies": {
-    "astroturf": "1.0.0-beta.16",
+    "astroturf": "1.0.0-beta.17",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -21,28 +21,20 @@
     "@babel/runtime": "^7.12.5",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-css": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "@zero-scripts/plugin-webpack-styling": "workspace:*",
     "babel-plugin-named-asset-import": "^0.3.7",
     "webpack": "^5.17.0"
   },
   "zero-scripts": {
-    "plugin-webpack-babel": {
+    "webpack-config": {
       "jsLoaders": [
         {
           "loader": "astroturf/loader",
           "options": {
-            "extension": ".astro.css"
+            "extension": ".m.css"
           }
-        }
-      ]
-    },
-    "plugin-webpack-css": {
-      "styleLoaders": [
-        {
-          "test": "\\.astro\\.css",
-          "loader": "astroturf/css-loader"
         }
       ]
     }

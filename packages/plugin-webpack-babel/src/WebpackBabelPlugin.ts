@@ -2,12 +2,7 @@ import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import fs from 'fs';
 import path from 'path';
 
-import {
-  AbstractPlugin,
-  ApplyContext,
-  extensionsRegex,
-  ReadOptions
-} from '@zero-scripts/core';
+import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { getBabelConfigPath } from './geBabelConfigPath';
@@ -27,12 +22,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
       webpackConfigBuilder.hooks.build.tap(
         'WebpackBabelPlugin',
         (modifications, configOptions) => {
-          const {
-            isDev,
-            jsFileExtensions,
-            paths,
-            useTypescript
-          } = configOptions;
+          const { isDev, paths, useTypescript } = configOptions;
 
           const pluginOptions = this.optionsContainer.build();
 
@@ -61,47 +51,37 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
             }
           }
 
-          modifications.insertModuleRule({
-            test: extensionsRegex(jsFileExtensions),
-            oneOf: [
-              {
-                include: paths.src,
-                use: [
+          modifications.insertUseItem({
+            loader: rr('babel-loader'),
+            options: {
+              cacheDirectory: true,
+              cacheCompression: !isDev,
+              compact: !isDev
+            }
+          });
+
+          modifications.insertExternalJsRule({
+            exclude: /@babel(?:\/|\\{1,2})runtime/,
+            loader: rr('babel-loader'),
+            options: {
+              babelrc: false,
+              configFile: false,
+              compact: false,
+              presets: [
+                [
+                  '@babel/preset-env',
                   {
-                    loader: rr('babel-loader'),
-                    options: {
-                      cacheDirectory: true,
-                      cacheCompression: !isDev,
-                      compact: !isDev
-                    }
-                  },
-                  ...pluginOptions.jsLoaders
+                    useBuiltIns: 'entry',
+                    corejs: 3,
+                    exclude: ['transform-typeof-symbol'],
+                    loose: true
+                  }
                 ]
-              },
-              {
-                exclude: /@babel(?:\/|\\{1,2})runtime/,
-                loader: rr('babel-loader'),
-                options: {
-                  babelrc: false,
-                  configFile: false,
-                  compact: false,
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        useBuiltIns: 'entry',
-                        corejs: 3,
-                        exclude: ['transform-typeof-symbol'],
-                        loose: true
-                      }
-                    ]
-                  ],
-                  cacheDirectory: true,
-                  cacheCompression: !isDev,
-                  sourceMaps: false
-                }
-              }
-            ]
+              ],
+              cacheDirectory: true,
+              cacheCompression: !isDev,
+              sourceMaps: false
+            }
           });
 
           if (useTypescript) {

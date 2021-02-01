@@ -15,8 +15,8 @@
     "@babel/runtime": "^7.12.5",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-css": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "@zero-scripts/plugin-webpack-styling": "workspace:*",
     "webpack": "^5.17.0"
   },
   "zero-scripts": {}
