@@ -1,17 +1,15 @@
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
 import {
   AbstractPlugin,
   ApplyContext,
   ReadOptions,
   packageExists
 } from '@zero-scripts/core';
-import {
-  getLocalIdent,
-  getStyleLoaders,
-  getOptimizeCSSAssetsPlugin,
-  getMiniCssExtractPlugin
-} from '@zero-scripts/utils-webpack-styles';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
+import { getLocalIdent, getStyleLoaders } from './utils';
 import { WebpackStylingPluginOptions } from './WebpackStylingPluginOptions';
 
 const cssModuleRegex = /\.(module|m)\.css$/;
@@ -138,14 +136,27 @@ export class WebpackStylingPlugin extends AbstractPlugin<WebpackStylingPluginOpt
 
           if (!configOptions.isDev) {
             modifications.insertPlugin(
-              getMiniCssExtractPlugin(),
+              new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].chunk.css'
+              }),
               undefined,
               'mini-css-extract-plugin'
             );
           }
 
           modifications.insertMinimizer(
-            getOptimizeCSSAssetsPlugin(configOptions),
+            new OptimizeCSSAssetsPlugin({
+              cssProcessorOptions: {
+                parser: require('postcss-safe-parser'),
+                map: configOptions.useSourceMap
+                  ? {
+                      inline: false,
+                      annotation: true
+                    }
+                  : false
+              }
+            }),
             undefined,
             'optimize-css-assets-plugin'
           );

@@ -161,8 +161,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                   })
                 );
 
-                // we should remove `hot-accept-webpack-plugin`
-                // because react refresh do the same
+                // react-refresh adds hot accepting logic too
                 if (modifications.has('hot-accept-plugin')) {
                   modifications.remove('hot-accept-plugin');
                 }

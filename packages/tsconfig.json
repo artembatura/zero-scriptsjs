@@ -8,7 +8,6 @@
     { "path": "plugin-webpack-styling" },
     { "path": "plugin-webpack-spa" },
     { "path": "plugin-webpack-pwa" },
-    { "path": "webpack-config" },
-    { "path": "utils-webpack-styles" }
+    { "path": "webpack-config" }
   ]
 }
