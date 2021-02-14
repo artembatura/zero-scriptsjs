@@ -5,12 +5,9 @@
     { "path": "plugin-webpack-babel" },
     { "path": "plugin-webpack-eslint" },
     { "path": "plugin-webpack-react" },
-    { "path": "plugin-webpack-css" },
-    { "path": "plugin-webpack-sass" },
-    { "path": "plugin-webpack-less" },
+    { "path": "plugin-webpack-styling" },
     { "path": "plugin-webpack-spa" },
     { "path": "plugin-webpack-pwa" },
-    { "path": "webpack-config" },
-    { "path": "utils-webpack-styles" }
+    { "path": "webpack-config" }
   ]
 }

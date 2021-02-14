@@ -1,0 +1,78 @@
+{
+  "name": "@zero-scripts/plugin-webpack-styling",
+  "version": "1.0.0-alfa.20",
+  "description": "Extracts, minify and adds vendor prefixes to your styles. Supports Sass, Less and CSS Modules",
+  "keywords": [
+    "zero-scripts",
+    "plugin",
+    "css",
+    "styles",
+    "sass",
+    "scss",
+    "less",
+    "css-modules",
+    "postcss",
+    "preprocessor",
+    "webpack"
+  ],
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "dependencies": {
+    "@zero-scripts/webpack-config": "workspace:*",
+    "css-loader": "^5.0.1",
+    "less-loader": "^7.3.0",
+    "loader-utils": "^2.0.0",
+    "mini-css-extract-plugin": "^1.3.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "postcss": "^8.2.4",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^4.2.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-safe-parser": "^5.0.2",
+    "sass-loader": "^10.1.1",
+    "style-loader": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/loader-utils": "^2.0.1",
+    "@types/node": "^14.14.22",
+    "@zero-scripts/core": "workspace:*",
+    "webpack": "^5.17.0"
+  },
+  "peerDependencies": {
+    "@zero-scripts/core": "^1.0.0-alfa.0",
+    "less": "^3.5.0 || ^4.0.0",
+    "node-sass": "^4.0.0 || ^5.0.0",
+    "sass": "^1.3.0",
+    "webpack": "^5.4.0"
+  },
+  "peerDependenciesMeta": {
+    "less": {
+      "optional": true
+    },
+    "node-sass": {
+      "optional": true
+    },
+    "sass": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

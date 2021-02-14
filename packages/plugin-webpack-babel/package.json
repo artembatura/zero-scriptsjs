@@ -28,29 +28,31 @@
   ],
   "dependencies": {
     "@zero-scripts/webpack-config": "workspace:*",
-    "babel-loader": "^8.2.1",
-    "core-js": "3.7.0"
+    "babel-loader": "^8.2.2",
+    "core-js": "3.8.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.0",
+    "@babel/core": "^7.12.10",
     "@types/babel__core": "^7.1.12",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^14.14.9",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
     "@zero-scripts/core": "workspace:*",
-    "webpack": "^5.10.0"
+    "fork-ts-checker-webpack-plugin": "^6.1.0",
+    "webpack": "^5.17.0"
   },
   "peerDependencies": {
     "@zero-scripts/core": "^1.0.0-alfa.0",
+    "fork-ts-checker-webpack-plugin": "^6.0.0",
     "typescript": "^4.0.2",
     "webpack": "^5.4.0"
   },
   "peerDependenciesMeta": {
+    "fork-ts-checker-webpack-plugin": {
+      "optional": true
+    },
     "typescript": {
       "optional": true
     }
-  },
-  "optionalDependencies": {
-    "fork-ts-checker-webpack-plugin": "^5.1.0"
   },
   "publishConfig": {
     "access": "public"

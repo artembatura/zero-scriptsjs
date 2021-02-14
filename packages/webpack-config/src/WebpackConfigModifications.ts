@@ -1,4 +1,9 @@
-import type { Configuration, RuleSetRule, Compiler } from 'webpack';
+import type {
+  Configuration,
+  RuleSetRule,
+  Compiler,
+  RuleSetUseItem
+} from 'webpack';
 
 import {
   AbstractModificationsContainer,
@@ -6,7 +11,7 @@ import {
   InsertPos
 } from '@zero-scripts/core';
 
-import { OneOfModification } from './modifications/OneOfModification';
+import { MainRulesModification } from './modifications/MainRulesModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
 interface WebpackPlugin {
@@ -20,6 +25,12 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   Configuration,
   WebpackConfigOptions
 > {
+  constructor() {
+    super();
+
+    this.modifications.push(new MainRulesModification());
+  }
+
   public insertPlugin(
     plugin: WebpackPlugin,
     position: InsertPos = InsertPos.End,
@@ -36,15 +47,39 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
-  public insertModuleRule(
+  public insertNonJsRule(
     rule: RuleSetRule,
     position: InsertPos = InsertPos.Middle
   ): this {
-    this.getOneOfModification().rules.push({ rule, position });
+    this.getOneOfModification().nonJsRules.push({ rule, position });
     return this;
   }
 
-  public insertCommonModuleRule(
+  public insertExternalJsRule(
+    rule: RuleSetRule,
+    position: InsertPos = InsertPos.Middle
+  ): this {
+    this.getOneOfModification().externalJsRules.push({ rule, position });
+    return this;
+  }
+
+  // public insertJsRule(
+  //   rule: RuleSetRule,
+  //   position: InsertPos = InsertPos.Middle
+  // ): this {
+  //   this.getOneOfModification().jsRules.push({ rule, position });
+  //   return this;
+  // }
+
+  public insertUseItem(
+    rule: RuleSetUseItem,
+    position: InsertPos = InsertPos.Middle
+  ): this {
+    this.getOneOfModification().jsUseItems.push({ rule, position });
+    return this;
+  }
+
+  public insertRootRule(
     rule: RuleSetRule,
     position: InsertPos = InsertPos.Middle,
     modificationId?: string
@@ -97,17 +132,17 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
-  protected getOneOfModification(): OneOfModification {
-    const foundModification = this.modifications.find(
-      modification => modification.id === OneOfModification.id
+  protected getOneOfModification(): MainRulesModification {
+    const modification = this.modifications.find(
+      modification => modification.id === MainRulesModification.id
     );
 
-    if (!foundModification) {
-      const modification = new OneOfModification();
-      this.modifications.push(modification);
-      return modification;
-    } else {
-      return foundModification as OneOfModification;
+    if (!modification) {
+      throw new Error(
+        'Probably you forgot to instantiate OneOfModification in WebpackConfigModifications constructor'
+      );
     }
+
+    return modification as MainRulesModification;
   }
 }

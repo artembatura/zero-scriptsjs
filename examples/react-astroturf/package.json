@@ -7,42 +7,34 @@
     "watch": "run watch"
   },
   "dependencies": {
-    "astroturf": "1.0.0-beta.16",
-    "react": "17.x",
-    "react-dom": "17.x"
+    "astroturf": "1.0.0-beta.17",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
+    "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.12.7",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
     "@babel/runtime": "^7.12.5",
     "@zero-scripts/core": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
-    "@zero-scripts/plugin-webpack-css": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
+    "@zero-scripts/plugin-webpack-styling": "workspace:*",
     "babel-plugin-named-asset-import": "^0.3.7",
-    "webpack": "^5.10.0"
+    "webpack": "^5.17.0"
   },
   "zero-scripts": {
-    "plugin-webpack-babel": {
+    "webpack-config": {
       "jsLoaders": [
         {
           "loader": "astroturf/loader",
           "options": {
-            "extension": ".astro.css"
+            "extension": ".m.css"
           }
-        }
-      ]
-    },
-    "plugin-webpack-css": {
-      "styleLoaders": [
-        {
-          "test": "\\.astro\\.css",
-          "loader": "astroturf/css-loader"
         }
       ]
     }
