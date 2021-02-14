@@ -53,7 +53,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
                     from: paths.public,
                     to: paths.build,
                     globOptions: {
-                      ignore: [paths.indexHtml]
+                      ignore: ['**/index.html']
                     }
                   }
                 ]
