@@ -1,4 +1,9 @@
-import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
+import {
+  AbstractPlugin,
+  ApplyContext,
+  ReadOptions,
+  packageExists
+} from '@zero-scripts/core';
 import {
   getLocalIdent,
   getStyleLoaders,
@@ -14,15 +19,6 @@ const sassModuleRegex = /\.(module|m)\.(scss|sass)$/;
 const lessModuleRegex = /\.(module|m)\.less$/;
 
 const rr = require.resolve;
-
-function checkPackageExisting(pkgName: string, rootPath: string) {
-  try {
-    require.resolve(pkgName, { paths: [rootPath] });
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 @ReadOptions(WebpackStylingPluginOptions, 'plugin-webpack-styling')
 export class WebpackStylingPlugin extends AbstractPlugin<WebpackStylingPluginOptions> {
@@ -70,8 +66,8 @@ export class WebpackStylingPlugin extends AbstractPlugin<WebpackStylingPluginOpt
             })(configOptions)
           });
 
-          const enableSassSupport = checkPackageExisting(
-            'sass',
+          const enableSassSupport = packageExists(
+            ['sass', 'node-sass'],
             configOptions.paths.root
           );
 
@@ -105,7 +101,7 @@ export class WebpackStylingPlugin extends AbstractPlugin<WebpackStylingPluginOpt
             });
           }
 
-          const enableLessSupport = checkPackageExisting(
+          const enableLessSupport = packageExists(
             'less',
             configOptions.paths.root
           );
