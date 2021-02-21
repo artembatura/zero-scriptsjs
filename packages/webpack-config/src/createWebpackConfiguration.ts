@@ -1,4 +1,4 @@
-import path from 'path';
+import * as path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import type { Configuration } from 'webpack';
 import { DefinePlugin } from 'webpack';

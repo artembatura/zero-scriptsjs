@@ -1,6 +1,6 @@
 import ESLintPlugin from 'eslint-webpack-plugin';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';

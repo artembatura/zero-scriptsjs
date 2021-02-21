@@ -1,7 +1,7 @@
 import type { TransformOptions } from '@babel/core';
 import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
