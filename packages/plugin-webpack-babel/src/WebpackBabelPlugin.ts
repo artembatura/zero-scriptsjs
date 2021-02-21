@@ -1,3 +1,4 @@
+import type { TransformOptions } from '@babel/core';
 import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import fs from 'fs';
 import path from 'path';
@@ -7,12 +8,15 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { getBabelConfigPath } from './geBabelConfigPath';
 import { getBaseBabelConfig } from './getBaseBabelConfig';
+import { loadBabelConfig } from './loadBabelConfig';
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
 const rr = require.resolve;
 
 @ReadOptions(WebpackBabelPluginOptions, 'plugin-webpack-babel')
 export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions> {
+  public readonly babelConfigPreprocessors: Array<(c: string) => string> = [];
+
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackBabelPlugin', beforeRunContext => {
       const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
@@ -26,11 +30,13 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
           const pluginOptions = this.optionsContainer.build();
 
+          let babelConfig: TransformOptions | undefined;
+
           if (pluginOptions.syncConfig.enabled) {
             const babelConfigPath = getBabelConfigPath(paths.root);
 
             if (!babelConfigPath) {
-              const baseBabelConfig = getBaseBabelConfig(
+              babelConfig = getBaseBabelConfig(
                 configOptions,
                 pluginOptions,
                 pluginOptions.baseBabelConfig
@@ -46,17 +52,23 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
               fs.writeFileSync(
                 babelConfigPath,
-                JSON.stringify(baseBabelConfig, null, 2)
+                JSON.stringify(babelConfig, null, 2)
               );
             }
           }
+
+          babelConfig =
+            babelConfig ||
+            loadBabelConfig(paths.root, this.babelConfigPreprocessors);
 
           modifications.insertUseItem({
             loader: rr('babel-loader'),
             options: {
               cacheDirectory: true,
               cacheCompression: !isDev,
-              compact: !isDev
+              compact: !isDev,
+              configFile: false,
+              ...babelConfig
             }
           });
 
@@ -69,7 +81,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
               compact: false,
               presets: [
                 [
-                  '@babel/preset-env',
+                  rr('@babel/preset-env'),
                   {
                     useBuiltIns: 'entry',
                     corejs: 3,

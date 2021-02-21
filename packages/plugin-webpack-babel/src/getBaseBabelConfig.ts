@@ -24,8 +24,6 @@ export function getBaseBabelConfig(
     });
   }
 
-  // TODO: if flow package is installed,
-  //  automatically enable this option
   if (pluginOptions.flow) {
     overrides.push({
       exclude: ['**/*.ts', '**/*.tsx'],
