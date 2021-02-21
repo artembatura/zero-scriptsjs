@@ -7,15 +7,18 @@ import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { getBabelConfigPath } from './geBabelConfigPath';
-import { getBaseBabelConfig } from './getBaseBabelConfig';
+import { getInitialBabelConfig } from './getInitialBabelConfig';
 import { loadBabelConfig } from './loadBabelConfig';
+import { resolveBabelConfigPackages } from './resolveBabelConfigPackages';
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
 const rr = require.resolve;
 
 @ReadOptions(WebpackBabelPluginOptions, 'plugin-webpack-babel')
 export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions> {
-  public readonly babelConfigPreprocessors: Array<(c: string) => string> = [];
+  public readonly babelConfigPreprocessors: Array<(c: string) => string> = [
+    resolveBabelConfigPackages
+  ];
 
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackBabelPlugin', beforeRunContext => {
@@ -30,13 +33,13 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
           const pluginOptions = this.optionsContainer.build();
 
-          let babelConfig: TransformOptions | undefined;
+          let initialBabelConfig: TransformOptions | undefined;
 
           if (pluginOptions.syncConfig.enabled) {
             const babelConfigPath = getBabelConfigPath(paths.root);
 
             if (!babelConfigPath) {
-              babelConfig = getBaseBabelConfig(
+              initialBabelConfig = getInitialBabelConfig(
                 configOptions,
                 pluginOptions,
                 pluginOptions.baseBabelConfig
@@ -52,14 +55,20 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
               fs.writeFileSync(
                 babelConfigPath,
-                JSON.stringify(babelConfig, null, 2)
+                JSON.stringify(initialBabelConfig, null, 2)
               );
             }
           }
 
-          babelConfig =
-            babelConfig ||
-            loadBabelConfig(paths.root, this.babelConfigPreprocessors);
+          let babelConfigString: string = initialBabelConfig
+            ? JSON.stringify(initialBabelConfig)
+            : loadBabelConfig(paths.root);
+
+          this.babelConfigPreprocessors.forEach(preprocess => {
+            babelConfigString = preprocess(babelConfigString);
+          });
+
+          const babelConfig = JSON.parse(babelConfigString);
 
           modifications.insertUseItem({
             loader: rr('babel-loader'),
@@ -68,7 +77,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
               cacheCompression: !isDev,
               compact: !isDev,
               configFile: false,
-              ...babelConfig
+              ...(babelConfig ? babelConfig : {})
             }
           });
 

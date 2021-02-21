@@ -5,7 +5,7 @@ import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
-export function getBaseBabelConfig(
+export function getInitialBabelConfig(
   configOptions: ExtractOptions<WebpackConfigOptions>,
   pluginOptions: ExtractOptions<WebpackBabelPluginOptions>,
   baseConfig: WebpackBabelPluginOptions['baseBabelConfig']
