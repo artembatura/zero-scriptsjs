@@ -1,6 +1,6 @@
 {
   "name": "@zero-scripts/plugin-webpack-styling",
-  "version": "1.0.0-alfa.20",
+  "version": "1.0.0-alfa.22",
   "description": "Extracts, minify and adds vendor prefixes to your styles. Supports Sass, Less and CSS Modules",
   "keywords": [
     "zero-scripts",
