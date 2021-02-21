@@ -1,4 +1,4 @@
-const babelPackages: string[] = [
+const packages: string[] = [
   '@babel/preset-typescript',
   '@babel/plugin-proposal-decorators',
   '@babel/plugin-transform-flow-strip-types',
@@ -8,10 +8,10 @@ const babelPackages: string[] = [
   '@babel/plugin-proposal-class-properties'
 ];
 
-export function resolveBabelConfigPackages(config: string): string {
+export default function resolveBabelPackages(config: string): string {
   let tempString = config;
 
-  babelPackages.forEach(pkgName => {
+  packages.forEach(pkgName => {
     if (tempString.includes(pkgName)) {
       tempString = tempString.replace(new RegExp(pkgName, 'g'), () =>
         require.resolve(pkgName)

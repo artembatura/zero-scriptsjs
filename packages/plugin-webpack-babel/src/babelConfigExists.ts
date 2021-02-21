@@ -1,16 +1,14 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export function getBabelConfigPath(rootPath: string): string | null {
+export function babelConfigExists(rootPath: string): boolean {
   const basePath = path.resolve(rootPath, 'babel.config');
 
   const extensions = ['.json', '.js'];
 
-  const existsExt = extensions.find(ext => {
+  return extensions.some(ext => {
     const path = basePath + ext;
 
     return fs.existsSync(path);
   });
-
-  return existsExt ? basePath + existsExt : null;
 }

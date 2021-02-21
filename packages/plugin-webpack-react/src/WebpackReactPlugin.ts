@@ -15,26 +15,6 @@ import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
 
 const rr = require.resolve;
 
-const babelPackages: string[] = [
-  '@babel/preset-react',
-  'babel-plugin-transform-react-remove-prop-types',
-  'babel-plugin-named-asset-import'
-];
-
-function resolveBabelPackagesInBabelConfig(config: string): string {
-  let tempConfig = config;
-
-  babelPackages.forEach(pkgName => {
-    if (tempConfig.includes(pkgName)) {
-      tempConfig = tempConfig.replace(new RegExp(pkgName, 'g'), () =>
-        require.resolve(pkgName)
-      );
-    }
-  });
-
-  return tempConfig;
-}
-
 @ReadOptions(WebpackReactPluginOptions, 'plugin-webpack-react')
 export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions> {
   public apply(applyContext: ApplyContext): void {
@@ -75,8 +55,8 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             optionsContainer => {
               const baseConfig = optionsContainer.baseBabelConfig;
 
-              babelPlugin.babelConfigPreprocessors.push(
-                resolveBabelPackagesInBabelConfig
+              babelPlugin.babelConfigHandlerPaths.push(
+                '@zero-scripts/plugin-webpack-react/build/resolveBabelPackages'
               );
 
               baseConfig.presets.push([
