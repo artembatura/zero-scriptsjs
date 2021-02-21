@@ -55,19 +55,22 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             optionsContainer => {
               const baseConfig = optionsContainer.baseBabelConfig;
 
-              baseConfig.env.development.presets.push([
+              babelPlugin.babelConfigHandlerPaths.push(
+                '@zero-scripts/plugin-webpack-react/build/resolveBabelPackages'
+              );
+
+              baseConfig.presets.push([
                 '@babel/preset-react',
                 {
-                  development: true,
                   useBuiltIns: true,
                   runtime: useNewJsxTransform ? 'automatic' : 'classic'
                 }
               ]);
 
-              baseConfig.env.production.presets.push([
+              baseConfig.env.development.presets.push([
                 '@babel/preset-react',
                 {
-                  development: false,
+                  development: true,
                   useBuiltIns: true,
                   runtime: useNewJsxTransform ? 'automatic' : 'classic'
                 }

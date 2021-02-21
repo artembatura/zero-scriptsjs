@@ -28,8 +28,11 @@
     "build"
   ],
   "dependencies": {
+    "@babel/core": "7.12.3",
+    "@babel/preset-react": "7.12.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@zero-scripts/webpack-config": "workspace:*",
+    "babel-plugin-named-asset-import": "0.3.7",
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {

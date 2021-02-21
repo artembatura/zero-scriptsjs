@@ -1,18 +1,23 @@
 import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 import { AbstractPlugin, ApplyContext, ReadOptions } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
-import { getBabelConfigPath } from './geBabelConfigPath';
-import { getBaseBabelConfig } from './getBaseBabelConfig';
+import { babelConfigExists } from './babelConfigExists';
+import { getBabelConfigFileContents } from './getBabelConfigFileContents';
+import { getInitialBabelConfig } from './getInitialBabelConfig';
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
 const rr = require.resolve;
 
 @ReadOptions(WebpackBabelPluginOptions, 'plugin-webpack-babel')
 export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions> {
+  public readonly babelConfigHandlerPaths: string[] = [
+    '@zero-scripts/plugin-webpack-babel/build/resolveBabelPackages'
+  ];
+
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackBabelPlugin', beforeRunContext => {
       const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
@@ -27,10 +32,8 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
           const pluginOptions = this.optionsContainer.build();
 
           if (pluginOptions.syncConfig.enabled) {
-            const babelConfigPath = getBabelConfigPath(paths.root);
-
-            if (!babelConfigPath) {
-              const baseBabelConfig = getBaseBabelConfig(
+            if (!babelConfigExists(paths.root)) {
+              const initialBabelConfig = getInitialBabelConfig(
                 configOptions,
                 pluginOptions,
                 pluginOptions.baseBabelConfig
@@ -38,15 +41,23 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
               const babelConfigPath = path.resolve(
                 paths.root,
-                'babel.config.json'
+                'babel.config.js'
               );
 
               // eslint-disable-next-line no-console
-              console.log('Create babel.config.json...');
+              console.log('Create babel.config.js...');
 
-              fs.writeFileSync(
+              fs.writeFile(
                 babelConfigPath,
-                JSON.stringify(baseBabelConfig, null, 2)
+                getBabelConfigFileContents(
+                  initialBabelConfig,
+                  this.babelConfigHandlerPaths
+                ),
+                err => {
+                  if (err) {
+                    throw err;
+                  }
+                }
               );
             }
           }
@@ -56,7 +67,8 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
             options: {
               cacheDirectory: true,
               cacheCompression: !isDev,
-              compact: !isDev
+              compact: !isDev,
+              configFile: true
             }
           });
 
@@ -69,7 +81,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
               compact: false,
               presets: [
                 [
-                  '@babel/preset-env',
+                  rr('@babel/preset-env'),
                   {
                     useBuiltIns: 'entry',
                     corejs: 3,

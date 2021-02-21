@@ -64,10 +64,9 @@ export class WebpackStylingPlugin extends AbstractPlugin<WebpackStylingPluginOpt
             })(configOptions)
           });
 
-          const enableSassSupport = packageExists(
-            ['sass', 'node-sass'],
-            configOptions.paths.root
-          );
+          const enableSassSupport =
+            packageExists('sass', configOptions.paths.root) ||
+            packageExists('node-sass', configOptions.paths.root);
 
           if (enableSassSupport) {
             const sassLoader = rr('sass-loader');

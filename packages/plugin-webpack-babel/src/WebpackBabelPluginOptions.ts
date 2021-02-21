@@ -16,6 +16,8 @@ interface BaseBabelConfig extends TransformOptions {
 }
 
 export class WebpackBabelPluginOptions extends AbstractOptionsContainer<WebpackBabelPluginOptions> {
+  // TODO: if flow package is installed,
+  //  automatically enable this option
   @Option<WebpackBabelPluginOptions, 'flow'>()
   public flow: boolean = false;
 

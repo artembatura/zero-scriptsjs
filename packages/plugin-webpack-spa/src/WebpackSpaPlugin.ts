@@ -4,7 +4,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { HotAcceptPlugin } from 'hot-accept-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import path from 'path';
+import * as path from 'path';
 import { HotModuleReplacementPlugin } from 'webpack';
 
 import {
