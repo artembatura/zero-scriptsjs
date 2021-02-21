@@ -53,9 +53,14 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
               // eslint-disable-next-line no-console
               console.log('Create babel.config.json...');
 
-              fs.writeFileSync(
+              fs.writeFile(
                 babelConfigPath,
-                JSON.stringify(initialBabelConfig, null, 2)
+                JSON.stringify(initialBabelConfig, null, 2),
+                err => {
+                  if (err) {
+                    throw err;
+                  }
+                }
               );
             }
           }
@@ -68,7 +73,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
             babelConfigString = preprocess(babelConfigString);
           });
 
-          const babelConfig = JSON.parse(babelConfigString);
+          const babelConfig = JSON.parse(babelConfigString) as TransformOptions;
 
           modifications.insertUseItem({
             loader: rr('babel-loader'),
