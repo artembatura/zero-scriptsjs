@@ -54,6 +54,11 @@ export function createWebpackConfiguration({
     },
     module: {
       strictExportPresence: true,
+
+      /**
+       * @see RulesModification
+       * @see WebpackConfigModifications
+       */
       rules: []
     },
     plugins: [

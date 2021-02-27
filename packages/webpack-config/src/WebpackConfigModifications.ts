@@ -11,7 +11,7 @@ import {
   InsertPos
 } from '@zero-scripts/core';
 
-import { MainRulesModification } from './modifications/MainRulesModification';
+import { RulesModification } from './modifications/RulesModification';
 import { WebpackConfigOptions } from './WebpackConfigOptions';
 
 interface WebpackPlugin {
@@ -19,7 +19,23 @@ interface WebpackPlugin {
 }
 
 /**
- * An API designed for modifying webpack configuration by plugins
+ * An imperative API designed for modifying webpack configuration by plugins.
+ *
+ * Modifications container encapsulates complexity over modifications so
+ * developer cannot access to modifications itself and should use simple methods.
+ *
+ * <br/>
+ *
+ * @example - Add HtmlWebpackPlugin to webpack configuration
+ * class MyPlugin extends AbstractPlugin {
+ *   public apply(applyContext: ApplyContext) {
+ *     const webpackConfig = beforeRunContext.getConfigBuilder(WebpackConfig);
+ *
+ *     webpackConfig.hooks.build.tap('MyPlugin', (modifications) => {
+ *       modifications.insertPlugin(new HtmlWebpackPlugin()); // << usage here
+ *     });
+ *   }
+ * }
  */
 export class WebpackConfigModifications extends AbstractModificationsContainer<
   Configuration,
@@ -28,7 +44,7 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
   constructor() {
     super();
 
-    this.modifications.push(new MainRulesModification());
+    this.modifications.push(new RulesModification());
   }
 
   public insertPlugin(
@@ -47,35 +63,36 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
+  /**
+   * @see RulesModification#nonJsRules
+   */
   public insertNonJsRule(
     rule: RuleSetRule,
     position: InsertPos = InsertPos.Middle
   ): this {
-    this.getOneOfModification().nonJsRules.push({ rule, position });
+    this.getRulesModification().nonJsRules.push({ rule, position });
     return this;
   }
 
+  /**
+   * @see RulesModification#externalJsRules
+   */
   public insertExternalJsRule(
     rule: RuleSetRule,
     position: InsertPos = InsertPos.Middle
   ): this {
-    this.getOneOfModification().externalJsRules.push({ rule, position });
+    this.getRulesModification().externalJsRules.push({ rule, position });
     return this;
   }
 
-  // public insertJsRule(
-  //   rule: RuleSetRule,
-  //   position: InsertPos = InsertPos.Middle
-  // ): this {
-  //   this.getOneOfModification().jsRules.push({ rule, position });
-  //   return this;
-  // }
-
+  /**
+   * @see RulesModification#jsUseItems
+   */
   public insertUseItem(
     rule: RuleSetUseItem,
     position: InsertPos = InsertPos.Middle
   ): this {
-    this.getOneOfModification().jsUseItems.push({ rule, position });
+    this.getRulesModification().jsUseItems.push({ rule, position });
     return this;
   }
 
@@ -132,9 +149,9 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
     return this;
   }
 
-  protected getOneOfModification(): MainRulesModification {
+  protected getRulesModification(): RulesModification {
     const modification = this.modifications.find(
-      modification => modification.id === MainRulesModification.id
+      modification => modification.id === RulesModification.id
     );
 
     if (!modification) {
@@ -143,6 +160,6 @@ export class WebpackConfigModifications extends AbstractModificationsContainer<
       );
     }
 
-    return modification as MainRulesModification;
+    return modification as RulesModification;
   }
 }
