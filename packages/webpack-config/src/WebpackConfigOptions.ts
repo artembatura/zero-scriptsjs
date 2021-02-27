@@ -40,7 +40,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<WebpackConfig
   @Option<WebpackConfigOptions, 'moduleFileExtensions', 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies }) => [
       ...defaultValue,
-      ...(dependencies.useTypescript ? ['.ts'] : []),
+      ...(dependencies.useTypescript ? ['ts'] : []),
       ...(externalValue ? externalValue : [])
     ],
     ['useTypescript']
