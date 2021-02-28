@@ -1,6 +1,6 @@
-import { css } from 'astroturf';
+import { stylesheet } from 'astroturf';
 
-export const styles = css`
+export const styles = stylesheet`
   .App {
     text-align: center;
   }
