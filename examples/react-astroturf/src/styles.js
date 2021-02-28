@@ -7,6 +7,7 @@ export const styles = stylesheet`
 
   .AppLogo {
     animation: App-logo-spin infinite 20s linear;
+    animation-delay: 1s;
     height: 40vmin;
   }
 
