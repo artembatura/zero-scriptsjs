@@ -1,12 +1,13 @@
-import { css } from 'astroturf';
+import { stylesheet } from 'astroturf';
 
-export const styles = css`
+export const styles = stylesheet`
   .App {
     text-align: center;
   }
 
   .AppLogo {
     animation: App-logo-spin infinite 20s linear;
+    animation-delay: 1s;
     height: 40vmin;
   }
 
