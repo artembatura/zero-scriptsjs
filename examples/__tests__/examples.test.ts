@@ -35,7 +35,10 @@ function testExample(appName: string, getBrowser: () => puppeteer.Browser) {
       const screenshot = await page.screenshot();
       await page.close();
 
-      expect(screenshot).toMatchImageSnapshot();
+      expect(screenshot).toMatchImageSnapshot({
+        failureThreshold: 0.05,
+        failureThresholdType: 'percent'
+      });
     });
   });
 
