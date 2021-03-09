@@ -5,14 +5,64 @@ import puppeteer from 'puppeteer';
 
 import { runStart, readProcessOutput, run } from '../../e2e-helpers';
 
-const getDirectories = (path: string) =>
-  fs
-    .readdirSync(path, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name);
+function testExample(appName: string, getBrowser: () => puppeteer.Browser) {
+  const appPath = path.resolve(path.join(__dirname, '..'), appName);
+
+  if (!fs.existsSync(appPath)) {
+    throw new Error(`Path ${appPath} doesn't exists`);
+  }
+
+  it('dev server should works', async () => {
+    const devServerPort = await getPort();
+
+    await runStart(appPath, devServerPort, async (response, readOutput) => {
+      expect(response.status).toBe(200);
+
+      expect(await readOutput()).toContain(
+        'Your application is available at http://localhost:' +
+          devServerPort.toString()
+      );
+    });
+  });
+
+  it('app should looks right', async () => {
+    const devServerPort = await getPort();
+    const browser = getBrowser();
+
+    await runStart(appPath, devServerPort, async () => {
+      const page = await browser.newPage();
+      await page.goto('http://localhost:' + devServerPort);
+      const screenshot = await page.screenshot();
+      await page.close();
+
+      expect(screenshot).toMatchImageSnapshot();
+    });
+  });
+
+  it('run build', async () => {
+    const process = run(appPath, ['build']);
+
+    const output = await readProcessOutput(process);
+
+    expect(output).toContain(
+      'Your application successfully built and available at build folder'
+    );
+  });
+
+  it('run watch', async () => {
+    const process = run(appPath, ['watch', '--smokeTest']);
+
+    const output = await readProcessOutput(process);
+
+    expect(output).toContain(
+      'Your application successfully built and available at build folder'
+    );
+  });
+}
 
 describe('examples should works', () => {
   let browser: puppeteer.Browser;
+  const getBrowser = () => browser;
 
   beforeAll(async () => {
     jest.setTimeout(1000 * 120);
@@ -24,59 +74,43 @@ describe('examples should works', () => {
     await browser.close();
   });
 
-  const examples = getDirectories(path.join(__dirname, '..')).filter(
-    str => !str.startsWith('__')
-  );
+  describe('react', () => {
+    testExample('react', getBrowser);
+  });
 
-  examples.forEach(appName => {
-    const appPath = path.resolve(path.join(__dirname, '..'), appName);
+  describe('react-16', () => {
+    testExample('react-16', getBrowser);
+  });
 
-    describe(`${appName}-example`, () => {
-      it('dev server should works', async () => {
-        const devServerPort = await getPort();
+  describe('react-astroturf', () => {
+    testExample('react-astroturf', getBrowser);
+  });
 
-        await runStart(appPath, devServerPort, async (response, readOutput) => {
-          expect(response.status).toBe(200);
+  describe('react-eslint', () => {
+    testExample('react-eslint', getBrowser);
+  });
 
-          expect(await readOutput()).toContain(
-            'Your application is available at http://localhost:' +
-              devServerPort.toString()
-          );
-        });
-      });
+  describe('react-fast-refresh', () => {
+    testExample('react-fast-refresh', getBrowser);
+  });
 
-      it('app should looks right', async () => {
-        const devServerPort = await getPort();
+  describe('react-less', () => {
+    testExample('react-less', getBrowser);
+  });
 
-        await runStart(appPath, devServerPort, async () => {
-          const page = await browser.newPage();
-          await page.goto('http://localhost:' + devServerPort);
-          const screenshot = await page.screenshot();
-          await page.close();
+  describe('react-sass', () => {
+    testExample('react-sass', getBrowser);
+  });
 
-          expect(screenshot).toMatchImageSnapshot();
-        });
-      });
+  describe('react-svg-component', () => {
+    testExample('react-svg-component', getBrowser);
+  });
 
-      it('run build', async () => {
-        const process = run(appPath, ['build']);
+  describe('react-typescript', () => {
+    testExample('react-typescript', getBrowser);
+  });
 
-        const output = await readProcessOutput(process);
-
-        expect(output).toContain(
-          'Your application successfully built and available at build folder'
-        );
-      });
-
-      it('run watch', async () => {
-        const process = run(appPath, ['watch', '--smokeTest']);
-
-        const output = await readProcessOutput(process);
-
-        expect(output).toContain(
-          'Your application successfully built and available at build folder'
-        );
-      });
-    });
+  describe('spa-import-json', () => {
+    testExample('spa-import-json', getBrowser);
   });
 });

@@ -44,7 +44,12 @@ export async function runStart(
   }
 
   if (afterBootstrapCallback) {
-    await afterBootstrapCallback(httpResponse, readOutput);
+    await Promise.resolve(
+      afterBootstrapCallback(httpResponse, readOutput)
+    ).catch(err => {
+      terminateDevServer(port);
+      throw err;
+    });
   }
 
   return await readOutput();
