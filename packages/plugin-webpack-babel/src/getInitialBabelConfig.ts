@@ -5,29 +5,34 @@ import { WebpackConfigOptions } from '@zero-scripts/webpack-config';
 
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
+const rr = (pkg: string, bool: boolean) => (bool ? require.resolve(pkg) : pkg);
+
 export function getInitialBabelConfig(
   configOptions: ExtractOptions<WebpackConfigOptions>,
   pluginOptions: ExtractOptions<WebpackBabelPluginOptions>,
-  baseConfig: WebpackBabelPluginOptions['baseBabelConfig']
+  baseConfig: WebpackBabelPluginOptions['baseBabelConfig'],
+  resolve: boolean
 ): TransformOptions {
   const presets = baseConfig.presets;
   const plugins = baseConfig.plugins;
   const overrides = baseConfig.overrides;
 
   if (configOptions.useTypescript) {
-    presets.push('@babel/preset-typescript');
-    plugins.push('@babel/plugin-proposal-decorators');
+    presets.push(rr('@babel/preset-typescript', resolve));
+    plugins.push(rr('@babel/plugin-proposal-decorators', resolve));
 
     overrides.push({
       test: ['**/*.ts', '**/*.tsx'],
-      plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]]
+      plugins: [
+        [rr('@babel/plugin-proposal-decorators', resolve), { legacy: true }]
+      ]
     });
   }
 
   if (pluginOptions.flow) {
     overrides.push({
       exclude: ['**/*.ts', '**/*.tsx'],
-      plugins: ['@babel/plugin-transform-flow-strip-types']
+      plugins: [rr('@babel/plugin-transform-flow-strip-types', resolve)]
     });
   }
 
@@ -35,7 +40,7 @@ export function getInitialBabelConfig(
     ...baseConfig,
     presets: [
       [
-        '@babel/preset-env',
+        rr('@babel/preset-env', resolve),
         {
           modules: false,
           targets: { esmodules: true },
@@ -47,9 +52,9 @@ export function getInitialBabelConfig(
       ...presets
     ],
     plugins: [
-      ['@babel/plugin-transform-runtime', { useESModules: true }],
-      '@babel/plugin-syntax-dynamic-import',
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      [rr('@babel/plugin-transform-runtime', resolve), { useESModules: true }],
+      rr('@babel/plugin-syntax-dynamic-import', resolve),
+      [rr('@babel/plugin-proposal-class-properties', resolve), { loose: true }],
       ...plugins
     ],
     overrides

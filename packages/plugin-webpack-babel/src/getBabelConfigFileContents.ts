@@ -1,18 +1,9 @@
 import type { TransformOptions } from '@babel/core';
 
-export function getBabelConfigFileContents(
-  config: TransformOptions,
-  handlerPaths: string[]
-): string {
+export function getBabelConfigFileContents(config: TransformOptions): string {
   return `
-const __handlers = [${handlerPaths
-    .map(str => `"${str}"`)
-    .join(', ')}].map(pkg => require(pkg).default);
+module.exports = ${JSON.stringify(config, null, 2)};
 
-function __handle(config) {
-  return JSON.parse(__handlers.reduce((acc, handler) => handler(acc), JSON.stringify(config)).replace(/\\\\/g, '\\\\\\\\'));
-}
-
-module.exports = __handle(${JSON.stringify(config, null, 2)});
-`.trimStart();
+module.exports = require("@zero-scripts/core/build/utils/resolveReplace").resolveReplace(module.exports, require("@zero-scripts/plugin-webpack-babel/build/resolveMap").resolveMap);
+`.trimStart(); // TODO: replace with `module.exports = require('@zero-scripts/plugin-webpack-babel').extendConfig(module.exports);`
 }

@@ -1,13 +1,13 @@
 import { AbstractConfigBuilder } from '../AbstractConfigBuilder';
 import { AbstractPlugin } from '../AbstractPlugin';
-import { Task } from '../Task';
+import { AbstractTask } from '../AbstractTask';
 import { AbstractConfigBuilderConstructor } from '../types/AbstractConfigBuilderConstructor';
 import { WorkSpace } from '../WorkSpace';
 
 export class BeforeRunContext {
   public constructor(private readonly ws: WorkSpace) {}
 
-  public addTask(task: Task): void {
+  public addTask(task: AbstractTask): void {
     if (this.ws.tasks.has(task.name)) {
       throw new Error(`Task ${task.name} is already defined`);
     }

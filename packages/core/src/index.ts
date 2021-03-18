@@ -7,6 +7,7 @@ export * from './types';
 export * from './decorators';
 export * from './AbstractPlugin';
 export * from './WorkSpace';
+export * from './AbstractTask';
 export * from './Task';
 export * from './AbstractModificationsContainer';
 export * from './context';

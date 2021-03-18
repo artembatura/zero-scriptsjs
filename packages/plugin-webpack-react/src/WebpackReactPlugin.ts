@@ -13,7 +13,7 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 import { hasJsxRuntime } from './hasJsxRuntime';
 import { WebpackReactPluginOptions } from './WebpackReactPluginOptions';
 
-const rr = require.resolve;
+const rr = (pkg: string, bool: boolean) => (bool ? require.resolve(pkg) : pkg);
 
 @ReadOptions(WebpackReactPluginOptions, 'plugin-webpack-react')
 export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions> {
@@ -49,18 +49,27 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           ? false
           : hasJsxRuntime(prebuiltConfigOptions.paths);
 
+        const currentTask = getCurrentTaskMeta();
+
         if (babelPlugin) {
           babelPlugin.optionsContainer.hooks.beforeBuild.tap(
             'WebpackReactPlugin',
             optionsContainer => {
               const baseConfig = optionsContainer.baseBabelConfig;
 
-              babelPlugin.babelConfigHandlerPaths.push(
-                '@zero-scripts/plugin-webpack-react/build/resolveBabelPackages'
-              );
+              babelPlugin.resolveMap['@zero-scripts/plugin-webpack-react'] = [
+                '@babel/preset-react',
+                'babel-plugin-transform-react-remove-prop-types',
+                'babel-plugin-named-asset-import'
+              ];
+
+              const isGenerateTask =
+                currentTask?.name === 'generate-babel-config';
+
+              const resolveBabelPackages = !isGenerateTask;
 
               baseConfig.presets.push([
-                '@babel/preset-react',
+                rr('@babel/preset-react', resolveBabelPackages),
                 {
                   useBuiltIns: true,
                   runtime: useNewJsxTransform ? 'automatic' : 'classic'
@@ -68,7 +77,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
               ]);
 
               baseConfig.env.development.presets.push([
-                '@babel/preset-react',
+                rr('@babel/preset-react', resolveBabelPackages),
                 {
                   development: true,
                   useBuiltIns: true,
@@ -80,14 +89,17 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
               //  automatically enable this option
               if (pluginOptions.propTypes) {
                 baseConfig.env.production.plugins.push([
-                  'babel-plugin-transform-react-remove-prop-types',
+                  rr(
+                    'babel-plugin-transform-react-remove-prop-types',
+                    resolveBabelPackages
+                  ),
                   { removeImport: true }
                 ]);
               }
 
               if (pluginOptions.svgReactComponent) {
                 baseConfig.plugins.push([
-                  'babel-plugin-named-asset-import',
+                  rr('babel-plugin-named-asset-import', resolveBabelPackages),
                   {
                     loaderMap: {
                       svg: {
@@ -139,8 +151,6 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           );
         }
 
-        const currentTask = getCurrentTaskMeta();
-
         if (pluginOptions.fastRefresh && currentTask?.name === 'start') {
           if (babelPlugin) {
             babelPlugin.optionsContainer.hooks.beforeBuild.tap(
@@ -159,7 +169,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
                   new ReactRefreshWebpackPlugin({
                     overlay: {
                       sockIntegration: 'whm',
-                      entry: rr('webpack-hot-middleware/client')
+                      entry: rr('webpack-hot-middleware/client', true)
                     }
                   })
                 );
