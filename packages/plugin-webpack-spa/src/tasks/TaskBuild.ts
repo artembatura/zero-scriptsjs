@@ -2,7 +2,7 @@ import { output } from '@artemir/friendly-errors-webpack-plugin';
 import { writeFileSync } from 'fs';
 import webpack, { Compiler } from 'webpack';
 
-import { Task } from '@zero-scripts/core';
+import { AbstractTask } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackSpaPluginOptions } from '../WebpackSpaPluginOptions';
@@ -11,7 +11,7 @@ type BuildTaskOptions = {
   json?: boolean | string;
 };
 
-export class TaskBuild extends Task<'build'> {
+export class TaskBuild extends AbstractTask<'build'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions

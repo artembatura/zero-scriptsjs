@@ -1,7 +1,7 @@
 import { output } from '@artemir/friendly-errors-webpack-plugin';
 import webpack from 'webpack';
 
-import { Task } from '@zero-scripts/core';
+import { AbstractTask } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackSpaPluginOptions } from '../WebpackSpaPluginOptions';
@@ -10,7 +10,7 @@ type WatchTaskOptions = {
   smokeTest?: boolean;
 };
 
-export class TaskWatch extends Task<'watch'> {
+export class TaskWatch extends AbstractTask<'watch'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions

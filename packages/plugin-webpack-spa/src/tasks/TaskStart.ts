@@ -5,7 +5,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import { Task } from '@zero-scripts/core';
+import { AbstractTask } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
 import { WebpackSpaPluginOptions } from '../WebpackSpaPluginOptions';
@@ -15,7 +15,7 @@ type StartTaskOptions = {
   smokeTest?: boolean;
 };
 
-export class TaskStart extends Task<'start'> {
+export class TaskStart extends AbstractTask<'start'> {
   constructor(
     protected readonly configBuilder: WebpackConfig,
     protected readonly pluginOptionsContainer: WebpackSpaPluginOptions
