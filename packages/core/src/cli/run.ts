@@ -50,6 +50,32 @@ function getPluginPackageList(
   );
 }
 
+function getTaskMeta(
+  taskString: string,
+  cliMeta: CLIMeta
+): {
+  name: string;
+  args: string[];
+  options: Record<string, string>;
+} {
+  const taskArgv = taskString.split(' ');
+
+  const { _: args, ...options } = mri(taskArgv);
+  const [taskName, ...restArgs] = args;
+
+  const useCommonArgsAndOptions =
+    Object.keys(options).length === 0 && restArgs.length === 0;
+
+  const finalArgs = useCommonArgsAndOptions ? cliMeta.args : restArgs;
+  const finalOptions = useCommonArgsAndOptions ? cliMeta.options : options;
+
+  return {
+    name: taskName,
+    args: finalArgs,
+    options: finalOptions
+  };
+}
+
 export async function run(argv: string[]): Promise<void> {
   const cliMeta: CLIMeta = getCLIMeta(argv);
 
@@ -127,6 +153,18 @@ export async function run(argv: string[]): Promise<void> {
     }
   }
 
+  const taskQueue = workFlow
+    ? Array.isArray(workFlow)
+      ? workFlow
+      : workFlow.flow
+    : cliMeta.args;
+
+  if (taskQueue.length === 0) {
+    throw new Error(
+      'Error: You should provide at least one task to be executed.'
+    );
+  }
+
   const workSpaceInstance = new WorkSpace('default');
 
   const plugins = pluginPackageNames.map(pluginPackageName => {
@@ -143,6 +181,10 @@ export async function run(argv: string[]): Promise<void> {
 
   dotEnv.config();
 
+  const firstTaskMeta = getTaskMeta(taskQueue[0], cliMeta);
+
+  setCurrentTaskMeta(firstTaskMeta);
+
   const applyContext = new ApplyContext(workSpaceInstance);
 
   plugins.forEach(plugin => {
@@ -153,39 +195,23 @@ export async function run(argv: string[]): Promise<void> {
     new BeforeRunContext(workSpaceInstance)
   );
 
-  const taskQueue = workFlow
-    ? Array.isArray(workFlow)
-      ? workFlow
-      : workFlow.flow
-    : cliMeta.args;
+  const tasks = taskQueue.map(taskString => {
+    const taskMeta = getTaskMeta(taskString, cliMeta);
 
-  for (const taskString of taskQueue) {
-    const taskArgv = taskString.split(' ');
+    const task = workSpaceInstance.tasks.get(taskMeta.name);
 
-    const { _: args, ...options } = mri(taskArgv);
-    const [taskName, ...restArgs] = args;
-
-    const task = workSpaceInstance.tasks.get(taskName);
-
-    // TODO: check this before running queue
     if (!task) {
       throw new Error(
-        `Error: Task "${taskName}" is not exists in your workspace "${workSpaceName}".`
+        `Error: Task "${taskMeta.name}" is not exists in your workspace "${workSpaceName}".`
       );
     }
 
-    const useCommonArgsAndOptions =
-      Object.keys(options).length === 0 && restArgs.length === 0;
+    return [taskMeta, task] as const;
+  });
 
-    const finalArgs = useCommonArgsAndOptions ? cliMeta.args : restArgs;
-    const finalOptions = useCommonArgsAndOptions ? cliMeta.options : options;
+  for (const [taskMeta, task] of tasks) {
+    setCurrentTaskMeta(taskMeta);
 
-    setCurrentTaskMeta({
-      args: finalArgs,
-      options: finalOptions,
-      name: task.name
-    });
-
-    await task.run(finalArgs, finalOptions);
+    await task.run(taskMeta.args, taskMeta.options);
   }
 }
