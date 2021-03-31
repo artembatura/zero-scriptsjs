@@ -57,11 +57,9 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           optionsContainer => {
             const baseConfig = optionsContainer.baseBabelConfig;
 
-            babelPlugin.resolveMap['@zero-scripts/plugin-webpack-react'] = [
-              '@babel/preset-react',
-              'babel-plugin-transform-react-remove-prop-types',
-              'babel-plugin-named-asset-import'
-            ];
+            babelPlugin.resolveMaps.push(
+              '@zero-scripts/plugin-webpack-react/build/babelResolveMap.js'
+            );
 
             const isGenerateTask =
               currentTask?.name === 'generate-babel-config';

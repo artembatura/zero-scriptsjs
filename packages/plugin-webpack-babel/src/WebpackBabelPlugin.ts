@@ -13,14 +13,15 @@ import { WebpackConfig } from '@zero-scripts/webpack-config';
 import { babelConfigExists } from './babelConfigExists';
 import { getBabelConfigFileContents } from './getBabelConfigFileContents';
 import { getInitialBabelConfig } from './getInitialBabelConfig';
-import { resolveMap as sourceResolveMap } from './resolveMap';
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
 
 const rr = require.resolve;
 
 @ReadOptions(WebpackBabelPluginOptions, 'plugin-webpack-babel')
 export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions> {
-  public readonly resolveMap = sourceResolveMap;
+  public readonly resolveMaps: string[] = [
+    '@zero-scripts/plugin-webpack-babel/build/resolveMap.js'
+  ];
 
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackBabelPlugin', beforeRunContext => {
@@ -50,7 +51,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
 
             fs.writeFile(
               babelConfigPath,
-              getBabelConfigFileContents(initialBabelConfig),
+              getBabelConfigFileContents(initialBabelConfig, this.resolveMaps),
               err => {
                 if (err) {
                   throw err;
@@ -65,16 +66,6 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
         'WebpackBabelPlugin',
         (modifications, configOptions) => {
           const { isDev, paths, useTypescript } = configOptions;
-
-          this.resolveMap['@zero-scripts/plugin-webpack-babel'] = [
-            '@babel/preset-typescript',
-            '@babel/plugin-proposal-decorators',
-            '@babel/plugin-transform-flow-strip-types',
-            '@babel/preset-env',
-            '@babel/plugin-transform-runtime',
-            '@babel/plugin-syntax-dynamic-import',
-            '@babel/plugin-proposal-class-properties'
-          ];
 
           const pluginOptions = this.optionsContainer.build();
 

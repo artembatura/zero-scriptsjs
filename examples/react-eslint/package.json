@@ -2,9 +2,9 @@
   "name": "example-react-eslint",
   "private": true,
   "scripts": {
-    "build": "run build",
-    "start": "run start",
-    "watch": "run watch"
+    "build": "run generate-babel-config && run build",
+    "start": "run generate-babel-config && run start",
+    "watch": "run generate-babel-config && run watch"
   },
   "dependencies": {
     "react": "^17.0.1",
