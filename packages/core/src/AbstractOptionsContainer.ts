@@ -11,6 +11,14 @@ import {
 } from './metadata';
 import { ExtractOptions } from './types';
 
+function deepClone(val: any[] | Record<string, any>) {
+  if (typeof val === 'object') {
+    return JSON.parse(JSON.stringify(val));
+  }
+
+  return val;
+}
+
 export abstract class AbstractOptionsContainer<
   TArgHook extends AbstractOptionsContainer = any
 > {
@@ -18,12 +26,18 @@ export abstract class AbstractOptionsContainer<
     beforeBuild: new SyncHook<[TArgHook]>(['optionsContainer'])
   };
 
-  public constructor(externalOptions?: Record<string, unknown>) {
-    if (!externalOptions) {
+  public constructor(
+    protected readonly externalOptions?: Record<string, unknown>
+  ) {
+    this.setExternalOptions();
+  }
+
+  protected setExternalOptions(): void {
+    if (!this.externalOptions) {
       return;
     }
 
-    Object.keys(externalOptions).forEach(option => {
+    Object.keys(this.externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         METADATA_OPTIONS,
         this.constructor.prototype,
@@ -42,7 +56,7 @@ export abstract class AbstractOptionsContainer<
         METADATA_OPTIONS,
         {
           ...(prevMeta ? prevMeta : {}),
-          externalValue: (externalOptions as any)[option]
+          externalValue: (this.externalOptions as any)[option]
         },
         this.constructor.prototype,
         option
@@ -50,18 +64,38 @@ export abstract class AbstractOptionsContainer<
     });
   }
 
-  public build<T extends ExtractOptions<this>>(): T {
-    this.hooks.beforeBuild.call(this as any);
+  protected resetOptions(): void {
+    this.properties.forEach(optionKey => {
+      const prevMeta: OptionMetadata<this, any> = Reflect.getMetadata(
+        METADATA_OPTIONS,
+        this.constructor.prototype,
+        optionKey
+      );
 
-    const properties = Object.getOwnPropertyNames(this).filter(
-      prop => prop !== 'hooks'
+      if (prevMeta) {
+        this[optionKey as keyof this] = deepClone(prevMeta.initialValue);
+      }
+    });
+
+    this.setExternalOptions();
+  }
+
+  protected get properties(): string[] {
+    return Object.getOwnPropertyNames(this).filter(
+      prop => prop !== 'hooks' && prop !== 'externalOptions'
     );
+  }
+
+  public build<T extends ExtractOptions<this>>(): T {
+    this.resetOptions();
+
+    this.hooks.beforeBuild.call(this as any);
 
     type OptionsMetaArray = (OptionMetadata<T, any> & {
       optionKey: keyof T;
     })[];
 
-    const optionsMeta = properties.map(optionKey => {
+    const optionsMeta = this.properties.map(optionKey => {
       if (
         !Reflect.hasMetadata(
           METADATA_OPTIONS,

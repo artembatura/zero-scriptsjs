@@ -7,6 +7,7 @@ export interface OptionMetadata<T, TOptionValue extends T[keyof T]> {
   getOptionValue: (options: any, externalValue: any) => TOptionValue;
   externalValue: TOptionValue;
   postModifier: (value: TOptionValue, options: any) => TOptionValue;
+  initialValue: TOptionValue;
 }
 
 export interface RootDependencyMetadata {

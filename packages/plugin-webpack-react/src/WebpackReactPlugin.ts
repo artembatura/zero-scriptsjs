@@ -19,10 +19,12 @@ const rr = (pkg: string, bool: boolean) => (bool ? require.resolve(pkg) : pkg);
 export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions> {
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackReactPlugin', beforeRunContext => {
-      const config = beforeRunContext.getConfigBuilder(WebpackConfig);
-      const prebuiltConfigOptions = config.optionsContainer.build();
+      const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
+        WebpackConfig
+      );
+      const prebuiltConfigOptions = webpackConfigBuilder.optionsContainer.build();
 
-      config.hooks.beforeBuild.tap(
+      webpackConfigBuilder.optionsContainer.hooks.beforeBuild.tap(
         'WebpackReactPlugin::addExtensions',
         configOptions => {
           configOptions.jsFileExtensions.push('jsx');
@@ -160,7 +162,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             }
           );
 
-          config.hooks.build.tap(
+          webpackConfigBuilder.hooks.build.tap(
             'WebpackReactPlugin::addReactRefresh',
             modifications => {
               modifications.insertPlugin(

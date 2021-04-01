@@ -89,7 +89,8 @@ export function Option<
           {
             ...prevMeta,
             getOptionValue,
-            postModifier
+            postModifier,
+            initialValue: firstValue
           } as OptionMetadata<any, any>,
           target,
           propertyName
