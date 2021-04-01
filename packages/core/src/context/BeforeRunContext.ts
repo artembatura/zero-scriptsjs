@@ -32,4 +32,8 @@ export class BeforeRunContext {
       | T
       | undefined;
   }
+
+  public hasPlugin(name: string): boolean {
+    return this.ws.plugins.some(plugin => plugin.constructor.name === name);
+  }
 }
