@@ -2,30 +2,23 @@
   "name": "example-react-eslint",
   "private": true,
   "scripts": {
-    "build": "run generate-babel-config && run build",
-    "start": "run generate-babel-config && run start",
-    "watch": "run generate-babel-config && run watch"
+    "build": "run build",
+    "start": "run start",
+    "watch": "run watch"
   },
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@babel/core": "7.12.3",
-    "@babel/eslint-parser": "7.12.1",
     "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/eslint-config-react": "workspace:*",
     "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "@zero-scripts/plugin-webpack-eslint": "workspace:*",
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
     "@zero-scripts/plugin-webpack-styling": "workspace:*",
     "eslint": "^7.18.0",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-flowtype": "^5.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "webpack": "^5.17.0"
   },
   "zero-scripts": {}

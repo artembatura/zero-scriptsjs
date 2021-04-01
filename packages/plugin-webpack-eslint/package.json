@@ -27,15 +27,17 @@
     "build"
   ],
   "dependencies": {
+    "@rushstack/eslint-patch": "1.0.6",
+    "@zero-scripts/eslint-config": "0.1.0",
     "@zero-scripts/webpack-config": "workspace:*",
-    "eslint-formatter-pretty": "^4.0.0",
-    "eslint-webpack-plugin": "^2.4.3"
+    "eslint-webpack-plugin": "2.5.3"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.6",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
     "@zero-scripts/core": "workspace:*",
+    "@zero-scripts/plugin-webpack-babel": "workspace:*",
     "eslint": "^7.18.0",
     "webpack": "^5.17.0"
   },

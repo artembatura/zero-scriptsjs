@@ -1,0 +1,30 @@
+{
+  "name": "@zero-scripts/eslint-config",
+  "version": "0.1.0",
+  "bugs": {
+    "url": "https://github.com/artemirq/zero-scripts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artemirq/zero-scripts",
+    "directory": "packages/eslint-config"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Artem Batura",
+    "email": "artemir.q@gmail.com"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "@babel/core": "7.12.3",
+    "@babel/eslint-parser": "7.12.1",
+    "@typescript-eslint/eslint-plugin": "4.14.0",
+    "@typescript-eslint/parser": "4.14.0",
+    "eslint-plugin-import": "^2.22.0"
+  },
+  "peerDependencies": {
+    "eslint": "^7.5.0"
+  }
+}
