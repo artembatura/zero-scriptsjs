@@ -4,10 +4,10 @@ import * as path from 'path';
 
 import {
   AbstractPlugin,
-  ReadOptions,
   ApplyContext,
-  Task,
-  run
+  ReadOptions,
+  run,
+  Task
 } from '@zero-scripts/core';
 import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
@@ -86,15 +86,28 @@ export class WebpackEslintPlugin extends AbstractPlugin<WebpackEslintPluginOptio
               'WebpackBabelPlugin'
             );
 
-            const babelOptions = babelPlugin
-              ? babelPlugin.optionsContainer.build().baseBabelConfig
-              : undefined;
+            (global as any)['BABEL_CONFIG'] = (() => {
+              if (babelPlugin) {
+                const babelPluginOptions = babelPlugin.optionsContainer.build();
+
+                return babelPlugin.getInitialBabelConfig(
+                  configOptions,
+                  babelPluginOptions,
+                  babelPluginOptions.baseBabelConfig,
+                  true
+                );
+              }
+
+              return undefined;
+            })();
 
             (global as any)['ESLINT_CONFIG'] = {
               ...baseEslintConfig,
               parserOptions: {
                 ...baseEslintConfig.parserOptions,
-                babelOptions
+                babelOptions: {
+                  configFile: require.resolve('./babel-config.js')
+                }
               }
             };
 
