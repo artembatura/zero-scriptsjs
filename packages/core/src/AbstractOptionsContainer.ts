@@ -11,7 +11,7 @@ import {
 } from './metadata';
 import { ExtractOptions } from './types';
 
-function deepClone(val: any[] | Record<string, any>) {
+function deepClone<T extends any[] | Record<string, any>>(val: T): T {
   if (typeof val === 'object') {
     return JSON.parse(JSON.stringify(val));
   }
@@ -26,18 +26,14 @@ export abstract class AbstractOptionsContainer<
     beforeBuild: new SyncHook<[TArgHook]>(['optionsContainer'])
   };
 
-  public constructor(
-    protected readonly externalOptions?: Record<string, unknown>
-  ) {
-    this.setExternalOptions();
-  }
+  protected lastSavedOptions?: Record<string, unknown>;
 
-  protected setExternalOptions(): void {
-    if (!this.externalOptions) {
+  public constructor(externalOptions?: Record<string, unknown>) {
+    if (!externalOptions) {
       return;
     }
 
-    Object.keys(this.externalOptions).forEach(option => {
+    Object.keys(externalOptions).forEach(option => {
       const prevMeta = Reflect.getMetadata(
         METADATA_OPTIONS,
         this.constructor.prototype,
@@ -56,7 +52,7 @@ export abstract class AbstractOptionsContainer<
         METADATA_OPTIONS,
         {
           ...(prevMeta ? prevMeta : {}),
-          externalValue: (this.externalOptions as any)[option]
+          externalValue: (externalOptions as any)[option]
         },
         this.constructor.prototype,
         option
@@ -64,30 +60,32 @@ export abstract class AbstractOptionsContainer<
     });
   }
 
-  protected resetOptions(): void {
-    this.properties.forEach(optionKey => {
-      const prevMeta: OptionMetadata<this, any> = Reflect.getMetadata(
-        METADATA_OPTIONS,
-        this.constructor.prototype,
-        optionKey
-      );
-
-      if (prevMeta) {
-        this[optionKey as keyof this] = deepClone(prevMeta.initialValue);
-      }
-    });
-
-    this.setExternalOptions();
-  }
-
   protected get properties(): string[] {
     return Object.getOwnPropertyNames(this).filter(
-      prop => prop !== 'hooks' && prop !== 'externalOptions'
+      prop => !['hooks', 'lastSavedOptions'].includes(prop)
     );
   }
 
+  protected saveOptions(): void {
+    this.lastSavedOptions = this.properties.reduce((acc, prop) => {
+      return { ...acc, [prop]: deepClone(this[prop as keyof this]) };
+    }, {});
+  }
+
+  protected retrieveOptions(): void {
+    const savedOptions = this.lastSavedOptions;
+
+    if (savedOptions) {
+      Object.keys(savedOptions).forEach(key => {
+        this[key as keyof this] = savedOptions[key] as this[keyof this];
+      });
+    }
+
+    this.lastSavedOptions = undefined;
+  }
+
   public build<T extends ExtractOptions<this>>(): T {
-    this.resetOptions();
+    this.saveOptions();
 
     this.hooks.beforeBuild.call(this as any);
 
@@ -150,6 +148,8 @@ export abstract class AbstractOptionsContainer<
         );
       }
     });
+
+    this.retrieveOptions();
 
     return builtOptions;
   }
