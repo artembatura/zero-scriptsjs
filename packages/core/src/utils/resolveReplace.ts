@@ -13,8 +13,9 @@ export function resolveReplace(
       const requireNested = createRequire(require.resolve(rootPkg));
 
       if (tempString.includes(pkgName)) {
-        tempString = tempString.replace(new RegExp(pkgName, 'g'), () =>
-          requireNested.resolve(pkgName)
+        tempString = tempString.replace(
+          new RegExp(`"${pkgName}"`, 'g'),
+          () => `"${requireNested.resolve(pkgName)}"`
         );
       }
     });

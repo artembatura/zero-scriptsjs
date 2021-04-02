@@ -19,10 +19,12 @@ const rr = (pkg: string, bool: boolean) => (bool ? require.resolve(pkg) : pkg);
 export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions> {
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackReactPlugin', beforeRunContext => {
-      const config = beforeRunContext.getConfigBuilder(WebpackConfig);
-      const prebuiltConfigOptions = config.optionsContainer.build();
+      const webpackConfigBuilder = beforeRunContext.getConfigBuilder(
+        WebpackConfig
+      );
+      const prebuiltConfigOptions = webpackConfigBuilder.optionsContainer.build();
 
-      config.hooks.beforeBuild.tap(
+      webpackConfigBuilder.optionsContainer.hooks.beforeBuild.tap(
         'WebpackReactPlugin::addExtensions',
         configOptions => {
           configOptions.jsFileExtensions.push('jsx');
@@ -118,11 +120,20 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
           optionsContainer => {
             const baseConfig = optionsContainer.baseEslintConfig;
 
-            baseConfig.extends = baseConfig.extends || [];
+            baseConfig.extends = (baseConfig.extends || []) as string[];
 
-            if (Array.isArray(baseConfig.extends)) {
-              baseConfig.extends.push('eslint-config-react-app');
-            }
+            eslintPlugin.resolveMaps.push(
+              '@zero-scripts/plugin-webpack-react/build/eslintResolveMap.js'
+            );
+
+            const isGenerateTask =
+              currentTask?.name === 'generate-eslint-config';
+
+            const resolveEslintPackages = !isGenerateTask;
+
+            baseConfig.extends.push(
+              rr('@zero-scripts/eslint-config-react', resolveEslintPackages)
+            );
 
             if (useNewJsxTransform) {
               baseConfig.rules = {
@@ -160,7 +171,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
             }
           );
 
-          config.hooks.build.tap(
+          webpackConfigBuilder.hooks.build.tap(
             'WebpackReactPlugin::addReactRefresh',
             modifications => {
               modifications.insertPlugin(

@@ -23,6 +23,8 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
     '@zero-scripts/plugin-webpack-babel/build/resolveMap.js'
   ];
 
+  public readonly getInitialBabelConfig = getInitialBabelConfig;
+
   public apply(applyContext: ApplyContext): void {
     applyContext.hooks.beforeRun.tap('WebpackBabelPlugin', beforeRunContext => {
       const webpackConfigBuilder = beforeRunContext.getConfigBuilder(

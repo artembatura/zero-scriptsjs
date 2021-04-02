@@ -6,5 +6,9 @@
     "rootDir": "src",
     "outDir": "build"
   },
-  "references": [{ "path": "../core" }, { "path": "../webpack-config" }]
+  "references": [
+    { "path": "../core" },
+    { "path": "../webpack-config" },
+    { "path": "../plugin-webpack-babel" }
+  ]
 }

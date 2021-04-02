@@ -11,12 +11,22 @@ import {
 } from './metadata';
 import { ExtractOptions } from './types';
 
+function deepClone<T extends any[] | Record<string, any>>(val: T): T {
+  if (typeof val === 'object') {
+    return JSON.parse(JSON.stringify(val));
+  }
+
+  return val;
+}
+
 export abstract class AbstractOptionsContainer<
   TArgHook extends AbstractOptionsContainer = any
 > {
   public readonly hooks = {
     beforeBuild: new SyncHook<[TArgHook]>(['optionsContainer'])
   };
+
+  protected lastSavedOptions?: Record<string, unknown>;
 
   public constructor(externalOptions?: Record<string, unknown>) {
     if (!externalOptions) {
@@ -50,18 +60,40 @@ export abstract class AbstractOptionsContainer<
     });
   }
 
-  public build<T extends ExtractOptions<this>>(): T {
-    this.hooks.beforeBuild.call(this as any);
-
-    const properties = Object.getOwnPropertyNames(this).filter(
-      prop => prop !== 'hooks'
+  protected get properties(): string[] {
+    return Object.getOwnPropertyNames(this).filter(
+      prop => !['hooks', 'lastSavedOptions'].includes(prop)
     );
+  }
+
+  protected saveOptions(): void {
+    this.lastSavedOptions = this.properties.reduce((acc, prop) => {
+      return { ...acc, [prop]: deepClone(this[prop as keyof this]) };
+    }, {});
+  }
+
+  protected retrieveOptions(): void {
+    const savedOptions = this.lastSavedOptions;
+
+    if (savedOptions) {
+      Object.keys(savedOptions).forEach(key => {
+        this[key as keyof this] = savedOptions[key] as this[keyof this];
+      });
+    }
+
+    this.lastSavedOptions = undefined;
+  }
+
+  public build<T extends ExtractOptions<this>>(): T {
+    this.saveOptions();
+
+    this.hooks.beforeBuild.call(this as any);
 
     type OptionsMetaArray = (OptionMetadata<T, any> & {
       optionKey: keyof T;
     })[];
 
-    const optionsMeta = properties.map(optionKey => {
+    const optionsMeta = this.properties.map(optionKey => {
       if (
         !Reflect.hasMetadata(
           METADATA_OPTIONS,
@@ -116,6 +148,8 @@ export abstract class AbstractOptionsContainer<
         );
       }
     });
+
+    this.retrieveOptions();
 
     return builtOptions;
   }

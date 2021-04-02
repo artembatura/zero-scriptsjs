@@ -13,13 +13,13 @@ export function getInitialBabelConfig(
   baseConfig: WebpackBabelPluginOptions['baseBabelConfig'],
   resolve: boolean
 ): TransformOptions {
-  const presets = baseConfig.presets;
-  const plugins = baseConfig.plugins;
-  const overrides = baseConfig.overrides;
+  const presets = [...baseConfig.presets];
+  const plugins = [...baseConfig.plugins];
+  const overrides = [...baseConfig.overrides];
 
   if (configOptions.useTypescript) {
     presets.push(rr('@babel/preset-typescript', resolve));
-    plugins.push(rr('@babel/plugin-proposal-decorators', resolve));
+    plugins.push([rr('@babel/plugin-proposal-decorators', resolve), false]);
 
     overrides.push({
       test: ['**/*.ts', '**/*.tsx'],
