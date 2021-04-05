@@ -30,10 +30,10 @@ export function Option<
     options: { [K in keyof T]: T[K] }
   ) => T[TOption]
 ) {
-  return (target: T, propertyName: string): void => {
+  return (prototype: T, propertyName: string): void => {
     const values = new Map();
 
-    Object.defineProperty(target, propertyName, {
+    Object.defineProperty(prototype, propertyName, {
       set(firstValue: any) {
         Object.defineProperty(this, propertyName, {
           get() {
@@ -64,7 +64,7 @@ export function Option<
                   : ({} as any),
               defaultValue,
               externalValue,
-              currentTask: target.taskMetaContainer?.get() as TTaskMeta
+              currentTask: this.taskMetaContainer?.get() as TTaskMeta
             });
           }
 
@@ -96,17 +96,17 @@ export function Option<
             postModifier,
             initialValue: firstValue
           } as OptionMetadata<any, any>,
-          target,
+          prototype,
           propertyName
         );
 
-        if (!Reflect.hasMetadata(METADATA_ROOT_DEPENDENCY_NODE, target)) {
+        if (!Reflect.hasMetadata(METADATA_ROOT_DEPENDENCY_NODE, prototype)) {
           Reflect.defineMetadata(
             METADATA_ROOT_DEPENDENCY_NODE,
             {
               instance: new DependencyNode('root')
             },
-            target
+            prototype
           );
         }
 
@@ -114,7 +114,7 @@ export function Option<
           instance: rootNode
         }: RootDependencyMetadata = Reflect.getMetadata(
           METADATA_ROOT_DEPENDENCY_NODE,
-          target
+          prototype
         );
 
         const node = rootNode.addOrGetEdge(propertyName);

@@ -165,7 +165,14 @@ export async function run(argv: string[]): Promise<void> {
     );
   }
 
+  const firstTaskMeta = getTaskMeta(taskQueue[0], cliMeta);
+  const taskMetaContainer = createTaskMetaContainer(firstTaskMeta);
+
   const workSpaceInstance = new WorkSpace('default');
+
+  workSpaceInstance.configBuilderInstances.forEach(configBuilder => {
+    configBuilder.optionsContainer.taskMetaContainer = taskMetaContainer;
+  });
 
   const plugins = pluginPackageNames.map(pluginPackageName => {
     const PluginClass = (require(pluginPackageName) as {
@@ -180,10 +187,6 @@ export async function run(argv: string[]): Promise<void> {
   });
 
   dotEnv.config();
-
-  const firstTaskMeta = getTaskMeta(taskQueue[0], cliMeta);
-
-  const taskMetaContainer = createTaskMetaContainer(firstTaskMeta);
 
   const applyContext = new ApplyContext(workSpaceInstance, taskMetaContainer);
 

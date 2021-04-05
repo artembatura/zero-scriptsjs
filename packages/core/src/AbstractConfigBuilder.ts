@@ -5,8 +5,8 @@ import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 import { ExtractOptions } from './types';
 
 export abstract class AbstractConfigBuilder<
-  TConfig extends Record<string, any>,
-  TOptionsContainer extends AbstractOptionsContainer,
+  TConfig extends Record<string, any> = any,
+  TOptionsContainer extends AbstractOptionsContainer = AbstractOptionsContainer,
   TModificationsContainer extends AbstractModificationsContainer<
     TConfig,
     TOptionsContainer
