@@ -2948,6 +2948,7 @@ __metadata:
     babel-loader: ^8.2.2
     core-js: 3.8.3
     fork-ts-checker-webpack-plugin: ^6.1.0
+    gensync: 1.0.0-beta.2
     webpack: ^5.17.0
   peerDependencies:
     "@zero-scripts/core": ^1.0.0-alfa.0
@@ -6840,7 +6841,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gensync@npm:^1.0.0-beta.1":
+"gensync@npm:1.0.0-beta.2, gensync@npm:^1.0.0-beta.1":
   version: 1.0.0-beta.2
   resolution: "gensync@npm:1.0.0-beta.2"
   checksum: d523437689c97b3aba9c5cdeca4677d5fff9a29d620db693fea40d852bad63563110f16979d0170248439dbcd2ecee0780fb2533d3f0519f019081aa10767c60

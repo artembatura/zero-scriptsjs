@@ -1,19 +1,43 @@
 import type ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as fs from 'fs';
+import gensync from 'gensync';
 import * as path from 'path';
 
 import {
   AbstractPlugin,
   ApplyContext,
   ReadOptions,
+  run,
   Task
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
-import { babelConfigExists } from './babelConfigExists';
 import { getBabelConfigFileContents } from './getBabelConfigFileContents';
 import { getInitialBabelConfig } from './getInitialBabelConfig';
 import { WebpackBabelPluginOptions } from './WebpackBabelPluginOptions';
+
+const {
+  findRootConfig: genFindRootConfig,
+  ROOT_CONFIG_FILENAMES
+} = require('@babel/core/lib/config/files/configuration');
+
+const findRootConfig = gensync(genFindRootConfig);
+
+function getBabelConfigPath(rootPath: string): string | undefined {
+  for (const fileName of ROOT_CONFIG_FILENAMES) {
+    const filePath = path.join(rootPath, fileName);
+
+    if (fs.existsSync(filePath)) {
+      return filePath;
+    }
+  }
+
+  return undefined;
+}
+
+function babelConfigExists(rootPath: string) {
+  return Boolean(getBabelConfigPath(rootPath));
+}
 
 const rr = require.resolve;
 
@@ -31,14 +55,17 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
         WebpackConfig
       );
 
+      const paths = webpackConfigBuilder.optionsContainer.build().paths;
+      const configFileExists = babelConfigExists(paths.root);
+
       beforeRunContext.addTask(
-        new Task('generate-babel-config', () => {
+        new Task('generate-babel-config', async () => {
           const configOptions = webpackConfigBuilder.optionsContainer.build();
           const { paths } = configOptions;
 
           const pluginOptions = this.optionsContainer.build();
 
-          if (!babelConfigExists(paths.root)) {
+          if (!configFileExists) {
             const initialBabelConfig = getInitialBabelConfig(
               configOptions,
               pluginOptions,
@@ -46,10 +73,10 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
               false
             );
 
-            const babelConfigPath = path.resolve(paths.root, 'babel.config.js');
+            const babelConfigPath = path.join(paths.root, 'babel.config.js');
 
             // eslint-disable-next-line no-console
-            console.log('Create babel.config.js...');
+            console.log('Generating babel.config.js...');
 
             fs.writeFile(
               babelConfigPath,
@@ -64,9 +91,9 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
         })
       );
 
-      webpackConfigBuilder.hooks.build.tap(
+      webpackConfigBuilder.hooks.build.tapPromise(
         'WebpackBabelPlugin',
-        (modifications, configOptions) => {
+        async (modifications, configOptions) => {
           const { isDev, paths, useTypescript } = configOptions;
 
           const pluginOptions = this.optionsContainer.build();
@@ -78,14 +105,46 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
             true
           );
 
+          const passOptionsDirectly = await (async () => {
+            if (configFileExists) {
+              const babelConfigFromFile = findRootConfig.sync(
+                paths.root,
+                isDev ? 'development' : 'production'
+              )?.options;
+
+              // do not pass options if config file contain the same config
+              if (
+                JSON.stringify(babelConfigFromFile) ===
+                JSON.stringify(initialBabelConfig)
+              ) {
+                return false;
+              }
+
+              return !pluginOptions.customConfig;
+            }
+
+            if (pluginOptions.customConfig) {
+              console.log(
+                'Warning: Option "customConfig" is set to "true" but no Babel config is found in project directory...'
+              );
+
+              await run(['generate-babel-config']);
+
+              return false;
+            }
+
+            return true;
+          })();
+
           modifications.insertUseItem({
             loader: rr('babel-loader'),
             options: {
               cacheDirectory: true,
               cacheCompression: !isDev,
               compact: !isDev,
-              configFile: true,
-              ...initialBabelConfig
+              configFile: getBabelConfigPath(paths.root),
+              cwd: paths.root,
+              ...(passOptionsDirectly ? initialBabelConfig : {})
             }
           });
 
