@@ -16,7 +16,7 @@ export class WebpackConfig extends AbstractConfigBuilder<
     super(optionsContainer, new WebpackConfigModifications());
   }
 
-  public build(): Configuration {
+  public build(): Promise<Configuration> {
     return super.build(createWebpackConfiguration);
   }
 

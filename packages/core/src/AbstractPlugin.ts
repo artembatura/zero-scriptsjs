@@ -2,7 +2,7 @@ import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 import { ApplyContext } from './context';
 
 export abstract class AbstractPlugin<
-  TOptionsContainer extends AbstractOptionsContainer = any
+  TOptionsContainer extends AbstractOptionsContainer = AbstractOptionsContainer
 > {
   public constructor(public readonly optionsContainer: TOptionsContainer) {}
 

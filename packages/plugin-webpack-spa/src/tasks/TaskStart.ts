@@ -23,7 +23,7 @@ export class TaskStart extends AbstractTask<'start'> {
     super('start');
   }
 
-  public run(args: string[], options: StartTaskOptions): void | Promise<void> {
+  public async run(args: string[], options: StartTaskOptions): Promise<void> {
     process.env.NODE_ENV = 'development';
 
     const configOptions = this.configBuilder.optionsContainer.build();
@@ -31,7 +31,7 @@ export class TaskStart extends AbstractTask<'start'> {
     const pluginOptions = this.pluginOptionsContainer.build();
     const devServerOptions = pluginOptions.devServer;
 
-    const config = this.configBuilder
+    const config = await this.configBuilder
       .setIsDev(true)
       .addEntry(require.resolve('webpack-hot-middleware/client'))
       .build();

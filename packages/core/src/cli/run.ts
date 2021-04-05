@@ -6,7 +6,7 @@ import { AbstractPlugin } from '../AbstractPlugin';
 import { ApplyContext, BeforeRunContext } from '../context';
 import { readPackageJson, readZeroScriptsOptions } from '../utils';
 import { WorkSpace } from '../WorkSpace';
-import { setCurrentTaskMeta } from './currentTask';
+import { createTaskMetaContainer } from './createTaskMetaContainer';
 import { getCLIMeta } from './getCLIMeta';
 import { getConfigurationMeta } from './getConfigurationMeta';
 import { pluginRegexp } from './pluginRegexp';
@@ -183,11 +183,13 @@ export async function run(argv: string[]): Promise<void> {
 
   const firstTaskMeta = getTaskMeta(taskQueue[0], cliMeta);
 
-  setCurrentTaskMeta(firstTaskMeta);
+  const taskMetaContainer = createTaskMetaContainer(firstTaskMeta);
 
-  const applyContext = new ApplyContext(workSpaceInstance);
+  const applyContext = new ApplyContext(workSpaceInstance, taskMetaContainer);
 
   plugins.forEach(plugin => {
+    plugin.optionsContainer.taskMetaContainer = taskMetaContainer;
+
     plugin.apply(applyContext);
   });
 
@@ -210,7 +212,7 @@ export async function run(argv: string[]): Promise<void> {
   });
 
   for (const [taskMeta, task] of tasks) {
-    setCurrentTaskMeta(taskMeta);
+    taskMetaContainer.set(taskMeta);
 
     await task.run(taskMeta.args, taskMeta.options);
   }

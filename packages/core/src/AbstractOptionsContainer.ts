@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import { SyncHook } from 'tapable';
 
+import { TaskMetaContainer } from './cli';
 import { resolve } from './graph';
 import {
   METADATA_OPTIONS,
@@ -22,6 +23,8 @@ function deepClone<T extends any[] | Record<string, any>>(val: T): T {
 export abstract class AbstractOptionsContainer<
   TArgHook extends AbstractOptionsContainer = any
 > {
+  public taskMetaContainer?: TaskMetaContainer;
+
   public readonly hooks = {
     beforeBuild: new SyncHook<[TArgHook]>(['optionsContainer'])
   };
@@ -62,7 +65,7 @@ export abstract class AbstractOptionsContainer<
 
   protected get properties(): string[] {
     return Object.getOwnPropertyNames(this).filter(
-      prop => !['hooks', 'lastSavedOptions'].includes(prop)
+      prop => !['hooks', 'lastSavedOptions', 'taskMetaContainer'].includes(prop)
     );
   }
 
@@ -102,7 +105,7 @@ export abstract class AbstractOptionsContainer<
         )
       ) {
         throw new Error(
-          `Must need to use @Option decorator on your ${this.constructor.name}.${optionKey} property`
+          `Must need to use @Option decorator on ${this.constructor.name}.${optionKey} property`
         );
       }
 

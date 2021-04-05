@@ -2,8 +2,8 @@ import detectCI from '@npmcli/ci-detect';
 
 import {
   AbstractOptionsContainer,
-  Option,
-  getCurrentTaskMeta
+  ExtractTaskMeta,
+  Option
 } from '@zero-scripts/core';
 
 import { TaskStart } from './tasks';
@@ -19,19 +19,20 @@ const defaultDevServerOptions: DevServerOptions = {
 };
 
 export class WebpackSpaPluginOptions extends AbstractOptionsContainer<WebpackSpaPluginOptions> {
-  @Option<WebpackSpaPluginOptions, 'devServer'>(
-    ({ defaultValue, externalValue }) => {
+  @Option<WebpackSpaPluginOptions, 'devServer', ExtractTaskMeta<TaskStart>>(
+    ({ defaultValue, externalValue, currentTask }) => {
       const options = {
         ...defaultValue,
         ...externalValue
       };
 
-      const taskMeta = getCurrentTaskMeta<TaskStart>();
-
       const isCI = Boolean(detectCI());
+
       const isSmokeTest =
-        taskMeta?.name === 'start' && taskMeta.options.smokeTest;
-      const taskPort = taskMeta?.name === 'start' && taskMeta.options.port;
+        currentTask?.name === 'start' && currentTask.options.smokeTest;
+
+      const taskPort =
+        currentTask?.name === 'start' && currentTask.options.port;
 
       return {
         ...options,

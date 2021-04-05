@@ -1,11 +1,6 @@
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-import {
-  AbstractPlugin,
-  ReadOptions,
-  ApplyContext,
-  getCurrentTaskMeta
-} from '@zero-scripts/core';
+import { AbstractPlugin, ReadOptions, ApplyContext } from '@zero-scripts/core';
 import type { WebpackBabelPlugin } from '@zero-scripts/plugin-webpack-babel';
 import type { WebpackEslintPlugin } from '@zero-scripts/plugin-webpack-eslint';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
@@ -51,7 +46,7 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
         ? false
         : hasJsxRuntime(prebuiltConfigOptions.paths);
 
-      const currentTask = getCurrentTaskMeta();
+      const currentTask = applyContext.taskMetaContainer.get();
 
       if (babelPlugin) {
         babelPlugin.optionsContainer.hooks.beforeBuild.tap(

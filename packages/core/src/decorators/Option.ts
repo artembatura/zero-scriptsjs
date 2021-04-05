@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 import { AbstractOptionsContainer } from '../AbstractOptionsContainer';
+import { TaskMeta } from '../cli';
 import { DependencyNode } from '../graph';
 import {
   METADATA_OPTIONS,
@@ -10,8 +11,9 @@ import {
 } from '../metadata';
 
 export function Option<
-  T,
+  T extends AbstractOptionsContainer,
   TOption extends Exclude<keyof T, keyof AbstractOptionsContainer>,
+  TTaskMeta extends TaskMeta = TaskMeta,
   TDependency extends (keyof T & string) | undefined = undefined
 >(
   getValue?: (data: {
@@ -20,6 +22,7 @@ export function Option<
       : undefined;
     defaultValue: T[TOption];
     externalValue: T[TOption];
+    currentTask?: TTaskMeta;
   }) => T[TOption],
   dependencies: TDependency[] = [],
   postModifier?: (
@@ -60,7 +63,8 @@ export function Option<
                     )
                   : ({} as any),
               defaultValue,
-              externalValue
+              externalValue,
+              currentTask: target.taskMetaContainer?.get() as TTaskMeta
             });
           }
 
