@@ -1,12 +1,12 @@
-import { SyncHook } from 'tapable';
+import { AsyncSeriesHook, SyncHook } from 'tapable';
 
 import { AbstractModificationsContainer } from './AbstractModificationsContainer';
 import { AbstractOptionsContainer } from './AbstractOptionsContainer';
 import { ExtractOptions } from './types';
 
 export abstract class AbstractConfigBuilder<
-  TConfig extends Record<string, any>,
-  TOptionsContainer extends AbstractOptionsContainer,
+  TConfig extends Record<string, any> = any,
+  TOptionsContainer extends AbstractOptionsContainer = AbstractOptionsContainer,
   TModificationsContainer extends AbstractModificationsContainer<
     TConfig,
     TOptionsContainer
@@ -14,8 +14,9 @@ export abstract class AbstractConfigBuilder<
 > {
   public readonly hooks = {
     beforeBuild: new SyncHook<[TOptionsContainer]>(['optionsContainer']),
-    build: new SyncHook<
-      [TModificationsContainer, ExtractOptions<TOptionsContainer>]
+    build: new AsyncSeriesHook<
+      [TModificationsContainer, ExtractOptions<TOptionsContainer>],
+      void
     >(['modifications', 'configOptions'])
   };
 
@@ -24,9 +25,9 @@ export abstract class AbstractConfigBuilder<
     protected readonly modificationsContainer: TModificationsContainer
   ) {}
 
-  public build(
+  public async build(
     createBaseConfig?: (options: ExtractOptions<TOptionsContainer>) => TConfig
-  ): TConfig {
+  ): Promise<TConfig> {
     this.hooks.beforeBuild.call(this.optionsContainer);
 
     const options = this.optionsContainer.build();
@@ -35,7 +36,7 @@ export abstract class AbstractConfigBuilder<
       ? createBaseConfig(options)
       : ({} as TConfig);
 
-    this.hooks.build.call(this.modificationsContainer, options);
+    await this.hooks.build.promise(this.modificationsContainer, options);
 
     this.modificationsContainer.applyAll(config, options);
 

@@ -11,8 +11,7 @@ import {
   ApplyContext,
   AbstractPlugin,
   InsertPos,
-  ReadOptions,
-  getCurrentTaskMeta
+  ReadOptions
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
@@ -37,7 +36,7 @@ export class WebpackSpaPlugin extends AbstractPlugin<WebpackSpaPluginOptions> {
           const pluginOptions = this.optionsContainer.build();
           const devServerOptions = pluginOptions.devServer;
 
-          const taskMeta = getCurrentTaskMeta<
+          const taskMeta = applyContext.taskMetaContainer.get<
             TaskStart | TaskBuild | TaskWatch
           >();
 

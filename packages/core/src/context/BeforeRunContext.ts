@@ -24,7 +24,7 @@ export class BeforeRunContext {
       this.ws.configBuilderInstances.set(className, new Class());
     }
 
-    return this.ws.configBuilderInstances.get(className);
+    return this.ws.configBuilderInstances.get(className) as T;
   }
 
   public findPlugin<T extends AbstractPlugin>(name: string): T | undefined {

@@ -42,4 +42,10 @@ export class WebpackBabelPluginOptions extends AbstractOptionsContainer<WebpackB
       }
     }
   };
+
+  @Option<WebpackBabelPluginOptions, 'customConfig'>(
+    ({ defaultValue, externalValue }) =>
+      externalValue !== undefined ? externalValue : defaultValue
+  )
+  public customConfig: boolean = false;
 }

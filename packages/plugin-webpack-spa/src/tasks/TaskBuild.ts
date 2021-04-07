@@ -19,10 +19,10 @@ export class TaskBuild extends AbstractTask<'build'> {
     super('build');
   }
 
-  public run(args: string[], options: BuildTaskOptions): void | Promise<void> {
+  public async run(args: string[], options: BuildTaskOptions): Promise<void> {
     process.env.NODE_ENV = 'production';
 
-    const config = this.configBuilder.setIsDev(false).build();
+    const config = await this.configBuilder.setIsDev(false).build();
 
     if (options.json) {
       config.stats = 'verbose';

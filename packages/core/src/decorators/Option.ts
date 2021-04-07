@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 import { AbstractOptionsContainer } from '../AbstractOptionsContainer';
+import { TaskMeta } from '../cli';
 import { DependencyNode } from '../graph';
 import {
   METADATA_OPTIONS,
@@ -10,8 +11,9 @@ import {
 } from '../metadata';
 
 export function Option<
-  T,
+  T extends AbstractOptionsContainer,
   TOption extends Exclude<keyof T, keyof AbstractOptionsContainer>,
+  TTaskMeta extends TaskMeta = TaskMeta,
   TDependency extends (keyof T & string) | undefined = undefined
 >(
   getValue?: (data: {
@@ -20,6 +22,7 @@ export function Option<
       : undefined;
     defaultValue: T[TOption];
     externalValue: T[TOption];
+    currentTask?: TTaskMeta;
   }) => T[TOption],
   dependencies: TDependency[] = [],
   postModifier?: (
@@ -27,10 +30,10 @@ export function Option<
     options: { [K in keyof T]: T[K] }
   ) => T[TOption]
 ) {
-  return (target: T, propertyName: string): void => {
+  return (prototype: T, propertyName: string): void => {
     const values = new Map();
 
-    Object.defineProperty(target, propertyName, {
+    Object.defineProperty(prototype, propertyName, {
       set(firstValue: any) {
         Object.defineProperty(this, propertyName, {
           get() {
@@ -60,7 +63,8 @@ export function Option<
                     )
                   : ({} as any),
               defaultValue,
-              externalValue
+              externalValue,
+              currentTask: this.taskMetaContainer?.get() as TTaskMeta
             });
           }
 
@@ -92,17 +96,17 @@ export function Option<
             postModifier,
             initialValue: firstValue
           } as OptionMetadata<any, any>,
-          target,
+          prototype,
           propertyName
         );
 
-        if (!Reflect.hasMetadata(METADATA_ROOT_DEPENDENCY_NODE, target)) {
+        if (!Reflect.hasMetadata(METADATA_ROOT_DEPENDENCY_NODE, prototype)) {
           Reflect.defineMetadata(
             METADATA_ROOT_DEPENDENCY_NODE,
             {
               instance: new DependencyNode('root')
             },
-            target
+            prototype
           );
         }
 
@@ -110,7 +114,7 @@ export function Option<
           instance: rootNode
         }: RootDependencyMetadata = Reflect.getMetadata(
           METADATA_ROOT_DEPENDENCY_NODE,
-          target
+          prototype
         );
 
         const node = rootNode.addOrGetEdge(propertyName);

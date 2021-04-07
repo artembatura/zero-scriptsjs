@@ -37,7 +37,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<WebpackConfig
   )
   public readonly additionalEntry: string[] = [];
 
-  @Option<WebpackConfigOptions, 'moduleFileExtensions', 'useTypescript'>(
+  @Option<WebpackConfigOptions, 'moduleFileExtensions', any, 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies }) => [
       ...defaultValue,
       ...(dependencies.useTypescript ? ['ts'] : []),
@@ -47,7 +47,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<WebpackConfig
   )
   public readonly moduleFileExtensions: string[] = ['json', 'js', 'mjs'];
 
-  @Option<WebpackConfigOptions, 'jsFileExtensions', 'useTypescript'>(
+  @Option<WebpackConfigOptions, 'jsFileExtensions', any, 'useTypescript'>(
     ({ externalValue, defaultValue, dependencies }) => [
       ...defaultValue,
       ...(dependencies.useTypescript ? ['ts'] : []),
@@ -60,7 +60,7 @@ export class WebpackConfigOptions extends AbstractOptionsContainer<WebpackConfig
   @Option<WebpackConfigOptions, 'isDev'>()
   public isDev: boolean = false;
 
-  @Option<WebpackConfigOptions, 'useTypescript', 'paths'>(
+  @Option<WebpackConfigOptions, 'useTypescript', any, 'paths'>(
     ({ externalValue, dependencies }) =>
       externalValue ? externalValue : existsSync(dependencies.paths.tsConfig),
     ['paths']

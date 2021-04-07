@@ -18,10 +18,10 @@ export class TaskWatch extends AbstractTask<'watch'> {
     super('watch');
   }
 
-  public run(args: string[], options: WatchTaskOptions): void | Promise<void> {
+  public async run(args: string[], options: WatchTaskOptions): Promise<void> {
     process.env.NODE_ENV = 'development';
 
-    const config = this.configBuilder.setIsDev(true).build();
+    const config = await this.configBuilder.setIsDev(true).build();
 
     const compiler = webpack(config);
 
