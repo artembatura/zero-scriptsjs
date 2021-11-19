@@ -8,7 +8,8 @@ import {
   ApplyContext,
   ReadOptions,
   run,
-  Task
+  Task,
+  ProjectConfig
 } from '@zero-scripts/core';
 import { WebpackConfig } from '@zero-scripts/webpack-config';
 
@@ -59,11 +60,39 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
       const configFileExists = babelConfigExists(paths.root);
 
       beforeRunContext.addTask(
-        new Task('generate-babel-config', async () => {
+        new Task('overwrite-babel-config', async () => {
           const configOptions = webpackConfigBuilder.optionsContainer.build();
           const { paths } = configOptions;
 
           const pluginOptions = this.optionsContainer.build();
+
+          new ProjectConfig(paths.root).merge({
+            precisePackageMap: {
+              '@zero-scripts/plugin-webpack-babel': [
+                '@babel/preset-typescript',
+                '@babel/plugin-proposal-decorators',
+                '@babel/plugin-transform-flow-strip-types',
+                '@babel/preset-env',
+                '@babel/plugin-transform-runtime',
+                '@babel/plugin-syntax-dynamic-import',
+                '@babel/plugin-proposal-class-properties'
+              ]
+            }
+          });
+
+          // todo: move to other plugin
+          new ProjectConfig(paths.root).merge({
+            precisePackageMap: {
+              '@zero-scripts/plugin-webpack-react': [
+                '@babel/preset-react',
+                'babel-plugin-transform-react-remove-prop-types',
+                'babel-plugin-named-asset-import'
+              ]
+            }
+          });
+
+          // todo: add flag to indicate that babel config was overwritten
+          //  then use this to check actuality of `resolveMap`
 
           if (!configFileExists) {
             const initialBabelConfig = getInitialBabelConfig(
@@ -124,6 +153,7 @@ export class WebpackBabelPlugin extends AbstractPlugin<WebpackBabelPluginOptions
             }
 
             if (pluginOptions.customConfig) {
+              // eslint-disable-next-line no-console
               console.log(
                 'Warning: Option "customConfig" is set to "true" but no Babel config is found in project directory...'
               );

@@ -12,3 +12,5 @@ export * from './Task';
 export * from './AbstractModificationsContainer';
 export * from './context';
 export * from './utils';
+export * from './ProjectConfig';
+export * from './utils/resolveConfigPaths';

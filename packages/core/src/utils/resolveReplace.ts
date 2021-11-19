@@ -10,9 +10,9 @@ export function resolveReplace(
     const pkgDeps = mapCtxToPackage[rootPkg];
 
     pkgDeps.forEach(pkgName => {
-      const requireNested = createRequire(require.resolve(rootPkg));
-
       if (tempString.includes(pkgName)) {
+        const requireNested = createRequire(require.resolve(rootPkg));
+
         tempString = tempString.replace(
           new RegExp(`"${pkgName}"`, 'g'),
           () => `"${requireNested.resolve(pkgName)}"`

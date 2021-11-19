@@ -58,10 +58,10 @@ export class WebpackReactPlugin extends AbstractPlugin<WebpackReactPluginOptions
               '@zero-scripts/plugin-webpack-react/build/babelResolveMap.js'
             );
 
-            const isGenerateTask =
-              currentTask?.name === 'generate-babel-config';
+            const isOverwriteTask =
+              currentTask?.name === 'overwrite-babel-config';
 
-            const resolveBabelPackages = !isGenerateTask;
+            const resolveBabelPackages = !isOverwriteTask;
 
             baseConfig.presets.push([
               rr('@babel/preset-react', resolveBabelPackages),

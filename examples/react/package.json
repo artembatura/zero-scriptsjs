@@ -4,7 +4,8 @@
   "scripts": {
     "build": "run build",
     "start": "run start",
-    "watch": "run watch"
+    "watch": "run watch",
+    "generate-babel-config": "run overwrite-babel-config"
   },
   "dependencies": {
     "react": "^17.0.1",
@@ -16,7 +17,7 @@
     "@zero-scripts/plugin-webpack-react": "workspace:*",
     "@zero-scripts/plugin-webpack-spa": "workspace:*",
     "@zero-scripts/plugin-webpack-styling": "workspace:*",
-    "webpack": "^5.17.0"
+    "webpack": "^5.45.1"
   },
   "zero-scripts": {}
 }
